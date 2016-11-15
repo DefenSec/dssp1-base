@@ -1,0 +1,2658 @@
+(sid kernel)
+(sid sysctl)
+(sid unlabeled)
+(sid file)
+
+(block sys
+
+	;
+	; Contexts
+	;
+
+	(context sys (sys.id sys.role isid (systemlow systemlow)))
+
+	(sidcontext kernel sys)
+
+	;
+	; Macros
+	;
+
+	(macro dontaudit_audit_access_mountpoint_dirs_subj_type
+		((type ARG1))
+		(typeattributeset
+			dontaudit_audit_access_mountpoint_dirs_subj_type_attribute
+				ARG1))
+
+	(macro dontaudit_list_mountpoints_subj_type ((type ARG1))
+		(typeattributeset
+			dontaudit_list_mountpoints_subj_type_attribute
+				ARG1))
+
+	(macro audit_client_subj_type ((type ARG1))
+		(typeattributeset audit_client_subj_type_attribute ARG1))
+
+	(macro audit_set_loginuid_subj_type ((type ARG1))
+		(typeattributeset audit_set_loginuid_subj_type_attribute
+			ARG1))
+
+	(macro audit_set_params_subj_type ((type ARG1))
+		(typeattributeset audit_set_params_subj_type_attribute
+			ARG1))
+
+	(macro audit_set_tty_audit_subj_type ((type ARG1))
+		(typeattributeset audit_set_tty_audit_subj_type_attribute
+			ARG1))
+
+	(macro audit_write_access_mountpoint_dirs_subj_type ((type ARG1))
+		(typeattributeset
+			audit_write_access_mountpoint_dirs_subj_type_attribute
+				ARG1))
+
+	(macro change_ring_buffer_level_subj_type ((type ARG1))
+		(typeattributeset change_ring_buffer_level_subj_type_attribute
+			ARG1))
+
+	(macro get_sysvipc_info_subj_type ((type ARG1))
+		(typeattributeset get_sysvipc_info_subj_type_attribute
+			ARG1))
+
+	(macro getattr_mountpoints_subj_type ((type ARG1))
+		(typeattributeset
+			getattr_mountpoints_subj_type_attribute ARG1))
+
+	(macro link_keyring_subj_type ((type ARG1))
+		(typeattributeset link_keyring_subj_type_attribute
+			ARG1))
+
+	(macro list_mountpoints_subj_type ((type ARG1))
+		(typeattributeset list_mountpoints_subj_type_attribute
+			ARG1))
+
+	(macro load_kernel_module_subj_type ((type ARG1))
+		(typeattributeset load_kernel_module_subj_type_attribute
+			ARG1))
+
+	(macro mountpoint_obj_type ((type ARG1))
+		(typeattributeset mountpoint_obj_type_attribute
+			ARG1))
+
+	(macro mountpoint_obj_type_transition ((type ARG1)(type ARG2)(class
+		ARG3)(name ARG4))
+		(call sys.rw_mountpoint_dirs_subj_type (ARG1))
+		(typetransition ARG1 mountpoint_obj_type_attribute ARG3
+			ARG4 ARG2))
+
+	(macro mounton_mountpoint_dirs_subj_type ((type ARG1))
+		(typeattributeset
+			mounton_mountpoint_dirs_subj_type_attribute
+				ARG1))
+
+	(macro proc_obj_type ((type ARG1))
+		(typeattributeset proc_obj_type_attribute ARG1))
+
+	(macro read_state_subj_type ((type ARG1))
+		(typeattributeset read_state_subj_type_attribute
+			ARG1))
+
+	(macro read_keyring_subj_type ((type ARG1))
+		(typeattributeset read_keyring_subj_type_attribute
+			ARG1))
+
+	(macro read_ring_buffer_subj_type ((type ARG1))
+		(typeattributeset read_ring_buffer_subj_type_attribute
+			ARG1))
+
+	(macro relabel_mountpoint_dirs_subj_type_attribute ((type ARG1))
+		(typeattributeset
+			relabel_mountpoint_dirs_subj_type_attribute
+				ARG1))
+
+	(macro request_load_module_subj_type ((type ARG1))
+		(typeattributeset
+			request_load_module_subj_type_attribute
+				ARG1))
+
+	(macro roleallow_role ((role ARG1))
+		(roleattributeset roleallow_role_attribute ARG1))
+
+	(macro rw_inherited_netlink_audit_sockets_subj_type ((type ARG1))
+		(typeattributeset
+			rw_inherited_netlink_audit_sockets_subj_type_attribute
+				ARG1))
+
+	(macro rw_inherited_unix_stream_sockets_subj_type ((type ARG1))
+		(typeattributeset
+			rw_inherited_unix_stream_sockets_subj_type_attribute
+				ARG1))
+
+	(macro rw_unix_dgram_sockets_subj_type ((type ARG1))
+		(typeattributeset rw_unix_dgram_sockets_subj_type_attribute
+			ARG1))
+
+	(macro rw_unix_stream_sockets_subj_type ((type ARG1))
+		(typeattributeset rw_unix_stream_sockets_subj_type_attribute
+			ARG1))
+
+	(macro rw_mountpoint_dirs_subj_type ((type ARG1))
+		(typeattributeset rw_mountpoint_dirs_subj_type_attribute
+			ARG1))
+
+	(macro search_mountpoints_subj_type ((type ARG1))
+		(typeattributeset search_mountpoints_subj_type_attribute
+			ARG1))
+
+	(macro send_sigchld_subj_type ((type ARG1))
+		(typeattributeset send_sigchld_subj_type_attribute
+			ARG1))
+
+	(macro setattr_mountpoint_dirs_subj_type ((type ARG1))
+		(typeattributeset
+			setattr_mountpoint_dirs_subj_type_attribute
+				ARG1))
+
+	(macro setkeycreate_subj_type ((type ARG1))
+		(typeattributeset setkeycreate_subj_type_attribute
+			ARG1))
+
+	(macro setpgid_subj_type ((type ARG1))
+		(typeattributeset setpgid_subj_type_attribute ARG1))
+
+	(macro setsched_subj_type ((type ARG1))
+		(typeattributeset setsched_subj_type_attribute ARG1))
+
+	(macro share_subj_type ((type ARG1))
+		(typeattributeset share_subj_type_attribute ARG1))
+
+	(macro sys_obj_type ((type ARG1))
+		(typeattributeset obj_type_attribute ARG1))
+
+	(macro sys_role ((role ARG1))
+		(roleattributeset sys_role_attribute ARG1))
+
+	(macro sysctl_obj_type ((type ARG1))
+		(typeattributeset sysctl_obj_type_attribute ARG1))
+
+	(macro sysfs_obj_type ((type ARG1))
+		(typeattributeset sysfs_obj_type_attribute ARG1))
+
+	(macro transition_subj_type ((type ARG1))
+		(typeattributeset transition_subj_type_attribute ARG1))
+
+	(macro unconfined_subj_type ((type ARG1))
+		(typeattributeset unconfined_subj_type_attribute
+			ARG1))
+
+	(macro unix_dgram_sockets_sendto_subj_type ((type ARG1))
+		(typeattributeset
+			unix_dgram_sockets_sendto_subj_type_attribute
+				ARG1))
+
+	(macro unix_stream_sockets_connectto_subj_type ((type ARG1))
+		(typeattributeset
+			unix_stream_sockets_connectto_subj_type_attribute
+				ARG1))
+
+	(macro use_fd_subj_type ((type ARG1))
+		(typeattributeset use_fd_subj_type_attribute
+			ARG1))
+
+	;
+	; Policy
+	;
+
+	(boolean load_kernel_init_module true)
+	(boolean load_kernel_module true)
+
+	(roleattribute sys_role_attribute)
+	(roleattribute roleallow_role_attribute)
+
+	(typeattribute unconfined_subj_type_attribute)
+
+	(typeattribute obj_type_attribute)
+
+	(typeattribute proc_obj_type_attribute)
+	(typeattribute sysctl_obj_type_attribute)
+	(typeattribute sysfs_obj_type_attribute)
+
+	(typeattribute
+		dontaudit_audit_access_mountpoint_dirs_subj_type_attribute)
+	(typeattribute
+		dontaudit_list_mountpoints_subj_type_attribute)
+	(typeattribute audit_client_subj_type_attribute)
+	(typeattribute audit_set_loginuid_subj_type_attribute)
+	(typeattribute audit_set_params_subj_type_attribute)
+	(typeattribute audit_set_tty_audit_subj_type_attribute)
+	(typeattribute
+		audit_write_access_mountpoint_dirs_subj_type_attribute)
+	(typeattribute change_ring_buffer_level_subj_type_attribute)
+	(typeattribute get_sysvipc_info_subj_type_attribute)
+	(typeattribute getattr_mountpoints_subj_type_attribute)
+	(typeattribute link_keyring_subj_type_attribute)
+	(typeattribute list_mountpoints_subj_type_attribute)
+	(typeattribute load_kernel_module_subj_type_attribute)
+	(typeattribute mountpoint_obj_type_attribute)
+	(typeattribute mounton_mountpoint_dirs_subj_type_attribute)
+	(typeattribute not_load_kernel_module_subj_type_attribute)
+	(typeattribute read_state_subj_type_attribute)
+	(typeattribute read_keyring_subj_type_attribute)
+	(typeattribute read_ring_buffer_subj_type_attribute)
+	(typeattribute relabel_mountpoint_dirs_subj_type_attribute)
+	(typeattribute request_load_module_subj_type_attribute)
+	(typeattribute
+		rw_inherited_netlink_audit_sockets_subj_type_attribute)
+	(typeattribute
+		rw_inherited_unix_stream_sockets_subj_type_attribute)
+	(typeattribute rw_unix_dgram_sockets_subj_type_attribute)
+	(typeattribute rw_unix_stream_sockets_subj_type_attribute)
+	(typeattribute rw_mountpoint_dirs_subj_type_attribute)
+	(typeattribute search_mountpoints_subj_type_attribute)
+	(typeattribute send_sigchld_subj_type_attribute)
+	(typeattribute setattr_mountpoint_dirs_subj_type_attribute)
+	(typeattribute setkeycreate_subj_type_attribute)
+	(typeattribute setpgid_subj_type_attribute)
+	(typeattribute setsched_subj_type_attribute)
+	(typeattribute share_subj_type_attribute)
+	(typeattribute transition_subj_type_attribute)
+	(typeattribute unix_dgram_sockets_sendto_subj_type_attribute)
+	(typeattribute unix_stream_sockets_connectto_subj_type_attribute)
+	(typeattribute use_fd_subj_type_attribute)
+
+	(user id)
+
+	(role role)
+
+	(blockinherit isid_stub)
+
+	(call subj.common_subj_type (isid))
+
+	(userrole id role)
+	(roletype role isid)
+
+	(userlevel id systemlow)
+	(userrange id (systemlow systemhigh))
+
+	(roleallow role roleallow_role_attribute)
+
+	(call sys_role (role))
+	(call rbacsep_exemption_role (role))
+
+	(call sys_obj_type (proc_obj_type_attribute))
+	(call sys_obj_type (sysctl_obj_type_attribute))
+	(call sys_obj_type (sysfs_obj_type_attribute))
+
+	(roletype sys_role_attribute obj_type_attribute)
+
+	(call unconfined_subj_type (isid))
+
+	(call .dev.unconfined_subj_type (isid))
+	(call file.unconfined_subj_type (isid))
+	(call .fs.unconfined_subj_type (isid))
+	(call net.unconfined_subj_type (isid))
+	(call sec.unconfined_subj_type (isid))
+	(call subj.unconfined_subj_type (isid))
+	(call term.unconfined_subj_type (isid))
+
+	(optional sys_optional_stor
+		(call stor.unconfined_subj_type (isid)))
+
+	(dontaudit
+		dontaudit_audit_access_mountpoint_dirs_subj_type_attribute
+			mountpoint_obj_type_attribute (dir (audit_access)))
+
+	(dontaudit dontaudit_list_mountpoints_subj_type_attribute
+		mountpoint_obj_type_attribute list_dir_perms)
+
+	(allow audit_client_subj_type_attribute self (capability
+		(audit_write)))
+	(allow audit_client_subj_type_attribute self
+		r_netlink_audit_socket_perms)
+	(allow audit_client_subj_type_attribute self (netlink_audit_socket
+		(nlmsg_relay)))
+
+	(allow audit_set_loginuid_subj_type_attribute self (capability
+		(audit_control)))
+	(allow audit_set_loginuid_subj_type_attribute self
+		r_netlink_audit_socket_perms)
+	(allow audit_set_loginuid_subj_type_attribute self
+		(netlink_audit_socket (nlmsg_relay)))
+
+	(allow audit_set_params_subj_type_attribute self
+		(capability (audit_write audit_control)))
+	(allow audit_set_params_subj_type_attribute self
+		create_netlink_audit_socket_perms)
+	(allow audit_set_params_subj_type_attribute self
+		(netlink_audit_socket (nlmsg_relay)))
+
+	(allow audit_set_tty_audit_subj_type_attribute self
+		r_netlink_audit_socket_perms)
+	(allow audit_set_tty_audit_subj_type_attribute self
+		(netlink_audit_socket (nlmsg_tty_audit)))
+
+	(allow audit_write_access_mountpoint_dirs_subj_type_attribute
+		mountpoint_obj_type_attribute (dir (getattr write)))
+
+	(allow change_ring_buffer_level_subj_type_attribute self
+		(capability2 (syslog)))
+	(allow change_ring_buffer_level_subj_type_attribute isid (system
+		(syslog_console)))
+
+	(allow get_sysvipc_info_subj_type_attribute isid (system
+		(ipc_info)))
+
+	(allow getattr_mountpoints_subj_type_attribute
+		mountpoint_obj_type_attribute (files (getattr)))
+
+	(allow link_keyring_subj_type_attribute isid link_key_perms)
+
+	(allow list_mountpoints_subj_type_attribute
+		mountpoint_obj_type_attribute list_dir_perms)
+
+	(typeattributeset not_load_kernel_module_subj_type_attribute (not
+		load_kernel_module_subj_type_attribute))
+
+	(neverallow not_load_kernel_module_subj_type_attribute self (capability
+		(sys_module)))
+
+	(allow mounton_mountpoint_dirs_subj_type_attribute
+		mountpoint_obj_type_attribute (dir (mounton)))
+
+	(allow read_state_subj_type_attribute isid list_dir_perms)
+	(allow read_state_subj_type_attribute isid read_file_perms)
+	(allow read_state_subj_type_attribute isid read_lnk_file_perms)
+
+	(allow read_keyring_subj_type_attribute isid read_key_perms)
+
+	(allow read_ring_buffer_subj_type_attribute self
+		(capability2 (syslog)))
+	(allow read_ring_buffer_subj_type_attribute isid
+		(system (syslog_read)))
+
+	(allow relabel_mountpoint_dirs_subj_type_attribute
+		mountpoint_obj_type_attribute relabel_dir_perms)
+
+	(allow request_load_module_subj_type_attribute isid (system
+		(module_request)))
+
+	(typeattributeset use_fd_subj_type_attribute
+		rw_inherited_netlink_audit_sockets_subj_type_attribute)
+	(allow rw_inherited_netlink_audit_sockets_subj_type_attribute
+		isid (netlink_audit_socket (getattr read write)))
+
+	(typeattributeset use_fd_subj_type_attribute
+		rw_inherited_unix_stream_sockets_subj_type_attribute)
+	(allow rw_inherited_netlink_audit_sockets_subj_type_attribute
+		isid rw_inherited_unix_stream_socket_perms)
+
+	(allow rw_mountpoint_dirs_subj_type_attribute
+		mountpoint_obj_type_attribute rw_dir_perms)
+
+	(allow rw_unix_dgram_sockets_subj_type_attribute isid
+		rw_unix_dgram_socket_perms)
+
+	(allow rw_unix_stream_sockets_subj_type_attribute isid
+		rw_unix_stream_socket_perms)
+
+	(allow search_mountpoints_subj_type_attribute
+		mountpoint_obj_type_attribute search_dir_perms)
+
+	(allow send_sigchld_subj_type_attribute isid (process (sigchld)))
+
+	(allow setattr_mountpoint_dirs_subj_type_attribute
+		mountpoint_obj_type_attribute (dir (setattr)))
+
+	(allow setkeycreate_subj_type_attribute isid (process
+		(setkeycreate)))
+
+	(allow setpgid_subj_type_attribute isid (process (setpgid)))
+
+	(allow setsched_subj_type_attribute isid (process (setsched)))
+
+	(allow share_subj_type_attribute isid (process (share)))
+
+	(allow transition_subj_type_attribute isid (process (transition)))
+
+	(allow unix_dgram_sockets_sendto_subj_type_attribute isid
+		(unix_dgram_socket (sendto)))
+
+	(allow unix_stream_sockets_connectto_subj_type_attribute
+		isid (unix_stream_socket (connectto)))
+
+	(allow use_fd_subj_type_attribute isid (fd (use)))
+
+	(allow unconfined_subj_type_attribute
+		mountpoint_obj_type_attribute (dir (mounton)))
+
+	(allow unconfined_subj_type_attribute isid system_except_module_load)
+
+	(call load_kernel_module_subj_type
+			(unconfined_subj_type_attribute))
+
+	(block cpu
+
+		;
+		; cpu contexts
+		;
+
+		(genfscon "sysfs" "/devices/system/cpu" sysfs_context)
+
+		;
+		; cpu macros
+		;
+
+		;
+		; cpu policy
+		;
+
+		(blockinherit sys.sysfs_obj_base_template))
+
+	(block cpu_online
+
+		;
+		; cpu_online contexts
+		;
+
+		(genfscon "sysfs" "/devices/system/cpu/online" sysfs_context)
+
+		;
+		; cpu_online macros 
+		;
+
+		;
+		; cpu_online policy
+		;
+
+		(blockinherit sys.sysfs_obj_base_template))
+
+	(block cpuinfo
+
+		;
+		; cpuinfo contexts
+		;
+
+		(genfscon "proc" "/cpuinfo" proc_context)
+
+		;
+		; cpuinfo macros
+		;
+
+		;
+		; cpuinfo policy
+		;
+
+		(blockinherit sys.proc_obj_base_template))
+
+	(block crypto
+
+		;
+		; crypto contexts
+		;
+
+		(genfscon "proc" "/sys/crypto" sysctl_context)
+
+		;
+		; crypto macros
+		;
+
+		;
+		; crypto policy
+		;
+
+		(blockinherit sys.sysctl_obj_base_template))
+
+	(block dev
+
+		;
+		; dev contexts
+		;
+
+		(genfscon "proc" "/sys/dev" sysctl_context)
+
+		;
+		; dev macros
+		;
+
+		;
+		; dev policy
+		;
+
+		(blockinherit sys.sysctl_obj_base_template))
+
+	(block fs
+
+		;
+		; fs contexts
+		;
+
+		(genfscon "proc" "/sys/fs" sysctl_context)
+
+		;
+		; fs macros
+		;
+
+		;
+		; fs policy
+		;
+
+		(blockinherit sys.sysctl_obj_base_template)
+
+		(call sys.mountpoint_obj_type (sysctl)))
+
+	(block invalid
+
+		;
+		; invalid contexts
+		;
+
+		(sidcontext unlabeled isid_context)
+
+		;
+		; invalid macros
+		;
+
+		(macro search_subj_type ((type ARG1))
+			(typeattributeset search_subj_type_attribute
+				ARG1))
+
+		;
+		; invalid policy
+		;
+
+		(blockinherit sys.isid_stub)
+
+		(roletype sys.role isid)
+
+		(typeattribute search_subj_type_attribute)
+
+		(allow isid self (process (sigchld)))
+
+		(allow isid self rw_file_perms)
+		(allow isid self list_dir_perms)
+		(allow isid self read_lnk_file_perms)
+
+		(allow isid self (filesystem (associate)))
+
+		(call sys.mountpoint_obj_type (isid))
+
+		(call .fs.proc.search_subj_type (isid))
+		(call .fs.tmpfs.associate_obj_type (isid))
+		(call .fs.xattr.associate_obj_type (isid))
+
+		(allow search_subj_type_attribute isid search_dir_perms)
+
+		(allow unconfined_subj_type_attribute isid signal_perms)
+
+		(allow unconfined_subj_type_attribute isid
+			file_except_mounton_execmod_and_entrypoint)
+		(allow unconfined_subj_type_attribute isid
+			dir_except_execmod)
+		(allow unconfined_subj_type_attribute isid
+			fifo_file_except_mounton_and_execmod)
+		(allow unconfined_subj_type_attribute isid
+			lnk_file_except_mounton_and_execmod)
+		(allow unconfined_subj_type_attribute isid
+			sock_file_except_mounton_and_execmod)
+		(allow unconfined_subj_type_attribute isid
+			chr_file_except_mounton_and_execmod)
+		(allow unconfined_subj_type_attribute isid
+			blk_file_except_mounton_and_execmod)
+
+		(allow unconfined_subj_type_attribute isid
+			(filesystem (mount remount unmount getattr
+				relabelfrom relabelto associate
+					quotamod quotaget))))
+
+	(block iomem
+
+		;
+		; iomem contexts
+		;
+
+		(genfscon "proc" "/iomem" proc_context)
+
+		;
+		; iomem macros
+		;
+
+		;
+		; iomem policy
+		;
+
+		(blockinherit sys.proc_obj_base_template))
+
+	(block irq
+
+		;
+		; irq contexts
+		;
+
+		(genfscon "proc" "/irq" sysctl_context)
+
+		;
+		; irq macros
+		;
+
+		;
+		; irq policy
+		;
+
+		(blockinherit sys.sysctl_obj_base_template))
+
+	(block kallsyms
+
+		;
+		; kallsyms contexts
+		;
+
+		(genfscon "proc" "/kallsyms" proc_context)
+
+		;
+		; kallsyms macros
+		;
+
+		;
+		; kallsyms policy
+		;
+
+		(blockinherit sys.proc_obj_base_template))
+
+	(block kcore
+
+		;
+		; kcore contexts
+		;
+
+		(genfscon "proc" "/kcore" proc_context)
+
+		;
+		; kcore macros
+		;
+
+		(macro dump_kernel_subj_type ((type ARG1))
+			(typeattributeset dump_kernel_subj_type_attribute
+				ARG1))
+
+		(macro getattr_files_subj_type ((type ARG1))
+			(typeattributeset getattr_files_subj_type_attribute
+				ARG1))
+
+		;
+		; kcore policy
+		;
+
+		(blockinherit sys.proc_obj_base_template)
+
+		(typeattribute dump_kernel_subj_type_attribute)
+		(typeattribute
+			not_dump_kernel_subj_type_or_unconfined_subj_type_attribute)
+
+		(typeattribute getattr_files_subj_type_attribute)
+
+		(allow dump_kernel_subj_type_attribute self
+			(capability (sys_rawio)))
+
+		(typeattributeset
+			not_dump_kernel_subj_type_or_unconfined_subj_type_attribute
+				(not (dump_kernel_subj_type_attribute
+					unconfined_subj_type_attribute)))
+
+		(neverallow
+			not_dump_kernel_subj_type_or_unconfined_subj_type_attribute
+				proc (file (read append write)))
+
+		(typeattributeset dump_kernel_subj_type_attribute
+			(manage_files_subj_type_attribute
+				read_files_subj_type_attribute
+					rw_files_subj_type_attribute
+						write_files_subj_type_attribute))
+
+		(allow getattr_files_subj_type_attribute proc (file
+			(getattr))))
+
+	(block kernel
+
+		;
+		; kernel contexts
+		;
+
+		(genfscon "proc" "/sys/kernel" sysctl_context)
+
+		;
+		; kernel macros
+		;
+
+		(macro mounton_files_subj_type ((type ARG1))
+			(typeattributeset mounton_files_subj_type_attribute
+				ARG1))
+
+		;
+		; kernel policy
+		;
+
+		(blockinherit sys.sysctl_obj_base_template)
+
+		(typeattribute mounton_files_subj_type_attribute)
+
+		(allow mounton_files_subj_type_attribute sysctl (file
+			(mounton)))
+
+		(call sys.sysctl.search_subj_type
+			(mounton_files_subj_type_attribute)))
+
+	(block kmsg
+
+		;
+		; kmsg contexts
+		;
+
+		(genfscon "proc" "/kmsg" proc_context)
+
+		;
+		; kmsg macros
+		;
+
+		(macro mounton_files_subj_type ((type ARG1))
+			(typeattributeset mounton_files_subj_type_attribute
+				ARG1))
+
+		(macro read_kernel_msg_subj_type ((type ARG1))
+			(typeattributeset read_kernel_msg_subj_type_attribute
+				ARG1))
+
+		;
+		; kmsg policy
+		;
+
+		(blockinherit sys.proc_obj_base_template)
+
+		(typeattribute mounton_files_subj_type_attribute)
+		(typeattribute read_kernel_msg_subj_type_attribute)
+		(typeattribute
+			not_read_kernel_msg_subj_type_or_unconfined_subj_type_attribute)
+
+		(allow mounton_files_subj_type_attribute proc (file (mounton)))
+
+		(typeattributeset
+			not_read_kernel_msg_subj_type_or_unconfined_subj_type_attribute
+			(not (read_kernel_msg_subj_type_attribute
+				unconfined_subj_type_attribute)))
+
+		(neverallow
+			not_read_kernel_msg_subj_type_or_unconfined_subj_type_attribute
+				proc (file (read append write)))
+
+		(typeattributeset read_kernel_msg_subj_type_attribute
+			(manage_files_subj_type_attribute
+				read_files_subj_type_attribute
+					rw_files_subj_type_attribute
+						write_files_subj_type_attribute)))
+
+	(block load_kernel_init_module
+
+		;
+		; load_kernel_init_module contexts
+		;
+
+		(context load_kernel_init_module (sys.id sys.role
+			bool (systemlow systemlow)))
+
+		(genfscon "selinuxfs" "/booleans/sys.load_kernel_init_module"
+			load_kernel_init_module)
+
+		;
+		; load_kernel_module macros
+		;
+
+		;
+		; load_kernel_module policy
+		;
+
+		(blockinherit sec.bool_obj_template)
+
+		(booleanif (and (load_kernel_init_module)
+			(load_kernel_module)) (true
+			(allow load_kernel_module_subj_type_attribute self
+				(system (module_load))))))
+
+	(block load_kernel_module
+
+		;
+		; load_kernel_module contexts
+		;
+
+		(context load_kernel_module (sys.id sys.role
+			bool (systemlow systemlow)))
+
+		(genfscon "selinuxfs" "/booleans/sys.load_kernel_module"
+			load_kernel_module)
+
+		;
+		; load_kernel_module macros
+		;
+
+		;
+		; load_kernel_module policy
+		;
+
+		(blockinherit sec.bool_obj_template)
+
+		(booleanif (load_kernel_module) (true
+			(allow load_kernel_module_subj_type_attribute self
+				(capability (sys_nice sys_module)))
+			(allow load_kernel_module_subj_type_attribute sys.isid
+				(process (setsched))))))
+
+	(block mdstat
+
+		;
+		; mdstat contexts
+		;
+
+		(genfscon "proc" "/mdstat" proc_context)
+
+		;
+		; mdstat macros
+		;
+
+		;
+		; mdstat policy
+		;
+
+		(blockinherit sys.proc_obj_base_template))
+
+	(block meminfo
+
+		;
+		; meminfo contexts
+		;
+
+		(genfscon "proc" "/meminfo" proc_context)
+
+		;
+		; meminfo macros
+		;
+
+		;
+		; meminfo policy
+		;
+
+		(blockinherit sys.proc_obj_base_template))
+
+	(block memory
+
+		;
+		; memory contexts
+		;
+
+		(genfscon "sysfs" "/devices/system/memory" sysfs_context)
+
+		;
+		; memory macros
+		;
+
+		;
+		; memory policy
+		;
+
+		(blockinherit sys.sysfs_obj_base_template))
+
+	(block mtrr
+
+		;
+		; mtrr contexts
+		;
+
+		(genfscon "proc" "/mtrr" proc_context)
+
+		;
+		; mtrr macros
+		;
+
+		;
+		; mtrr policy
+		;
+
+		(blockinherit sys.proc_obj_base_template))
+
+	(block net_proc
+
+		;
+		; net_proc contexts
+		;
+
+		(genfscon "proc" "/net" proc_context)
+
+		;
+		; net_proc macros
+		;
+
+		;
+		; net_proc policy
+		;
+
+		(blockinherit sys.proc_obj_base_template))
+
+	(block net_sysctl
+
+		;
+		; net_sysctl contexts
+		;
+
+		(genfscon "proc" "/sys/net" sysctl_context)
+
+		;
+		; net_sysctl macros
+		;
+
+		(macro mounton_dirs_subj_type ((type ARG1))
+			(typeattributeset mounton_dirs_subj_type_attribute
+				ARG1))
+
+		;
+		; net_sysctl policy
+		;
+
+		(blockinherit sys.sysctl_obj_base_template)
+
+		(typeattribute mounton_dirs_subj_type_attribute)
+
+		(allow mounton_dirs_subj_type_attribute sysctl (dir
+			(mounton)))
+
+		(call sys.sysctl.search_subj_type
+			(mounton_dirs_subj_type_attribute)))
+
+	(block net_unix
+
+		;
+		; net_unix contexts
+		;
+
+		(genfscon "proc" "/sys/net/unix" sysctl_context)
+
+		;
+		; net_unix macros
+		;
+
+		;
+		; net_unix policy
+		;
+
+		(blockinherit sys.sysctl_obj_base_template))
+
+	(block node
+
+		;
+		; node contexts
+		;
+
+		(genfscon "sysfs" "/devices/system/node" sysfs_context)
+
+		;
+		; node macros
+		;
+
+		;
+		; node policy
+		;
+
+		(blockinherit sys.sysfs_obj_base_template))
+
+	(block node_online
+
+		;
+		; node_online contexts
+		;
+
+		(genfscon "sysfs" "/devices/system/node/online" sysfs_context)
+
+		;
+		; node_online macros
+		;
+
+		;
+		; node_online policy
+		;
+
+		(blockinherit sys.sysfs_obj_base_template))
+
+	(block proc
+
+		;
+		; proc contexts
+		;
+
+		;
+		; proc macros
+		;
+
+		(macro search_all_subj_type ((type ARG1))
+			(typeattributeset search_all_subj_type_attribute
+				ARG1))
+
+		(macro manage_all_lnk_files_subj_type ((type ARG1))
+			(typeattributeset
+				manage_all_lnk_files_subj_type_attribute
+					ARG1))
+
+		(macro read_all_lnk_files_subj_type ((type ARG1))
+			(typeattributeset
+				read_all_lnk_files_subj_type_attribute
+					ARG1))
+
+		(macro relabel_all_lnk_files_subj_type ((type ARG1))
+			(typeattributeset
+				relabel_all_lnk_files_subj_type_attribute
+					ARG1))
+
+		(macro manage_all_files_subj_type ((type ARG1))
+			(typeattributeset manage_all_files_subj_type_attribute
+				ARG1))
+
+		(macro read_all_files_subj_type ((type ARG1))
+			(typeattributeset read_all_files_subj_type_attribute
+				ARG1))
+
+		(macro relabel_all_files_subj_type ((type ARG1))
+			(typeattributeset relabel_all_files_subj_type_attribute
+				ARG1))
+
+		(macro rw_all_files_subj_type ((type ARG1))
+			(typeattributeset rw_all_files_subj_type_attribute
+				ARG1))
+
+		(macro write_all_files_subj_type ((type ARG1))
+			(typeattributeset write_all_files_subj_type_attribute
+				ARG1))
+
+		(macro read_all_subj_type ((type ARG1))
+			(typeattributeset read_all_subj_type_attribute
+				ARG1))
+
+		(macro relabel_all_subj_type ((type ARG1))
+			(typeattributeset relabel_all_subj_type_attribute
+				ARG1))
+
+		(macro manage_all_subj_type ((type ARG1))
+			(typeattributeset manage_all_subj_type_attribute
+				ARG1))
+
+		;
+		; proc policy
+		;
+
+		(typeattribute list_all_subj_type_attribute)
+		(typeattribute manage_all_dirs_subj_type_attribute)
+		(typeattribute rw_all_dirs_subj_type_attribute)
+		(typeattribute relabel_all_dirs_subj_type_attribute)
+		(typeattribute search_all_subj_type_attribute)
+
+		(typeattribute manage_all_lnk_files_subj_type_attribute)
+		(typeattribute read_all_lnk_files_subj_type_attribute)
+		(typeattribute relabel_all_lnk_files_subj_type_attribute)
+
+		(typeattribute manage_all_files_subj_type_attribute)
+		(typeattribute read_all_files_subj_type_attribute)
+		(typeattribute relabel_all_files_subj_type_attribute)
+		(typeattribute rw_all_files_subj_type_attribute)
+		(typeattribute write_all_files_subj_type_attribute)
+
+		(typeattribute read_all_subj_type_attribute)
+		(typeattribute relabel_all_subj_type_attribute)
+		(typeattribute manage_all_subj_type_attribute)
+
+		(call sys.kcore.dump_kernel_subj_type
+			(manage_all_files_subj_type_attribute))
+		(call sys.kcore.dump_kernel_subj_type
+			(read_all_files_subj_type_attribute))
+		(call sys.kcore.dump_kernel_subj_type
+			(rw_all_files_subj_type_attribute))
+		(call sys.kcore.dump_kernel_subj_type
+			(write_all_files_subj_type_attribute))
+
+		(call sys.kmsg.read_kernel_msg_subj_type
+			(manage_all_files_subj_type_attribute))
+		(call sys.kmsg.read_kernel_msg_subj_type
+			(read_all_files_subj_type_attribute))
+		(call sys.kmsg.read_kernel_msg_subj_type
+			(rw_all_files_subj_type_attribute))
+		(call sys.kmsg.read_kernel_msg_subj_type
+			(write_all_files_subj_type_attribute))
+
+		(allow list_all_subj_type_attribute proc_obj_type_attribute
+			list_dir_perms)
+		(call manage_dirs_pattern
+			(manage_all_dirs_subj_type_attribute
+				proc_obj_type_attribute
+					proc_obj_type_attribute))
+		(allow relabel_all_dirs_subj_type_attribute
+			proc_obj_type_attribute relabel_dir_perms)
+		(call rw_dirs_pattern
+			(rw_all_dirs_subj_type_attribute
+				proc_obj_type_attribute
+					proc_obj_type_attribute))
+		(allow search_all_subj_type_attribute proc_obj_type_attribute
+			search_dir_perms)
+
+		(call manage_lnk_files_pattern
+			(manage_all_lnk_files_subj_type_attribute
+				proc_obj_type_attribute
+					proc_obj_type_attribute))
+		(call read_lnk_files_pattern
+			(read_all_lnk_files_subj_type_attribute
+				proc_obj_type_attribute
+					proc_obj_type_attribute))
+		(call relabel_lnk_files_pattern
+			(relabel_all_lnk_files_subj_type_attribute
+				proc_obj_type_attribute
+					proc_obj_type_attribute))
+
+		(call manage_files_pattern
+			(manage_all_files_subj_type_attribute
+				proc_obj_type_attribute
+					proc_obj_type_attribute))
+		(call read_files_pattern (read_all_files_subj_type_attribute
+			proc_obj_type_attribute proc_obj_type_attribute))
+		(call relabel_files_pattern
+			(relabel_all_files_subj_type_attribute
+				proc_obj_type_attribute
+					proc_obj_type_attribute))
+		(call rw_files_pattern (rw_all_files_subj_type_attribute
+			proc_obj_type_attribute proc_obj_type_attribute))
+		(call write_files_pattern (write_all_files_subj_type_attribute
+			proc_obj_type_attribute proc_obj_type_attribute))
+
+		(typeattributeset manage_all_dirs_subj_type_attribute
+			manage_all_subj_type_attribute)
+		(typeattributeset manage_all_lnk_files_subj_type_attribute
+			manage_all_subj_type_attribute)
+		(typeattributeset manage_all_files_subj_type_attribute
+			manage_all_subj_type_attribute)
+
+		(typeattributeset list_all_subj_type_attribute
+			read_all_subj_type_attribute)
+		(typeattributeset read_all_lnk_files_subj_type_attribute
+			read_all_subj_type_attribute)
+		(typeattributeset read_all_files_subj_type_attribute
+			read_all_subj_type_attribute)
+
+		(typeattributeset relabel_all_dirs_subj_type_attribute
+			relabel_all_subj_type_attribute)
+		(typeattributeset relabel_all_lnk_files_subj_type_attribute
+			relabel_all_subj_type_attribute)
+		(typeattributeset relabel_all_files_subj_type_attribute
+			relabel_all_subj_type_attribute)
+
+		(allow unconfined_subj_type_attribute
+			proc_obj_type_attribute rw_file_perms)
+		(allow unconfined_subj_type_attribute
+			proc_obj_type_attribute list_dir_perms)
+		(allow unconfined_subj_type_attribute
+			proc_obj_type_attribute read_lnk_file_perms))
+
+	(block security
+
+		;
+		; security contexts
+		;
+
+		(genfscon "proc" "/sys/fs/protected_hardlinks" sysctl_context)
+		(genfscon "proc" "/sys/fs/protected_symlinks" sysctl_context)
+		(genfscon "proc" "/sys/fs/suid_dumpable" sysctl_context)
+		(genfscon "proc" "/sys/kernel/dmesg_restrict" sysctl_context)
+		(genfscon "proc" "/sys/kernel/kptr_restrict" sysctl_context)
+		(genfscon "proc" "/sys/kernel/modules_disabled" sysctl_context)
+		(genfscon "proc" "/sys/kernel/randomize_va_space"
+			sysctl_context)
+		(genfscon "proc" "/sys/kernel/yama" sysctl_context)
+		(genfscon "proc" "/sys/vm/mmap_min_addr" sysctl_context)
+
+		;
+		; security macros
+		;
+
+		(macro write_security_subj_type ((type ARG1))
+			(typeattributeset write_security_subj_type_attribute
+				ARG1))
+
+		;
+		; security policy
+		;
+
+		(blockinherit sys.sysctl_obj_base_template)
+
+		(typeattribute write_security_subj_type_attribute)
+		(typeattribute
+			not_write_security_subj_type_or_unconfined_subj_type_attribute)
+
+		(call sys.fs.search_subj_type (list_subj_type_attribute))
+		(call sys.fs.search_subj_type
+			(manage_dirs_subj_type_attribute))
+		(call sys.fs.search_subj_type (rw_dirs_subj_type_attribute))
+		(call sys.fs.search_subj_type
+			(relabel_dirs_subj_type_attribute))
+		(call sys.fs.search_subj_type (search_subj_type_attribute))
+		(call sys.fs.search_subj_type
+			(manage_lnk_files_subj_type_attribute))
+		(call sys.fs.search_subj_type
+			(read_lnk_files_subj_type_attribute))
+		(call sys.fs.search_subj_type
+			(relabel_lnk_files_subj_type_attribute))
+		(call sys.fs.search_subj_type
+			(manage_files_subj_type_attribute))
+		(call sys.fs.search_subj_type (read_files_subj_type_attribute))
+		(call sys.fs.search_subj_type
+			(relabel_files_subj_type_attribute))
+		(call sys.fs.search_subj_type (rw_files_subj_type_attribute))
+		(call sys.fs.search_subj_type
+			(write_files_subj_type_attribute))
+
+		(call sys.kernel.search_subj_type (list_subj_type_attribute))
+		(call sys.kernel.search_subj_type
+			(manage_dirs_subj_type_attribute))
+		(call sys.kernel.search_subj_type
+			(rw_dirs_subj_type_attribute))
+		(call sys.kernel.search_subj_type
+			(relabel_dirs_subj_type_attribute))
+		(call sys.kernel.search_subj_type (search_subj_type_attribute))
+		(call sys.kernel.search_subj_type
+			(manage_lnk_files_subj_type_attribute))
+		(call sys.kernel.search_subj_type
+			(read_lnk_files_subj_type_attribute))
+		(call sys.kernel.search_subj_type
+			(relabel_lnk_files_subj_type_attribute))
+		(call sys.kernel.search_subj_type
+			(manage_files_subj_type_attribute))
+		(call sys.kernel.search_subj_type
+			(read_files_subj_type_attribute))
+		(call sys.kernel.search_subj_type
+			(relabel_files_subj_type_attribute))
+		(call sys.kernel.search_subj_type
+			(rw_files_subj_type_attribute))
+		(call sys.kernel.search_subj_type
+			(write_files_subj_type_attribute))
+
+		(call sys.vm.search_subj_type (list_subj_type_attribute))
+		(call sys.vm.search_subj_type
+			(manage_dirs_subj_type_attribute))
+		(call sys.vm.search_subj_type (rw_dirs_subj_type_attribute))
+		(call sys.vm.search_subj_type
+			(relabel_dirs_subj_type_attribute))
+		(call sys.vm.search_subj_type (search_subj_type_attribute))
+		(call sys.vm.search_subj_type
+			(manage_lnk_files_subj_type_attribute))
+		(call sys.vm.search_subj_type
+			(read_lnk_files_subj_type_attribute))
+		(call sys.vm.search_subj_type
+			(relabel_lnk_files_subj_type_attribute))
+		(call sys.vm.search_subj_type
+			(manage_files_subj_type_attribute))
+		(call sys.vm.search_subj_type (read_files_subj_type_attribute))
+		(call sys.vm.search_subj_type
+			(relabel_files_subj_type_attribute))
+		(call sys.vm.search_subj_type (rw_files_subj_type_attribute))
+		(call sys.vm.search_subj_type
+			(write_files_subj_type_attribute))
+
+		(typeattributeset
+			not_write_security_subj_type_or_unconfined_subj_type_attribute
+				(not (write_security_subj_type_attribute
+					unconfined_subj_type_attribute)))
+
+		(neverallow
+			not_write_security_subj_type_or_unconfined_subj_type_attribute
+				sysctl (file (append write)))
+
+		(typeattributeset write_security_subj_type_attribute
+			(manage_files_subj_type_attribute
+				rw_files_subj_type_attribute
+					write_files_subj_type_attribute)))
+
+	(block sysctl
+
+		;
+		; sysctl contexts
+		;
+
+		(sidcontext sysctl isid_context)
+
+		(genfscon "proc" "/sys" isid_context)
+
+		;
+		; sysctl macros
+		;
+
+		(macro list_subj_type ((type ARG1))
+			(typeattributeset list_subj_type_attribute
+				ARG1))
+
+		(macro manage_dirs_subj_type ((type ARG1))
+			(typeattributeset manage_dirs_subj_type_attribute
+				ARG1))
+
+		(macro mounton_dirs_subj_type ((type ARG1))
+			(typeattributeset mounton_dirs_subj_type_attribute
+				ARG1))
+
+		(macro relabel_dirs_subj_type ((type ARG1))
+			(typeattributeset relabel_dirs_subj_type_attribute
+				ARG1))
+
+		(macro rw_dirs_subj_type ((type ARG1))
+			(typeattributeset rw_dirs_subj_type_attribute
+				ARG1))
+
+		(macro search_subj_type ((type ARG1))
+			(typeattributeset search_subj_type_attribute
+				ARG1))
+
+		(macro manage_lnk_files_subj_type ((type ARG1))
+			(typeattributeset
+				manage_lnk_files_subj_type_attribute
+					ARG1))
+
+		(macro read_lnk_files_subj_type ((type ARG1))
+			(typeattributeset read_lnk_files_subj_type_attribute
+				ARG1))
+
+		(macro relabel_lnk_files_subj_type ((type ARG1))
+			(typeattributeset
+				relabel_lnk_files_subj_type_attribute
+					ARG1))
+
+		(macro manage_files_subj_type ((type ARG1))
+			(typeattributeset manage_files_subj_type_attribute
+				ARG1))
+
+		(macro read_files_subj_type ((type ARG1))
+			(typeattributeset read_files_subj_type_attribute
+				ARG1))
+
+		(macro relabel_files_subj_type ((type ARG1))
+			(typeattributeset relabel_files_subj_type_attribute
+				ARG1))
+
+		(macro rw_files_subj_type ((type ARG1))
+			(typeattributeset rw_files_subj_type_attribute
+				ARG1))
+
+		(macro write_files_subj_type ((type ARG1))
+			(typeattributeset write_files_subj_type_attribute
+				ARG1))
+
+		(macro read_subj_type ((type ARG1))
+			(typeattributeset read_subj_type_attribute
+				ARG1))
+
+		(macro relabel_subj_type ((type ARG1))
+			(typeattributeset relabel_subj_type_attribute
+				ARG1))
+
+		(macro manage_subj_type ((type ARG1))
+			(typeattributeset manage_subj_type_attribute
+				ARG1))
+
+		(macro list_all_subj_type ((type ARG1))
+			(typeattributeset list_all_subj_type_attribute
+				ARG1))
+
+		(macro manage_all_dirs_subj_type ((type ARG1))
+			(typeattributeset manage_all_dirs_subj_type_attribute
+				ARG1))
+
+		(macro relabel_all_dirs_subj_type ((type ARG1))
+			(typeattributeset relabel_all_dirs_subj_type_attribute
+				ARG1))
+
+		(macro rw_all_dirs_subj_type ((type ARG1))
+			(typeattributeset rw_all_dirs_subj_type_attribute
+				ARG1))
+
+		(macro search_all_subj_type ((type ARG1))
+			(typeattributeset search_all_subj_type_attribute
+				ARG1))
+
+		(macro manage_all_lnk_files_subj_type ((type ARG1))
+			(typeattributeset
+				manage_all_lnk_files_subj_type_attribute
+					ARG1))
+
+		(macro read_all_lnk_files_subj_type ((type ARG1))
+			(typeattributeset
+				read_all_lnk_files_subj_type_attribute
+					ARG1))
+
+		(macro relabel_all_lnk_files_subj_type ((type ARG1))
+			(typeattributeset
+				relabel_all_lnk_files_subj_type_attribute
+					ARG1))
+
+		(macro manage_all_files_subj_type ((type ARG1))
+			(typeattributeset manage_all_files_subj_type_attribute
+				ARG1))
+
+		(macro read_all_files_subj_type ((type ARG1))
+			(typeattributeset read_all_files_subj_type_attribute
+				ARG1))
+
+		(macro relabel_all_files_subj_type ((type ARG1))
+			(typeattributeset
+				relabel_all_files_subj_type_attribute
+					ARG1))
+
+		(macro rw_all_files_subj_type ((type ARG1))
+			(typeattributeset rw_all_files_subj_type_attribute
+				ARG1))
+
+		(macro write_all_files_subj_type ((type ARG1))
+			(typeattributeset write_all_files_subj_type_attribute
+				ARG1))
+
+		(macro read_all_subj_type ((type ARG1))
+			(typeattributeset read_all_subj_type_attribute
+				ARG1))
+
+		(macro relabel_all_subj_type ((type ARG1))
+			(typeattributeset relabel_all_subj_type_attribute
+				ARG1))
+
+		(macro manage_all_subj_type ((type ARG1))
+			(typeattributeset manage_all_subj_type_attribute
+				ARG1))
+
+		;
+		; sysctl policy
+		;
+
+		(blockinherit sys.isid_stub)
+
+		(call sys.sysctl_obj_type (isid))
+
+		(typeattribute list_subj_type_attribute)
+		(typeattribute manage_dirs_subj_type_attribute)
+		(typeattribute mounton_dirs_subj_type_attribute)
+		(typeattribute rw_dirs_subj_type_attribute)
+		(typeattribute relabel_dirs_subj_type_attribute)
+		(typeattribute search_subj_type_attribute)
+
+		(typeattribute manage_lnk_files_subj_type_attribute)
+		(typeattribute read_lnk_files_subj_type_attribute)
+		(typeattribute relabel_lnk_files_subj_type_attribute)
+
+		(typeattribute manage_files_subj_type_attribute)
+		(typeattribute read_files_subj_type_attribute)
+		(typeattribute relabel_files_subj_type_attribute)
+		(typeattribute rw_files_subj_type_attribute)
+		(typeattribute write_files_subj_type_attribute)
+
+		(typeattribute read_subj_type_attribute)
+		(typeattribute relabel_subj_type_attribute)
+		(typeattribute manage_subj_type_attribute)
+
+		(typeattribute list_all_subj_type_attribute)
+		(typeattribute manage_all_dirs_subj_type_attribute)
+		(typeattribute rw_all_dirs_subj_type_attribute)
+		(typeattribute relabel_all_dirs_subj_type_attribute)
+		(typeattribute search_all_subj_type_attribute)
+
+		(typeattribute manage_all_lnk_files_subj_type_attribute)
+		(typeattribute read_all_lnk_files_subj_type_attribute)
+		(typeattribute relabel_all_lnk_files_subj_type_attribute)
+
+		(typeattribute manage_all_files_subj_type_attribute)
+		(typeattribute read_all_files_subj_type_attribute)
+		(typeattribute relabel_all_files_subj_type_attribute)
+		(typeattribute rw_all_files_subj_type_attribute)
+		(typeattribute write_all_files_subj_type_attribute)
+
+		(typeattribute read_all_subj_type_attribute)
+		(typeattribute relabel_all_subj_type_attribute)
+		(typeattribute manage_all_subj_type_attribute)
+
+		(call sys.security.write_security_subj_type
+			(manage_all_files_subj_type_attribute))
+		(call sys.security.write_security_subj_type
+			(rw_all_files_subj_type_attribute))
+		(call sys.security.write_security_subj_type
+			(write_all_files_subj_type_attribute))
+
+		(call sys.usermodehelper.write_usermodehelper_subj_type
+			(manage_all_files_subj_type_attribute))
+		(call sys.usermodehelper.write_usermodehelper_subj_type
+			(rw_all_files_subj_type_attribute))
+		(call sys.usermodehelper.write_usermodehelper_subj_type
+			(write_all_files_subj_type_attribute))
+
+		(allow list_subj_type_attribute isid list_dir_perms)
+		(call manage_dirs_pattern
+			(manage_dirs_subj_type_attribute isid isid))
+		(allow mounton_dirs_subj_type_attribute isid (dir
+			(mounton)))
+		(allow relabel_dirs_subj_type_attribute isid
+			relabel_dir_perms)
+		(call rw_dirs_pattern
+			(rw_dirs_subj_type_attribute isid isid))
+		(allow search_subj_type_attribute isid search_dir_perms)
+
+		(call manage_lnk_files_pattern
+			(manage_lnk_files_subj_type_attribute isid isid))
+		(call read_lnk_files_pattern
+			(read_lnk_files_subj_type_attribute isid isid))
+		(call relabel_lnk_files_pattern
+			(relabel_lnk_files_subj_type_attribute isid isid))
+
+		(call manage_files_pattern (manage_files_subj_type_attribute
+			isid isid))
+		(call read_files_pattern (read_files_subj_type_attribute
+			isid isid))
+		(call relabel_files_pattern (relabel_files_subj_type_attribute
+			isid isid))
+		(call rw_files_pattern (rw_files_subj_type_attribute
+			isid isid))
+		(call write_files_pattern (write_files_subj_type_attribute
+			isid isid))
+
+		(typeattributeset manage_dirs_subj_type_attribute
+			manage_subj_type_attribute)
+		(typeattributeset manage_lnk_files_subj_type_attribute
+			manage_subj_type_attribute)
+		(typeattributeset manage_files_subj_type_attribute
+			manage_subj_type_attribute)
+
+		(typeattributeset list_subj_type_attribute
+			read_subj_type_attribute)
+		(typeattributeset read_lnk_files_subj_type_attribute
+			read_subj_type_attribute)
+		(typeattributeset read_files_subj_type_attribute
+			read_subj_type_attribute)
+
+		(typeattributeset relabel_dirs_subj_type_attribute
+			relabel_subj_type_attribute)
+		(typeattributeset relabel_lnk_files_subj_type_attribute
+			relabel_subj_type_attribute)
+		(typeattributeset relabel_files_subj_type_attribute
+			relabel_subj_type_attribute)
+
+		(allow list_all_subj_type_attribute
+			sysctl_obj_type_attribute list_dir_perms)
+		(call manage_dirs_pattern
+			(manage_all_dirs_subj_type_attribute
+				sysctl_obj_type_attribute
+					sysctl_obj_type_attribute))
+		(allow relabel_all_dirs_subj_type_attribute
+			sysctl_obj_type_attribute relabel_dir_perms)
+		(call rw_dirs_pattern
+			(rw_all_dirs_subj_type_attribute
+				sysctl_obj_type_attribute
+					sysctl_obj_type_attribute))
+		(allow search_all_subj_type_attribute
+			sysctl_obj_type_attribute search_dir_perms)
+
+		(call manage_lnk_files_pattern
+			(manage_all_lnk_files_subj_type_attribute
+				sysctl_obj_type_attribute
+					sysctl_obj_type_attribute))
+		(call read_lnk_files_pattern
+			(read_all_lnk_files_subj_type_attribute
+				sysctl_obj_type_attribute
+					sysctl_obj_type_attribute))
+		(call relabel_lnk_files_pattern
+			(relabel_all_lnk_files_subj_type_attribute
+				sysctl_obj_type_attribute
+					sysctl_obj_type_attribute))
+
+		(call manage_files_pattern
+			(manage_all_files_subj_type_attribute
+				sysctl_obj_type_attribute
+					sysctl_obj_type_attribute))
+		(call read_files_pattern
+			(read_all_files_subj_type_attribute
+				sysctl_obj_type_attribute
+					sysctl_obj_type_attribute))
+		(call relabel_files_pattern
+			(relabel_all_files_subj_type_attribute
+				sysctl_obj_type_attribute
+					sysctl_obj_type_attribute))
+		(call rw_files_pattern
+			(rw_all_files_subj_type_attribute
+				sysctl_obj_type_attribute
+					sysctl_obj_type_attribute))
+		(call write_files_pattern
+			(write_all_files_subj_type_attribute
+				sysctl_obj_type_attribute
+					sysctl_obj_type_attribute))
+
+		(typeattributeset manage_all_dirs_subj_type_attribute
+			manage_all_subj_type_attribute)
+		(typeattributeset
+			manage_all_lnk_files_subj_type_attribute
+				manage_all_subj_type_attribute)
+		(typeattributeset manage_all_files_subj_type_attribute
+			manage_all_subj_type_attribute)
+
+		(typeattributeset list_all_subj_type_attribute
+			read_all_subj_type_attribute)
+		(typeattributeset read_all_lnk_files_subj_type_attribute
+			read_all_subj_type_attribute)
+		(typeattributeset read_all_files_subj_type_attribute
+			read_all_subj_type_attribute)
+
+		(typeattributeset relabel_all_dirs_subj_type_attribute
+			relabel_all_subj_type_attribute)
+		(typeattributeset
+			relabel_all_lnk_files_subj_type_attribute
+				relabel_all_subj_type_attribute)
+		(typeattributeset relabel_all_files_subj_type_attribute
+			relabel_all_subj_type_attribute)
+
+		(allow unconfined_subj_type_attribute
+			sysctl_obj_type_attribute list_dir_perms)
+		(allow unconfined_subj_type_attribute
+			sysctl_obj_type_attribute read_lnk_file_perms)
+		(allow unconfined_subj_type_attribute
+			sysctl_obj_type_attribute rw_file_perms))
+
+	(block sysfs
+
+		;
+		; sysfs contexts
+		;
+
+		;
+		; sysfs macros
+		;
+
+		(macro search_all_subj_type ((type ARG1))
+			(typeattributeset search_all_subj_type_attribute
+				ARG1))
+
+		(macro manage_all_lnk_files_subj_type ((type ARG1))
+			(typeattributeset
+				manage_all_lnk_files_subj_type_attribute
+					ARG1))
+
+		(macro read_all_lnk_files_subj_type ((type ARG1))
+			(typeattributeset
+				read_all_lnk_files_subj_type_attribute
+					ARG1))
+
+		(macro relabel_all_lnk_files_subj_type ((type ARG1))
+			(typeattributeset
+				relabel_all_lnk_files_subj_type_attribute
+					ARG1))
+
+		(macro manage_all_files_subj_type ((type ARG1))
+			(typeattributeset
+				manage_all_files_subj_type_attribute
+					ARG1))
+
+		(macro read_all_files_subj_type ((type ARG1))
+			(typeattributeset
+				read_all_files_subj_type_attribute
+					ARG1))
+
+		(macro relabel_all_files_subj_type ((type ARG1))
+			(typeattributeset
+				relabel_all_files_subj_type_attribute
+					ARG1))
+
+		(macro rw_all_files_subj_type ((type ARG1))
+			(typeattributeset rw_all_files_subj_type_attribute
+				ARG1))
+
+		(macro write_all_files_subj_type ((type ARG1))
+			(typeattributeset
+				write_all_files_subj_type_attribute
+					ARG1))
+
+		(macro read_all_subj_type ((type ARG1))
+			(typeattributeset read_all_subj_type_attribute
+				ARG1))
+
+		(macro relabel_all_subj_type ((type ARG1))
+			(typeattributeset relabel_all_subj_type_attribute
+				ARG1))
+
+		(macro manage_all_subj_type ((type ARG1))
+			(typeattributeset manage_all_subj_type_attribute
+				ARG1))
+
+		;
+		; sysfs policy
+		;
+
+		(typeattribute list_all_subj_type_attribute)
+		(typeattribute manage_all_dirs_subj_type_attribute)
+		(typeattribute rw_all_dirs_subj_type_attribute)
+		(typeattribute relabel_all_dirs_subj_type_attribute)
+		(typeattribute search_all_subj_type_attribute)
+
+		(typeattribute manage_all_lnk_files_subj_type_attribute)
+		(typeattribute read_all_lnk_files_subj_type_attribute)
+		(typeattribute relabel_all_lnk_files_subj_type_attribute)
+
+		(typeattribute manage_all_files_subj_type_attribute)
+		(typeattribute read_all_files_subj_type_attribute)
+		(typeattribute relabel_all_files_subj_type_attribute)
+		(typeattribute rw_all_files_subj_type_attribute)
+		(typeattribute write_all_files_subj_type_attribute)
+
+		(typeattribute read_all_subj_type_attribute)
+		(typeattribute relabel_all_subj_type_attribute)
+		(typeattribute manage_all_subj_type_attribute)
+
+		(allow list_all_subj_type_attribute
+			sysfs_obj_type_attribute list_dir_perms)
+		(call manage_dirs_pattern
+			(manage_all_dirs_subj_type_attribute
+				sysfs_obj_type_attribute
+					sysfs_obj_type_attribute))
+		(allow relabel_all_dirs_subj_type_attribute
+			sysfs_obj_type_attribute relabel_dir_perms)
+		(call rw_dirs_pattern
+			(rw_all_dirs_subj_type_attribute
+				sysfs_obj_type_attribute
+					sysfs_obj_type_attribute))
+		(allow search_all_subj_type_attribute
+			sysfs_obj_type_attribute search_dir_perms)
+
+		(call manage_lnk_files_pattern
+			(manage_all_lnk_files_subj_type_attribute
+				sysfs_obj_type_attribute
+					sysfs_obj_type_attribute))
+		(call read_lnk_files_pattern
+			(read_all_lnk_files_subj_type_attribute
+				sysfs_obj_type_attribute
+					sysfs_obj_type_attribute))
+		(call relabel_lnk_files_pattern
+			(relabel_all_lnk_files_subj_type_attribute
+				sysfs_obj_type_attribute
+					sysfs_obj_type_attribute))
+
+		(call manage_files_pattern
+			(manage_all_files_subj_type_attribute
+				sysfs_obj_type_attribute
+					sysfs_obj_type_attribute))
+		(call read_files_pattern
+			(read_all_files_subj_type_attribute
+				sysfs_obj_type_attribute
+					sysfs_obj_type_attribute))
+		(call relabel_files_pattern
+			(relabel_all_files_subj_type_attribute
+				sysfs_obj_type_attribute
+					sysfs_obj_type_attribute))
+		(call rw_files_pattern
+			(rw_all_files_subj_type_attribute
+				sysfs_obj_type_attribute
+					sysfs_obj_type_attribute))
+		(call write_files_pattern
+			(write_all_files_subj_type_attribute
+				sysfs_obj_type_attribute
+					sysfs_obj_type_attribute))
+
+		(typeattributeset manage_all_dirs_subj_type_attribute
+			manage_all_subj_type_attribute)
+		(typeattributeset
+			manage_all_lnk_files_subj_type_attribute
+				manage_all_subj_type_attribute)
+		(typeattributeset manage_all_files_subj_type_attribute
+			manage_all_subj_type_attribute)
+
+		(typeattributeset list_all_subj_type_attribute
+			read_all_subj_type_attribute)
+		(typeattributeset read_all_lnk_files_subj_type_attribute
+			read_all_subj_type_attribute)
+		(typeattributeset read_all_files_subj_type_attribute
+			read_all_subj_type_attribute)
+
+		(typeattributeset relabel_all_dirs_subj_type_attribute
+			relabel_all_subj_type_attribute)
+		(typeattributeset
+			relabel_all_lnk_files_subj_type_attribute
+				relabel_all_subj_type_attribute)
+		(typeattributeset relabel_all_files_subj_type_attribute
+			relabel_all_subj_type_attribute)
+
+		(allow unconfined_subj_type_attribute
+			sysfs_obj_type_attribute rw_file_perms)
+		(allow unconfined_subj_type_attribute
+			sysfs_obj_type_attribute list_dir_perms)
+		(allow unconfined_subj_type_attribute
+			sysfs_obj_type_attribute read_lnk_file_perms))
+
+	(block sysrq
+
+		;
+		; sysrq contexts
+		;
+
+		(genfscon "proc" "/sysrq-trigger" proc_context)
+
+		;
+		; sysrq macros
+		;
+
+		;
+		; sysrq policy
+		;
+
+		(blockinherit sys.proc_obj_base_template))
+
+	(block unlabeled
+
+		;
+		; unlabeled contexts
+		;
+
+		(sidcontext file isid_context)
+
+		;
+		; unlabeled macros
+		;
+
+		(macro recv_peers_subj_type ((type ARG1))
+			(typeattributeset recv_peers_subj_type_attribute
+				ARG1))
+
+		(macro recvfrom_dccp_sockets_subj_type ((type ARG1))
+			(typeattributeset
+				recvfrom_dccp_sockets_subj_type_attribute
+					ARG1))
+
+		(macro recvfrom_rawip_sockets_subj_type ((type ARG1))
+			(typeattributeset
+				recvfrom_rawip_sockets_subj_type_attribute
+					ARG1))
+
+		(macro recvfrom_tcp_sockets_subj_type ((type ARG1))
+			(typeattributeset
+				recvfrom_tcp_sockets_subj_type_attribute
+					ARG1))
+
+		(macro recvfrom_udp_sockets_subj_type ((type ARG1))
+			(typeattributeset
+				recvfrom_udp_sockets_subj_type_attribute
+					ARG1))
+
+		;
+		; unlabeled policy
+		;
+		
+		(blockinherit sys.isid_stub)
+
+		(typeattribute recv_peers_subj_type_attribute)
+
+		(typeattribute recvfrom_dccp_sockets_subj_type_attribute)
+		(typeattribute recvfrom_rawip_sockets_subj_type_attribute)
+		(typeattribute recvfrom_tcp_sockets_subj_type_attribute)
+		(typeattribute recvfrom_udp_sockets_subj_type_attribute)
+
+		(call sys.sys_obj_type (isid))
+
+		(call .fs.devtmpfs.associate_obj_type (isid))
+		(call .fs.xattr.associate_obj_type (isid))
+		(call .fs.tmpfs.associate_obj_type (isid))
+
+		(allow recv_peers_subj_type_attribute isid
+			(peer (recv)))
+
+		(allow recvfrom_dccp_sockets_subj_type_attribute isid
+			(dccp_socket (recvfrom)))
+		(allow recvfrom_rawip_sockets_subj_type_attribute isid
+			(rawip_socket (recvfrom)))
+		(allow recvfrom_tcp_sockets_subj_type_attribute isid
+			(tcp_socket (recvfrom)))
+		(allow recvfrom_udp_sockets_subj_type_attribute isid
+			(udp_socket (recvfrom)))
+
+		(allow unconfined_subj_type_attribute isid
+			file_except_mounton_execmod_and_entrypoint)
+		(allow unconfined_subj_type_attribute isid
+			dir_except_execmod)
+		(allow unconfined_subj_type_attribute isid
+			fifo_file_except_mounton_and_execmod)
+		(allow unconfined_subj_type_attribute isid
+			lnk_file_except_mounton_and_execmod)
+		(allow unconfined_subj_type_attribute isid
+			sock_file_except_mounton_and_execmod)
+		(allow unconfined_subj_type_attribute isid
+			chr_file_except_mounton_and_execmod)
+		(allow unconfined_subj_type_attribute isid
+			blk_file_except_mounton_and_execmod))
+
+	(block usermodehelper
+
+		;
+		; usermodehelper contexts
+		;
+
+		(genfscon "proc" "/sys/kernel/core_pattern" sysctl_context)
+		(genfscon "proc" "/sys/kernel/modprobe" sysctl_context)
+		(genfscon "proc" "/sys/kernel/poweroff_cmd" sysctl_context)
+		(genfscon "proc" "/sys/kernel/usermodehelper" sysctl_context)
+
+		;
+		; usermodehelper macros
+		;
+
+		(macro write_usermodehelper_subj_type ((type ARG1))
+			(typeattributeset
+				write_usermodehelper_subj_type_attribute
+					ARG1))
+
+		;
+		; usermodehelper policy
+		;
+
+		(blockinherit sys.sysctl_obj_base_template)
+
+		(typeattribute write_usermodehelper_subj_type_attribute)
+		(typeattribute
+			not_write_usermodehelper_subj_type_or_unconfined_subj_type_attribute)
+
+		(call sys.kernel.search_subj_type (list_subj_type_attribute))
+		(call sys.kernel.search_subj_type
+			(manage_dirs_subj_type_attribute))
+		(call sys.kernel.search_subj_type
+			(rw_dirs_subj_type_attribute))
+		(call sys.kernel.search_subj_type
+			(relabel_dirs_subj_type_attribute))
+		(call sys.kernel.search_subj_type (search_subj_type_attribute))
+		(call sys.kernel.search_subj_type
+			(manage_lnk_files_subj_type_attribute))
+		(call sys.kernel.search_subj_type
+			(read_lnk_files_subj_type_attribute))
+		(call sys.kernel.search_subj_type
+			(relabel_lnk_files_subj_type_attribute))
+		(call sys.kernel.search_subj_type
+			(manage_files_subj_type_attribute))
+		(call sys.kernel.search_subj_type
+			(read_files_subj_type_attribute))
+		(call sys.kernel.search_subj_type
+			(relabel_files_subj_type_attribute))
+		(call sys.kernel.search_subj_type
+			(rw_files_subj_type_attribute))
+		(call sys.kernel.search_subj_type
+			(write_files_subj_type_attribute))
+
+		(typeattributeset
+			not_write_usermodehelper_subj_type_or_unconfined_subj_type_attribute
+				(not (write_usermodehelper_subj_type_attribute
+					unconfined_subj_type_attribute)))
+
+		(neverallow
+			not_write_usermodehelper_subj_type_or_unconfined_subj_type_attribute
+				sysctl (file (append write)))
+
+		(typeattributeset write_usermodehelper_subj_type_attribute
+			(manage_files_subj_type_attribute
+				rw_files_subj_type_attribute
+					write_files_subj_type_attribute)))
+
+	(block var_log
+
+		;
+		; var_log contexts
+		;
+
+		(filecon "/var/log/boot\.log.*" file var_log_file_context)
+
+		;
+		; var_log macros
+		;
+
+		;
+		; var_log policy
+		;
+
+		(blockinherit file.var_log_obj_template)
+
+		(call file.var_log.obj_type_transition (isid var_log_file
+			file "boot.log")))
+
+	(block vm
+
+		;
+		; vm contexts
+		;
+
+		(genfscon "proc" "/sys/vm" sysctl_context)
+
+		;
+		; vm macros
+		;
+
+		;
+		; vm policy
+		;
+
+		(blockinherit sys.sysctl_obj_base_template))
+
+	(block vm_overcommit
+
+		;
+		; vm_overcommit contexts
+		;
+
+		(genfscon "proc" "/sys/vm/overcommit_memory" sysctl_context)
+
+		;
+		; vm_overcommit macros
+		;
+
+		;
+		; vm_overcommit policy
+		;
+
+		(blockinherit sys.sysctl_obj_base_template)
+
+		(call sys.vm.search_subj_type (list_subj_type_attribute))
+		(call sys.vm.search_subj_type
+			(manage_dirs_subj_type_attribute))
+		(call sys.vm.search_subj_type (rw_dirs_subj_type_attribute))
+		(call sys.vm.search_subj_type
+			(relabel_dirs_subj_type_attribute))
+		(call sys.vm.search_subj_type (search_subj_type_attribute))
+		(call sys.vm.search_subj_type
+			(manage_lnk_files_subj_type_attribute))
+		(call sys.vm.search_subj_type
+			(read_lnk_files_subj_type_attribute))
+		(call sys.vm.search_subj_type
+			(relabel_lnk_files_subj_type_attribute))
+		(call sys.vm.search_subj_type
+			(manage_files_subj_type_attribute))
+		(call sys.vm.search_subj_type (read_files_subj_type_attribute))
+		(call sys.vm.search_subj_type
+			(relabel_files_subj_type_attribute))
+		(call sys.vm.search_subj_type (rw_files_subj_type_attribute))
+		(call sys.vm.search_subj_type
+			(write_files_subj_type_attribute)))
+
+	;
+	; Templates
+	;
+
+	(block proc_obj_stub
+
+		;
+		; proc_obj_stub contexts
+		;
+
+		(context proc_context (sys.id sys.role proc (systemlow
+			systemlow)))
+
+		;
+		; proc_obj_stub policy
+		;
+
+		(blockabstract proc_obj_stub)
+
+		(type proc)
+		(call proc_obj_type (proc)))
+
+	(block proc_obj_base_template
+
+		;
+		; proc_obj_base_template contexts
+		;
+
+		;
+		; proc_obj_base_template macros
+		;
+
+		(macro list_subj_type ((type ARG1))
+			(typeattributeset list_subj_type_attribute
+				ARG1))
+
+		(macro manage_dirs_subj_type ((type ARG1))
+			(typeattributeset manage_dirs_subj_type_attribute
+				ARG1))
+
+		(macro relabel_dirs_subj_type ((type ARG1))
+			(typeattributeset relabel_dirs_subj_type_attribute
+				ARG1))
+
+		(macro rw_dirs_subj_type ((type ARG1))
+			(typeattributeset rw_dirs_subj_type_attribute
+				ARG1))
+
+		(macro search_subj_type ((type ARG1))
+			(typeattributeset search_subj_type_attribute
+				ARG1))
+
+		(macro manage_lnk_files_subj_type ((type ARG1))
+			(typeattributeset
+				manage_lnk_files_subj_type_attribute
+					ARG1))
+
+		(macro read_lnk_files_subj_type ((type ARG1))
+			(typeattributeset read_lnk_files_subj_type_attribute
+				ARG1))
+
+		(macro relabel_lnk_files_subj_type ((type ARG1))
+			(typeattributeset
+				relabel_lnk_files_subj_type_attribute
+					ARG1))
+
+		(macro manage_files_subj_type ((type ARG1))
+			(typeattributeset manage_files_subj_type_attribute
+				ARG1))
+
+		(macro read_files_subj_type ((type ARG1))
+			(typeattributeset read_files_subj_type_attribute
+				ARG1))
+
+		(macro relabel_files_subj_type ((type ARG1))
+			(typeattributeset relabel_files_subj_type_attribute
+				ARG1))
+
+		(macro rw_files_subj_type ((type ARG1))
+			(typeattributeset rw_files_subj_type_attribute
+				ARG1))
+
+		(macro write_files_subj_type ((type ARG1))
+			(typeattributeset write_files_subj_type_attribute
+				ARG1))
+
+		(macro read_subj_type ((type ARG1))
+			(typeattributeset read_subj_type_attribute
+				ARG1))
+
+		(macro relabel_subj_type ((type ARG1))
+			(typeattributeset relabel_subj_type_attribute
+				ARG1))
+
+		(macro manage_subj_type ((type ARG1))
+			(typeattributeset manage_subj_type_attribute
+				ARG1))
+
+		;
+		; proc_obj_base_template policy
+		;
+
+		(blockabstract proc_obj_base_template)
+
+		(blockinherit proc_obj_stub)
+
+		(typeattribute list_subj_type_attribute)
+		(typeattribute manage_dirs_subj_type_attribute)
+		(typeattribute rw_dirs_subj_type_attribute)
+		(typeattribute relabel_dirs_subj_type_attribute)
+		(typeattribute search_subj_type_attribute)
+
+		(typeattribute manage_lnk_files_subj_type_attribute)
+		(typeattribute read_lnk_files_subj_type_attribute)
+		(typeattribute relabel_lnk_files_subj_type_attribute)
+
+		(typeattribute manage_files_subj_type_attribute)
+		(typeattribute read_files_subj_type_attribute)
+		(typeattribute relabel_files_subj_type_attribute)
+		(typeattribute rw_files_subj_type_attribute)
+		(typeattribute write_files_subj_type_attribute)
+
+		(typeattribute read_subj_type_attribute)
+		(typeattribute relabel_subj_type_attribute)
+		(typeattribute manage_subj_type_attribute)
+
+		(allow list_subj_type_attribute proc list_dir_perms)
+		(call manage_dirs_pattern
+			(manage_dirs_subj_type_attribute proc proc))
+		(allow relabel_dirs_subj_type_attribute proc
+			relabel_dir_perms)
+		(call rw_dirs_pattern
+			(rw_dirs_subj_type_attribute proc proc))
+		(allow search_subj_type_attribute proc search_dir_perms)
+
+		(call manage_lnk_files_pattern
+			(manage_lnk_files_subj_type_attribute proc proc))
+		(call read_lnk_files_pattern
+			(read_lnk_files_subj_type_attribute proc proc))
+		(call relabel_lnk_files_pattern
+			(relabel_lnk_files_subj_type_attribute proc proc))
+
+		(call manage_files_pattern (manage_files_subj_type_attribute
+			proc proc))
+		(call read_files_pattern (read_files_subj_type_attribute
+			proc proc))
+		(call relabel_files_pattern
+			(relabel_files_subj_type_attribute proc proc))
+		(call rw_files_pattern (rw_files_subj_type_attribute
+			proc proc))
+		(call write_files_pattern (write_files_subj_type_attribute
+			proc proc))
+
+		(typeattributeset manage_dirs_subj_type_attribute
+			manage_subj_type_attribute)
+		(typeattributeset manage_lnk_files_subj_type_attribute
+			manage_subj_type_attribute)
+		(typeattributeset manage_files_subj_type_attribute
+			manage_subj_type_attribute)
+
+		(typeattributeset list_subj_type_attribute
+			read_subj_type_attribute)
+		(typeattributeset read_lnk_files_subj_type_attribute
+			read_subj_type_attribute)
+		(typeattributeset read_files_subj_type_attribute
+			read_subj_type_attribute)
+
+		(typeattributeset relabel_dirs_subj_type_attribute
+			relabel_subj_type_attribute)
+		(typeattributeset relabel_lnk_files_subj_type_attribute
+			relabel_subj_type_attribute)
+		(typeattributeset relabel_files_subj_type_attribute
+			relabel_subj_type_attribute))
+
+	(block sysctl_obj_stub
+
+		;
+		; sysctl_obj_stub contexts
+		;
+
+		(context sysctl_context (sys.id sys.role sysctl (systemlow
+			systemlow)))
+
+		;
+		; sysctl_obj_stub policy
+		;
+
+		(blockabstract sysctl_obj_stub)
+
+		(type sysctl)
+		(call sysctl_obj_type (sysctl)))
+
+	(block sysctl_obj_base_template
+
+		;
+		; sysctl_obj_base_template contexts
+		;
+
+		;
+		; sysctl_obj_base_template macros
+		;
+
+		(macro list_subj_type ((type ARG1))
+			(typeattributeset list_subj_type_attribute
+				ARG1))
+
+		(macro manage_dirs_subj_type ((type ARG1))
+			(typeattributeset manage_dirs_subj_type_attribute
+				ARG1))
+
+		(macro relabel_dirs_subj_type ((type ARG1))
+			(typeattributeset relabel_dirs_subj_type_attribute
+				ARG1))
+
+		(macro rw_dirs_subj_type ((type ARG1))
+			(typeattributeset rw_dirs_subj_type_attribute
+				ARG1))
+
+		(macro search_subj_type ((type ARG1))
+			(typeattributeset search_subj_type_attribute
+				ARG1))
+
+		(macro manage_lnk_files_subj_type ((type ARG1))
+			(typeattributeset
+				manage_lnk_files_subj_type_attribute
+					ARG1))
+
+		(macro read_lnk_files_subj_type ((type ARG1))
+			(typeattributeset
+				read_lnk_files_subj_type_attribute
+					ARG1))
+
+		(macro relabel_lnk_files_subj_type ((type ARG1))
+			(typeattributeset
+				relabel_lnk_files_subj_type_attribute
+					ARG1))
+
+		(macro manage_files_subj_type ((type ARG1))
+			(typeattributeset
+				manage_files_subj_type_attribute
+					ARG1))
+
+		(macro read_files_subj_type ((type ARG1))
+			(typeattributeset read_files_subj_type_attribute
+				ARG1))
+
+		(macro relabel_files_subj_type ((type ARG1))
+			(typeattributeset
+				relabel_files_subj_type_attribute
+					ARG1))
+
+		(macro rw_files_subj_type ((type ARG1))
+			(typeattributeset rw_files_subj_type_attribute
+				ARG1))
+
+		(macro write_files_subj_type ((type ARG1))
+			(typeattributeset write_files_subj_type_attribute
+				ARG1))
+
+		(macro read_subj_type ((type ARG1))
+			(typeattributeset read_subj_type_attribute
+				ARG1))
+
+		(macro relabel_subj_type ((type ARG1))
+			(typeattributeset relabel_subj_type_attribute
+				ARG1))
+
+		(macro manage_subj_type ((type ARG1))
+			(typeattributeset manage_subj_type_attribute
+				ARG1))
+
+		;
+		; sysctl_obj_base_template policy
+		;
+
+		(blockabstract sysctl_obj_base_template)
+
+		(blockinherit sysctl_obj_stub)
+
+		(typeattribute list_subj_type_attribute)
+		(typeattribute manage_dirs_subj_type_attribute)
+		(typeattribute rw_dirs_subj_type_attribute)
+		(typeattribute relabel_dirs_subj_type_attribute)
+		(typeattribute search_subj_type_attribute)
+
+		(typeattribute manage_lnk_files_subj_type_attribute)
+		(typeattribute read_lnk_files_subj_type_attribute)
+		(typeattribute relabel_lnk_files_subj_type_attribute)
+
+		(typeattribute manage_files_subj_type_attribute)
+		(typeattribute read_files_subj_type_attribute)
+		(typeattribute relabel_files_subj_type_attribute)
+		(typeattribute rw_files_subj_type_attribute)
+		(typeattribute write_files_subj_type_attribute)
+
+		(typeattribute read_subj_type_attribute)
+		(typeattribute relabel_subj_type_attribute)
+		(typeattribute manage_subj_type_attribute)
+
+		(call sys.sysctl.search_subj_type (list_subj_type_attribute))
+		(call sys.sysctl.search_subj_type
+			(manage_dirs_subj_type_attribute))
+		(call sys.sysctl.search_subj_type
+			(rw_dirs_subj_type_attribute))
+		(call sys.sysctl.search_subj_type
+			(relabel_dirs_subj_type_attribute))
+		(call sys.sysctl.search_subj_type (search_subj_type_attribute))
+		(call sys.sysctl.search_subj_type
+			(manage_lnk_files_subj_type_attribute))
+		(call sys.sysctl.search_subj_type
+			(read_lnk_files_subj_type_attribute))
+		(call sys.sysctl.search_subj_type
+			(relabel_lnk_files_subj_type_attribute))
+		(call sys.sysctl.search_subj_type
+			(manage_files_subj_type_attribute))
+		(call sys.sysctl.search_subj_type
+			(read_files_subj_type_attribute))
+		(call sys.sysctl.search_subj_type
+			(relabel_files_subj_type_attribute))
+		(call sys.sysctl.search_subj_type
+			(rw_files_subj_type_attribute))
+		(call sys.sysctl.search_subj_type
+			(write_files_subj_type_attribute))
+
+		(allow list_subj_type_attribute sysctl list_dir_perms)
+		(call manage_dirs_pattern
+			(manage_dirs_subj_type_attribute sysctl sysctl))
+		(allow relabel_dirs_subj_type_attribute sysctl
+			relabel_dir_perms)
+		(call rw_dirs_pattern
+			(rw_dirs_subj_type_attribute sysctl sysctl))
+		(allow search_subj_type_attribute sysctl search_dir_perms)
+
+		(call manage_lnk_files_pattern
+			(manage_lnk_files_subj_type_attribute sysctl sysctl))
+		(call read_lnk_files_pattern
+			(read_lnk_files_subj_type_attribute sysctl sysctl))
+		(call relabel_lnk_files_pattern
+			(relabel_lnk_files_subj_type_attribute sysctl sysctl))
+
+		(call manage_files_pattern (manage_files_subj_type_attribute
+			sysctl sysctl))
+		(call read_files_pattern (read_files_subj_type_attribute
+			sysctl sysctl))
+		(call relabel_files_pattern (relabel_files_subj_type_attribute
+			sysctl sysctl))
+		(call rw_files_pattern (rw_files_subj_type_attribute
+			sysctl sysctl))
+		(call write_files_pattern (write_files_subj_type_attribute
+			sysctl sysctl))
+
+		(typeattributeset manage_dirs_subj_type_attribute
+			manage_subj_type_attribute)
+		(typeattributeset manage_lnk_files_subj_type_attribute
+			manage_subj_type_attribute)
+		(typeattributeset manage_files_subj_type_attribute
+			manage_subj_type_attribute)
+
+		(typeattributeset list_subj_type_attribute
+			read_subj_type_attribute)
+		(typeattributeset read_lnk_files_subj_type_attribute
+			read_subj_type_attribute)
+		(typeattributeset read_files_subj_type_attribute
+			read_subj_type_attribute)
+
+		(typeattributeset relabel_dirs_subj_type_attribute
+			relabel_subj_type_attribute)
+		(typeattributeset relabel_lnk_files_subj_type_attribute
+			relabel_subj_type_attribute)
+		(typeattributeset relabel_files_subj_type_attribute
+			relabel_subj_type_attribute))
+
+	(block sysfs_obj_stub
+
+		;
+		; sysfs_obj_stub contexts
+		;
+
+		(context sysfs_context (sys.id sys.role sysfs (systemlow
+			systemlow)))
+
+		;
+		; sysfs_obj_stub policy
+		;
+
+		(blockabstract sysfs_obj_stub)
+
+		(type sysfs)
+		(call sysfs_obj_type (sysfs)))
+
+	(block sysfs_obj_base_template
+
+		;
+		; sysfs_obj_base_template contexts
+		;
+
+		;
+		; sysfs_obj_base_template macros
+		;
+
+		(macro list_subj_type ((type ARG1))
+			(typeattributeset list_subj_type_attribute
+				ARG1))
+
+		(macro manage_dirs_subj_type ((type ARG1))
+			(typeattributeset manage_dirs_subj_type_attribute
+				ARG1))
+
+		(macro relabel_dirs_subj_type ((type ARG1))
+			(typeattributeset relabel_dirs_subj_type_attribute
+				ARG1))
+
+		(macro rw_dirs_subj_type ((type ARG1))
+			(typeattributeset rw_dirs_subj_type_attribute
+				ARG1))
+
+		(macro search_subj_type ((type ARG1))
+			(typeattributeset search_subj_type_attribute
+				ARG1))
+
+		(macro manage_lnk_files_subj_type ((type ARG1))
+			(typeattributeset
+				manage_lnk_files_subj_type_attribute
+					ARG1))
+
+		(macro read_lnk_files_subj_type ((type ARG1))
+			(typeattributeset
+				read_lnk_files_subj_type_attribute
+					ARG1))
+
+		(macro relabel_lnk_files_subj_type ((type ARG1))
+			(typeattributeset
+				relabel_lnk_files_subj_type_attribute
+					ARG1))
+
+		(macro manage_files_subj_type ((type ARG1))
+			(typeattributeset
+				manage_files_subj_type_attribute
+					ARG1))
+
+		(macro read_files_subj_type ((type ARG1))
+			(typeattributeset read_files_subj_type_attribute
+				ARG1))
+
+		(macro relabel_files_subj_type ((type ARG1))
+			(typeattributeset
+				relabel_files_subj_type_attribute
+					ARG1))
+
+		(macro rw_files_subj_type ((type ARG1))
+			(typeattributeset rw_files_subj_type_attribute
+				ARG1))
+
+		(macro write_files_subj_type ((type ARG1))
+			(typeattributeset write_files_subj_type_attribute
+				ARG1))
+
+		(macro read_subj_type ((type ARG1))
+			(typeattributeset read_subj_type_attribute
+				ARG1))
+
+		(macro relabel_subj_type ((type ARG1))
+			(typeattributeset relabel_subj_type_attribute
+				ARG1))
+
+		(macro manage_subj_type ((type ARG1))
+			(typeattributeset manage_subj_type_attribute
+				ARG1))
+
+		;
+		; sysfs_obj_base_template policy
+		;
+
+		(blockabstract sysfs_obj_base_template)
+
+		(blockinherit sysfs_obj_stub)
+
+		(typeattribute list_subj_type_attribute)
+		(typeattribute manage_dirs_subj_type_attribute)
+		(typeattribute rw_dirs_subj_type_attribute)
+		(typeattribute relabel_dirs_subj_type_attribute)
+		(typeattribute search_subj_type_attribute)
+
+		(typeattribute manage_lnk_files_subj_type_attribute)
+		(typeattribute read_lnk_files_subj_type_attribute)
+		(typeattribute relabel_lnk_files_subj_type_attribute)
+
+		(typeattribute manage_files_subj_type_attribute)
+		(typeattribute read_files_subj_type_attribute)
+		(typeattribute relabel_files_subj_type_attribute)
+		(typeattribute rw_files_subj_type_attribute)
+		(typeattribute write_files_subj_type_attribute)
+
+		(typeattribute read_subj_type_attribute)
+		(typeattribute relabel_subj_type_attribute)
+		(typeattribute manage_subj_type_attribute)
+
+		(call .fs.sysfs.search_subj_type (list_subj_type_attribute))
+		(call .fs.sysfs.search_subj_type
+			(manage_dirs_subj_type_attribute))
+		(call .fs.sysfs.search_subj_type (rw_dirs_subj_type_attribute))
+		(call .fs.sysfs.search_subj_type
+			(relabel_dirs_subj_type_attribute))
+		(call .fs.sysfs.search_subj_type (search_subj_type_attribute))
+		(call .fs.sysfs.search_subj_type
+			(manage_lnk_files_subj_type_attribute))
+		(call .fs.sysfs.search_subj_type
+			(read_lnk_files_subj_type_attribute))
+		(call .fs.sysfs.search_subj_type
+			(relabel_lnk_files_subj_type_attribute))
+		(call .fs.sysfs.search_subj_type
+			(manage_files_subj_type_attribute))
+		(call .fs.sysfs.search_subj_type
+			(read_files_subj_type_attribute))
+		(call .fs.sysfs.search_subj_type
+			(relabel_files_subj_type_attribute))
+		(call .fs.sysfs.search_subj_type
+			(rw_files_subj_type_attribute))
+		(call .fs.sysfs.search_subj_type
+			(write_files_subj_type_attribute))
+
+		(allow list_subj_type_attribute sysfs list_dir_perms)
+		(call manage_dirs_pattern
+			(manage_dirs_subj_type_attribute sysfs sysfs))
+		(allow relabel_dirs_subj_type_attribute sysfs
+			relabel_dir_perms)
+		(call rw_dirs_pattern
+			(rw_dirs_subj_type_attribute sysfs sysfs))
+		(allow search_subj_type_attribute sysfs search_dir_perms)
+
+		(call manage_lnk_files_pattern
+			(manage_lnk_files_subj_type_attribute sysfs sysfs))
+		(call read_lnk_files_pattern
+			(read_lnk_files_subj_type_attribute sysfs sysfs))
+		(call relabel_lnk_files_pattern
+			(relabel_lnk_files_subj_type_attribute sysfs sysfs))
+
+		(call manage_files_pattern
+			(manage_files_subj_type_attribute sysfs sysfs))
+		(call read_files_pattern
+			(read_files_subj_type_attribute sysfs sysfs))
+		(call relabel_files_pattern
+			(relabel_files_subj_type_attribute sysfs sysfs))
+		(call rw_files_pattern
+			(rw_files_subj_type_attribute sysfs sysfs))
+		(call write_files_pattern
+			(write_files_subj_type_attribute sysfs sysfs))
+
+		(typeattributeset manage_dirs_subj_type_attribute
+			manage_subj_type_attribute)
+		(typeattributeset manage_lnk_files_subj_type_attribute
+			manage_subj_type_attribute)
+		(typeattributeset manage_files_subj_type_attribute
+			manage_subj_type_attribute)
+
+		(typeattributeset list_subj_type_attribute
+			read_subj_type_attribute)
+		(typeattributeset read_lnk_files_subj_type_attribute
+			read_subj_type_attribute)
+		(typeattributeset read_files_subj_type_attribute
+			read_subj_type_attribute)
+
+		(typeattributeset relabel_dirs_subj_type_attribute
+			relabel_subj_type_attribute)
+		(typeattributeset relabel_lnk_files_subj_type_attribute
+			relabel_subj_type_attribute)
+		(typeattributeset relabel_files_subj_type_attribute
+			relabel_subj_type_attribute))
+
+	(block isid_stub
+
+		;
+		; isid_stub contexts
+		;
+
+		(context isid_context (sys.id sys.role isid (systemlow
+			systemlow)))
+
+		;
+		; isid_stub macros
+		;
+
+		;
+		; isid_stub policy
+		;
+
+		(blockabstract isid_stub)
+
+		(type isid)))

@@ -1,0 +1,511 @@
+(sid security)
+
+(block sec
+
+	;
+	; Macros
+	;
+
+	(macro bool_obj_type ((type ARG1))
+		(typeattributeset bool_obj_type_attribute ARG1))
+
+	(macro compute_access_vector_subj_type ((type ARG1))
+		(typeattributeset compute_access_vector_subj_type_attribute
+			ARG1))
+
+	(macro compute_create_context_subj_type ((type ARG1))
+		(typeattributeset
+			compute_create_context_subj_type_attribute
+				ARG1))
+
+	(macro compute_relabel_context_subj_type ((type ARG1))
+		(typeattributeset
+			compute_relabel_context_subj_type_attribute
+				ARG1))
+
+	(macro compute_user_context_subj_type ((type ARG1))
+		(typeattributeset
+			compute_user_context_subj_type_attribute
+				ARG1))
+
+	(macro get_all_bool_subj_type ((type ARG1))
+		(typeattributeset get_all_bool_subj_type_attribute
+			ARG1))
+
+	(macro load_policy_subj_type ((type ARG1))
+		(typeattributeset load_policy_subj_type_attribute
+			ARG1))
+
+	(macro read_policy_subj_type ((type ARG1))
+		(typeattributeset read_policy_subj_type_attribute
+			ARG1))
+
+	(macro set_all_bool_subj_type ((type ARG1))
+		(typeattributeset set_all_bool_subj_type_attribute
+			ARG1))
+
+	(macro set_enforce_subj_type ((type ARG1))
+		(typeattributeset set_enforce_subj_type_attribute
+			ARG1))
+
+	(macro set_fscreate_subj_type ((type ARG1))
+		(typeattributeset set_fscreate_subj_type_attribute
+			ARG1))
+
+	(macro set_secparam_subj_type ((type ARG1))
+		(typeattributeset set_secparam_subj_type_attribute
+			ARG1))
+
+	(macro unconfined_subj_type ((type ARG1))
+		(typeattributeset unconfined_subj_type_attribute
+			ARG1))
+
+	(macro write_load_policy_bool_subj_type ((type ARG1))
+		(typeattributeset
+			write_load_policy_bool_subj_type_attribute
+				ARG1))
+
+	;
+	; Policy
+	;
+
+	(boolean load_policy true)
+
+	(typeattribute bool_obj_type_attribute)
+
+	(typeattribute compute_access_vector_subj_type_attribute)
+	(typeattribute compute_create_context_subj_type_attribute)
+	(typeattribute compute_relabel_context_subj_type_attribute)
+	(typeattribute compute_user_context_subj_type_attribute)
+
+	(typeattribute get_all_bool_subj_type_attribute)
+
+	(typeattribute load_policy_subj_type_attribute)
+
+	(typeattribute
+		load_policy_subj_type_or_unconfined_subj_type_attribute)
+	(typeattribute
+		not_load_policy_subj_type_or_unconfined_subj_type_attribute)
+
+	(typeattribute read_policy_subj_type_attribute)
+
+	(typeattribute set_all_bool_subj_type_attribute)
+
+	(typeattribute set_enforce_subj_type_attribute)
+
+	(typeattribute
+		set_enforce_subj_type_or_unconfined_subj_type_attribute)
+	(typeattribute
+		not_set_enforce_subj_type_or_unconfined_subj_type_attribute)
+
+	(typeattribute set_fscreate_subj_type_attribute)
+
+	(typeattribute set_secparam_subj_type_attribute)
+
+	(typeattribute
+		not_set_secparam_subj_type_or_unconfined_subj_type_attribute)
+
+	(typeattribute write_load_policy_bool_subj_type_attribute)
+
+	(typeattribute
+		write_load_policy_bool_subj_type_or_unconfined_subj_type_attribute)
+	(typeattribute
+		not_write_load_policy_bool_subj_type_or_unconfined_subj_type_attribute)
+
+	(typeattribute unconfined_subj_type_attribute)
+
+	(call sys.sys_obj_type (bool_obj_type_attribute))
+
+	(typeattributeset
+		not_load_policy_subj_type_or_unconfined_subj_type_attribute
+			(not (load_policy_subj_type_attribute
+				unconfined_subj_type_attribute)))
+
+	(typeattributeset
+		load_policy_subj_type_or_unconfined_subj_type_attribute
+			(load_policy_subj_type_attribute
+				unconfined_subj_type_attribute))
+
+	(neverallow
+		not_load_policy_subj_type_or_unconfined_subj_type_attribute
+			sec.security.isid (security (load_policy)))
+
+	(call sec.security.rw_files_subj_type
+		(load_policy_subj_type_attribute))
+
+	(typeattributeset
+		not_set_enforce_subj_type_or_unconfined_subj_type_attribute
+			(not (set_enforce_subj_type_attribute
+				unconfined_subj_type_attribute)))
+
+	(typeattributeset
+		set_enforce_subj_type_or_unconfined_subj_type_attribute
+			(set_enforce_subj_type_attribute
+				unconfined_subj_type_attribute))
+
+	(neverallow
+		not_set_enforce_subj_type_or_unconfined_subj_type_attribute
+			sec.security.isid (security (setenforce)))
+
+	(call sec.security.rw_files_subj_type
+		(set_enforce_subj_type_attribute))
+
+	(typeattributeset
+		not_set_secparam_subj_type_or_unconfined_subj_type_attribute
+		(not (set_secparam_subj_type_attribute
+			unconfined_subj_type_attribute)))
+
+	(neverallow
+		not_set_secparam_subj_type_or_unconfined_subj_type_attribute
+			sec.security.isid (security (setsecparam)))
+
+	(call sec.security.rw_files_subj_type
+		(set_secparam_subj_type_attribute))
+
+	(allow set_secparam_subj_type_attribute sec.security.isid (security
+		(setsecparam)))
+
+	(call sec.security.list_subj_type
+		(compute_access_vector_subj_type_attribute))
+	(call sec.security.rw_files_subj_type
+		(compute_access_vector_subj_type_attribute))
+	(allow compute_access_vector_subj_type_attribute sec.security.isid
+		(security (compute_av)))
+
+	(call sec.security.rw_files_subj_type
+		(compute_create_context_subj_type_attribute))
+	(allow compute_create_context_subj_type_attribute sec.security.isid
+		(security (compute_create)))
+
+	(call sec.security.rw_files_subj_type
+		(compute_relabel_context_subj_type_attribute))
+	(allow compute_relabel_context_subj_type_attribute sec.security.isid
+		(security (compute_relabel)))
+
+	(call sec.security.rw_files_subj_type
+		(compute_relabel_context_subj_type_attribute))
+	(allow compute_relabel_context_subj_type_attribute sec.security.isid
+		(security (compute_user)))
+
+	(allow set_fscreate_subj_type_attribute self (process (setfscreate)))
+
+	(call sec.security.rw_files_subj_type
+		(read_policy_subj_type_attribute))
+	(allow read_policy_subj_type_attribute sec.security.isid
+		(security (read_policy)))
+
+	(call sec.security.list_subj_type (get_all_bool_subj_type_attribute))
+	(allow get_all_bool_subj_type_attribute bool_obj_type_attribute
+		read_file_perms)
+
+	(typeattributeset write_load_policy_bool_subj_type_attribute
+		set_all_bool_subj_type_attribute)
+
+	(allow set_all_bool_subj_type_attribute sec.security.isid
+		(security (setbool)))
+	(call sec.security.list_subj_type (set_all_bool_subj_type_attribute))
+	(allow set_all_bool_subj_type_attribute bool_obj_type_attribute
+		read_file_perms)
+	(allow set_all_bool_subj_type_attribute
+		not_load_policy_bool_obj_type_attribute
+			(file (append write)))
+
+	(call sec.security.list_subj_type (unconfined_subj_type_attribute))
+	(call sec.security.read_lnk_files_subj_type
+		(unconfined_subj_type_attribute))
+
+	(typeattribute not_load_policy_bool_obj_type_attribute)
+
+	(typeattributeset
+		not_load_policy_bool_obj_type_attribute (and
+			(bool_obj_type_attribute) (not
+				(sec.load_policy.bool))))
+
+	(allow unconfined_subj_type_attribute bool_obj_type_attribute
+		read_file_perms)
+	(allow unconfined_subj_type_attribute
+		not_load_policy_bool_obj_type_attribute (file
+			(append write)))
+
+	(typeattributeset
+		not_write_load_policy_bool_subj_type_or_unconfined_subj_type_attribute
+			(not (write_load_policy_bool_subj_type_attribute
+				unconfined_subj_type_attribute)))
+
+	(typeattributeset
+		write_load_policy_bool_subj_type_or_unconfined_subj_type_attribute
+			(write_load_policy_bool_subj_type_attribute
+				unconfined_subj_type_attribute))
+
+	(neverallow
+		not_write_load_policy_bool_subj_type_or_unconfined_subj_type_attribute
+			sec.load_policy.bool (file (append write)))
+
+	(allow unconfined_subj_type_attribute sec.security.isid
+		security_except_load_policy_and_setenforce)
+
+	(block load_policy
+
+		;
+		; load_policy contexts
+		;
+
+		(context load_policy (sys.id sys.role bool (systemlow
+			systemlow)))
+
+		(genfscon "selinuxfs" "/booleans/sec.load_policy" load_policy)
+
+		;
+		; load_policy macros
+		;
+
+		(macro read_files_subj_files_type ((type ARG1))
+			(typeattributeset read_files_subj_type_attribute
+				ARG1))
+
+		(macro rw_files_subj_type ((type ARG1))
+			(typeattributeset rw_files_subj_type_attribute
+				ARG1))
+
+		(macro write_files_subj_type ((type ARG1))
+			(typeattributeset write_files_subj_type_attribute
+				ARG1))
+
+		;
+		; load_policy policy
+		;
+
+		(blockinherit sec.bool_obj_stub)
+
+		(typeattribute read_files_subj_type_attribute)
+		(typeattribute rw_files_subj_type_attribute)
+		(typeattribute write_files_subj_type_attribute)
+
+		(call sec.security.search_subj_type
+			(read_files_subj_type_attribute))
+		(call sec.security.search_subj_type
+			(rw_files_subj_type_attribute))
+		(call sec.security.search_subj_type
+			(write_files_subj_type_attribute))
+
+		(allow read_files_subj_type_attribute bool read_file_perms)
+		(allow rw_files_subj_type_attribute bool read_file_perms)
+		(allow write_files_subj_type_attribute bool (file (getattr
+			open lock)))
+
+		(typeattributeset write_load_policy_bool_subj_type_attribute
+			(rw_files_subj_type_attribute
+				write_files_subj_type_attribute))
+
+		(booleanif (load_policy) (true
+			(allow
+				set_enforce_subj_type_or_unconfined_subj_type_attribute
+					sec.security.isid (security
+						(setenforce)))
+			(allow
+				load_policy_subj_type_or_unconfined_subj_type_attribute
+					sec.security.isid (security
+						(load_policy)))
+			(allow
+				write_load_policy_bool_subj_type_or_unconfined_subj_type_attribute
+					bool (file (append write))))))
+
+	(block security
+
+		;
+		; security contexts
+		;
+
+		(sidcontext security isid_context)
+
+		;
+		; security macros
+		;
+
+		(macro list_subj_type ((type ARG1))
+			(typeattributeset list_subj_type_attribute
+				ARG1))
+
+		(macro search_subj_type ((type ARG1))
+			(typeattributeset search_subj_type_attribute
+				ARG1))
+
+		(macro manage_lnk_files_subj_type ((type ARG1))
+			(typeattributeset
+				manage_lnk_files_subj_type_attribute
+					ARG1))
+
+		(macro read_lnk_files_subj_type ((type ARG1))
+			(typeattributeset
+				read_lnk_files_subj_type_attribute
+					ARG1))
+
+		(macro mounton_files_subj_type ((type ARG1))
+			(typeattributeset mounton_files_subj_type_attribute
+				ARG1))
+
+		(macro read_files_subj_type ((type ARG1))
+			(typeattributeset read_files_subj_type_attribute
+				ARG1))
+
+
+		(macro rw_files_subj_type ((type ARG1))
+			(typeattributeset rw_files_subj_type_attribute
+				ARG1))
+
+		(macro write_files_subj_type ((type ARG1))
+			(typeattributeset write_files_subj_type_attribute
+				ARG1))
+
+		(macro read_subj_type ((type ARG1))
+			(typeattributeset read_subj_type_attribute
+				ARG1))
+
+		;
+		; security policy
+		;
+
+		(blockinherit sys.isid_stub)
+
+		(call fs.fs_obj_type (isid))
+
+		(call sec.bool_obj_type (isid))
+
+		(typeattribute list_subj_type_attribute)
+		(typeattribute search_subj_type_attribute)
+
+		(typeattribute manage_lnk_files_subj_type_attribute)
+		(typeattribute read_lnk_files_subj_type_attribute)
+
+		(typeattribute mounton_files_subj_type_attribute)
+		(typeattribute read_files_subj_type_attribute)
+		(typeattribute rw_files_subj_type_attribute)
+		(typeattribute write_files_subj_type_attribute)
+
+		(typeattribute read_subj_type_attribute)
+
+		(call fs.sysfs.search_subj_type (list_subj_type_attribute))
+		(call fs.sysfs.search_subj_type (search_subj_type_attribute))
+
+		(call fs.sysfs.search_subj_type
+			(manage_lnk_files_subj_type_attribute))
+		(call fs.sysfs.search_subj_type
+			(read_lnk_files_subj_type_attribute))
+
+		(call fs.sysfs.search_subj_type
+			(mounton_files_subj_type_attribute))
+		(call fs.sysfs.search_subj_type
+			(read_files_subj_type_attribute))
+		(call fs.sysfs.search_subj_type
+			(rw_files_subj_type_attribute))
+		(call fs.sysfs.search_subj_type
+			(write_files_subj_type_attribute))
+
+		(allow list_subj_type_attribute isid list_dir_perms)
+		(allow search_subj_type_attribute isid search_dir_perms)
+
+		(call manage_lnk_files_pattern
+			(manage_lnk_files_subj_type_attribute isid isid))
+		(call read_lnk_files_pattern
+			(read_lnk_files_subj_type_attribute isid isid))
+
+		(allow mounton_files_subj_type_attribute isid
+			(file (mounton)))
+		(call read_files_pattern
+			(read_files_subj_type_attribute isid isid))
+		(call rw_files_pattern
+			(rw_files_subj_type_attribute isid isid))
+		(call write_files_pattern
+			(write_files_subj_type_attribute isid isid))
+
+		(typeattributeset list_subj_type_attribute
+			read_subj_type_attribute)
+		(typeattributeset read_lnk_files_subj_type_attribute
+			read_subj_type_attribute)
+		(typeattributeset read_files_subj_type_attribute
+			read_subj_type_attribute))
+
+	;
+	; Templates
+	;
+
+	(block bool_obj_stub
+
+		;
+		; bool_obj_stub contexts
+		;
+
+		(context bool_context (sys.id sys.role bool (systemlow
+			systemlow)))
+
+		;
+		; bool_obj_stub policy
+		;
+
+		(blockabstract bool_obj_stub)
+
+		(type bool)
+		(call bool_obj_type (bool)))
+
+	(block bool_obj_base_template
+
+		;
+		; bool_obj_base_template contexts
+		;
+
+		;
+		; bool_obj_base_template macros
+		;
+
+		(macro read_files_subj_files_type ((type ARG1))
+			(typeattributeset read_files_subj_type_attribute
+				ARG1))
+
+		(macro rw_files_subj_type ((type ARG1))
+			(typeattributeset rw_files_subj_type_attribute
+				ARG1))
+
+		(macro write_files_subj_type ((type ARG1))
+			(typeattributeset write_files_subj_type_attribute
+				ARG1))
+
+		;
+		; bool_obj_base_template policy
+		;
+
+		(blockabstract bool_obj_base_template)
+
+		(blockinherit bool_obj_stub)
+
+		(typeattribute read_files_subj_type_attribute)
+		(typeattribute rw_files_subj_type_attribute)
+		(typeattribute write_files_subj_type_attribute)
+
+		(call sec.security.search_subj_type
+			(read_files_subj_type_attribute))
+		(call sec.security.search_subj_type
+			(rw_files_subj_type_attribute))
+		(call sec.security.search_subj_type
+			(write_files_subj_type_attribute))
+
+		(allow read_files_subj_type_attribute bool read_file_perms)
+		(allow rw_files_subj_type_attribute bool rw_file_perms)
+		(allow write_files_subj_type_attribute bool write_file_perms))
+
+	(block bool_obj_template
+
+		;
+		; bool_obj_template contexts
+		;
+
+		;
+		; bool_obj_template macros
+		;
+
+		;
+		; bool_obj_template policy
+		;
+
+		(blockabstract bool_obj_template)
+
+		(blockinherit bool_obj_base_template)))

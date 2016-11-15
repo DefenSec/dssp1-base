@@ -1,0 +1,990 @@
+(block subj
+
+	;
+	; Macros
+	;
+
+	(macro dontaudit_noatsecure_all_subj_type ((type ARG1))
+		(typeattributeset dontaudit_noatsecure_all_subj_type_attribute
+			ARG1))
+
+	(macro dontaudit_siginh_all_subj_type ((type ARG1))
+		(typeattributeset dontaudit_siginh_all_subj_type_attribute
+			ARG1))
+
+	(macro dontaudit_rlimitinh_all_subj_type ((type ARG1))
+		(typeattributeset dontaudit_rlimitinh_all_subj_type_attribute
+			ARG1))
+
+	(macro dynamic_subj_type_transition_subj_type ((type ARG1))
+		(typeattributeset
+			dynamic_subj_type_transition_subj_type_attribute
+				ARG1))
+
+	(macro append_inherited_fifo_files_all_subj_type ((type ARG1))
+		(typeattributeset
+			append_inherited_fifo_files_all_subj_type_attribute
+				ARG1))
+
+	(macro append_inherited_unix_stream_sockets_all_subj_type ((type ARG1))
+		(typeattributeset
+			append_inherited_unix_stream_sockets_all_subj_type_attribute
+				ARG1))
+
+	(macro common_subj_type ((type ARG1))
+		(typeattributeset common_subj_type_attribute ARG1))
+
+	(macro create_keyring_all_subj_type ((type ARG1))
+		(typeattributeset create_keyring_all_subj_type_attribute
+			ARG1))
+
+	(macro dyntransition_all_subj_type ((type ARG1))
+		(typeattributeset dyntransition_all_subj_type_attribute ARG1))
+
+	(macro execheap_subj_type ((type ARG1))
+		(typeattributeset execheap_subj_type_attribute ARG1))
+
+	(macro execmem_subj_type ((type ARG1))
+		(typeattributeset execmem_subj_type_attribute ARG1))
+
+	(macro execstack_subj_type ((type ARG1))
+		(typeattributeset execstack_subj_type_attribute ARG1))
+
+	(macro getattr_all_subj_type ((type ARG1))
+		(typeattributeset getattr_all_subj_type_attribute
+			ARG1))
+
+	(macro getpgid_all_subj_type ((type ARG1))
+		(typeattributeset getpgid_all_aubj_type_attribute
+			ARG1))
+
+	(macro getsched_all_subj_type ((type ARG1))
+		(typeattributeset getsched_all_aubj_type_attribute
+			ARG1))
+
+	(macro getsession_all_subj_type ((type ARG1))
+		(typeattributeset getsession_all_aubj_type_attribute
+			ARG1))
+
+	(macro interactive_fd_subj_type ((type ARG1))
+		(typeattributeset interactive_fd_subj_type_attribute
+			ARG1))
+
+	(macro link_keyring_all_subj_type ((type ARG1))
+		(typeattributeset link_keyring_all_subj_type_attribute
+			ARG1))
+
+	(macro mmap_low_subj_type ((type ARG1))
+		(typeattributeset mmap_low_subj_type_attribute ARG1))
+
+	(macro noatsecure_all_subj_type ((type ARG1))
+		(typeattributeset noatsecure_all_subj_type_attribute ARG1))
+
+	(macro ps_all_subj_type ((type ARG1))
+		(typeattributeset ps_all_subj_type_attribute
+			ARG1))
+
+	(macro sys_ptrace_subj_type ((type ARG1))
+		(typeattributeset sys_ptrace_subj_type_attribute ARG1))
+
+	(macro ptrace_all_subj_type ((type ARG1))
+		(typeattributeset ptrace_all_subj_type_attribute ARG1))
+
+	(macro read_state_all_subj_type ((type ARG1))
+		(typeattributeset
+			read_state_all_subj_type_attribute
+				ARG1))
+
+	(macro rlimitinh_all_subj_type ((type ARG1))
+		(typeattributeset rlimitinh_all_subj_type_attribute ARG1))
+
+	(macro rw_fifo_files_all_subj_type ((type ARG1))
+		(typeattributeset
+			rw_fifo_files_all_subj_type_attribute
+				ARG1))
+
+	(macro rw_inherited_fifo_files_all_subj_type ((type ARG1))
+		(typeattributeset
+			rw_inherited_fifo_files_all_subj_type_attribute
+				ARG1))
+
+	(macro rw_inherited_tcp_sockets_all_subj_type ((type ARG1))
+		(typeattributeset
+			rw_inherited_tcp_sockets_all_subj_type_attribute
+				ARG1))
+
+	(macro rw_inherited_unix_dgram_sockets_all_subj_type ((type ARG1))
+		(typeattributeset
+			rw_inherited_unix_dgram_sockets_all_subj_type_attribute
+				ARG1))
+
+	(macro rw_inherited_unix_stream_sockets_all_subj_type ((type ARG1))
+		(typeattributeset
+			rw_inherited_unix_stream_sockets_all_subj_type_attribute
+				ARG1))
+
+	(macro rw_unix_stream_sockets_all_subj_type ((type ARG1))
+		(typeattributeset
+			rw_unix_stream_sockets_all_subj_type_attribute
+				ARG1))
+
+	(macro send_sigchld_all_subj_type ((type ARG1))
+		(typeattributeset send_sigchld_all_subj_type_attribute ARG1))
+
+	(macro send_sigkill_all_subj_type ((type ARG1))
+		(typeattributeset send_sigkill_all_subj_type_attribute ARG1))
+
+	(macro send_signal_all_subj_type ((type ARG1))
+		(typeattributeset send_signal_all_subj_type_attribute ARG1))
+
+	(macro send_signull_all_subj_type ((type ARG1))
+		(typeattributeset send_signull_all_subj_type_attribute ARG1))
+
+	(macro send_sigstop_all_subj_type ((type ARG1))
+		(typeattributeset send_sigstop_all_subj_type_attribute ARG1))
+
+	(macro setsched_all_subj_type ((type ARG1))
+		(typeattributeset setsched_all_subj_type_attribute ARG1))
+
+	(macro share_all_subj_type ((type ARG1))
+		(typeattributeset share_all_subj_type_attribute ARG1))
+
+	(macro siginh_all_subj_type ((type ARG1))
+		(typeattributeset siginh_all_subj_type_attribute ARG1))
+
+	(macro subj_type ((type ARG1))
+		(typeattributeset subj_type_attribute ARG1))
+
+	(macro transition_all_subj_type ((type ARG1))
+		(typeattributeset transition_all_subj_type_attribute ARG1))
+
+	(macro unconfined_subj_type ((type ARG1))
+		(typeattributeset unconfined_subj_type_attribute
+			ARG1))
+
+	(macro unix_dgram_socket_sendto_all_subj_type ((type ARG1))
+		(typeattributeset
+			unix_dgram_socket_sendto_all_subj_type_attribute
+				ARG1))
+
+	(macro unix_stream_socket_connectto_all_subj_type ((type ARG1))
+		(typeattributeset
+			unix_stream_socket_connectto_all_subj_type_attribute
+				ARG1))
+
+	(macro use_fd_all_subj_type ((type ARG1))
+		(typeattributeset
+			use_fd_all_subj_type_attribute
+				ARG1))
+
+	(macro use_interactive_fd_subj_type ((type ARG1))
+		(typeattributeset
+			use_interactive_fd_subj_type_attribute
+				ARG1))
+
+	;
+	; Policy
+	;
+
+	(typeattribute dontaudit_noatsecure_all_subj_type_attribute)
+	(typeattribute dontaudit_siginh_all_subj_type_attribute)
+	(typeattribute dontaudit_rlimitinh_all_subj_type_attribute)
+	(typeattribute append_inherited_fifo_files_all_subj_type_attribute)
+	(typeattribute
+		append_inherited_unix_stream_sockets_all_subj_type_attribute)
+	(typeattribute common_subj_type_attribute)
+	(typeattribute create_keyring_all_subj_type_attribute)
+	(typeattribute dyntransition_all_subj_type_attribute)
+	(typeattribute getattr_all_subj_type_attribute)
+	(typeattribute getpgid_all_subj_type_attribute)
+	(typeattribute getsched_all_subj_type_attribute)
+	(typeattribute getsession_all_subj_type_attribute)
+	(typeattribute link_keyring_all_subj_type_attribute)
+	(typeattribute noatsecure_all_subj_type_attribute)
+	(typeattribute ps_all_subj_type_attribute)
+	(typeattribute ptrace_all_subj_type_attribute)
+	(typeattribute read_state_all_subj_type_attribute)
+	(typeattribute rlimitinh_all_subj_type_attribute)
+	(typeattribute rw_fifo_files_all_subj_type_attribute)
+	(typeattribute rw_inherited_fifo_files_all_subj_type_attribute)
+	(typeattribute
+		rw_inherited_tcp_sockets_all_subj_type_attribute)
+	(typeattribute
+		rw_inherited_unix_dgram_sockets_all_subj_type_attribute)
+	(typeattribute
+		rw_inherited_unix_stream_sockets_all_subj_type_attribute)
+	(typeattribute rw_unix_stream_sockets_all_subj_type_attribute)
+	(typeattribute send_sigchld_all_subj_type_attribute)
+	(typeattribute send_sigkill_all_subj_type_attribute)
+	(typeattribute send_signal_all_subj_type_attribute)
+	(typeattribute send_signull_all_subj_type_attribute)
+	(typeattribute send_sigstop_all_subj_type_attribute)
+	(typeattribute setsched_all_subj_type_attribute)
+	(typeattribute share_all_subj_type_attribute)
+	(typeattribute siginh_all_subj_type_attribute)
+	(typeattribute transition_all_subj_type_attribute)
+	(typeattribute unconfined_subj_type_attribute)
+	(typeattribute unix_dgram_socket_sendto_all_subj_type_attribute)
+	(typeattribute unix_stream_socket_connectto_all_subj_type_attribute)
+	(typeattribute use_fd_all_subj_type_attribute)
+
+	(typeattribute subj_type_attribute)
+	(typeattribute not_subj_type_attribute)
+
+	(typeattribute dynamic_subj_type_transition_subj_type_attribute)
+	(typeattribute
+		not_dynamic_subj_type_transition_subj_type_or_unconfined_subj_type_attribute)
+
+	(typeattribute interactive_fd_subj_type_attribute)
+	(typeattribute use_interactive_fd_subj_type_attribute)
+
+	(typeattributeset subj_type_attribute common_subj_type_attribute)
+
+	(dontaudit dontaudit_noatsecure_all_subj_type_attribute
+		common_subj_type_attribute (process (noatsecure)))
+
+	(dontaudit dontaudit_siginh_all_subj_type_attribute
+		common_subj_type_attribute (process (siginh)))
+
+	(dontaudit dontaudit_rlimitinh_all_subj_type_attribute
+		common_subj_type_attribute (process (rlimitinh)))
+
+	(typeattributeset use_fd_all_subj_type_attribute
+		append_inherited_fifo_files_all_subj_type_attribute)
+	(allow append_inherited_fifo_files_all_subj_type_attribute
+		common_subj_type_attribute append_inherited_fifo_file_perms)
+
+	(typeattributeset use_fd_all_subj_type_attribute
+		append_inherited_unix_stream_sockets_all_subj_type_attribute)
+	(allow append_inherited_unix_stream_sockets_all_subj_type_attribute
+		common_subj_type_attribute append_inherited_unix_stream_socket_perms)
+
+	(allow create_keyring_all_subj_type_attribute self (process
+		(setkeycreate)))
+	(allow create_keyring_all_subj_type_attribute
+		common_subj_type_attribute create_key_perms)
+
+	(allow dyntransition_all_subj_type_attribute
+		common_subj_type_attribute (process (dyntransition)))
+
+	(allow getattr_all_subj_type_attribute
+		common_subj_type_attribute (process (getattr)))
+
+	(allow getpgid_all_subj_type_attribute
+		common_subj_type_attribute (process (getpgid)))
+
+	(allow getsched_all_subj_type_attribute
+		common_subj_type_attribute (process (getsched)))
+
+	(allow getsession_all_subj_type_attribute
+		common_subj_type_attribute (process (getsession)))
+
+	(allow link_keyring_all_subj_type_attribute
+		common_subj_type_attribute link_key_perms)
+
+	(allow noatsecure_all_subj_type_attribute
+		common_subj_type_attribute (process (noatsecure)))
+
+	(call getattr_all_subj_type (ps_all_subj_type_attribute))
+	(call read_state_all_subj_type (ps_all_subj_type_attribute))
+
+	(allow ptrace_all_subj_type_attribute
+		common_subj_type_attribute (process (ptrace)))
+
+	(allow read_state_all_subj_type_attribute
+		common_subj_type_attribute list_dir_perms)
+	(allow read_state_all_subj_type_attribute
+		common_subj_type_attribute read_file_perms)
+	(allow read_state_all_subj_type_attribute
+		common_subj_type_attribute read_lnk_file_perms)
+
+	(allow rlimitinh_all_subj_type_attribute
+		common_subj_type_attribute (process (rlimitinh)))
+
+	(allow rw_fifo_files_all_subj_type_attribute
+		common_subj_type_attribute rw_fifo_file_perms)
+
+	(typeattributeset use_fd_all_subj_type_attribute
+		rw_inherited_fifo_files_all_subj_type_attribute)
+	(allow rw_inherited_fifo_files_all_subj_type_attribute
+		common_subj_type_attribute rw_inherited_fifo_file_perms)
+
+	(typeattributeset use_fd_all_subj_type_attribute
+		rw_inherited_tcp_sockets_all_subj_type_attribute)
+	(allow rw_inherited_tcp_sockets_all_subj_type_attribute
+		common_subj_type_attribute
+			rw_inherited_tcp_socket_perms)
+
+	(typeattributeset use_fd_all_subj_type_attribute
+		rw_inherited_unix_dgram_sockets_all_subj_type_attribute)
+	(allow rw_inherited_unix_dgram_sockets_all_subj_type_attribute
+		common_subj_type_attribute
+			rw_inherited_unix_dgram_socket_perms)
+
+	(typeattributeset use_fd_all_subj_type_attribute
+		rw_inherited_unix_stream_sockets_all_subj_type_attribute)
+	(allow rw_inherited_unix_stream_sockets_all_subj_type_attribute
+		common_subj_type_attribute
+			rw_inherited_unix_stream_socket_perms)
+
+	(allow rw_unix_stream_sockets_all_subj_type_attribute
+		common_subj_type_attribute rw_unix_stream_socket_perms)
+
+	(allow send_sigchld_all_subj_type_attribute
+		common_subj_type_attribute (process (sigchld)))
+
+	(allow send_sigkill_all_subj_type_attribute
+		common_subj_type_attribute (process (sigkill)))
+
+	(allow send_signal_all_subj_type_attribute
+		common_subj_type_attribute (process (signal)))
+
+	(allow send_signull_all_subj_type_attribute
+		common_subj_type_attribute (process (signull)))
+
+	(allow send_sigstop_all_subj_type_attribute
+		common_subj_type_attribute (process (sigstop)))
+
+	(allow setsched_all_subj_type_attribute
+		common_subj_type_attribute (process (setsched)))
+
+	(allow share_all_subj_type_attribute
+		common_subj_type_attribute (process (share)))
+
+	(allow siginh_all_subj_type_attribute
+		common_subj_type_attribute (process (siginh)))
+
+	(allow transition_all_subj_type_attribute
+		common_subj_type_attribute (process (transition)))
+
+	(allow unix_dgram_socket_sendto_all_subj_type_attribute
+		common_subj_type_attribute (unix_dgram_socket (sendto)))
+
+	(allow unix_stream_socket_connectto_all_subj_type_attribute
+		common_subj_type_attribute (unix_stream_socket (connectto)))
+
+	(allow use_fd_all_subj_type_attribute
+		common_subj_type_attribute (fd (use)))
+
+	(allow use_interactive_fd_subj_type_attribute
+		interactive_fd_subj_type_attribute (fd (use)))
+
+	(allow subj_type_attribute self rw_file_perms)
+	(allow subj_type_attribute self list_dir_perms)
+	(allow subj_type_attribute self read_lnk_file_perms)
+
+	(call fs.rootfs.search_subj_type (subj_type_attribute))
+	(call fs.proc.read_lnk_files_subj_type (subj_type_attribute))
+
+	(allow common_subj_type_attribute self (process (fork sigchld signal
+		sigkill signull sigstop)))
+
+	(call sys.meminfo.read_files_subj_type (common_subj_type_attribute))
+	(call sys.vm_overcommit.read_files_subj_type
+		(common_subj_type_attribute))
+	(call sys.invalid.search_subj_type (common_subj_type_attribute))
+
+	(call cmd.command.search_subj_type (common_subj_type_attribute))
+
+	(call dev.devtty.rw_subj_type (common_subj_type_attribute))
+	(call dev.null.rw_subj_type (common_subj_type_attribute))
+	(call dev.zero.rw_subj_type (common_subj_type_attribute))
+
+	(call fs.sysfs.search_subj_type (common_subj_type_attribute))
+
+	(optional common_subj_type_optional_lib
+		(call lib.ld_so.use_subj_type (common_subj_type_attribute))
+		(call lib.library.mmap_all_subj_type
+			(common_subj_type_attribute)))
+
+	(typeattributeset not_subj_type_attribute (not subj_type_attribute))
+
+	(neverallow subj_type_attribute not_subj_type_attribute (process
+		(transition dyntransition)))
+
+	(typeattributeset
+		not_dynamic_subj_type_transition_subj_type_or_unconfined_subj_type_attribute
+			(and (common_subj_type_attribute) (not
+			(dynamic_subj_type_transition_subj_type_attribute
+				unconfined_subj_type_attribute))))
+
+	(neverallow
+		not_dynamic_subj_type_transition_subj_type_or_unconfined_subj_type_attribute
+			self (process (setcurrent)))
+
+	(typeattribute execheap_subj_type_attribute)
+	(typeattribute
+		not_execheap_subj_type_or_unconfined_subj_type_attribute)
+
+	(typeattributeset
+		not_execheap_subj_type_or_unconfined_subj_type_attribute
+		(and (subj_type_attribute) (not
+			(execheap_subj_type_attribute
+				unconfined_subj_type_attribute))))
+
+	(allow execheap_subj_type_attribute self (process (execheap)))
+
+	(neverallow not_execheap_subj_type_or_unconfined_subj_type_attribute
+		self (process (execheap)))
+
+	(typeattribute execmem_subj_type_attribute)
+	(typeattribute not_execmem_subj_type_or_unconfined_subj_type_attribute)
+
+	(typeattributeset
+		not_execmem_subj_type_or_unconfined_subj_type_attribute
+			(and (subj_type_attribute) (not
+				(execmem_subj_type_attribute
+					unconfined_subj_type_attribute))))
+
+	(allow execmem_subj_type_attribute self (process (execmem)))
+
+	(neverallow not_execmem_subj_type_or_unconfined_subj_type_attribute
+		self (process (execmem)))
+
+	(typeattribute execstack_subj_type_attribute)
+	(typeattribute
+		not_execstack_subj_type_or_unconfined_subj_type_attribute)
+
+	(typeattributeset
+		not_execstack_subj_type_or_unconfined_subj_type_attribute
+			(and (subj_type_attribute) (not
+				(execstack_subj_type_attribute
+					unconfined_subj_type_attribute))))
+
+	(allow execstack_subj_type_attribute self (process (execmem
+		execstack)))
+
+	(neverallow not_execstack_subj_type_or_unconfined_subj_type_attribute
+		self (process (execstack)))
+
+	(typeattribute mmap_low_subj_type_attribute)
+	(typeattribute
+		not_mmap_low_subj_type_or_unconfined_subj_type_attribute)
+
+	(typeattributeset
+		not_mmap_low_subj_type_or_unconfined_subj_type_attribute
+			(and (subj_type_attribute)
+				(not (mmap_low_subj_type_attribute
+					unconfined_subj_type_attribute))))
+
+	(allow mmap_low_subj_type_attribute self (memprotect (mmap_zero)))
+
+	(neverallow not_mmap_low_subj_type_or_unconfined_subj_type_attribute
+		self (memprotect (mmap_zero)))
+
+	(typeattribute sys_ptrace_subj_type_attribute)
+	(typeattribute
+		not_sys_ptrace_subj_type_or_unconfined_subj_type_attribute)
+
+	(typeattributeset
+		not_sys_ptrace_subj_type_or_unconfined_subj_type_attribute
+			(and (subj_type_attribute) (not
+				(sys_ptrace_subj_type_attribute
+					unconfined_subj_type_attribute))))
+
+	(allow sys_ptrace_subj_type_attribute self (capability (sys_ptrace)))
+
+	(neverallow not_sys_ptrace_subj_type_or_unconfined_subj_type_attribute
+		self (capability (sys_ptrace)))
+
+	(allow unconfined_subj_type_attribute self
+		capability_except_sys_module)
+	(allow unconfined_subj_type_attribute self
+		capability2_except_mac_override_and_mac_admin)
+	(allow unconfined_subj_type_attribute self
+		fifo_file_except_mounton_and_execmod)
+
+	(allow unconfined_subj_type_attribute self
+		cap_userns_except_sys_module)
+	(allow unconfined_subj_type_attribute self
+		cap2_userns_except_mac_override_and_mac_admin)
+
+	(allow unconfined_subj_type_attribute subj_type_attribute (process
+		(all)))
+
+	(allow unconfined_subj_type_attribute subj_type_attribute (file
+		(getattr open read write ioctl append lock)))
+	(allow unconfined_subj_type_attribute subj_type_attribute (dir (getattr
+		search open read lock ioctl)))
+	(allow unconfined_subj_type_attribute subj_type_attribute (lnk_file
+		(getattr read)))
+	(allow unconfined_subj_type_attribute subj_type_attribute (fd (use)))
+	(allow unconfined_subj_type_attribute subj_type_attribute (socket
+		(ioctl read write create getattr setattr lock relabelfrom
+			relabelto append bind connect listen accept getopt
+				setopt shutdown recvfrom sendto name_bind)))
+	(allow unconfined_subj_type_attribute subj_type_attribute (tcp_socket
+			(create ioctl read getattr write setattr append bind
+				connect getopt setopt shutdown listen accept)))
+	(allow unconfined_subj_type_attribute subj_type_attribute (udp_socket
+			(create ioctl read getattr write setattr append bind
+				connect getopt setopt shutdown)))
+	(allow unconfined_subj_type_attribute subj_type_attribute (rawip_socket
+		(create ioctl read getattr write setattr append bind connect
+			getopt setopt shutdown)))
+	(allow unconfined_subj_type_attribute subj_type_attribute
+			(packet_socket (ioctl read write create getattr setattr
+				lock relabelfrom relabelto append bind connect
+					listen accept getopt setopt shutdown
+						recvfrom sendto name_bind)))
+	(allow unconfined_subj_type_attribute subj_type_attribute
+		(unix_stream_socket (ioctl read write create getattr setattr
+			lock relabelfrom relabelto append bind connect listen
+				accept getopt setopt shutdown recvfrom sendto
+					name_bind connectto)))
+	(allow unconfined_subj_type_attribute subj_type_attribute
+			(unix_dgram_socket (ioctl read write create getattr
+				setattr lock relabelfrom relabelto append bind
+					connect listen accept getopt setopt
+						shutdown recvfrom sendto
+							name_bind)))
+	(allow unconfined_subj_type_attribute subj_type_attribute (sem (create
+		destroy getattr setattr read write associate unix_read
+			unix_write)))
+	(allow unconfined_subj_type_attribute subj_type_attribute (msg (send
+		receive)))
+	(allow unconfined_subj_type_attribute subj_type_attribute (msgq (create
+		destroy getattr setattr read write associate unix_read
+			unix_write enqueue)))
+	(allow unconfined_subj_type_attribute subj_type_attribute (shm (create
+		destroy getattr setattr read write associate unix_read
+			unix_write lock)))
+	(allow unconfined_subj_type_attribute subj_type_attribute (ipc (create
+		destroy getattr setattr read write associate unix_read
+			unix_write)))
+	(allow unconfined_subj_type_attribute subj_type_attribute
+		(netlink_route_socket (ioctl read write create getattr setattr
+			lock relabelfrom relabelto append bind connect listen
+				accept getopt setopt shutdown recvfrom sendto
+					name_bind nlmsg_read nlmsg_write)))
+	(allow unconfined_subj_type_attribute subj_type_attribute
+		(netlink_tcpdiag_socket (ioctl read write create getattr
+			setattr lock relabelfrom relabelto append bind connect
+				listen accept getopt setopt shutdown recvfrom
+					sendto name_bind nlmsg_read
+						nlmsg_write)))
+	(allow unconfined_subj_type_attribute subj_type_attribute
+		(netlink_nflog_socket (ioctl read write create getattr setattr
+			lock relabelfrom relabelto append bind connect listen
+				accept getopt setopt shutdown recvfrom sendto
+					name_bind)))
+	(allow unconfined_subj_type_attribute subj_type_attribute
+		(netlink_xfrm_socket (ioctl read write create getattr setattr
+			lock relabelfrom relabelto append bind connect listen
+				accept getopt setopt shutdown recvfrom sendto
+					name_bind nlmsg_read nlmsg_write)))
+	(allow unconfined_subj_type_attribute subj_type_attribute
+		(netlink_selinux_socket (ioctl read write create getattr
+			setattr lock relabelfrom relabelto append bind connect
+				listen accept getopt setopt shutdown recvfrom
+					sendto name_bind)))
+	(allow unconfined_subj_type_attribute subj_type_attribute
+		(netlink_audit_socket (ioctl read write create getattr setattr
+			lock relabelfrom relabelto append bind connect listen
+				accept getopt setopt shutdown recvfrom sendto
+					name_bind nlmsg_read nlmsg_write
+						nlmsg_relay nlmsg_readpriv
+							nlmsg_tty_audit)))
+	(allow unconfined_subj_type_attribute subj_type_attribute
+		(netlink_dnrt_socket (ioctl read write create getattr setattr
+			lock relabelfrom relabelto append bind connect listen
+				accept getopt setopt shutdown recvfrom sendto
+					name_bind)))
+	(allow unconfined_subj_type_attribute subj_type_attribute
+		(netlink_kobject_uevent_socket (ioctl read write create
+			getattr setattr lock relabelfrom relabelto append bind
+				connect listen accept getopt setopt shutdown
+					recvfrom sendto name_bind)))
+	(allow unconfined_subj_type_attribute subj_type_attribute
+		(appletalk_socket (ioctl read write create getattr setattr lock
+			relabelfrom relabelto append bind connect listen accept
+				getopt setopt shutdown recvfrom sendto
+					name_bind)))
+	(allow unconfined_subj_type_attribute subj_type_attribute (key (view
+		read write search link setattr create)))
+	(allow unconfined_subj_type_attribute subj_type_attribute (dccp_socket
+		(create ioctl read getattr write setattr append bind connect
+			getopt setopt shutdown listen accept)))
+	(allow unconfined_subj_type_attribute subj_type_attribute (tun_socket
+		(ioctl read write create getattr setattr lock relabelfrom
+			relabelto append bind connect listen accept getopt
+				setopt shutdown recvfrom sendto name_bind)))
+	(allow unconfined_subj_type_attribute subj_type_attribute (binder
+		(impersonate call set_context_mgr transfer)))
+	(allow unconfined_subj_type_attribute subj_type_attribute
+		(netlink_iscsi_socket (ioctl read write create getattr setattr
+			lock relabelfrom relabelto append bind connect listen
+				accept getopt setopt shutdown recvfrom sendto
+					name_bind)))
+	(allow unconfined_subj_type_attribute subj_type_attribute
+		(netlink_fib_lookup_socket (ioctl read write create getattr
+			setattr lock relabelfrom relabelto append bind connect
+				listen accept getopt setopt shutdown recvfrom
+					sendto name_bind)))
+	(allow unconfined_subj_type_attribute subj_type_attribute
+		(netlink_connector_socket (ioctl read write create getattr
+			setattr lock relabelfrom relabelto append bind connect
+				listen accept getopt setopt shutdown recvfrom
+					sendto name_bind)))
+	(allow unconfined_subj_type_attribute subj_type_attribute
+		(netlink_netfilter_socket (ioctl read write create getattr
+			setattr lock relabelfrom relabelto append bind connect
+				listen accept getopt setopt shutdown recvfrom
+					sendto name_bind)))
+	(allow unconfined_subj_type_attribute subj_type_attribute
+		(netlink_generic_socket (ioctl read write create getattr
+			setattr lock relabelfrom relabelto append bind connect
+				listen accept getopt setopt shutdown recvfrom
+					sendto name_bind)))
+	(allow unconfined_subj_type_attribute subj_type_attribute
+		(netlink_scsitransport_socket (ioctl read write create getattr
+			setattr lock relabelfrom relabelto append bind connect
+				listen accept getopt setopt shutdown recvfrom
+					sendto name_bind)))
+	(allow unconfined_subj_type_attribute subj_type_attribute
+		(netlink_rdma_socket (ioctl read write create getattr setattr
+			lock relabelfrom relabelto append bind connect listen
+				accept getopt setopt shutdown recvfrom sendto
+					name_bind)))
+	(allow unconfined_subj_type_attribute subj_type_attribute
+		(netlink_crypto_socket (ioctl read write create getattr setattr
+			lock relabelfrom relabelto append bind connect listen
+				accept getopt setopt shutdown recvfrom sendto
+					name_bind)))
+
+	(call obj_id_change_exemption_subj_type
+		(unconfined_subj_type_attribute))
+	(call rbacsep_exemption_subj_type
+		(unconfined_subj_type_attribute))
+	(call uncond_exemption_subj_type
+		(unconfined_subj_type_attribute))
+
+	(call cmd.entrypoint_all_subj_type (unconfined_subj_type_attribute))
+
+	;
+	; Templates
+	;
+
+	(block common_subj_template
+
+		;
+		; common_subj_template macros
+		;
+
+		(macro dontaudit_noatsecure_subj_type ((type ARG1))
+			(typeattributeset
+				dontaudit_noatsecure_subj_type_attribute
+					ARG1))
+
+		(macro dontaudit_siginh_subj_type ((type ARG1))
+			(typeattributeset dontaudit_siginh_subj_type_attribute
+				ARG1))
+
+		(macro dontaudit_rlimitinh_subj_type ((type ARG1))
+			(typeattributeset
+				dontaudit_rlimitinh_subj_type_attribute
+					ARG1))
+
+		(macro append_inherited_fifo_files_subj_type ((type ARG1))
+			(typeattributeset
+				append_inherited_fifo_files_subj_type_attribute
+					ARG1))
+
+		(macro append_inherited_unix_stream_sockets_subj_type ((type
+			ARG1))
+			(typeattributeset
+				append_inherited_unix_stream_sockets_subj_type_attribute
+					ARG1))
+
+		(macro bounded_subj ((type ARG1))
+			(typebounds subj ARG1))
+
+		(macro create_keyring_subj_type ((type ARG1))
+			(typeattributeset create_keyring_subj_type_attribute
+				ARG1))
+
+		(macro dyntransition_subj_type ((type ARG1))
+			(typeattributeset dyntransition_subj_type_attribute
+				ARG1))
+
+		(macro getattr_subj_type ((type ARG1))
+			(typeattributeset getattr_subj_type_attribute
+				ARG1))
+
+		(macro getpgid_subj_type ((type ARG1))
+			(typeattributeset getpgid_aubj_type_attribute
+				ARG1))
+
+		(macro getsched_subj_type ((type ARG1))
+			(typeattributeset getsched_aubj_type_attribute
+				ARG1))
+
+		(macro getsession_subj_type ((type ARG1))
+			(typeattributeset getsession_aubj_type_attribute
+				ARG1))
+
+		(macro link_keyring_subj_type ((type ARG1))
+			(typeattributeset link_keyring_subj_type_attribute
+				ARG1))
+
+		(macro noatsecure_subj_type ((type ARG1))
+			(typeattributeset noatsecure_subj_type_attribute ARG1))
+
+		(macro ps_subj_type ((type ARG1))
+			(typeattributeset ps_subj_type_attribute
+				ARG1))
+
+		(macro ptrace_subj_type ((type ARG1))
+			(typeattributeset ptrace_subj_type_attribute
+				ARG1))
+
+		(macro read_state_subj_type ((type ARG1))
+			(typeattributeset read_state_subj_type_attribute
+				ARG1))
+
+		(macro rlimitinh_subj_type ((type ARG1))
+			(typeattributeset rlimitinh_subj_type_attribute ARG1))
+
+		(macro rw_fifo_files_subj_type ((type ARG1))
+			(typeattributeset
+				rw_fifo_files_subj_type_attribute
+					ARG1))
+
+		(macro rw_inherited_fifo_files_subj_type ((type ARG1))
+			(typeattributeset
+				rw_inherited_fifo_files_subj_type_attribute
+					ARG1))
+
+		(macro rw_inherited_tcp_sockets_subj_type ((type ARG1))
+			(typeattributeset
+				rw_inherited_tcp_sockets_subj_type_attribute
+					ARG1))
+
+		(macro rw_inherited_unix_dgram_sockets_subj_type ((type ARG1))
+			(typeattributeset
+				rw_inherited_unix_dgram_sockets_subj_type_attribute
+					ARG1))
+
+		(macro rw_inherited_unix_stream_sockets_subj_type ((type ARG1))
+			(typeattributeset
+				rw_inherited_unix_stream_sockets_subj_type_attribute
+					ARG1))
+
+		(macro rw_unix_stream_sockets_subj_type ((type ARG1))
+			(typeattributeset
+				rw_unix_stream_sockets_subj_type_attribute
+					ARG1))
+
+		(macro send_sigchld_subj_type ((type ARG1))
+			(typeattributeset send_sigchld_subj_type_attribute
+				ARG1))
+
+		(macro send_sigkill_subj_type ((type ARG1))
+			(typeattributeset send_sigkill_subj_type_attribute
+				ARG1))
+
+		(macro send_signal_subj_type ((type ARG1))
+			(typeattributeset send_signal_subj_type_attribute
+				ARG1))
+
+		(macro send_signull_subj_type ((type ARG1))
+			(typeattributeset send_signull_subj_type_attribute
+				ARG1))
+
+		(macro send_sigstop_subj_type ((type ARG1))
+			(typeattributeset send_sigstop_subj_type_attribute
+				ARG1))
+
+		(macro setsched_subj_type ((type ARG1))
+			(typeattributeset setsched_subj_type_attribute
+				ARG1))
+
+		(macro share_subj_type ((type ARG1))
+			(typeattributeset share_subj_type_attribute ARG1))
+
+		(macro siginh_subj_type ((type ARG1))
+			(typeattributeset siginh_subj_type_attribute ARG1))
+
+		(macro transition_subj_type ((type ARG1))
+			(typeattributeset transition_subj_type_attribute ARG1))
+
+		(macro unix_dgram_socket_sendto_subj_type ((type ARG1))
+			(typeattributeset
+				unix_dgram_socket_sendto_subj_type_attribute
+					ARG1))
+
+		(macro unix_stream_socket_connectto_subj_type ((type ARG1))
+			(typeattributeset
+				unix_stream_socket_connectto_subj_type_attribute
+					ARG1))
+
+		(macro use_fd_subj_type ((type ARG1))
+			(typeattributeset use_fd_subj_type_attribute
+				ARG1))
+
+		;
+		; common_subj_template policy
+		;
+
+		(blockabstract common_subj_template)
+
+		(type subj)
+		(call common_subj_type (subj))
+
+		(typeattribute dontaudit_noatsecure_subj_type_attribute)
+		(typeattribute dontaudit_siginh_subj_type_attribute)
+		(typeattribute dontaudit_rlimitinh_subj_type_attribute)
+		(typeattribute append_inherited_fifo_files_subj_type_attribute)
+		(typeattribute
+			append_inherited_unix_stream_sockets_subj_type_attribute)
+		(typeattribute create_keyring_subj_type_attribute)
+		(typeattribute dyntransition_subj_type_attribute)
+		(typeattribute getattr_subj_type_attribute)
+		(typeattribute getpgid_subj_type_attribute)
+		(typeattribute getsched_subj_type_attribute)
+		(typeattribute getsession_subj_type_attribute)
+		(typeattribute link_keyring_subj_type_attribute)
+		(typeattribute noatsecure_subj_type_attribute)
+		(typeattribute ps_subj_type_attribute)
+		(typeattribute ptrace_subj_type_attribute)
+		(typeattribute read_state_subj_type_attribute)
+		(typeattribute rlimitinh_subj_type_attribute)
+		(typeattribute rw_fifo_files_subj_type_attribute)
+		(typeattribute rw_inherited_fifo_files_subj_type_attribute)
+		(typeattribute
+			rw_inherited_tcp_sockets_subj_type_attribute)
+		(typeattribute
+			rw_inherited_unix_dgram_sockets_subj_type_attribute)
+		(typeattribute
+			rw_inherited_unix_stream_sockets_subj_type_attribute)
+		(typeattribute rw_unix_stream_sockets_subj_type_attribute)
+		(typeattribute send_sigchld_subj_type_attribute)
+		(typeattribute send_sigkill_subj_type_attribute)
+		(typeattribute send_signal_subj_type_attribute)
+		(typeattribute send_signull_subj_type_attribute)
+		(typeattribute send_sigstop_subj_type_attribute)
+		(typeattribute setsched_subj_type_attribute)
+		(typeattribute share_subj_type_attribute)
+		(typeattribute siginh_subj_type_attribute)
+		(typeattribute transition_subj_type_attribute)
+		(typeattribute unix_dgram_socket_sendto_subj_type_attribute)
+		(typeattribute
+			unix_stream_socket_connectto_subj_type_attribute)
+		(typeattribute use_fd_subj_type_attribute)
+
+		(dontaudit dontaudit_noatsecure_subj_type_attribute subj
+			(process (noatsecure)))
+
+		(dontaudit dontaudit_siginh_subj_type_attribute subj
+			(process (siginh)))
+
+		(dontaudit dontaudit_rlimitinh_subj_type_attribute subj
+			(process (rlimitinh)))
+
+		(typeattributeset use_fd_subj_type_attribute
+			append_inherited_fifo_files_subj_type_attribute)
+		(allow append_inherited_fifo_files_subj_type_attribute subj
+			append_inherited_fifo_file_perms)
+
+		(typeattributeset use_fd_subj_type_attribute
+			append_inherited_unix_stream_sockets_subj_type_attribute)
+		(allow append_inherited_unix_stream_sockets_subj_type_attribute
+			subj append_inherited_unix_stream_socket_perms)
+
+		(allow create_keyring_subj_type_attribute self (process
+			(setkeycreate)))
+		(allow create_keyring_subj_type_attribute subj
+			create_key_perms)
+
+		(allow dyntransition_subj_type_attribute subj (process
+			(dyntransition)))
+
+		(allow getattr_subj_type_attribute subj (process
+			(getattr)))
+
+		(allow getpgid_subj_type_attribute subj (process
+			(getpgid)))
+
+		(allow getsched_subj_type_attribute subj (process
+			(getsched)))
+
+		(allow getsession_subj_type_attribute subj (process
+			(getsession)))
+
+		(allow link_keyring_subj_type_attribute subj link_key_perms)
+
+		(allow noatsecure_subj_type_attribute subj (process
+			(noatsecure)))
+
+		(call getattr_subj_type (ps_subj_type_attribute))
+		(call read_state_subj_type (ps_subj_type_attribute))
+
+		(allow ptrace_subj_type_attribute subj (process (ptrace)))
+
+		(allow read_state_subj_type_attribute subj list_dir_perms)
+		(allow read_state_subj_type_attribute subj read_file_perms)
+		(allow read_state_subj_type_attribute subj read_lnk_file_perms)
+
+		(allow rlimitinh_subj_type_attribute subj (process
+			(rlimitinh)))
+
+		(allow rw_fifo_files_subj_type_attribute subj
+			rw_fifo_file_perms)
+
+		(typeattributeset use_fd_subj_type_attribute
+			rw_inherited_fifo_files_subj_type_attribute)
+		(allow rw_inherited_fifo_files_subj_type_attribute subj
+			rw_inherited_fifo_file_perms)
+
+		(typeattributeset use_fd_subj_type_attribute
+			rw_inherited_tcp_sockets_subj_type_attribute)
+		(allow rw_inherited_tcp_sockets_subj_type_attribute subj
+			rw_inherited_tcp_socket_perms)
+
+		(typeattributeset use_fd_subj_type_attribute
+			rw_inherited_unix_dgram_sockets_subj_type_attribute)
+		(allow rw_inherited_unix_dgram_sockets_subj_type_attribute subj
+			rw_inherited_unix_dgram_socket_perms)
+
+		(typeattributeset use_fd_subj_type_attribute
+			rw_inherited_unix_stream_sockets_subj_type_attribute)
+		(allow rw_inherited_unix_stream_sockets_subj_type_attribute
+			subj rw_inherited_unix_stream_socket_perms)
+
+		(allow rw_unix_stream_sockets_subj_type_attribute subj
+			rw_unix_stream_socket_perms)
+
+		(allow send_sigchld_subj_type_attribute subj (process
+			(sigchld)))
+
+		(allow send_sigkill_subj_type_attribute subj (process
+			(sigkill)))
+
+		(allow send_signal_subj_type_attribute subj (process
+			(signal)))
+
+		(allow send_signull_subj_type_attribute subj (process
+			(signull)))
+
+		(allow send_sigstop_subj_type_attribute subj (process
+			(sigstop)))
+
+		(allow setsched_subj_type_attribute subj (process
+			(setsched)))
+
+		(allow share_subj_type_attribute subj (process
+			(share)))
+
+		(allow siginh_subj_type_attribute subj (process
+			(siginh)))
+
+		(allow transition_subj_type_attribute subj (process
+			(transition)))
+
+		(allow unix_dgram_socket_sendto_subj_type_attribute subj
+			(unix_dgram_socket (sendto)))
+
+		(allow unix_stream_socket_connectto_subj_type_attribute
+			subj (unix_stream_socket (connectto)))
+
+		(allow use_fd_subj_type_attribute subj (fd (use)))))

@@ -1,0 +1,86 @@
+(classmap files (getattr manage read relabel))
+
+(classmapping files getattr (dir (getattr)))
+(classmapping files getattr (file (getattr)))
+(classmapping files getattr (lnk_file (getattr)))
+(classmapping files getattr (fifo_file (getattr)))
+(classmapping files getattr (sock_file (getattr)))
+(classmapping files getattr (blk_file (getattr)))
+(classmapping files getattr (chr_file (getattr)))
+
+(classmapping files manage manage_dir_perms)
+(classmapping files manage manage_file_perms)
+(classmapping files manage manage_lnk_file_perms)
+(classmapping files manage manage_fifo_file_perms)
+(classmapping files manage manage_sock_file_perms)
+(classmapping files manage manage_blk_file_perms)
+(classmapping files manage manage_chr_file_perms)
+
+(classmapping files read list_dir_perms)
+(classmapping files read read_file_perms)
+(classmapping files read read_lnk_file_perms)
+(classmapping files read read_fifo_file_perms)
+(classmapping files read read_sock_file_perms)
+(classmapping files read read_blk_file_perms)
+(classmapping files read read_chr_file_perms)
+
+(classmapping files relabel relabel_dir_perms)
+(classmapping files relabel relabel_file_perms)
+(classmapping files relabel relabel_lnk_file_perms)
+(classmapping files relabel relabel_fifo_file_perms)
+(classmapping files relabel relabel_sock_file_perms)
+(classmapping files relabel relabel_blk_file_perms)
+(classmapping files relabel relabel_chr_file_perms)
+
+(classmap files_except_chr_and_blk (getattr manage read relabel))
+
+(classmapping files_except_chr_and_blk getattr (dir (getattr)))
+(classmapping files_except_chr_and_blk getattr (file (getattr)))
+(classmapping files_except_chr_and_blk getattr (lnk_file (getattr)))
+(classmapping files_except_chr_and_blk getattr (fifo_file (getattr)))
+(classmapping files_except_chr_and_blk getattr (sock_file (getattr)))
+
+(classmapping files_except_chr_and_blk manage manage_dir_perms)
+(classmapping files_except_chr_and_blk manage manage_file_perms)
+(classmapping files_except_chr_and_blk manage manage_lnk_file_perms)
+(classmapping files_except_chr_and_blk manage manage_fifo_file_perms)
+(classmapping files_except_chr_and_blk manage manage_sock_file_perms)
+
+(classmapping files_except_chr_and_blk read list_dir_perms)
+(classmapping files_except_chr_and_blk read read_file_perms)
+(classmapping files_except_chr_and_blk read read_lnk_file_perms)
+(classmapping files_except_chr_and_blk read read_fifo_file_perms)
+(classmapping files_except_chr_and_blk read read_sock_file_perms)
+
+(classmapping files_except_chr_and_blk relabel relabel_dir_perms)
+(classmapping files_except_chr_and_blk relabel relabel_file_perms)
+(classmapping files_except_chr_and_blk relabel relabel_lnk_file_perms)
+(classmapping files_except_chr_and_blk relabel relabel_fifo_file_perms)
+(classmapping files_except_chr_and_blk relabel relabel_sock_file_perms)
+
+(classmap chr_and_blk_files (create getattr manage read relabel rw
+	setattr write))
+
+(classmapping chr_and_blk_files create create_blk_file_perms)
+(classmapping chr_and_blk_files create create_chr_file_perms)
+
+(classmapping chr_and_blk_files getattr (blk_file (getattr)))
+(classmapping chr_and_blk_files getattr (chr_file (getattr)))
+
+(classmapping chr_and_blk_files manage manage_blk_file_perms)
+(classmapping chr_and_blk_files manage manage_chr_file_perms)
+
+(classmapping chr_and_blk_files read read_blk_file_perms)
+(classmapping chr_and_blk_files read read_chr_file_perms)
+
+(classmapping chr_and_blk_files relabel relabel_blk_file_perms)
+(classmapping chr_and_blk_files relabel relabel_chr_file_perms)
+
+(classmapping chr_and_blk_files rw rw_blk_file_perms)
+(classmapping chr_and_blk_files rw rw_chr_file_perms)
+
+(classmapping chr_and_blk_files setattr (blk_file (setattr)))
+(classmapping chr_and_blk_files setattr (chr_file (setattr)))
+
+(classmapping chr_and_blk_files write write_blk_file_perms)
+(classmapping chr_and_blk_files write write_chr_file_perms)

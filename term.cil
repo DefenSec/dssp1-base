@@ -1,0 +1,187 @@
+(block term
+
+	;
+	; Macros
+	;
+
+	(macro getattr_all_subj_type ((type ARG1))
+		(typeattributeset getattr_all_subj_type_attribute
+			ARG1))
+
+	(macro manage_all_subj_type ((type ARG1))
+		(typeattributeset manage_all_subj_type_attribute
+			ARG1))
+
+	(macro read_all_subj_type ((type ARG1))
+		(typeattributeset read_all_subj_type_attribute
+			ARG1))
+
+	(macro relabelfrom_all_subj_type ((type ARG1))
+		(typeattributeset relabelfrom_all_subj_type_attribute
+			ARG1))
+
+	(macro relabelto_all_subj_type ((type ARG1))
+		(typeattributeset relabelto_all_subj_type_attribute
+			ARG1))
+
+	(macro relabel_all_subj_type ((type ARG1))
+		(typeattributeset relabel_all_subj_type_attribute
+			ARG1))
+
+	(macro rw_all_inherited_subj_type ((type ARG1))
+		(typeattributeset rw_all_inherited_subj_type_attribute
+			ARG1))
+
+	(macro rw_all_subj_type ((type ARG1))
+		(typeattributeset rw_all_subj_type_attribute
+			ARG1))
+
+	(macro setattr_all_subj_type ((type ARG1))
+		(typeattributeset setattr_all_subj_type_attribute
+			ARG1))
+
+	(macro unconfined_subj_type ((type ARG1))
+		(typeattributeset unconfined_subj_type_attribute
+			ARG1))
+
+	(macro write_all_subj_type ((type ARG1))
+		(typeattributeset write_all_subj_type_attribute
+			ARG1))
+
+	;
+	; Policy
+	;
+
+	(boolean console_login false)
+
+	(typeattribute getattr_all_subj_type_attribute)
+	(typeattribute manage_all_subj_type_attribute)
+	(typeattribute read_all_subj_type_attribute)
+	(typeattribute relabelfrom_all_subj_type_attribute)
+	(typeattribute relabelto_all_subj_type_attribute)
+	(typeattribute relabel_all_subj_type_attribute)
+	(typeattribute rw_all_inherited_subj_type_attribute)
+	(typeattribute rw_all_subj_type_attribute)
+	(typeattribute setattr_all_subj_type_attribute)
+	(typeattribute unconfined_subj_type_attribute)
+	(typeattribute write_all_subj_type_attribute)
+
+	(call term.tty.devtmpfs_obj_type_transition
+		(unconfined_subj_type_attribute))
+
+	(block console
+
+		;
+		; console contexts
+		;
+
+		(filecon "/dev/console" char dev_file_context)
+
+		;
+		; console macros
+		;
+
+		;
+		; console policy
+		;
+
+		(blockinherit dev.dev_obj_base_template))
+
+	(block console_login
+
+		;
+		; console_login contexts
+		;
+
+		(context console_login (sys.id sys.role
+			bool (systemlow systemlow)))
+
+		(genfscon "selinuxfs" "/booleans/term.console_login"
+			console_login)
+
+		;
+		; console_login macros
+		;
+
+		;
+		; console_login policy
+		;
+
+		(blockinherit sec.bool_obj_template))
+
+	(block tty
+
+		;
+		; tty contexts
+		;
+
+		(filecon "/dev/hvc[0-9]+" char serial_file_context)
+		(filecon "/dev/tty.+" char serial_file_context)
+		(filecon "/dev/vcs[^/]*" char serial_file_context)
+
+		;
+		; tty macros
+		;
+
+		(macro login_tty ((type ARG1)(type ARG2))
+			(typechange ARG1 serial_dev chr_file ARG2)
+			(booleanif term.console_login (true (typechange ARG1
+			term.console.dev chr_file ARG2))))
+
+		(macro devtmpfs_obj_type_transition ((type ARG1))
+			(call fs.devtmpfs.obj_type_transition (ARG1 serial_dev
+				chr_file "vcs"))
+			(call fs.devtmpfs.obj_type_transition (ARG1 serial_dev
+				chr_file "vcs1"))
+			(call fs.devtmpfs.obj_type_transition (ARG1 serial_dev
+				chr_file "vcs2"))
+			(call fs.devtmpfs.obj_type_transition (ARG1 serial_dev
+				chr_file "vcs3"))
+			(call fs.devtmpfs.obj_type_transition (ARG1 serial_dev
+				chr_file "vcs4"))
+			(call fs.devtmpfs.obj_type_transition (ARG1 serial_dev
+				chr_file "vcs5"))
+			(call fs.devtmpfs.obj_type_transition (ARG1 serial_dev
+				chr_file "vcs6"))
+			(call fs.devtmpfs.obj_type_transition (ARG1 serial_dev
+				chr_file "vcs63"))
+			(call fs.devtmpfs.obj_type_transition (ARG1 serial_dev
+				chr_file "vcsa"))
+			(call fs.devtmpfs.obj_type_transition (ARG1 serial_dev
+				chr_file "vcsa1"))
+			(call fs.devtmpfs.obj_type_transition (ARG1 serial_dev
+				chr_file "vcsa2"))
+			(call fs.devtmpfs.obj_type_transition (ARG1 serial_dev
+				chr_file "vcsa3"))
+			(call fs.devtmpfs.obj_type_transition (ARG1 serial_dev
+				chr_file "vcsa4"))
+			(call fs.devtmpfs.obj_type_transition (ARG1 serial_dev
+				chr_file "vcsa5"))
+			(call fs.devtmpfs.obj_type_transition (ARG1 serial_dev
+				chr_file "vcsa6"))
+			(call fs.devtmpfs.obj_type_transition (ARG1 serial_dev
+				chr_file "vcsa63")))
+
+		;
+		; tty policy
+		;
+
+		(blockinherit dev.serial_obj_base_template))
+
+	(block virtio
+
+		;
+		; virtio contexts
+		;
+
+		(filecon "/dev/vport[0-9]p[0-9]+" char serial_file_context)
+
+		;
+		; virtio macros
+		;
+
+		;
+		; virtio policy
+		;
+
+		(blockinherit dev.serial_obj_base_template)))

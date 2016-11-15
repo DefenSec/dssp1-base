@@ -1,0 +1,230 @@
+;
+; Misc templates
+;
+
+(block manual_subj_type_transition_pattern_base_template
+
+	;
+	; manual_subj_type_transition_pattern_base_template macros
+	;
+
+	(macro base_manual_subj_type_transition_pattern ((type ARG1))
+		(call mmap_subj_type (ARG1))
+		(call transition_subj_type (ARG1))
+		(call dontaudit_noatsecure_subj_type (ARG1))
+		(call dontaudit_siginh_subj_type (ARG1))
+		(call dontaudit_rlimitinh_subj_type (ARG1)))
+
+	;
+	; manual_subj_type_transition_pattern_base_template macros
+	;
+
+	(blockabstract manual_subj_type_transition_pattern_base_template))
+
+(block manual_subj_type_transition_pattern_template
+
+	;
+	; manual_subj_type_transition_pattern_template macros
+	;
+
+	(macro manual_subj_type_transition_pattern ((type ARG1)(type ARG2))
+
+		(call base_manual_subj_type_transition_pattern (ARG1))
+
+		(allow ARG1 self (process (setexec)))
+		(call send_signal_subj_type (ARG1))
+
+		(call use_fd_subj_type (ARG2))
+		(call rw_inherited_fifo_files_subj_type (ARG2))
+		(call send_sigchld_subj_type (ARG2)))
+
+	;
+	; manual_subj_type_transition_pattern_template policy
+	;
+
+	(blockabstract manual_subj_type_transition_pattern_template)
+
+	(blockinherit manual_subj_type_transition_pattern_base_template))
+
+(block manual_subj_type_transition_template
+
+	;
+	; manual_subj_type_transition_template macros
+	;
+
+	(macro manual_subj_type_transition ((type ARG1))
+
+		(call manual_subj_type_transition_pattern (ARG1 subj)))
+
+	;
+	; manual_subj_type_transition_template policy
+	;
+
+	(blockabstract manual_subj_type_transition_template)
+
+	(blockinherit manual_subj_type_transition_pattern_template))
+
+(block auto_subj_type_transition_pattern_base_template
+
+	;
+	; auto_subj_type_transition_pattern_base_template macros
+	;
+
+	(macro base_auto_subj_type_transition_pattern ((type ARG1))
+
+		(call base_manual_subj_type_transition_pattern (ARG1))
+
+		(typetransition ARG1 cmd_file process "*" subj))
+
+	;
+	; auto_subj_type_transition_pattern_base_template policy
+	;
+
+	(blockabstract auto_subj_type_transition_pattern_base_template)
+
+	(blockinherit manual_subj_type_transition_pattern_base_template))
+
+(block auto_subj_type_transition_pattern_template
+
+	;
+	; auto_subj_type_transition_pattern_template macros
+	;
+
+	(macro auto_subj_type_transition_pattern ((type ARG1)(type ARG2))
+
+		(call base_auto_subj_type_transition_pattern (ARG1))
+		(call send_signal_subj_type (ARG1))
+
+		(call use_fd_subj_type (ARG2))
+		(call rw_inherited_fifo_files_subj_type (ARG2))
+		(call send_sigchld_subj_type (ARG2)))
+
+	;
+	; auto_subj_type_transition_pattern_template policy
+	;
+
+	(blockabstract auto_subj_type_transition_pattern_template)
+
+	(blockinherit auto_subj_type_transition_pattern_base_template))
+
+(block auto_subj_type_transition_template
+
+	;
+	; auto_subj_type_transition_template macros
+	;
+
+	(macro auto_subj_type_transition ((type ARG1))
+
+		(call auto_subj_type_transition_pattern (ARG1 subj)))
+
+	;
+	; auto_subj_type_transition_template policy
+	;
+
+	(blockabstract auto_subj_type_transition_template)
+
+	(blockinherit auto_subj_type_transition_pattern_template))
+
+(block run_template
+
+	;
+	; run_template macros
+	;
+
+	(macro run ((type ARG1)(role ARG2))
+
+		(call auto_subj_type_transition (ARG1))
+
+		(roleattributeset role_attribute ARG2))
+
+	;
+	; run_template policy
+	;
+
+	(blockabstract run_template)
+
+	(blockinherit auto_subj_type_transition_template))
+
+
+(block dynamic_subj_type_transition_pattern_template
+
+	;
+	; dynamic_subj_type_transition_pattern_template macros
+	;
+
+	(macro dynamic_subj_type_transition_pattern ((type ARG1)(type ARG2))
+
+	        (allow ARG1 self (process (setcurrent)))
+
+		(call dyntransition_subj_type (ARG1))
+		(call send_signal_subj_type (ARG1))
+
+		(call send_sigchld_subj_type (ARG2)))
+
+	;
+	; dynamic_subj_type_transition_pattern_template policy
+	;
+
+	(blockabstract dynamic_subj_type_transition_pattern_template))
+
+(block dynamic_subj_type_transition_template
+
+	;
+	; dynamic_subj_type_transition_template macros
+	;
+
+	(macro dynamic_subj_type_transition ((type ARG1))
+
+		(call dynamic_subj_type_transition_pattern (ARG1 subj)))
+
+	;
+	; dynamic_subj_type_transition_template policy
+	;
+
+	(blockabstract dynamic_subj_type_transition_template)
+
+	(blockinherit dynamic_subj_type_transition_pattern_template))
+
+(block agent_base_template
+
+	;
+	; agent_base_template policy 
+	;
+
+	(blockabstract agent_base_template)
+
+	(blockinherit subj.common_subj_template)
+
+	(blockinherit cmd.cmd_obj_template)
+
+	(call entrypoint_subj_type (subj)))
+
+(block system_agent_base_template
+
+	;
+	; system_agent_base_template policy
+	;
+
+	(blockabstract system_agent_base_template)
+
+	(blockinherit agent_base_template)
+
+	(blockinherit auto_subj_type_transition_template)
+
+	(roletype sys.role subj))
+
+(block user_agent_base_template
+
+	;
+	; user_agent_base_template policy
+	;
+
+	(blockabstract user_agent_base_template)
+
+	(roleattribute role_attribute)
+
+	(blockinherit agent_base_template)
+
+	(blockinherit run_template)
+
+	(roletype role_attribute subj))

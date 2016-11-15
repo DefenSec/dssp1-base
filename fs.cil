@@ -1,0 +1,1207 @@
+(sid fs)
+
+(block fs
+
+	;
+	; Macros
+	;
+
+	(macro associate_all_obj_type ((type ARG1))
+		(typeattributeset associate_all_obj_type_attribute
+			ARG1))
+
+	(macro fs_obj_type ((type ARG1))
+		(typeattributeset fs_obj_type_attribute ARG1))
+
+	(macro getattr_all_subj_type ((type ARG1))
+		(typeattributeset getattr_all_subj_type_attribute
+			ARG1))
+
+	(macro list_all_subj_type ((type ARG1))
+		(typeattributeset list_all_subj_type_attribute
+			ARG1))
+
+	(macro manage_all_dirs_subj_type ((type ARG1))
+		(typeattributeset manage_all_dirs_subj_type_attribute
+			ARG1))
+
+	(macro manage_all_lnk_files_subj_type ((type ARG1))
+		(typeattributeset
+			manage_all_lnk_files_subj_type_attribute
+				ARG1))
+
+	(macro mount_all_subj_type ((type ARG1))
+		(typeattributeset mount_all_subj_type_attribute
+			ARG1))
+
+	(macro read_all_lnk_files_subj_type ((type ARG1))
+		(typeattributeset read_all_lnk_files_subj_type_attribute
+			ARG1))
+
+	(macro relabel_all_dirs_subj_type ((type ARG1))
+		(typeattributeset relabel_all_dirs_subj_type_attribute
+			ARG1))
+
+	(macro relabel_all_lnk_files_subj_type ((type ARG1))
+		(typeattributeset
+			relabel_all_lnk_files_subj_type_attribute
+				ARG1))
+
+	(macro remount_all_subj_type ((type ARG1))
+		(typeattributeset remount_all_subj_type_attribute
+			ARG1))
+
+	(macro rw_all_dirs_subj_type ((type ARG1))
+		(typeattributeset rw_all_dirs_subj_type_attribute
+			ARG1))
+
+	(macro search_all_subj_type ((type ARG1))
+		(typeattributeset search_all_subj_type_attribute
+			ARG1))
+
+	(macro unconfined_subj_type ((type ARG1))
+		(typeattributeset unconfined_subj_type_attribute
+			ARG1))
+
+	(macro unmount_all_subj_type ((type ARG1))
+		(typeattributeset unmount_all_subj_type_attribute
+			ARG1))
+
+	;
+	; Policy
+	;
+
+	(typeattribute fs_obj_type_attribute)
+
+	(typeattribute associate_all_obj_type_attribute)
+	(typeattribute getattr_all_subj_type_attribute)
+	(typeattribute list_all_subj_type_attribute)
+	(typeattribute manage_all_dirs_subj_type_attribute)
+	(typeattribute manage_all_lnk_files_subj_type_attribute)
+	(typeattribute mount_all_subj_type_attribute)
+	(typeattribute read_all_lnk_files_subj_type_attribute)
+	(typeattribute relabel_all_dirs_subj_type_attribute)
+	(typeattribute relabel_all_lnk_files_subj_type_attribute)
+	(typeattribute remount_all_subj_type_attribute)
+	(typeattribute rw_all_dirs_subj_type_attribute)
+	(typeattribute search_all_subj_type_attribute)
+	(typeattribute unconfined_subj_type_attribute)
+	(typeattribute unmount_all_subj_type_attribute)
+
+	(call sys.sys_obj_type (fs_obj_type_attribute))
+
+	(allow fs_obj_type_attribute self (filesystem (associate)))
+
+	(allow associate_all_obj_type_attribute fs_obj_type_attribute
+		(filesystem (associate)))
+	(allow list_all_subj_type_attribute fs_obj_type_attribute
+		list_dir_perms)
+	(allow getattr_all_subj_type_attribute fs_obj_type_attribute
+		(filesystem (getattr)))
+	(allow mount_all_subj_type_attribute fs_obj_type_attribute
+		(filesystem (mount)))
+	(allow remount_all_subj_type_attribute fs_obj_type_attribute
+		(filesystem (remount)))
+	(call rw_dirs_pattern
+		(rw_all_dirs_subj_type_attribute fs_obj_type_attribute
+			fs_obj_type_attribute))
+	(allow search_all_subj_type_attribute fs_obj_type_attribute
+		search_dir_perms)
+	(allow unmount_all_subj_type_attribute fs_obj_type_attribute
+		(filesystem (unmount)))
+
+	(allow unconfined_subj_type_attribute fs_obj_type_attribute
+		file_except_mounton_execmod_and_entrypoint)
+	(allow unconfined_subj_type_attribute fs_obj_type_attribute
+		dir_except_execmod)
+	(allow unconfined_subj_type_attribute fs_obj_type_attribute
+		fifo_file_except_mounton_and_execmod)
+	(allow unconfined_subj_type_attribute fs_obj_type_attribute
+		lnk_file_except_mounton_and_execmod)
+	(allow unconfined_subj_type_attribute fs_obj_type_attribute
+		sock_file_except_mounton_and_execmod)
+	(allow unconfined_subj_type_attribute fs_obj_type_attribute
+		blk_file_except_mounton_and_execmod)
+	(allow unconfined_subj_type_attribute fs_obj_type_attribute
+		chr_file_except_mounton_and_execmod)
+
+	(allow unconfined_subj_type_attribute fs_obj_type_attribute
+		(filesystem (mount remount unmount getattr relabelfrom
+			relabelto associate quotamod quotaget)))
+
+	(block aio
+
+		;
+		; aio contexts
+		;
+
+		(genfscon "aio" "/" fs_context)
+
+		;
+		; aio macros
+		;
+
+		;
+		; aio policy
+		;
+
+		(blockinherit fs.fs_obj_base_template))
+
+	(block anon_inodefs
+
+		;
+		; anon_inodefs contexts
+		;
+
+		(genfscon "anon_inodefs" "/" fs_context)
+
+		;
+		; anon_inodefs macros
+		;
+
+		;
+		; anon_inodefs policy
+		;
+
+		(blockinherit fs.fs_obj_base_template))
+
+	(block autofs
+
+		;
+		; autofs contexts
+		;
+
+		(genfscon "autofs" "/" fs_context)
+
+		;
+		; autofs macros
+		;
+
+		;
+		; autofs policy
+		;
+
+		(blockinherit fs.fs_obj_base_template)
+
+		(call sys.mountpoint_obj_type (fs)))
+
+	(block bdev
+
+		;
+		; bdev contexts
+		;
+
+		(genfscon "bdev" "/" fs_context)
+
+		;
+		; bdev macros
+		;
+
+		;
+		; bdev policy
+		;
+
+		(blockinherit fs.fs_obj_base_template))
+
+	(block binfmt_misc
+
+		;
+		; binfmt_misc contexts
+		;
+
+		(genfscon "binfmt_misc" "/" fs_context)
+
+		;
+		; binfmt_misc macros
+		;
+
+		;
+		; binfmt_misc policy
+		;
+
+		(blockinherit fs.fs_obj_base_template)
+
+		(call sys.mountpoint_obj_type (fs))
+
+		(call sys.fs.search_subj_type (associate_obj_type_attribute))
+		(call sys.fs.search_subj_type (getattr_subj_type_attribute))
+		(call sys.fs.search_subj_type (list_subj_type_attribute))
+		(call sys.fs.search_subj_type
+			(manage_dirs_subj_type_attribute))
+		(call sys.fs.search_subj_type
+			(manage_lnk_files_subj_type_attribute))
+		(call sys.fs.search_subj_type (mount_subj_type_attribute))
+		(call sys.fs.search_subj_type
+			(read_lnk_files_subj_type_attribute))
+		(call sys.fs.search_subj_type
+			(relabel_dirs_subj_type_attribute))
+		(call sys.fs.search_subj_type
+			(relabel_lnk_files_subj_type_attribute))
+		(call sys.fs.search_subj_type (remount_subj_type_attribute))
+		(call sys.fs.search_subj_type (rw_dirs_subj_type_attribute))
+		(call sys.fs.search_subj_type (search_subj_type_attribute))
+		(call sys.fs.search_subj_type (unmount_subj_type_attribute)))
+
+	(block cifs
+
+		;
+		; cifs contexts
+		;
+
+		(genfscon "cifs" "/" fs_context)
+		(genfscon "smbfs" "/" fs_context)
+
+		;
+		; cifs macros
+		;
+
+		;
+		; cifs policy
+		;
+
+		(blockinherit fs.fs_obj_base_template)
+
+		(call sys.mountpoint_obj_type (fs)))
+
+	(block cgroup
+
+		;
+		; cgroup contexts
+		;
+
+		(genfscon "cgroup" "/" fs_context)
+		(genfscon "cgroup2" "/" fs_context)
+
+		;
+		; cgroup macros
+		;
+
+		;
+		; cgroup policy
+		;
+
+		(blockinherit fs.fs_obj_base_template)
+
+		(call sys.mountpoint_obj_type (fs))
+
+		(call fs.sysfs.search_subj_type (associate_obj_type_attribute))
+		(call fs.sysfs.search_subj_type (getattr_subj_type_attribute))
+		(call fs.sysfs.search_subj_type (list_subj_type_attribute))
+		(call fs.sysfs.search_subj_type
+			(manage_dirs_subj_type_attribute))
+		(call fs.sysfs.search_subj_type
+			(manage_lnk_files_subj_type_attribute))
+		(call fs.sysfs.search_subj_type (mount_subj_type_attribute))
+		(call fs.sysfs.search_subj_type
+			(read_lnk_files_subj_type_attribute))
+		(call fs.sysfs.search_subj_type
+			(relabel_dirs_subj_type_attribute))
+		(call fs.sysfs.search_subj_type
+			(relabel_lnk_files_subj_type_attribute))
+		(call fs.sysfs.search_subj_type (remount_subj_type_attribute))
+		(call fs.sysfs.search_subj_type (rw_dirs_subj_type_attribute))
+		(call fs.sysfs.search_subj_type (search_subj_type_attribute))
+		(call fs.sysfs.search_subj_type (unmount_subj_type_attribute))
+
+		(call fs.tmpfs.read_lnk_files_subj_type
+			(associate_obj_type_attribute))
+		(call fs.tmpfs.read_lnk_files_subj_type
+			(getattr_subj_type_attribute))
+		(call fs.tmpfs.read_lnk_files_subj_type
+			(list_subj_type_attribute))
+		(call fs.tmpfs.read_lnk_files_subj_type
+			(manage_dirs_subj_type_attribute))
+		(call fs.tmpfs.read_lnk_files_subj_type
+			(manage_lnk_files_subj_type_attribute))
+		(call fs.tmpfs.read_lnk_files_subj_type
+			(mount_subj_type_attribute))
+		(call fs.tmpfs.read_lnk_files_subj_type
+			(read_lnk_files_subj_type_attribute))
+		(call fs.tmpfs.read_lnk_files_subj_type
+			(relabel_dirs_subj_type_attribute))
+		(call fs.tmpfs.read_lnk_files_subj_type
+			(relabel_lnk_files_subj_type_attribute))
+		(call fs.tmpfs.read_lnk_files_subj_type
+			(remount_subj_type_attribute))
+		(call fs.tmpfs.read_lnk_files_subj_type
+			(rw_dirs_subj_type_attribute))
+		(call fs.tmpfs.read_lnk_files_subj_type
+			(search_subj_type_attribute))
+		(call fs.tmpfs.read_lnk_files_subj_type
+			(unmount_subj_type_attribute)))
+
+	(block configfs
+
+		;
+		; configfs contexts
+		;
+
+		(genfscon "configfs" "/" fs_context)
+
+		;
+		; configfs macros
+		;
+
+		;
+		; configfs policy
+		;
+
+		(blockinherit fs.fs_obj_base_template)
+
+		(call sys.mountpoint_obj_type (fs))
+
+		(call fs.sysfs.search_subj_type (associate_obj_type_attribute))
+		(call fs.sysfs.search_subj_type (getattr_subj_type_attribute))
+		(call fs.sysfs.search_subj_type (list_subj_type_attribute))
+		(call fs.sysfs.search_subj_type
+			(manage_dirs_subj_type_attribute))
+		(call fs.sysfs.search_subj_type
+			(manage_lnk_files_subj_type_attribute))
+		(call fs.sysfs.search_subj_type (mount_subj_type_attribute))
+		(call fs.sysfs.search_subj_type
+			(read_lnk_files_subj_type_attribute))
+		(call fs.sysfs.search_subj_type
+			(relabel_dirs_subj_type_attribute))
+		(call fs.sysfs.search_subj_type
+			(relabel_lnk_files_subj_type_attribute))
+		(call fs.sysfs.search_subj_type (remount_subj_type_attribute))
+		(call fs.sysfs.search_subj_type (rw_dirs_subj_type_attribute))
+		(call fs.sysfs.search_subj_type (search_subj_type_attribute))
+		(call fs.sysfs.search_subj_type (unmount_subj_type_attribute)))
+
+	(block debugfs
+
+		;
+		; debugfs contexts
+		;
+
+		(genfscon "debugfs" "/" fs_context)
+
+		;
+		; debugfs macros
+		;
+
+		;
+		; debugfs policy
+		;
+
+		(blockinherit fs.fs_obj_base_template)
+
+		(call sys.mountpoint_obj_type (fs))
+
+		(call fs.sysfs.search_subj_type (associate_obj_type_attribute))
+		(call fs.sysfs.search_subj_type (getattr_subj_type_attribute))
+		(call fs.sysfs.search_subj_type (list_subj_type_attribute))
+		(call fs.sysfs.search_subj_type
+			(manage_dirs_subj_type_attribute))
+		(call fs.sysfs.search_subj_type
+			(manage_lnk_files_subj_type_attribute))
+		(call fs.sysfs.search_subj_type (mount_subj_type_attribute))
+		(call fs.sysfs.search_subj_type
+			(read_lnk_files_subj_type_attribute))
+		(call fs.sysfs.search_subj_type
+			(relabel_dirs_subj_type_attribute))
+		(call fs.sysfs.search_subj_type
+			(relabel_lnk_files_subj_type_attribute))
+		(call fs.sysfs.search_subj_type (remount_subj_type_attribute))
+		(call fs.sysfs.search_subj_type (rw_dirs_subj_type_attribute))
+		(call fs.sysfs.search_subj_type (search_subj_type_attribute))
+		(call fs.sysfs.search_subj_type (unmount_subj_type_attribute)))
+
+	(block devpts
+
+		;
+		; devpts contexts
+		;
+
+		(fsuse trans "devpts" fs_context)
+
+		;
+		; devpts macros
+		;
+
+		(macro obj_type_transition ((type ARG1)(type ARG2)(class
+			ARG3)(name ARG4))
+			(call fs.devtmpfs.search_subj_type (ARG1))
+			(call rw_dirs_subj_type (ARG1))
+			(typetransition ARG1 fs ARG3 ARG4 ARG2))
+
+		;
+		; devpts policy
+		;
+
+		(blockinherit fs.fs_obj_base_template)
+
+		(call sys.mountpoint_obj_type (fs))
+
+		(call fs.devtmpfs.search_subj_type
+			(associate_obj_type_attribute))
+		(call fs.devtmpfs.search_subj_type (list_subj_type_attribute))
+		(call fs.devtmpfs.search_subj_type
+			(manage_dirs_subj_type_attribute))
+		(call fs.devtmpfs.search_subj_type
+			(manage_lnk_files_subj_type_attribute))
+		(call fs.devtmpfs.search_subj_type (mount_subj_type_attribute))
+		(call fs.devtmpfs.search_subj_type
+			(read_lnk_files_subj_type_attribute))
+		(call fs.devtmpfs.search_subj_type
+			(relabel_dirs_subj_type_attribute))
+		(call fs.devtmpfs.search_subj_type
+			(relabel_lnk_files_subj_type_attribute))
+		(call fs.devtmpfs.search_subj_type
+			(remount_subj_type_attribute))
+		(call fs.devtmpfs.search_subj_type
+			(rw_dirs_subj_type_attribute))
+		(call fs.devtmpfs.search_subj_type
+			(search_subj_type_attribute))
+		(call fs.devtmpfs.search_subj_type
+			(unmount_subj_type_attribute)))
+
+	(block devtmpfs
+
+		;
+		; devtmpfs contexts
+		;
+
+		(filecon "/dev(/.*)?" any ())
+		(filecon "/dev" dir fs_context)
+
+		(fsuse trans "devtmpfs" fs_context)
+
+		;
+		; devtmpfs macros
+		;
+
+		(macro obj_type_transition ((type ARG1)(type ARG2)(class
+			ARG3)(name ARG4))
+			(call rw_dirs_subj_type (ARG1))
+			(typetransition ARG1 fs ARG3 ARG4 ARG2))
+
+		;
+		; devtmpfs policy
+		;
+
+		(blockinherit fs.fs_obj_base_template)
+
+		(call sys.mountpoint_obj_type (fs))
+
+		(call fs.xattr.associate_obj_type (fs)))
+
+	(block dosfs
+
+		;
+		; dosfs contexts
+		;
+
+		(filecon "/efi(/.*)?" any fs_context)
+		(filecon "/boot/efi(/.*)?" any fs_context)
+
+		(genfscon "vfat" "/" fs_context)
+
+		;
+		; dosfs macros
+		;
+
+		;
+		; dosfs policy
+		;
+
+		(blockinherit fs.fs_obj_base_template)
+
+		(call sys.mountpoint_obj_type (fs))
+
+		(call fs.xattr.associate_obj_type (fs)))
+
+	(block drm
+
+		;
+		; drm contexts
+		;
+
+		(genfscon "drm" "/" fs_context)
+
+		;
+		; drm macros
+		;
+
+		;
+		; drm policy
+		;
+
+		(blockinherit fs.fs_obj_base_template))
+
+	(block efivarfs
+
+		;
+		; efivarfs contexts
+		;
+
+		(genfscon "efivarfs" "/" fs_context)
+
+		;
+		; efivars macros
+		;
+
+		;
+		; efivarfs policy
+		;
+
+		(blockinherit fs.fs_obj_base_template)
+
+		(call sys.mountpoint_obj_type (fs))
+
+		(call fs.sysfs.search_subj_type (associate_obj_type_attribute))
+		(call fs.sysfs.search_subj_type (getattr_subj_type_attribute))
+		(call fs.sysfs.search_subj_type (list_subj_type_attribute))
+		(call fs.sysfs.search_subj_type
+			(manage_dirs_subj_type_attribute))
+		(call fs.sysfs.search_subj_type
+			(manage_lnk_files_subj_type_attribute))
+		(call fs.sysfs.search_subj_type (mount_subj_type_attribute))
+		(call fs.sysfs.search_subj_type
+			(read_lnk_files_subj_type_attribute))
+		(call fs.sysfs.search_subj_type
+			(relabel_dirs_subj_type_attribute))
+		(call fs.sysfs.search_subj_type
+			(relabel_lnk_files_subj_type_attribute))
+		(call fs.sysfs.search_subj_type (remount_subj_type_attribute))
+		(call fs.sysfs.search_subj_type (rw_dirs_subj_type_attribute))
+		(call fs.sysfs.search_subj_type (search_subj_type_attribute))
+		(call fs.sysfs.search_subj_type (unmount_subj_type_attribute)))
+
+	(block fuse
+
+		;
+		; fuse contexts
+		;
+
+		(genfscon "fuseblk" "/" fs_context)
+		(genfscon "fusectl" "/" fs_context)
+		(genfscon "fuse" "/" fs_context)
+
+		;
+		; fuse macros
+		;
+
+		;
+		; fuse policy
+		;
+
+		(blockinherit fs.fs_obj_base_template)
+
+		(call sys.mountpoint_obj_type (fs))
+
+		(call fs.sysfs.search_subj_type (associate_obj_type_attribute))
+		(call fs.sysfs.search_subj_type (getattr_subj_type_attribute))
+		(call fs.sysfs.search_subj_type (list_subj_type_attribute))
+		(call fs.sysfs.search_subj_type
+			(manage_dirs_subj_type_attribute))
+		(call fs.sysfs.search_subj_type
+			(manage_lnk_files_subj_type_attribute))
+		(call fs.sysfs.search_subj_type (mount_subj_type_attribute))
+		(call fs.sysfs.search_subj_type
+			(read_lnk_files_subj_type_attribute))
+		(call fs.sysfs.search_subj_type
+			(relabel_dirs_subj_type_attribute))
+		(call fs.sysfs.search_subj_type
+			(relabel_lnk_files_subj_type_attribute))
+		(call fs.sysfs.search_subj_type (remount_subj_type_attribute))
+		(call fs.sysfs.search_subj_type (rw_dirs_subj_type_attribute))
+		(call fs.sysfs.search_subj_type (search_subj_type_attribute))
+		(call fs.sysfs.search_subj_type (unmount_subj_type_attribute)))
+
+	(block hugetlbfs
+
+		;
+		; hugetlbfs contexts
+		;
+
+		(fsuse trans "hugetlbfs" fs_context)
+
+		;
+		; hugetlbfs macros
+		;
+
+		;
+		; hugetlbfs policy
+		;
+
+		(blockinherit fs.fs_obj_base_template)
+
+		(call sys.mountpoint_obj_type (fs))
+
+		(call fs.devtmpfs.search_subj_type
+			(associate_obj_type_attribute))
+		(call fs.devtmpfs.search_subj_type
+			(getattr_subj_type_attribute))
+		(call fs.devtmpfs.search_subj_type (list_subj_type_attribute))
+		(call fs.devtmpfs.search_subj_type
+			(manage_dirs_subj_type_attribute))
+		(call fs.devtmpfs.search_subj_type
+			(manage_lnk_files_subj_type_attribute))
+		(call fs.devtmpfs.search_subj_type (mount_subj_type_attribute))
+		(call fs.devtmpfs.search_subj_type
+			(read_lnk_files_subj_type_attribute))
+		(call fs.devtmpfs.search_subj_type
+			(relabel_dirs_subj_type_attribute))
+		(call fs.devtmpfs.search_subj_type
+			(relabel_lnk_files_subj_type_attribute))
+		(call fs.devtmpfs.search_subj_type
+			(remount_subj_type_attribute))
+		(call fs.devtmpfs.search_subj_type
+			(rw_dirs_subj_type_attribute))
+		(call fs.devtmpfs.search_subj_type
+			(search_subj_type_attribute))
+		(call fs.devtmpfs.search_subj_type
+			(unmount_subj_type_attribute)))
+
+	(block iso9660
+
+		;
+		; iso9660 contexts
+		;
+
+		(genfscon "iso9660" "/" fs_context)
+
+		;
+		; iso9660 macros
+		;
+
+		;
+		; iso9660 policy
+		;
+
+		(blockinherit fs.fs_obj_base_template)
+
+		(call sys.mountpoint_obj_type (fs)))
+
+	(block nfs
+
+		;
+		; nfs contexts
+		;
+
+		(genfscon "afs" "/" fs_context)
+		(genfscon "lustre" "/" fs_context)
+		(genfscon "nfs" "/" fs_context)
+		(genfscon "nfs4" "/" fs_context)
+
+		;
+		; nfs macros
+		;
+
+		;
+		; nfs policy
+		;
+
+		(blockinherit fs.fs_obj_base_template)
+
+		(call sys.mountpoint_obj_type (fs)))
+
+	(block nfsd
+
+		;
+		; nfsd contexts
+		;
+
+		(genfscon "nfsd" "/" fs_context)
+
+		;
+		; nfsd macros
+		;
+
+		;
+		; nfsd policy
+		;
+
+		(blockinherit fs.fs_obj_base_template)
+
+		(call sys.mountpoint_obj_type (fs)))
+
+	(block nsfs
+
+		;
+		; nsfs contexts
+		;
+
+		(genfscon "nsfs" "/" fs_context)
+
+		;
+		; nsfs macros
+		;
+
+		;
+		; nsfs policy
+		;
+
+		(blockinherit fs.fs_obj_base_template))
+
+	(block proc
+
+		;
+		; proc contexts
+		;
+
+		(filecon "/proc(/.*)?" any ())
+		(filecon "/proc" dir fs_context)
+
+		(genfscon "proc" "/" fs_context)
+		(genfscon "proc" "/sysvipc" fs_context) ; BUG
+
+		;
+		; proc macros
+		;
+
+		;
+		; proc policy
+		;
+
+		(blockinherit fs.fs_obj_base_template)
+
+		(call sys.mountpoint_obj_type (fs))
+
+		(call fs.xattr.associate_obj_type (fs)))
+
+	(block pstore
+
+		;
+		; pstore contexts
+		;
+
+		(genfscon "pstore" "/" fs_context)
+
+		;
+		; pstore macros
+		;
+
+		;
+		; pstore policy
+		;
+
+		(blockinherit fs.fs_obj_base_template)
+
+		(call sys.mountpoint_obj_type (fs))
+
+		(call fs.sysfs.search_subj_type (associate_obj_type_attribute))
+		(call fs.sysfs.search_subj_type (getattr_subj_type_attribute))
+		(call fs.sysfs.search_subj_type (list_subj_type_attribute))
+		(call fs.sysfs.search_subj_type
+			(manage_dirs_subj_type_attribute))
+		(call fs.sysfs.search_subj_type
+			(manage_lnk_files_subj_type_attribute))
+		(call fs.sysfs.search_subj_type (mount_subj_type_attribute))
+		(call fs.sysfs.search_subj_type
+			(read_lnk_files_subj_type_attribute))
+		(call fs.sysfs.search_subj_type
+			(relabel_dirs_subj_type_attribute))
+		(call fs.sysfs.search_subj_type
+			(relabel_lnk_files_subj_type_attribute))
+		(call fs.sysfs.search_subj_type (remount_subj_type_attribute))
+		(call fs.sysfs.search_subj_type (rw_dirs_subj_type_attribute))
+		(call fs.sysfs.search_subj_type (search_subj_type_attribute))
+		(call fs.sysfs.search_subj_type (unmount_subj_type_attribute)))
+
+	(block removable
+
+		;
+		; removable contexts
+		;
+
+		;
+		; removable macros
+		;
+
+		;
+		; removable policy
+		;
+
+		(blockinherit fs.fs_obj_base_template))
+
+	(block rootfs
+
+		;
+		; rootfs contexts
+		;
+
+		(filecon "/" dir fs_context)
+		(filecon "/.*" symlink fs_context)
+
+		(genfscon "rootfs" "/" fs_context)
+
+		;
+		; rootfs macros
+		;
+
+		(macro obj_type_transition ((type ARG1)(type ARG2)(class
+			ARG3)(name ARG4))
+			(call rw_dirs_subj_type (ARG1))
+			(typetransition ARG1 fs ARG3 ARG4 ARG2))
+
+		;
+		; rootfs policy
+		;
+
+		(blockinherit fs.fs_obj_base_template)
+
+		(call sys.mountpoint_obj_type (fs))
+
+		(call fs.xattr.associate_obj_type (fs)))
+
+	(block rpc_pipefs
+
+		;
+		; rpc_pipefs contexts
+		;
+
+		(genfscon "rpc_pipefs" "/" fs_context)
+
+		;
+		; rpc_pipefs macros
+		;
+
+		;
+		; rpc_pipefs policy
+		;
+
+		(blockinherit fs.fs_obj_base_template)
+
+		(call sys.mountpoint_obj_type (fs)))
+
+	(block sysfs
+
+		;
+		; sysfs contexts
+		;
+
+		(filecon "/sys(/.*)?" any ())
+		(filecon "/sys" dir fs_context)
+
+		(genfscon "sysfs" "/" fs_context)
+
+		;
+		; sysfs macros
+		;
+
+		;
+		; sysfs policy
+		;
+
+		(blockinherit fs.fs_obj_base_template)
+
+		(call sys.mountpoint_obj_type (fs))
+
+		(call fs.xattr.associate_obj_type (fs)))
+
+	(block tmpfs
+
+		;
+		; tmpfs contexts
+		;
+
+		(filecon "/tmp(/.*)?" any ())
+		(filecon "/tmp" dir fs_context)
+		(filecon "/var/run/user(/.*)?" any ())
+
+		(fsuse trans "mqueue" fs_context)
+		(fsuse trans "tmpfs" fs_context)
+
+		;
+		; tmpfs macros
+		;
+
+		(macro obj_type_transition ((type ARG1)(type ARG2)(class
+			ARG3)(name ARG4))
+			(call fs.devtmpfs.search_subj_type (ARG1))
+			(call rw_dirs_subj_type (ARG1))
+			(typetransition ARG1 fs ARG3 ARG4 ARG2))
+
+		;
+		; tmpfs policy
+		;
+
+		(blockinherit fs.fs_obj_base_template)
+
+		(call sys.mountpoint_obj_type (fs))
+
+		(call fs.xattr.associate_obj_type (fs))
+
+		(call fs.devtmpfs.search_subj_type
+			(associate_obj_type_attribute))
+		(call fs.devtmpfs.search_subj_type
+			(getattr_subj_type_attribute))
+		(call fs.devtmpfs.search_subj_type (list_subj_type_attribute))
+		(call fs.devtmpfs.search_subj_type
+			(manage_dirs_subj_type_attribute))
+		(call fs.devtmpfs.search_subj_type
+			(manage_lnk_files_subj_type_attribute))
+		(call fs.devtmpfs.search_subj_type (mount_subj_type_attribute))
+		(call fs.devtmpfs.search_subj_type
+			(read_lnk_files_subj_type_attribute))
+		(call fs.devtmpfs.search_subj_type
+			(relabel_dirs_subj_type_attribute))
+		(call fs.devtmpfs.search_subj_type
+			(relabel_lnk_files_subj_type_attribute))
+		(call fs.devtmpfs.search_subj_type
+			(remount_subj_type_attribute))
+		(call fs.devtmpfs.search_subj_type
+			(rw_dirs_subj_type_attribute))
+		(call fs.devtmpfs.search_subj_type
+			(search_subj_type_attribute))
+		(call fs.devtmpfs.search_subj_type
+			(unmount_subj_type_attribute)))
+
+	(block tracefs
+
+		;
+		; tracefs contexts
+		;
+
+		(genfscon "tracefs" "/" fs_context)
+
+		;
+		; tracefs macros
+		;
+
+		;
+		; tracefs policy
+		;
+
+		(blockinherit fs.fs_obj_base_template)
+
+		(call fs.debugfs.search_subj_type
+			(associate_obj_type_attribute))
+		(call fs.debugfs.search_subj_type
+			(getattr_subj_type_attribute))
+		(call fs.debugfs.search_subj_type (list_subj_type_attribute))
+		(call fs.debugfs.search_subj_type
+			(manage_dirs_subj_type_attribute))
+		(call fs.debugfs.search_subj_type
+			(manage_lnk_files_subj_type_attribute))
+		(call fs.debugfs.search_subj_type (mount_subj_type_attribute))
+		(call fs.debugfs.search_subj_type
+			(read_lnk_files_subj_type_attribute))
+		(call fs.debugfs.search_subj_type
+			(relabel_dirs_subj_type_attribute))
+		(call fs.debugfs.search_subj_type
+			(relabel_lnk_files_subj_type_attribute))
+		(call fs.debugfs.search_subj_type
+			(remount_subj_type_attribute))
+		(call fs.debugfs.search_subj_type
+			(rw_dirs_subj_type_attribute))
+		(call fs.debugfs.search_subj_type
+			(search_subj_type_attribute))
+		(call fs.debugfs.search_subj_type
+			(unmount_subj_type_attribute)))
+
+	(block xattr
+
+		;
+		; xattr contexts
+		;
+
+		(fsuse task "pipefs" isid_context)
+		(fsuse task "sockfs" isid_context)
+
+		(fsuse xattr "ext4" isid_context)
+		(fsuse xattr "xfs" isid_context)
+		(fsuse xattr "btrfs" isid_context)
+
+		(sidcontext fs isid_context)
+
+		;
+		; xattr macros
+		;
+
+		(macro associate_obj_type ((type ARG1))
+			(typeattributeset associate_obj_type_attribute
+				ARG1))
+
+		(macro getattr_subj_type ((type ARG1))
+			(typeattributeset getattr_subj_type_attribute
+				ARG1))
+
+		(macro get_quotas_subj_type ((type ARG1))
+			(typeattributeset
+				get_quotas_subj_type_attribute
+					ARG1))
+
+		(macro mod_quotas_subj_type ((type ARG1))
+			(typeattributeset
+				mod_quotas_subj_type_attribute
+					ARG1))
+
+		(macro mount_subj_type ((type ARG1))
+			(typeattributeset mount_subj_type_attribute
+				ARG1))
+
+		(macro remount_subj_type ((type ARG1))
+			(typeattributeset remount_subj_type_attribute
+				ARG1))
+
+		(macro unmount_subj_type ((type ARG1))
+			(typeattributeset unmount_subj_type_attribute
+				ARG1))
+
+		;
+		; xattr policy
+		;
+
+		(blockinherit sys.isid_stub)
+
+		(call fs.fs_obj_type (isid))
+
+		(typeattribute associate_obj_type_attribute)
+		(typeattribute getattr_subj_type_attribute)
+		(typeattribute get_quotas_subj_type_attribute)
+		(typeattribute mod_quotas_subj_type_attribute)
+		(typeattribute mount_subj_type_attribute)
+		(typeattribute remount_subj_type_attribute)
+		(typeattribute unmount_subj_type_attribute)
+
+		(allow associate_obj_type_attribute isid (filesystem
+			(associate)))
+		(allow getattr_subj_type_attribute isid (filesystem
+			(getattr)))
+		(allow get_quotas_subj_type_attribute isid (filesystem
+			(quotaget)))
+		(allow mod_quotas_subj_type_attribute isid (filesystem
+			(quotamod)))
+		(allow mount_subj_type_attribute isid (filesystem
+			(mount)))
+		(allow remount_subj_type_attribute isid (filesystem
+			(remount)))
+		(allow unmount_subj_type_attribute isid (filesystem
+			(unmount))))
+
+	;
+	; Templates
+	;
+
+	(block fs_obj_stub
+
+		;
+		; fs_obj_stub contexts
+		;
+
+		(context fs_context (sys.id sys.role fs (systemlow
+			systemlow)))
+
+		;
+		; fs_obj_stub policy
+		;
+
+		(blockabstract fs_obj_stub)
+
+		(type fs)
+		(call fs_obj_type (fs)))
+
+	(block fs_obj_base_template
+
+		;
+		; fs_obj_base_template contexts
+		;
+
+		;
+		; fs_obj_base_template macros
+		;
+
+		(macro associate_obj_type ((type ARG1))
+			(typeattributeset associate_obj_type_attribute
+				ARG1))
+
+		(macro getattr_subj_type ((type ARG1))
+			(typeattributeset getattr_subj_type_attribute
+				ARG1))
+
+		(macro list_subj_type ((type ARG1))
+			(typeattributeset list_subj_type_attribute
+				ARG1))
+
+		(macro manage_dirs_subj_type ((type ARG1))
+			(typeattributeset manage_dirs_subj_type_attribute
+				ARG1))
+
+		(macro manage_lnk_files_subj_type ((type ARG1))
+			(typeattributeset
+				manage_lnk_files_subj_type_attribute
+					ARG1))
+
+		(macro mount_subj_type ((type ARG1))
+			(typeattributeset mount_subj_type_attribute
+				ARG1))
+
+		(macro read_lnk_files_subj_type ((type ARG1))
+			(typeattributeset read_lnk_files_subj_type_attribute
+				ARG1))
+
+		(macro relabel_dirs_subj_type ((type ARG1))
+			(typeattributeset relabel_dirs_subj_type_attribute
+				ARG1))
+
+		(macro relabel_lnk_files_subj_type ((type ARG1))
+			(typeattributeset
+				relabel_lnk_files_subj_type_attribute
+					ARG1))
+
+		(macro remount_subj_type ((type ARG1))
+			(typeattributeset remount_subj_type_attribute
+				ARG1))
+
+		(macro rw_dirs_subj_type ((type ARG1))
+			(typeattributeset rw_dirs_subj_type_attribute
+				ARG1))
+
+		(macro search_subj_type ((type ARG1))
+			(typeattributeset search_subj_type_attribute
+				ARG1))
+
+		(macro unmount_subj_type ((type ARG1))
+			(typeattributeset unmount_subj_type_attribute
+				ARG1))
+
+		;
+		; fs_obj_base_template policy
+		;
+
+		(blockabstract fs_obj_base_template)
+
+		(blockinherit fs_obj_stub)
+
+		(typeattribute associate_obj_type_attribute)
+		(typeattribute getattr_subj_type_attribute)
+		(typeattribute list_subj_type_attribute)
+		(typeattribute manage_dirs_subj_type_attribute)
+		(typeattribute manage_lnk_files_subj_type_attribute)
+		(typeattribute mount_subj_type_attribute)
+		(typeattribute read_lnk_files_subj_type_attribute)
+		(typeattribute relabel_dirs_subj_type_attribute)
+		(typeattribute relabel_lnk_files_subj_type_attribute)
+		(typeattribute remount_subj_type_attribute)
+		(typeattribute rw_dirs_subj_type_attribute)
+		(typeattribute search_subj_type_attribute)
+		(typeattribute unmount_subj_type_attribute)
+
+		(allow associate_obj_type_attribute fs (filesystem
+			(associate)))
+		(allow getattr_subj_type_attribute fs (filesystem
+			(getattr)))
+		(allow list_subj_type_attribute fs list_dir_perms)
+		(call manage_dirs_pattern
+			(manage_dirs_subj_type_attribute fs fs))
+		(call manage_lnk_files_pattern
+			(manage_lnk_files_subj_type_attribute fs fs))
+		(allow mount_subj_type_attribute fs (filesystem
+			(mount)))
+		(call read_lnk_files_pattern
+			(read_lnk_files_subj_type_attribute fs fs))
+		(allow relabel_dirs_subj_type_attribute fs
+			relabel_dir_perms)
+		(call read_lnk_files_pattern
+			(read_lnk_files_subj_type_attribute fs fs))
+		(allow remount_subj_type_attribute fs (filesystem
+			(remount)))
+		(call rw_dirs_pattern
+			(rw_dirs_subj_type_attribute fs fs))
+		(allow search_subj_type_attribute fs search_dir_perms)
+		(allow unmount_subj_type_attribute fs (filesystem
+			(unmount)))))
