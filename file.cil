@@ -220,10 +220,10 @@
 	(typeattribute file_obj_type_attribute)
 
 	(typeattribute auth_obj_type_attribute)
-	(typeattribute not_auth_obj_type_attribute)
+	(typeattribute file_except_auth_obj_type_attribute)
 
 	(typeattribute sec_obj_type_attribute)
-	(typeattribute not_sec_obj_type_attribute)
+	(typeattribute file_except_sec_obj_type_attribute)
 
 	(typeattribute boot_obj_type_attribute)
 	(typeattribute boot_flag_obj_type_attribute)
@@ -301,10 +301,10 @@
 		var_log_obj_type_attribute var_spool_obj_type_attribute
 		var_tmp_obj_type_attribute))
 
-	(typeattributeset not_auth_obj_type_attribute (and
+	(typeattributeset file_except_auth_obj_type_attribute (and
 		(file_obj_type_attribute) (not (auth_obj_type_attribute))))
 
-	(typeattributeset not_sec_obj_type_attribute (and
+	(typeattributeset file_except_sec_obj_type_attribute (and
 		(file_obj_type_attribute) (not (sec_obj_type_attribute))))
 
 	(typeattributeset except_obj_type_attribute (and

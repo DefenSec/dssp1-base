@@ -95,7 +95,7 @@
 	(typeattribute write_all_subj_type_attribute)
 	(typeattribute write_memory_subj_type_attribute)
 
-	(typeattribute not_stor_pty_and_serial_obj_type_attribute)
+	(typeattribute dev_except_stor_pty_and_serial_obj_type_attribute)
 
 	(call sys.sys_obj_type (dev_obj_type_attribute))
 
@@ -158,40 +158,42 @@
 		(login_pty_obj_type_attribute pty_obj_type_attribute
 			serial_obj_type_attribute)))
 
-	(typeattributeset not_stor_pty_and_serial_obj_type_attribute
+	(typeattributeset dev_except_stor_pty_and_serial_obj_type_attribute
 		(and (dev_obj_type_attribute)
 		(not (stor_obj_type_attribute login_pty_obj_type_attribute
 			pty_obj_type_attribute serial_obj_type_attribute))))
 
 	(allow create_all_subj_type_attribute self (capability (mknod)))
 	(allow create_all_subj_type_attribute
-		not_stor_pty_and_serial_obj_type_attribute
+		dev_except_stor_pty_and_serial_obj_type_attribute
 			create_chr_file_perms)
 
 	(allow
-		getattr_all_subj_type_attribute not_stor_pty_and_serial_obj_type_attribute
-			(chr_file (getattr)))
+		getattr_all_subj_type_attribute
+			dev_except_stor_pty_and_serial_obj_type_attribute
+				(chr_file (getattr)))
 
 	(allow manage_all_subj_type_attribute self (capability (mknod)))
 	(allow manage_all_subj_type_attribute
-		not_stor_pty_and_serial_obj_type_attribute
+		dev_except_stor_pty_and_serial_obj_type_attribute
 			manage_chr_file_perms)
 
 	(allow read_all_subj_type_attribute
-		not_stor_pty_and_serial_obj_type_attribute
+		dev_except_stor_pty_and_serial_obj_type_attribute
 			read_chr_file_perms)
 	(allow relabel_all_subj_type_attribute
-		not_stor_pty_and_serial_obj_type_attribute
+		dev_except_stor_pty_and_serial_obj_type_attribute
 			relabel_chr_file_perms)
 	(allow rw_all_subj_type_attribute
-		not_stor_pty_and_serial_obj_type_attribute
+		dev_except_stor_pty_and_serial_obj_type_attribute
 			rw_chr_file_perms)
 	(allow setattr_all_subj_type_attribute
-		not_stor_pty_and_serial_obj_type_attribute (chr_file
+		dev_except_stor_pty_and_serial_obj_type_attribute (chr_file
 			(setattr)))
 	(allow
-		write_all_subj_type_attribute not_stor_pty_and_serial_obj_type_attribute
-			write_chr_file_perms)
+		write_all_subj_type_attribute
+			dev_except_stor_pty_and_serial_obj_type_attribute
+				write_chr_file_perms)
 
 	(call read_memory_subj_type
 		(manage_all_subj_type_attribute))
@@ -206,7 +208,7 @@
 
 	(allow unconfined_subj_type_attribute self (capability (sys_rawio)))
 	(allow unconfined_subj_type_attribute
-		not_stor_pty_and_serial_obj_type_attribute
+		dev_except_stor_pty_and_serial_obj_type_attribute
 			chr_file_except_mounton_and_execmod)
 
 	(block apm
