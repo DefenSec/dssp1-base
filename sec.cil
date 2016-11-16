@@ -77,41 +77,28 @@
 	(typeattribute compute_create_context_subj_type_attribute)
 	(typeattribute compute_relabel_context_subj_type_attribute)
 	(typeattribute compute_user_context_subj_type_attribute)
-
 	(typeattribute get_all_bool_subj_type_attribute)
-
 	(typeattribute load_policy_subj_type_attribute)
-
 	(typeattribute
 		load_policy_subj_type_or_unconfined_subj_type_attribute)
 	(typeattribute
 		not_load_policy_subj_type_or_unconfined_subj_type_attribute)
-
-	(typeattribute read_policy_subj_type_attribute)
-
-	(typeattribute set_all_bool_subj_type_attribute)
-
-	(typeattribute set_enforce_subj_type_attribute)
-
-	(typeattribute
-		set_enforce_subj_type_or_unconfined_subj_type_attribute)
 	(typeattribute
 		not_set_enforce_subj_type_or_unconfined_subj_type_attribute)
-
-	(typeattribute set_fscreate_subj_type_attribute)
-
-	(typeattribute set_secparam_subj_type_attribute)
-
 	(typeattribute
 		not_set_secparam_subj_type_or_unconfined_subj_type_attribute)
-
-	(typeattribute write_load_policy_bool_subj_type_attribute)
-
-	(typeattribute
-		write_load_policy_bool_subj_type_or_unconfined_subj_type_attribute)
 	(typeattribute
 		not_write_load_policy_bool_subj_type_or_unconfined_subj_type_attribute)
-
+	(typeattribute read_policy_subj_type_attribute)
+	(typeattribute set_all_bool_subj_type_attribute)
+	(typeattribute set_enforce_subj_type_attribute)
+	(typeattribute
+		set_enforce_subj_type_or_unconfined_subj_type_attribute)
+	(typeattribute set_fscreate_subj_type_attribute)
+	(typeattribute set_secparam_subj_type_attribute)
+	(typeattribute write_load_policy_bool_subj_type_attribute)
+	(typeattribute
+		write_load_policy_bool_subj_type_or_unconfined_subj_type_attribute)
 	(typeattribute unconfined_subj_type_attribute)
 
 	(call sys.sys_obj_type (bool_obj_type_attribute))
