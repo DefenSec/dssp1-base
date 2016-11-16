@@ -20,6 +20,15 @@
 		(typeattributeset read_all_subj_type_attribute
 			ARG1))
 
+	(macro read_fixed_disk_subj_type ((type ARG1))
+		(typeattributeset read_fixed_disk_subj_type_attribute
+			ARG1))
+
+	(macro read_scsi_generic_subj_type ((type ARG1))
+		(typeattributeset
+			read_scsi_generic_subj_type_attribute
+				ARG1))
+
 	(macro relabel_all_subj_type ((type ARG1))
 		(typeattributeset relabel_all_subj_type_attribute
 			ARG1))
@@ -40,6 +49,15 @@
 		(typeattributeset write_all_subj_type_attribute
 			ARG1))
 
+	(macro write_fixed_disk_subj_type ((type ARG1))
+		(typeattributeset write_fixed_disk_subj_type_attribute
+			ARG1))
+
+	(macro write_scsi_generic_subj_type ((type ARG1))
+		(typeattributeset
+			write_scsi_generic_subj_type_attribute
+				ARG1))
+
 	;
 	; Policy
 	;
@@ -47,40 +65,82 @@
 	(typeattribute create_all_subj_type_attribute)
 	(typeattribute getattr_all_subj_type_attribute)
 	(typeattribute manage_all_subj_type_attribute)
+	(typeattribute
+		not_read_fixed_disk_subj_type_or_unconfined_subj_type_attribute)
+	(typeattribute
+		not_read_scsi_generic_subj_type_or_unconfined_subj_type_attribute)
+	(typeattribute
+		not_write_fixed_disk_subj_type_or_unconfined_subj_type_attribute)
+	(typeattribute
+		not_write_scsi_generic_subj_type_or_unconfined_subj_type_attribute)
 	(typeattribute read_all_subj_type_attribute)
+	(typeattribute read_fixed_disk_subj_type_attribute)
+	(typeattribute read_scsi_generic_subj_type_attribute)
 	(typeattribute relabel_all_subj_type_attribute)
 	(typeattribute rw_all_subj_type_attribute)
 	(typeattribute setattr_all_subj_type_attribute)
 	(typeattribute unconfined_subj_type_attribute)
 	(typeattribute write_all_subj_type_attribute)
+	(typeattribute write_fixed_disk_subj_type_attribute)
+	(typeattribute write_scsi_generic_subj_type_attribute)
 
-	(call stor.fixed_disk.read_fixed_disk_subj_type
-		(manage_all_subj_type_attribute))
-	(call stor.fixed_disk.read_fixed_disk_subj_type
-		(read_all_subj_type_attribute))
-	(call stor.fixed_disk.read_fixed_disk_subj_type
-		(rw_all_subj_type_attribute))
+	(typeattributeset
+		not_read_fixed_disk_subj_type_or_unconfined_subj_type_attribute
+			(not (read_fixed_disk_subj_type_attribute
+				unconfined_subj_type_attribute)))
 
-	(call stor.fixed_disk.write_fixed_disk_subj_type
-		(manage_all_subj_type_attribute))
-	(call stor.fixed_disk.write_fixed_disk_subj_type
-		(rw_all_subj_type_attribute))
-	(call stor.fixed_disk.write_fixed_disk_subj_type
-		(write_all_subj_type_attribute))
+	(neverallow
+		not_read_fixed_disk_subj_type_or_unconfined_subj_type_attribute
+			stor.fixed_disk.stor_dev (blk_file (read)))
+	(neverallow
+		not_read_fixed_disk_subj_type_or_unconfined_subj_type_attribute
+			stor.fixed_disk.stor_dev (chr_file (read)))
 
-	(call stor.scsi_generic.read_scsi_generic_subj_type
-		(manage_all_subj_type_attribute))
-	(call stor.scsi_generic.read_scsi_generic_subj_type
-		(read_all_subj_type_attribute))
-	(call stor.scsi_generic.read_scsi_generic_subj_type
-		(rw_all_subj_type_attribute))
+	(typeattributeset
+		not_write_fixed_disk_subj_type_or_unconfined_subj_type_attribute
+			(not (write_fixed_disk_subj_type_attribute
+				unconfined_subj_type_attribute)))
 
-	(call stor.scsi_generic.write_scsi_generic_subj_type
-		(manage_all_subj_type_attribute))
-	(call stor.scsi_generic.write_scsi_generic_subj_type
-		(rw_all_subj_type_attribute))
-	(call stor.scsi_generic.write_scsi_generic_subj_type
-		(write_all_subj_type_attribute))
+	(neverallow
+		not_write_fixed_disk_subj_type_or_unconfined_subj_type_attribute
+			stor.fixed_disk.stor_dev (blk_file (append write)))
+	(neverallow
+		not_write_fixed_disk_subj_type_or_unconfined_subj_type_attribute
+			stor.fixed_disk.stor_dev (chr_file (append write)))
+
+	(typeattributeset
+		not_read_scsi_generic_subj_type_or_unconfined_subj_type_attribute
+			(not (read_scsi_generic_subj_type_attribute
+				unconfined_subj_type_attribute)))
+
+	(neverallow
+		not_read_scsi_generic_subj_type_or_unconfined_subj_type_attribute
+			stor.scsi_generic.stor_dev (chr_file (read)))
+
+	(typeattributeset
+		not_write_scsi_generic_subj_type_or_unconfined_subj_type_attribute
+			(not (write_scsi_generic_subj_type_attribute
+				unconfined_subj_type_attribute)))
+
+	(neverallow
+		not_write_scsi_generic_subj_type_or_unconfined_subj_type_attribute
+			stor.scsi_generic.stor_dev (chr_file (append write)))
+
+	(call read_fixed_disk_subj_type (manage_all_subj_type_attribute))
+	(call read_fixed_disk_subj_type (read_all_subj_type_attribute))
+	(call read_fixed_disk_subj_type (rw_all_subj_type_attribute))
+
+	(call write_fixed_disk_subj_type (manage_all_subj_type_attribute))
+	(call write_fixed_disk_subj_type (rw_all_subj_type_attribute))
+	(call write_fixed_disk_subj_type (write_all_subj_type_attribute))
+
+	(call read_scsi_generic_subj_type (manage_all_subj_type_attribute))
+	(call read_scsi_generic_subj_type (read_all_subj_type_attribute))
+	(call read_scsi_generic_subj_type (rw_all_subj_type_attribute))
+
+	(call write_scsi_generic_subj_type (manage_all_subj_type_attribute))
+	(call write_scsi_generic_subj_type (rw_all_subj_type_attribute))
+	(call write_scsi_generic_subj_type (write_all_subj_type_attribute))
 
 	(call stor.fixed_disk.devtmpfs_obj_type_transition
 		(unconfined_subj_type_attribute))
@@ -103,14 +163,6 @@
 		;
 		; fixed_disk macros
 		;
-
-		(macro read_fixed_disk_subj_type ((type ARG1))
-			(typeattributeset read_fixed_disk_subj_type_attribute
-				ARG1))
-
-		(macro write_fixed_disk_subj_type ((type ARG1))
-			(typeattributeset write_fixed_disk_subj_type_attribute
-				ARG1))
 
 		(macro devtmpfs_obj_type_transition ((type ARG1))
 			(call fs.devtmpfs.obj_type_transition (ARG1
@@ -640,39 +692,6 @@
 
 		(blockinherit dev.stor_obj_base_template)
 
-		(typeattribute read_fixed_disk_subj_type_attribute)
-		(typeattribute
-			not_read_fixed_disk_subj_type_or_unconfined_subj_type_attribute)
-
-		(typeattribute write_fixed_disk_subj_type_attribute)
-		(typeattribute
-			not_write_fixed_disk_subj_type_or_unconfined_subj_type_attribute)
-
-		(typeattributeset
-			not_read_fixed_disk_subj_type_or_unconfined_subj_type_attribute
-				(not (read_fixed_disk_subj_type_attribute
-					unconfined_subj_type_attribute)))
-
-		(neverallow
-			not_read_fixed_disk_subj_type_or_unconfined_subj_type_attribute
-				stor_dev (blk_file (read)))
-		(neverallow
-			not_read_fixed_disk_subj_type_or_unconfined_subj_type_attribute
-				stor_dev (chr_file (read)))
-
-
-		(typeattributeset
-			not_write_fixed_disk_subj_type_or_unconfined_subj_type_attribute
-				(not (write_fixed_disk_subj_type_attribute
-					unconfined_subj_type_attribute)))
-
-		(neverallow
-			not_write_fixed_disk_subj_type_or_unconfined_subj_type_attribute
-				stor_dev (blk_file (append write)))
-		(neverallow
-			not_write_fixed_disk_subj_type_or_unconfined_subj_type_attribute
-				stor_dev (chr_file (append write)))
-
 		(typeattributeset read_fixed_disk_subj_type_attribute
 			(manage_subj_type_attribute
 				read_subj_type_attribute
@@ -776,16 +795,6 @@
 		; scsi_generic macros
 		;
 
-		(macro read_scsi_generic_subj_type ((type ARG1))
-			(typeattributeset
-				read_scsi_generic_subj_type_attribute
-					ARG1))
-
-		(macro write_scsi_generic_subj_type ((type ARG1))
-			(typeattributeset
-				write_scsi_generic_subj_type_attribute
-					ARG1))
-
 		(macro devtmpfs_obj_type_transition ((type ARG1))
 			(call fs.devtmpfs.obj_type_transition (ARG1
 				stor_dev chr_file "sg0"))
@@ -835,32 +844,6 @@
 		;
 
 		(blockinherit dev.stor_obj_base_template)
-
-		(typeattribute read_scsi_generic_subj_type_attribute)
-		(typeattribute
-			not_read_scsi_generic_subj_type_or_unconfined_subj_type_attribute)
-
-		(typeattribute write_scsi_generic_subj_type_attribute)
-		(typeattribute
-			not_write_scsi_generic_subj_type_or_unconfined_subj_type_attribute)
-
-		(typeattributeset
-			not_read_scsi_generic_subj_type_or_unconfined_subj_type_attribute
-				(not (read_scsi_generic_subj_type_attribute
-					unconfined_subj_type_attribute)))
-
-		(neverallow
-			not_read_scsi_generic_subj_type_or_unconfined_subj_type_attribute
-				stor_dev (chr_file (read)))
-
-		(typeattributeset
-			not_write_scsi_generic_subj_type_or_unconfined_subj_type_attribute
-				(not (write_scsi_generic_subj_type_attribute
-					unconfined_subj_type_attribute)))
-
-		(neverallow
-			not_write_scsi_generic_subj_type_or_unconfined_subj_type_attribute
-				stor_dev (chr_file (append write)))
 
 		(typeattributeset read_scsi_generic_subj_type_attribute
 			(manage_subj_type_attribute
