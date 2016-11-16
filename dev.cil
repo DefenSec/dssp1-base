@@ -72,13 +72,10 @@
 	;
 
 	(typeattribute dev_obj_type_attribute)
-
-	(typeattribute stor_obj_type_attribute)
-
+	(typeattribute dev_except_stor_pty_and_serial_obj_type_attribute)
 	(typeattribute login_pty_obj_type_attribute)
 	(typeattribute pty_obj_type_attribute)
 	(typeattribute serial_obj_type_attribute)
-
 	(typeattribute create_all_subj_type_attribute)
 	(typeattribute getattr_all_subj_type_attribute)
 	(typeattribute manage_all_subj_type_attribute)
@@ -91,11 +88,10 @@
 	(typeattribute relabel_all_subj_type_attribute)
 	(typeattribute rw_all_subj_type_attribute)
 	(typeattribute setattr_all_subj_type_attribute)
+	(typeattribute stor_obj_type_attribute)
 	(typeattribute unconfined_subj_type_attribute)
 	(typeattribute write_all_subj_type_attribute)
 	(typeattribute write_memory_subj_type_attribute)
-
-	(typeattribute dev_except_stor_pty_and_serial_obj_type_attribute)
 
 	(call sys.sys_obj_type (dev_obj_type_attribute))
 

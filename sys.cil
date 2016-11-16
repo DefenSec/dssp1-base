@@ -206,14 +206,6 @@
 	(roleattribute sys_role_attribute)
 	(roleattribute roleallow_role_attribute)
 
-	(typeattribute unconfined_subj_type_attribute)
-
-	(typeattribute obj_type_attribute)
-
-	(typeattribute proc_obj_type_attribute)
-	(typeattribute sysctl_obj_type_attribute)
-	(typeattribute sysfs_obj_type_attribute)
-
 	(typeattribute
 		dontaudit_audit_access_mountpoint_dirs_subj_type_attribute)
 	(typeattribute
@@ -233,6 +225,8 @@
 	(typeattribute mountpoint_obj_type_attribute)
 	(typeattribute mounton_mountpoint_dirs_subj_type_attribute)
 	(typeattribute not_load_kernel_module_subj_type_attribute)
+	(typeattribute obj_type_attribute)
+	(typeattribute proc_obj_type_attribute)
 	(typeattribute read_state_subj_type_attribute)
 	(typeattribute read_keyring_subj_type_attribute)
 	(typeattribute read_ring_buffer_subj_type_attribute)
@@ -252,7 +246,10 @@
 	(typeattribute setpgid_subj_type_attribute)
 	(typeattribute setsched_subj_type_attribute)
 	(typeattribute share_subj_type_attribute)
+	(typeattribute sysctl_obj_type_attribute)
+	(typeattribute sysfs_obj_type_attribute)
 	(typeattribute transition_subj_type_attribute)
+	(typeattribute unconfined_subj_type_attribute)
 	(typeattribute unix_dgram_sockets_sendto_subj_type_attribute)
 	(typeattribute unix_stream_sockets_connectto_subj_type_attribute)
 	(typeattribute use_fd_subj_type_attribute)

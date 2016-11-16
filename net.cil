@@ -9,6 +9,12 @@
 	; Macros
 	;
 
+	(macro ephemeral_port_obj_type ((type ARG1))
+		(typeattributeset ephemeral_port_obj_type_attribute ARG1))
+
+	(macro hi_reserved_port_obj_type ((type ARG1))
+		(typeattributeset hi_reserved_port_obj_type_attribute ARG1))
+
 	(macro if_obj_type ((type ARG1))
 		(typeattributeset if_obj_type_attribute ARG1))
 
@@ -24,12 +30,6 @@
 	(macro port_obj_type ((type ARG1))
 		(typeattributeset port_obj_type_attribute ARG1))
 
-	(macro ephemeral_port_obj_type ((type ARG1))
-		(typeattributeset ephemeral_port_obj_type_attribute ARG1))
-
-	(macro hi_reserved_port_obj_type ((type ARG1))
-		(typeattributeset hi_reserved_port_obj_type_attribute ARG1))
-
 	(macro reserved_port_obj_type ((type ARG1))
 		(typeattributeset reserved_port_obj_type_attribute ARG1))
 
@@ -44,29 +44,28 @@
 	; Policy
 	;
 
+	(typeattribute ephemeral_port_obj_type_attribute)
+	(typeattribute hi_reserved_port_obj_type_attribute)
 	(typeattribute if_obj_type_attribute)
 	(typeattribute node_obj_type_attribute)
 	(typeattribute packet_obj_type_attribute)
 	(typeattribute peer_obj_type_attribute)
 	(typeattribute port_obj_type_attribute)
-
 	(typeattribute unconfined_subj_type_attribute)
+	(typeattribute reserved_port_obj_type_attribute)
+	(typeattribute unreserved_port_obj_type_attribute)
 
-	(typeattribute ephemeral_port_obj_type_attribute)
 	(typeattributeset
 		port_obj_type_attribute ephemeral_port_obj_type_attribute)
 
-	(typeattribute reserved_port_obj_type_attribute)
 	(typeattributeset
 		port_obj_type_attribute reserved_port_obj_type_attribute)
 
-	(typeattribute hi_reserved_port_obj_type_attribute)
-	(typeattributeset
-		reserved_port_obj_type_attribute hi_reserved_port_obj_type_attribute)
-
-	(typeattribute unreserved_port_obj_type_attribute)
 	(typeattributeset
 		port_obj_type_attribute unreserved_port_obj_type_attribute)
+
+	(typeattributeset
+		reserved_port_obj_type_attribute hi_reserved_port_obj_type_attribute)
 
 	(call sys.sys_obj_type (if_obj_type_attribute))
 	(call sys.sys_obj_type (node_obj_type_attribute))

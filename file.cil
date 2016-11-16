@@ -30,8 +30,131 @@
 	(macro file_obj_type ((type ARG1))
 		(typeattributeset file_obj_type_attribute ARG1))
 
+	(macro list_all_except_subj_type ((type ARG1))
+		(typeattributeset list_all_except_subj_type_attribute
+			ARG1))
+
+	(macro list_all_subj_type ((type ARG1))
+		(typeattributeset list_all_subj_type_attribute
+			ARG1))
+
+	(macro manage_all_dirs_subj_type ((type ARG1))
+		(typeattributeset manage_all_dirs_subj_type_attribute
+			ARG1))
+
+	(macro manage_all_dirs_except_subj_type ((type ARG1))
+		(typeattributeset manage_all_dirs_except_subj_type_attribute
+			ARG1))
+
+	(macro manage_all_files_subj_type ((type ARG1))
+		(typeattributeset
+			manage_all_files_subj_type_attribute
+				ARG1))
+
+	(macro manage_all_files_except_subj_type ((type ARG1))
+		(typeattributeset
+			manage_all_files_except_subj_type_attribute
+				ARG1))
+
+	(macro manage_all_lnk_files_subj_type ((type ARG1))
+		(typeattributeset
+			manage_all_lnk_files_subj_type_attribute
+				ARG1))
+
+	(macro manage_all_lnk_files_except_subj_type ((type ARG1))
+		(typeattributeset
+			manage_all_lnk_files_except_subj_type_attribute
+				ARG1))
+
+	(macro manage_all_subj_type ((type ARG1))
+		(typeattributeset manage_all_subj_type_attribute
+			ARG1))
+
+	(macro manage_all_except_subj_type ((type ARG1))
+		(typeattributeset manage_all_except_subj_type_attribute
+			ARG1))
+
 	(macro module_obj_type ((type ARG1))
 		(typeattributeset module_obj_type_attribute ARG1))
+
+	(macro read_all_files_subj_type ((type ARG1))
+		(typeattributeset read_all_files_subj_type_attribute
+			ARG1))
+
+	(macro read_all_files_except_subj_type ((type ARG1))
+		(typeattributeset read_all_files_except_subj_type_attribute
+			ARG1))
+
+	(macro read_all_lnk_files_subj_type ((type ARG1))
+		(typeattributeset
+			read_all_lnk_files_subj_type_attribute
+				ARG1))
+
+	(macro read_all_lnk_files_except_subj_type ((type ARG1))
+		(typeattributeset
+			read_all_lnk_files_except_subj_type_attribute
+				ARG1))
+
+	(macro read_all_subj_type ((type ARG1))
+		(typeattributeset read_all_subj_type_attribute
+			ARG1))
+
+	(macro read_all_except_subj_type ((type ARG1))
+		(typeattributeset read_all_except_subj_type_attribute
+			ARG1))
+
+	(macro relabel_all_files_subj_type ((type ARG1))
+		(typeattributeset
+			relabel_all_files_subj_type_attribute
+				ARG1))
+
+	(macro relabel_all_files_except_subj_type ((type ARG1))
+		(typeattributeset
+			relabel_all_files_except_subj_type_attribute
+				ARG1))
+
+	(macro relabel_all_dirs_subj_type ((type ARG1))
+		(typeattributeset relabel_all_dirs_subj_type_attribute
+			ARG1))
+
+	(macro relabel_all_dirs_except_subj_type ((type ARG1))
+		(typeattributeset
+			relabel_all_dirs_except_subj_type_attribute
+				ARG1))
+
+	(macro relabel_all_lnk_files_subj_type ((type ARG1))
+		(typeattributeset
+			relabel_all_lnk_files_subj_type_attribute
+				ARG1))
+
+	(macro relabel_all_lnk_files_except_subj_type ((type ARG1))
+		(typeattributeset
+			relabel_all_lnk_files_except_subj_type_attribute
+				ARG1))
+
+	(macro relabel_all_subj_type ((type ARG1))
+		(typeattributeset relabel_all_subj_type_attribute
+			ARG1))
+
+	(macro relabel_all_except_subj_type ((type ARG1))
+		(typeattributeset relabel_all_except_subj_type_attribute
+			ARG1))
+
+	(macro rw_all_files_subj_type ((type ARG1))
+		(typeattributeset rw_all_files_subj_type_attribute
+			ARG1))
+
+	(macro rw_all_files_except_subj_type ((type ARG1))
+		(typeattributeset rw_all_files_except_subj_type_attribute
+			ARG1))
+
+	(macro rw_all_dirs_subj_type ((type ARG1))
+		(typeattributeset rw_all_dirs_subj_type_attribute
+			ARG1))
+
+	(macro rw_all_dirs_except_subj_type ((type ARG1))
+		(typeattributeset rw_all_dirs_except_subj_type_attribute
+			ARG1))
 
 	(macro runtime_obj_type ((type ARG1))
 		(typeattributeset runtime_obj_type_attribute ARG1))
@@ -41,6 +164,14 @@
 
 	(macro runtime_lock_obj_type ((type ARG1))
 		(typeattributeset runtime_lock_obj_type_attribute ARG1))
+
+	(macro search_all_subj_type ((type ARG1))
+		(typeattributeset search_all_subj_type_attribute
+			ARG1))
+
+	(macro search_all_except_subj_type ((type ARG1))
+		(typeattributeset search_all_except_subj_type_attribute
+			ARG1))
 
 	(macro sec_obj_type ((type ARG1))
 		(typeattributeset sec_obj_type_attribute ARG1))
@@ -73,142 +204,12 @@
 	(macro var_tmp_obj_type ((type ARG1))
 		(typeattributeset var_tmp_obj_type_attribute ARG1))
 
-	(macro list_all_subj_type ((type ARG1))
-		(typeattributeset list_all_subj_type_attribute
-			ARG1))
-
-	(macro manage_all_dirs_subj_type ((type ARG1))
-		(typeattributeset manage_all_dirs_subj_type_attribute
-			ARG1))
-
-	(macro relabel_all_dirs_subj_type ((type ARG1))
-		(typeattributeset relabel_all_dirs_subj_type_attribute
-			ARG1))
-
-	(macro rw_all_dirs_subj_type ((type ARG1))
-		(typeattributeset rw_all_dirs_subj_type_attribute
-			ARG1))
-
-	(macro search_all_subj_type ((type ARG1))
-		(typeattributeset search_all_subj_type_attribute
-			ARG1))
-
-	(macro manage_all_lnk_files_subj_type ((type ARG1))
-		(typeattributeset
-			manage_all_lnk_files_subj_type_attribute
-				ARG1))
-
-	(macro read_all_lnk_files_subj_type ((type ARG1))
-		(typeattributeset
-			read_all_lnk_files_subj_type_attribute
-				ARG1))
-
-	(macro relabel_all_lnk_files_subj_type ((type ARG1))
-		(typeattributeset
-			relabel_all_lnk_files_subj_type_attribute
-				ARG1))
-
-	(macro manage_all_files_subj_type ((type ARG1))
-		(typeattributeset
-			manage_all_files_subj_type_attribute
-				ARG1))
-
-	(macro read_all_files_subj_type ((type ARG1))
-		(typeattributeset read_all_files_subj_type_attribute
-			ARG1))
-
-	(macro relabel_all_files_subj_type ((type ARG1))
-		(typeattributeset
-			relabel_all_files_subj_type_attribute
-				ARG1))
-
-	(macro rw_all_files_subj_type ((type ARG1))
-		(typeattributeset rw_all_files_subj_type_attribute
-			ARG1))
-
 	(macro write_all_files_subj_type ((type ARG1))
 		(typeattributeset write_all_files_subj_type_attribute
 			ARG1))
 
-	(macro read_all_subj_type ((type ARG1))
-		(typeattributeset read_all_subj_type_attribute
-			ARG1))
-
-	(macro relabel_all_subj_type ((type ARG1))
-		(typeattributeset relabel_all_subj_type_attribute
-			ARG1))
-
-	(macro manage_all_subj_type ((type ARG1))
-		(typeattributeset manage_all_subj_type_attribute
-			ARG1))
-
-	(macro list_all_except_subj_type ((type ARG1))
-		(typeattributeset list_all_except_subj_type_attribute
-			ARG1))
-
-	(macro manage_all_dirs_except_subj_type ((type ARG1))
-		(typeattributeset manage_all_dirs_except_subj_type_attribute
-			ARG1))
-
-	(macro relabel_all_dirs_except_subj_type ((type ARG1))
-		(typeattributeset relabel_all_dirs_except_subj_type_attribute
-			ARG1))
-
-	(macro rw_all_dirs_except_subj_type ((type ARG1))
-		(typeattributeset rw_all_dirs_except_subj_type_attribute
-			ARG1))
-
-	(macro search_all_except_subj_type ((type ARG1))
-		(typeattributeset search_all_except_subj_type_attribute
-			ARG1))
-
-	(macro manage_all_lnk_files_except_subj_type ((type ARG1))
-		(typeattributeset
-			manage_all_lnk_files_except_subj_type_attribute
-				ARG1))
-
-	(macro read_all_lnk_files_except_subj_type ((type ARG1))
-		(typeattributeset
-			read_all_lnk_files_except_subj_type_attribute
-				ARG1))
-
-	(macro relabel_all_lnk_files_except_subj_type ((type ARG1))
-		(typeattributeset
-			relabel_all_lnk_files_except_subj_type_attribute
-				ARG1))
-
-	(macro manage_all_files_except_subj_type ((type ARG1))
-		(typeattributeset
-			manage_all_files_except_subj_type_attribute
-				ARG1))
-
-	(macro read_all_files_except_subj_type ((type ARG1))
-		(typeattributeset read_all_files_except_subj_type_attribute
-			ARG1))
-
-	(macro relabel_all_files_except_subj_type ((type ARG1))
-		(typeattributeset
-			relabel_all_files_except_subj_type_attribute
-				ARG1))
-
-	(macro rw_all_files_except_subj_type ((type ARG1))
-		(typeattributeset rw_all_files_except_subj_type_attribute
-			ARG1))
-
 	(macro write_all_files_except_subj_type ((type ARG1))
 		(typeattributeset write_all_files_except_subj_type_attribute
-			ARG1))
-
-	(macro read_all_except_subj_type ((type ARG1))
-		(typeattributeset read_all_except_subj_type_attribute
-			ARG1))
-
-	(macro relabel_all_except_subj_type ((type ARG1))
-		(typeattributeset relabel_all_except_subj_type_attribute
-			ARG1))
-
-	(macro manage_all_except_subj_type ((type ARG1))
-		(typeattributeset manage_all_except_subj_type_attribute
 			ARG1))
 
 	;
@@ -217,74 +218,62 @@
 
 	(boolean execmod_all_except false)
 
-	(typeattribute file_obj_type_attribute)
-
 	(typeattribute auth_obj_type_attribute)
-	(typeattribute file_except_auth_obj_type_attribute)
-
-	(typeattribute sec_obj_type_attribute)
-	(typeattribute file_except_sec_obj_type_attribute)
-
-	(typeattribute boot_obj_type_attribute)
 	(typeattribute boot_flag_obj_type_attribute)
+	(typeattribute boot_obj_type_attribute)
 	(typeattribute config_obj_type_attribute)
 	(typeattribute data_obj_type_attribute)
+	(typeattribute except_obj_type_attribute)
+	(typeattribute exception_obj_type_attribute)
+	(typeattribute file_except_auth_obj_type_attribute)
+	(typeattribute file_except_sec_obj_type_attribute)
+	(typeattribute file_obj_type_attribute)
+	(typeattribute list_all_subj_type_attribute)
+	(typeattribute list_all_except_subj_type_attribute)
+	(typeattribute manage_all_dirs_subj_type_attribute)
+	(typeattribute manage_all_dirs_except_subj_type_attribute)
+	(typeattribute manage_all_except_subj_type_attribute)
+	(typeattribute manage_all_files_subj_type_attribute)
+	(typeattribute manage_all_files_except_subj_type_attribute)
+	(typeattribute manage_all_lnk_files_subj_type_attribute)
+	(typeattribute manage_all_lnk_files_except_subj_type_attribute)
+	(typeattribute manage_all_subj_type_attribute)
 	(typeattribute module_obj_type_attribute)
-	(typeattribute runtime_obj_type_attribute)
+	(typeattribute read_all_except_subj_type_attribute)
+	(typeattribute read_all_files_subj_type_attribute)
+	(typeattribute read_all_files_except_subj_type_attribute)
+	(typeattribute read_all_lnk_files_subj_type_attribute)
+	(typeattribute read_all_lnk_files_except_subj_type_attribute)
+	(typeattribute read_all_subj_type_attribute)
+	(typeattribute relabel_all_dirs_subj_type_attribute)
+	(typeattribute relabel_all_dirs_except_subj_type_attribute)
+	(typeattribute relabel_all_except_subj_type_attribute)
+	(typeattribute relabel_all_files_subj_type_attribute)
+	(typeattribute relabel_all_files_except_subj_type_attribute)
+	(typeattribute relabel_all_lnk_files_subj_type_attribute)
+	(typeattribute relabel_all_lnk_files_except_subj_type_attribute)
+	(typeattribute relabel_all_subj_type_attribute)
 	(typeattribute runtime_config_obj_type_attribute)
 	(typeattribute runtime_lock_obj_type_attribute)
+	(typeattribute runtime_obj_type_attribute)
+	(typeattribute rw_all_dirs_subj_type_attribute)
+	(typeattribute rw_all_dirs_except_subj_type_attribute)
+	(typeattribute rw_all_files_subj_type_attribute)
+	(typeattribute rw_all_files_except_subj_type_attribute)
+	(typeattribute search_all_subj_type_attribute)
+	(typeattribute search_all_except_subj_type_attribute)
+	(typeattribute sec_obj_type_attribute)
 	(typeattribute tmpfs_obj_type_attribute)
 	(typeattribute unconfined_subj_type_attribute)
-	(typeattribute var_obj_type_attribute)
 	(typeattribute var_cache_obj_type_attribute)
 	(typeattribute var_db_obj_type_attribute)
 	(typeattribute var_lib_obj_type_attribute)
 	(typeattribute var_log_obj_type_attribute)
+	(typeattribute var_obj_type_attribute)
 	(typeattribute var_spool_obj_type_attribute)
 	(typeattribute var_tmp_obj_type_attribute)
-
-	(typeattribute except_obj_type_attribute)
-	(typeattribute exception_obj_type_attribute)
-
-	(typeattribute list_all_subj_type_attribute)
-	(typeattribute manage_all_dirs_subj_type_attribute)
-	(typeattribute rw_all_dirs_subj_type_attribute)
-	(typeattribute relabel_all_dirs_subj_type_attribute)
-	(typeattribute search_all_subj_type_attribute)
-
-	(typeattribute manage_all_lnk_files_subj_type_attribute)
-	(typeattribute read_all_lnk_files_subj_type_attribute)
-	(typeattribute relabel_all_lnk_files_subj_type_attribute)
-
-	(typeattribute manage_all_files_subj_type_attribute)
-	(typeattribute read_all_files_subj_type_attribute)
-	(typeattribute relabel_all_files_subj_type_attribute)
-	(typeattribute rw_all_files_subj_type_attribute)
 	(typeattribute write_all_files_subj_type_attribute)
-
-	(typeattribute read_all_subj_type_attribute)
-	(typeattribute relabel_all_subj_type_attribute)
-	(typeattribute manage_all_subj_type_attribute)
-
-	(typeattribute list_all_except_subj_type_attribute)
-	(typeattribute manage_all_dirs_except_subj_type_attribute)
-	(typeattribute rw_all_dirs_except_subj_type_attribute)
-	(typeattribute relabel_all_dirs_except_subj_type_attribute)
-	(typeattribute search_all_except_subj_type_attribute)
-
-	(typeattribute manage_all_lnk_files_except_subj_type_attribute)
-	(typeattribute read_all_lnk_files_except_subj_type_attribute)
-	(typeattribute relabel_all_lnk_files_except_subj_type_attribute)
-
-	(typeattribute manage_all_files_except_subj_type_attribute)
-	(typeattribute read_all_files_except_subj_type_attribute)
-	(typeattribute relabel_all_files_except_subj_type_attribute)
-	(typeattribute rw_all_files_except_subj_type_attribute)
 	(typeattribute write_all_files_except_subj_type_attribute)
-
-	(typeattribute read_all_except_subj_type_attribute)
-	(typeattribute relabel_all_except_subj_type_attribute)
-	(typeattribute manage_all_except_subj_type_attribute)
 
 	(call sys.sys_obj_type (file_obj_type_attribute))
 

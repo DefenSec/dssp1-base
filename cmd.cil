@@ -48,57 +48,21 @@
 		; command macros
 		;
 
-		(macro list_subj_type ((type ARG1))
-			(typeattributeset list_subj_type_attribute
-				ARG1))
-
-		(macro manage_dirs_subj_type ((type ARG1))
-			(typeattributeset manage_dirs_subj_type_attribute
-				ARG1))
-
-		(macro obj_type_transition ((type ARG1)(type ARG2)(class
-			ARG3)(name ARG4))
-			(call rw_dirs_subj_type (ARG1))
-			(typetransition ARG1 cmd_file ARG3 ARG4 ARG2))
-
-		(macro relabel_dirs_subj_type ((type ARG1))
-			(typeattributeset relabel_dirs_subj_type_attribute
-				ARG1))
-
-		(macro rw_dirs_subj_type ((type ARG1))
-			(typeattributeset rw_dirs_subj_type_attribute
-				ARG1))
-
-		(macro search_subj_type ((type ARG1))
-			(typeattributeset search_subj_type_attribute
-				ARG1))
-
-		(macro manage_lnk_files_subj_type ((type ARG1))
-			(typeattributeset
-				manage_lnk_files_subj_type_attribute
-					ARG1))
-
-		(macro read_lnk_files_subj_type ((type ARG1))
-			(typeattributeset
-				read_lnk_files_subj_type_attribute
-					ARG1))
-
-		(macro relabel_lnk_files_subj_type ((type ARG1))
-			(typeattributeset
-				relabel_lnk_files_subj_type_attribute
-					ARG1))
-
 		(macro dontaudit_audit_access_all_files_subj_type ((type ARG1))
 			(typeattributeset
 				dontaudit_audit_access_all_files_subj_type_attribute
 					ARG1))
 
+		(macro exec_all_subj_type ((type ARG1))
+			(typeattributeset exec_all_subj_type_attribute
+				ARG1))
+
 		(macro getattr_all_files_subj_type ((type ARG1))
 			(typeattributeset getattr_all_files_subj_type_attribute
 				ARG1))
 
-		(macro exec_all_subj_type ((type ARG1))
-			(typeattributeset exec_all_subj_type_attribute
+		(macro list_subj_type ((type ARG1))
+			(typeattributeset list_subj_type_attribute
 				ARG1))
 
 		(macro manage_all_files_subj_type ((type ARG1))
@@ -106,21 +70,57 @@
 				manage_all_files_subj_type_attribute
 					ARG1))
 
+		(macro manage_dirs_subj_type ((type ARG1))
+			(typeattributeset manage_dirs_subj_type_attribute
+				ARG1))
+
+		(macro manage_lnk_files_subj_type ((type ARG1))
+			(typeattributeset
+				manage_lnk_files_subj_type_attribute
+					ARG1))
+
 		(macro mmap_all_subj_type ((type ARG1))
 			(typeattributeset mmap_all_subj_type_attribute
+				ARG1))
+
+		(macro obj_type_transition ((type ARG1)(type ARG2)(class
+			ARG3)(name ARG4))
+			(call rw_dirs_subj_type (ARG1))
+			(typetransition ARG1 cmd_file ARG3 ARG4 ARG2))
+
+		(macro search_subj_type ((type ARG1))
+			(typeattributeset search_subj_type_attribute
 				ARG1))
 
 		(macro read_all_files_subj_type ((type ARG1))
 			(typeattributeset read_all_files_subj_type_attribute
 				ARG1))
 
+		(macro read_lnk_files_subj_type ((type ARG1))
+			(typeattributeset
+				read_lnk_files_subj_type_attribute
+					ARG1))
+
 		(macro relabel_all_files_subj_type ((type ARG1))
 			(typeattributeset
 				relabel_all_files_subj_type_attribute
 					ARG1))
 
+		(macro relabel_dirs_subj_type ((type ARG1))
+			(typeattributeset relabel_dirs_subj_type_attribute
+				ARG1))
+
+		(macro relabel_lnk_files_subj_type ((type ARG1))
+			(typeattributeset
+				relabel_lnk_files_subj_type_attribute
+					ARG1))
+
 		(macro rw_all_files_subj_type ((type ARG1))
 			(typeattributeset rw_all_files_subj_type_attribute
+				ARG1))
+
+		(macro rw_dirs_subj_type ((type ARG1))
+			(typeattributeset rw_dirs_subj_type_attribute
 				ARG1))
 
 		(macro write_all_files_subj_type ((type ARG1))
@@ -133,26 +133,24 @@
 
 		(blockinherit cmd.cmd_obj_base_template)
 
-		(typeattribute list_subj_type_attribute)
-		(typeattribute manage_dirs_subj_type_attribute)
-		(typeattribute rw_dirs_subj_type_attribute)
-		(typeattribute relabel_dirs_subj_type_attribute)
-		(typeattribute search_subj_type_attribute)
-
-		(typeattribute manage_lnk_files_subj_type_attribute)
-		(typeattribute read_lnk_files_subj_type_attribute)
-		(typeattribute relabel_lnk_files_subj_type_attribute)
 
 		(typeattribute
 			dontaudit_audit_access_all_files_subj_type_attribute)
-
 		(typeattribute getattr_all_files_subj_type_attribute)
 		(typeattribute exec_all_subj_type_attribute)
+		(typeattribute list_subj_type_attribute)
 		(typeattribute manage_all_files_subj_type_attribute)
+		(typeattribute manage_dirs_subj_type_attribute)
+		(typeattribute manage_lnk_files_subj_type_attribute)
 		(typeattribute mmap_all_subj_type_attribute)
 		(typeattribute read_all_files_subj_type_attribute)
+		(typeattribute read_lnk_files_subj_type_attribute)
 		(typeattribute relabel_all_files_subj_type_attribute)
+		(typeattribute relabel_dirs_subj_type_attribute)
+		(typeattribute relabel_lnk_files_subj_type_attribute)
 		(typeattribute rw_all_files_subj_type_attribute)
+		(typeattribute rw_dirs_subj_type_attribute)
+		(typeattribute search_subj_type_attribute)
 		(typeattribute write_all_files_subj_type_attribute)
 
 		(call search_subj_type (getattr_all_files_subj_type_attribute))

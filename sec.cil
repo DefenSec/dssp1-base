@@ -72,7 +72,6 @@
 	(boolean load_policy true)
 
 	(typeattribute bool_obj_type_attribute)
-
 	(typeattribute compute_access_vector_subj_type_attribute)
 	(typeattribute compute_create_context_subj_type_attribute)
 	(typeattribute compute_relabel_context_subj_type_attribute)

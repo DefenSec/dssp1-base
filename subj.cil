@@ -16,11 +16,6 @@
 		(typeattributeset dontaudit_rlimitinh_all_subj_type_attribute
 			ARG1))
 
-	(macro dynamic_subj_type_transition_subj_type ((type ARG1))
-		(typeattributeset
-			dynamic_subj_type_transition_subj_type_attribute
-				ARG1))
-
 	(macro append_inherited_fifo_files_all_subj_type ((type ARG1))
 		(typeattributeset
 			append_inherited_fifo_files_all_subj_type_attribute
@@ -37,6 +32,11 @@
 	(macro create_keyring_all_subj_type ((type ARG1))
 		(typeattributeset create_keyring_all_subj_type_attribute
 			ARG1))
+
+	(macro dynamic_subj_type_transition_subj_type ((type ARG1))
+		(typeattributeset
+			dynamic_subj_type_transition_subj_type_attribute
+				ARG1))
 
 	(macro dyntransition_all_subj_type ((type ARG1))
 		(typeattributeset dyntransition_all_subj_type_attribute ARG1))
@@ -196,6 +196,7 @@
 		append_inherited_unix_stream_sockets_all_subj_type_attribute)
 	(typeattribute common_subj_type_attribute)
 	(typeattribute create_keyring_all_subj_type_attribute)
+	(typeattribute dynamic_subj_type_transition_subj_type_attribute)
 	(typeattribute dyntransition_all_subj_type_attribute)
 	(typeattribute execheap_subj_type_attribute)
 	(typeattribute execmem_subj_type_attribute)
@@ -204,9 +205,12 @@
 	(typeattribute getpgid_all_subj_type_attribute)
 	(typeattribute getsched_all_subj_type_attribute)
 	(typeattribute getsession_all_subj_type_attribute)
+	(typeattribute interactive_fd_subj_type_attribute)
 	(typeattribute link_keyring_all_subj_type_attribute)
 	(typeattribute mmap_low_subj_type_attribute)
 	(typeattribute noatsecure_all_subj_type_attribute)
+	(typeattribute
+		not_dynamic_subj_type_transition_subj_type_or_unconfined_subj_type_attribute)
 	(typeattribute
 		not_execheap_subj_type_or_unconfined_subj_type_attribute)
 	(typeattribute
@@ -215,6 +219,7 @@
 		not_execstack_subj_type_or_unconfined_subj_type_attribute)
 	(typeattribute
 		not_mmap_low_subj_type_attribute)
+	(typeattribute not_subj_type_attribute)
 	(typeattribute
 		not_sys_ptrace_subj_type_or_unconfined_subj_type_attribute)
 	(typeattribute ps_all_subj_type_attribute)
@@ -238,21 +243,13 @@
 	(typeattribute setsched_all_subj_type_attribute)
 	(typeattribute share_all_subj_type_attribute)
 	(typeattribute siginh_all_subj_type_attribute)
+	(typeattribute subj_type_attribute)
 	(typeattribute sys_ptrace_subj_type_attribute)
 	(typeattribute transition_all_subj_type_attribute)
 	(typeattribute unconfined_subj_type_attribute)
 	(typeattribute unix_dgram_socket_sendto_all_subj_type_attribute)
 	(typeattribute unix_stream_socket_connectto_all_subj_type_attribute)
 	(typeattribute use_fd_all_subj_type_attribute)
-
-	(typeattribute subj_type_attribute)
-	(typeattribute not_subj_type_attribute)
-
-	(typeattribute dynamic_subj_type_transition_subj_type_attribute)
-	(typeattribute
-		not_dynamic_subj_type_transition_subj_type_or_unconfined_subj_type_attribute)
-
-	(typeattribute interactive_fd_subj_type_attribute)
 	(typeattribute use_interactive_fd_subj_type_attribute)
 
 	(typeattributeset subj_type_attribute common_subj_type_attribute)
