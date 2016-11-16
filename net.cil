@@ -157,7 +157,7 @@
 		; ephemeral policy
 		;
 
-		(blockinherit net.ephemeral_port_obj_base_template)
+		(blockinherit net.ephemeral_port_obj_template)
 
 		(typeattribute dccp_bind_all_subj_type_attribute)
 		(typeattribute rawip_bind_all_subj_type_attribute)
@@ -227,7 +227,7 @@
 		; hi_reserved policy
 		;
 
-		(blockinherit net.hi_reserved_port_obj_base_template)
+		(blockinherit net.hi_reserved_port_obj_template)
 
 		(typeattribute dccp_bind_all_subj_type_attribute)
 		(typeattribute rawip_bind_all_subj_type_attribute)
@@ -459,7 +459,7 @@
 		; packet policy
 		;
 
-		(blockinherit net.packet_obj_base_template)
+		(blockinherit net.packet_obj_template)
 
 		(typeattribute send_all_subj_type_attribute)
 		(typeattribute recv_all_subj_type_attribute)
@@ -664,7 +664,7 @@
 		; reserved policy
 		;
 
-		(blockinherit net.reserved_port_obj_base_template)
+		(blockinherit net.reserved_port_obj_template)
 
 		(typeattribute dccp_bind_all_subj_type_attribute)
 		(typeattribute rawip_bind_all_subj_type_attribute)
@@ -756,7 +756,7 @@
 		; unreserved policy
 		;
 
-		(blockinherit net.unreserved_port_obj_base_template)
+		(blockinherit net.unreserved_port_obj_template)
 
 		(typeattribute dccp_bind_all_subj_type_attribute)
 		(typeattribute rawip_bind_all_subj_type_attribute)
@@ -806,14 +806,14 @@
 		(type ephemeral_port)
 		(call ephemeral_port_obj_type (ephemeral_port)))
 
-	(block ephemeral_port_obj_base_template
+	(block ephemeral_port_obj_template
 
 		;
-		; ephemeral_port_obj_base_template contexts
+		; ephemeral_port_obj_template contexts
 		;
 
 		;
-		; ephemeral_port_obj_base_template macros
+		; ephemeral_port_obj_template macros
 		;
 
 		(macro dccp_bind_subj_type ((type ARG1))
@@ -847,10 +847,10 @@
 				ARG1))
 
 		;
-		; ephemeral_port_obj_base_template policy
+		; ephemeral_port_obj_template policy
 		;
 
-		(blockabstract ephemeral_port_obj_base_template)
+		(blockabstract ephemeral_port_obj_template)
 
 		(blockinherit ephemeral_port_obj_stub)
 
@@ -892,14 +892,14 @@
 		(type hi_reserved_port)
 		(call hi_reserved_port_obj_type (hi_reserved_port)))
 
-	(block hi_reserved_port_obj_base_template
+	(block hi_reserved_port_obj_template
 
 		;
-		; hi_reserved_port_obj_base_template contexts
+		; hi_reserved_port_obj_template contexts
 		;
 
 		;
-		; hi_reserved_port_obj_base_template macros
+		; hi_reserved_port_obj_template macros
 		;
 
 		(macro dccp_bind_subj_type ((type ARG1))
@@ -937,10 +937,10 @@
 				ARG1))
 
 		;
-		; hi_reserved_port_obj_base_template policy
+		; hi_reserved_port_obj_template policy
 		;
 
-		(blockabstract hi_reserved_port_obj_base_template)
+		(blockabstract hi_reserved_port_obj_template)
 
 		(blockinherit hi_reserved_port_obj_stub)
 
@@ -986,14 +986,14 @@
 		(type if)
 		(call if_obj_type (if)))
 
-	(block if_obj_base_template
+	(block if_obj_template
 
 		;
-		; if_obj_base_template context
+		; if_obj_template context
 		;
 
 		;
-		; if_obj_base_template macros
+		; if_obj_template macros
 		;
 
 		(macro ingress_subj_type ((type ARG1))
@@ -1005,10 +1005,10 @@
 				ARG1))
 
 		;
-		; if_obj_base_template policy
+		; if_obj_template policy
 		;
 
-		(blockabstract if_obj_base_template)
+		(blockabstract if_obj_template)
 
 		(blockinherit if_obj_stub)
 
@@ -1036,14 +1036,14 @@
 		(type node)
 		(call node_obj_type (node)))
 
-	(block node_obj_base_template
+	(block node_obj_template
 
 		;
-		; node_obj_base_template contexts
+		; node_obj_template contexts
 		;
 
 		;
-		; node_obj_base_template macros
+		; node_obj_template macros
 		;
 
 		(macro dccp_bind_subj_type ((type ARG1))
@@ -1071,10 +1071,10 @@
 				ARG1))
 
 		;
-		; node_obj_base_template policy
+		; node_obj_template policy
 		;
 
-		(blockabstract node_obj_base_template)
+		(blockabstract node_obj_template)
 
 		(blockinherit node_obj_stub)
 
@@ -1116,14 +1116,14 @@
 		(type packet)
 		(call packet_obj_type (packet)))
 
-	(block packet_obj_base_template
+	(block packet_obj_template
 
 		;
-		; packet_obj_base_template contexts
+		; packet_obj_template contexts
 		;
 
 		;
-		; packet_obj_base_template macros
+		; packet_obj_template macros
 		;
 
 		(macro send_subj_type ((type ARG1))
@@ -1147,10 +1147,10 @@
 				ARG1))
 
 		;
-		; packet_obj_base_template policy
+		; packet_obj_template policy
 		;
 
-		(blockabstract packet_obj_base_template)
+		(blockabstract packet_obj_template)
 
 		(blockinherit packet_obj_stub)
 
@@ -1187,14 +1187,14 @@
 		(type peer)
 		(call peer_obj_type (peer)))
 
-	(block peer_obj_base_template
+	(block peer_obj_template
 
 		;
-		; peer_obj_base_template contexts
+		; peer_obj_template contexts
 		;
 
 		;
-		; peer_obj_base_template macros
+		; peer_obj_template macros
 		;
 
 		(macro recv_subj_type ((type ARG1))
@@ -1202,10 +1202,10 @@
 				ARG1))
 
 		;
-		; peer_obj_base_template policy
+		; peer_obj_template policy
 		;
 
-		(blockabstract peer_obj_base_template)
+		(blockabstract peer_obj_template)
 
 		(blockinherit peer_obj_stub)
 
@@ -1231,14 +1231,14 @@
 		(type reserved_port)
 		(call reserved_port_obj_type (reserved_port)))
 
-	(block reserved_port_obj_base_template
+	(block reserved_port_obj_template
 
 		;
-		; reserved_port_obj_base_template contexts
+		; reserved_port_obj_template contexts
 		;
 
 		;
-		; reserved_port_obj_base_template macros
+		; reserved_port_obj_template macros
 		;
 
 		(macro dccp_bind_subj_type ((type ARG1))
@@ -1276,10 +1276,10 @@
 				ARG1))
 
 		;
-		; reserved_port_obj_base_template policy
+		; reserved_port_obj_template policy
 		;
 
-		(blockabstract reserved_port_obj_base_template)
+		(blockabstract reserved_port_obj_template)
 
 		(blockinherit reserved_port_obj_stub)
 
@@ -1325,14 +1325,14 @@
 		(type unreserved_port)
 		(call unreserved_port_obj_type (unreserved_port)))
 
-	(block unreserved_port_obj_base_template
+	(block unreserved_port_obj_template
 
 		;
-		; unreserved_port_obj_base_template contexts
+		; unreserved_port_obj_template contexts
 		;
 
 		;
-		; unreserved_port_obj_base_template macros
+		; unreserved_port_obj_template macros
 		;
 
 		(macro dccp_bind_subj_type ((type ARG1))
@@ -1366,10 +1366,10 @@
 				ARG1))
 
 		;
-		; unreserved_port_obj_base_template policy
+		; unreserved_port_obj_template policy
 		;
 
-		(blockabstract unreserved_port_obj_base_template)
+		(blockabstract unreserved_port_obj_template)
 
 		(blockinherit unreserved_port_obj_stub)
 
