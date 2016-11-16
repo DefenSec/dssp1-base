@@ -188,25 +188,18 @@
 							rw_files_subj_type_attribute
 								write_files_subj_type_attribute))
 
-		(call manage_files_pattern
-			(manage_all_files_subj_type_attribute
-				lib_obj_type_attribute lib_obj_type_attribute))
-		(call mmap_files_pattern
-			(mmap_all_subj_type_attribute lib_obj_type_attribute
-				lib_obj_type_attribute))
-		(call read_files_pattern
-			(read_all_files_subj_type_attribute
-				lib_obj_type_attribute lib_obj_type_attribute))
-		(call relabel_files_pattern
-			(relabel_all_files_subj_type_attribute
-				lib_obj_type_attribute lib_obj_type_attribute))
-		(call rw_files_pattern
-			(rw_all_files_subj_type_attribute
-				lib_obj_type_attribute lib_obj_type_attribute))
-		(call write_files_pattern
-			(write_all_files_subj_type_attribute
-				lib_obj_type_attribute
-					lib_obj_type_attribute)))
+		(allow manage_all_files_subj_type_attribute
+			lib_obj_type_attribute manage_file_perms)
+		(allow mmap_all_subj_type_attribute
+			lib_obj_type_attribute mmap_file_perms)
+		(allow read_all_files_subj_type_attribute
+			lib_obj_type_attribute read_file_perms)
+		(allow relabel_all_files_subj_type_attribute
+			lib_obj_type_attribute relabel_file_perms)
+		(allow rw_all_files_subj_type_attribute
+			lib_obj_type_attribute rw_file_perms)
+		(allow write_all_files_subj_type_attribute
+			lib_obj_type_attribute write_file_perms))
 
 	(block textrel
 
@@ -406,18 +399,17 @@
 		(call fs.rootfs.read_lnk_files_subj_type
 			(write_files_subj_type_attribute))
 
-		(call manage_files_pattern
-			(manage_files_subj_type_attribute lib_file lib_file))
-		(call mmap_files_pattern
-			(mmap_subj_type_attribute lib_file lib_file))
-		(call read_files_pattern
-			(read_files_subj_type_attribute lib_file lib_file))
-		(call relabel_files_pattern
-			(relabel_files_subj_type_attribute lib_file lib_file))
-		(call rw_files_pattern
-			(rw_files_subj_type_attribute lib_file lib_file))
-		(call write_files_pattern
-			(write_files_subj_type_attribute lib_file lib_file)))
+		(allow manage_files_subj_type_attribute lib_file
+			manage_file_perms)
+		(allow mmap_subj_type_attribute lib_file mmap_file_perms)
+		(allow read_files_subj_type_attribute lib_file
+			read_file_perms)
+		(allow relabel_files_subj_type_attribute lib_file
+			relabel_file_perms)
+		(allow rw_files_subj_type_attribute lib_file
+			rw_file_perms)
+		(allow write_files_subj_type_attribute lib_file
+			write_file_perms))
 
 	(block lib_obj_template
 
