@@ -302,6 +302,9 @@
 		; security contexts
 		;
 
+		(genfscon "securityfs" "/" isid_context)
+		(genfscon "selinuxfs" "/" isid_context)
+
 		(sidcontext security isid_context)
 
 		;
