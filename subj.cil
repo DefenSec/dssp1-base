@@ -391,6 +391,7 @@
 
 	(allow common_subj_type_attribute self (process (fork sigchld signal
 		sigkill signull sigstop)))
+	(allow common_subj_type_attribute self rw_fifo_file_perms)
 
 	(call sys.meminfo.read_files_subj_type (common_subj_type_attribute))
 	(call sys.vm_overcommit.read_files_subj_type
