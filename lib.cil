@@ -116,12 +116,18 @@
 		(typeattribute search_subj_type_attribute)
 		(typeattribute write_all_files_subj_type_attribute)
 
-		(call search_subj_type (manage_all_files_subj_type_attribute))
-		(call search_subj_type (mmap_all_subj_type_attribute))
-		(call search_subj_type (read_all_files_subj_type_attribute))
-		(call search_subj_type (relabel_all_files_subj_type_attribute))
-		(call search_subj_type (rw_all_files_subj_type_attribute))
-		(call search_subj_type (write_all_files_subj_type_attribute))
+		(call read_lnk_files_subj_type
+			(manage_all_files_subj_type_attribute))
+		(call read_lnk_files_subj_type
+			(mmap_all_subj_type_attribute))
+		(call read_lnk_files_subj_type
+			(read_all_files_subj_type_attribute))
+		(call read_lnk_files_subj_type
+			(relabel_all_files_subj_type_attribute))
+		(call read_lnk_files_subj_type
+			(rw_all_files_subj_type_attribute))
+		(call read_lnk_files_subj_type
+			(write_all_files_subj_type_attribute))
 
 		(call file.data.search_subj_type (list_subj_type_attribute))
 		(call file.data.search_subj_type
@@ -173,6 +179,14 @@
 		(call relabel_lnk_files_pattern
 			(relabel_lnk_files_subj_type_attribute lib_file
 				lib_file))
+
+		(typeattributeset read_lnk_files_subj_type_attribute
+			(manage_files_subj_type_attribute
+				mmap_subj_type_attribute
+					read_files_subj_type_attribute
+						relabel_files_subj_type_attribute
+							rw_files_subj_type_attribute
+								write_files_subj_type_attribute))
 
 		(call manage_files_pattern
 			(manage_all_files_subj_type_attribute
@@ -252,9 +266,13 @@
 		(typeattribute use_subj_type_attribute)
 
 		(call lib.library.list_subj_type (exec_subj_type_attribute))
+		(call lib.library.read_lnk_files_subj_type
+			(exec_subj_type_attribute))
 		(allow exec_subj_type_attribute file exec_file_perms)
 
 		(call lib.library.list_subj_type (use_subj_type_attribute))
+		(call lib.library.read_lnk_files_subj_type
+			(use_subj_type_attribute))
 		(allow use_subj_type_attribute file mmap_file_perms)
 
 		(call lib.ld_so_cache.read_files_subj_type
@@ -272,6 +290,16 @@
 		;
 		; Macros
 		;
+
+		(macro config_obj_type_transition ((type ARG1))
+			(call file.config.obj_type_transition (ARG1 file
+				file "ld.so.cache"))
+			(call file.config.obj_type_transition (ARG1 file
+				file "ld.so.cache~"))
+			(call file.config.obj_type_transition (ARG1 file
+				file "ld.so.preload"))
+			(call file.config.obj_type_transition (ARG1 file
+				file "ld.so.preload~")))
 
 		;
 		; Policy
@@ -401,14 +429,15 @@
 
 		(blockinherit lib_obj_base_template)
 
-		(call lib.library.search_subj_type
+		(call lib.library.read_lnk_files_subj_type
 			(manage_files_subj_type_attribute))
-		(call lib.library.search_subj_type (mmap_subj_type_attribute))
-		(call lib.library.search_subj_type
+		(call lib.library.read_lnk_files_subj_type
+			(mmap_subj_type_attribute))
+		(call lib.library.read_lnk_files_subj_type
 			(read_files_subj_type_attribute))
-		(call lib.library.search_subj_type
+		(call lib.library.read_lnk_files_subj_type
 			(relabel_files_subj_type_attribute))
-		(call lib.library.search_subj_type
+		(call lib.library.read_lnk_files_subj_type
 			(rw_files_subj_type_attribute))
-		(call lib.library.search_subj_type
+		(call lib.library.read_lnk_files_subj_type
 			(write_files_subj_type_attribute))))

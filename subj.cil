@@ -406,10 +406,8 @@
 
 	(call fs.sysfs.search_subj_type (common_subj_type_attribute))
 
-	(optional common_subj_type_optional_lib
-		(call lib.ld_so.use_subj_type (common_subj_type_attribute))
-		(call lib.library.mmap_all_subj_type
-			(common_subj_type_attribute)))
+	(call lib.ld_so.use_subj_type (common_subj_type_attribute))
+	(call lib.library.mmap_subj_type (common_subj_type_attribute))
 
 	(typeattributeset not_subj_type_attribute (not subj_type_attribute))
 

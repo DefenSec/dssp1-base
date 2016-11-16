@@ -484,6 +484,9 @@
 	(call file.unknown.rootfs_obj_type_transition
 		(unconfined_subj_type_attribute))
 
+	(call lib.ld_so_cache.config_obj_type_transition
+		(unconfined_subj_type_attribute))
+
 	(block boot
 
 		;
