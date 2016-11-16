@@ -378,7 +378,10 @@
 
 		(typeattribute read_subj_type_attribute)
 
-		(call fs.sysfs.search_subj_type (getattr_subj_type_attribute))
+		(typeattributeset search_subj_type_attribute
+			(getattr_subj_type_attribute
+				mounton_files_subj_type_attribute))
+
 		(call fs.sysfs.search_subj_type (list_subj_type_attribute))
 		(call fs.sysfs.search_subj_type (search_subj_type_attribute))
 
@@ -387,8 +390,6 @@
 		(call fs.sysfs.search_subj_type
 			(read_lnk_files_subj_type_attribute))
 
-		(call fs.sysfs.search_subj_type
-			(mounton_files_subj_type_attribute))
 		(call fs.sysfs.search_subj_type
 			(read_files_subj_type_attribute))
 		(call fs.sysfs.search_subj_type
