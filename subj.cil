@@ -186,6 +186,8 @@
 	; Policy
 	;
 
+	(boolean mmap_low false)
+
 	(typeattribute dontaudit_noatsecure_all_subj_type_attribute)
 	(typeattribute dontaudit_siginh_all_subj_type_attribute)
 	(typeattribute dontaudit_rlimitinh_all_subj_type_attribute)
@@ -195,12 +197,26 @@
 	(typeattribute common_subj_type_attribute)
 	(typeattribute create_keyring_all_subj_type_attribute)
 	(typeattribute dyntransition_all_subj_type_attribute)
+	(typeattribute execheap_subj_type_attribute)
+	(typeattribute execmem_subj_type_attribute)
+	(typeattribute execstack_subj_type_attribute)
 	(typeattribute getattr_all_subj_type_attribute)
 	(typeattribute getpgid_all_subj_type_attribute)
 	(typeattribute getsched_all_subj_type_attribute)
 	(typeattribute getsession_all_subj_type_attribute)
 	(typeattribute link_keyring_all_subj_type_attribute)
+	(typeattribute mmap_low_subj_type_attribute)
 	(typeattribute noatsecure_all_subj_type_attribute)
+	(typeattribute
+		not_execheap_subj_type_or_unconfined_subj_type_attribute)
+	(typeattribute
+		not_execmem_subj_type_or_unconfined_subj_type_attribute)
+	(typeattribute
+		not_execstack_subj_type_or_unconfined_subj_type_attribute)
+	(typeattribute
+		not_mmap_low_subj_type_attribute)
+	(typeattribute
+		not_sys_ptrace_subj_type_or_unconfined_subj_type_attribute)
 	(typeattribute ps_all_subj_type_attribute)
 	(typeattribute ptrace_all_subj_type_attribute)
 	(typeattribute read_state_all_subj_type_attribute)
@@ -222,6 +238,7 @@
 	(typeattribute setsched_all_subj_type_attribute)
 	(typeattribute share_all_subj_type_attribute)
 	(typeattribute siginh_all_subj_type_attribute)
+	(typeattribute sys_ptrace_subj_type_attribute)
 	(typeattribute transition_all_subj_type_attribute)
 	(typeattribute unconfined_subj_type_attribute)
 	(typeattribute unix_dgram_socket_sendto_all_subj_type_attribute)
@@ -404,52 +421,38 @@
 
 	(typeattributeset
 		not_dynamic_subj_type_transition_subj_type_or_unconfined_subj_type_attribute
-			(and (common_subj_type_attribute) (not
-			(dynamic_subj_type_transition_subj_type_attribute
-				unconfined_subj_type_attribute))))
+			(not
+				(dynamic_subj_type_transition_subj_type_attribute
+					unconfined_subj_type_attribute)))
 
 	(neverallow
 		not_dynamic_subj_type_transition_subj_type_or_unconfined_subj_type_attribute
 			self (process (setcurrent)))
 
-	(typeattribute execheap_subj_type_attribute)
-	(typeattribute
-		not_execheap_subj_type_or_unconfined_subj_type_attribute)
-
 	(typeattributeset
 		not_execheap_subj_type_or_unconfined_subj_type_attribute
-		(and (subj_type_attribute) (not
-			(execheap_subj_type_attribute
-				unconfined_subj_type_attribute))))
+			(not (execheap_subj_type_attribute
+				unconfined_subj_type_attribute)))
 
 	(allow execheap_subj_type_attribute self (process (execheap)))
 
 	(neverallow not_execheap_subj_type_or_unconfined_subj_type_attribute
 		self (process (execheap)))
 
-	(typeattribute execmem_subj_type_attribute)
-	(typeattribute not_execmem_subj_type_or_unconfined_subj_type_attribute)
-
 	(typeattributeset
 		not_execmem_subj_type_or_unconfined_subj_type_attribute
-			(and (subj_type_attribute) (not
-				(execmem_subj_type_attribute
-					unconfined_subj_type_attribute))))
+			(not (execmem_subj_type_attribute
+				unconfined_subj_type_attribute)))
 
 	(allow execmem_subj_type_attribute self (process (execmem)))
 
 	(neverallow not_execmem_subj_type_or_unconfined_subj_type_attribute
 		self (process (execmem)))
 
-	(typeattribute execstack_subj_type_attribute)
-	(typeattribute
-		not_execstack_subj_type_or_unconfined_subj_type_attribute)
-
 	(typeattributeset
 		not_execstack_subj_type_or_unconfined_subj_type_attribute
-			(and (subj_type_attribute) (not
-				(execstack_subj_type_attribute
-					unconfined_subj_type_attribute))))
+			(not (execstack_subj_type_attribute
+				unconfined_subj_type_attribute)))
 
 	(allow execstack_subj_type_attribute self (process (execmem
 		execstack)))
@@ -457,30 +460,17 @@
 	(neverallow not_execstack_subj_type_or_unconfined_subj_type_attribute
 		self (process (execstack)))
 
-	(typeattribute mmap_low_subj_type_attribute)
-	(typeattribute
-		not_mmap_low_subj_type_or_unconfined_subj_type_attribute)
-
 	(typeattributeset
-		not_mmap_low_subj_type_or_unconfined_subj_type_attribute
-			(and (subj_type_attribute)
-				(not (mmap_low_subj_type_attribute
-					unconfined_subj_type_attribute))))
+		not_mmap_low_subj_type_attribute
+			(not (mmap_low_subj_type_attribute)))
 
-	(allow mmap_low_subj_type_attribute self (memprotect (mmap_zero)))
-
-	(neverallow not_mmap_low_subj_type_or_unconfined_subj_type_attribute
-		self (memprotect (mmap_zero)))
-
-	(typeattribute sys_ptrace_subj_type_attribute)
-	(typeattribute
-		not_sys_ptrace_subj_type_or_unconfined_subj_type_attribute)
+	(neverallow not_mmap_low_subj_type_attribute self (memprotect
+		(mmap_zero)))
 
 	(typeattributeset
 		not_sys_ptrace_subj_type_or_unconfined_subj_type_attribute
-			(and (subj_type_attribute) (not
-				(sys_ptrace_subj_type_attribute
-					unconfined_subj_type_attribute))))
+			(not (sys_ptrace_subj_type_attribute
+				unconfined_subj_type_attribute)))
 
 	(allow sys_ptrace_subj_type_attribute self (capability (sys_ptrace)))
 
@@ -651,6 +641,8 @@
 			lock relabelfrom relabelto append bind connect listen
 				accept getopt setopt shutdown recvfrom sendto
 					name_bind)))
+
+	(call mmap_low_subj_type (unconfined_subj_type_attribute))
 
 	(call obj_id_change_exemption_subj_type
 		(unconfined_subj_type_attribute))
@@ -987,4 +979,30 @@
 		(allow unix_stream_socket_connectto_subj_type_attribute
 			subj (unix_stream_socket (connectto)))
 
-		(allow use_fd_subj_type_attribute subj (fd (use)))))
+		(allow use_fd_subj_type_attribute subj (fd (use))))
+
+	(block mmap_low
+
+		;
+		; mmap_low contexts
+		;
+
+		(context mmap_low (sys.id sys.role
+			bool (systemlow systemlow)))
+
+		(genfscon "selinuxfs" "/booleans/subj.mmap_low"
+			mmap_low)
+
+		;
+		; mmap_low macros
+		;
+
+		;
+		; mmap_low policy
+		;
+
+		(blockinherit sec.bool_obj_template)
+
+		(booleanif (mmap_low) (true
+			(allow mmap_low_subj_type_attribute self
+				(memprotect (mmap_zero)))))))
