@@ -116,19 +116,6 @@
 		(typeattribute search_subj_type_attribute)
 		(typeattribute write_all_files_subj_type_attribute)
 
-		(call read_lnk_files_subj_type
-			(manage_all_files_subj_type_attribute))
-		(call read_lnk_files_subj_type
-			(mmap_all_subj_type_attribute))
-		(call read_lnk_files_subj_type
-			(read_all_files_subj_type_attribute))
-		(call read_lnk_files_subj_type
-			(relabel_all_files_subj_type_attribute))
-		(call read_lnk_files_subj_type
-			(rw_all_files_subj_type_attribute))
-		(call read_lnk_files_subj_type
-			(write_all_files_subj_type_attribute))
-
 		(call file.data.search_subj_type (list_subj_type_attribute))
 		(call file.data.search_subj_type
 			(manage_dirs_subj_type_attribute))
@@ -179,6 +166,14 @@
 		(call relabel_lnk_files_pattern
 			(relabel_lnk_files_subj_type_attribute lib_file
 				lib_file))
+
+		(typeattributeset read_lnk_files_subj_type_attribute
+			(manage_all_files_subj_type_attribute
+				mmap_all_subj_type_attribute
+					read_all_files_subj_type_attribute
+						relabel_all_files_subj_type_attribute
+							rw_all_files_subj_type_attribute
+								write_all_files_subj_type_attribute))
 
 		(typeattributeset read_lnk_files_subj_type_attribute
 			(manage_files_subj_type_attribute
