@@ -7,7 +7,7 @@
 	;
 
 	(macro dev_obj_type ((type ARG1))
-		(typeattributeset obj_type_attribute ARG1))
+		(typeattributeset dev_obj_type_attribute ARG1))
 
 	(macro stor_obj_type ((type ARG1))
 		(typeattributeset stor_obj_type_attribute ARG1))
@@ -63,7 +63,7 @@
 	; Policy
 	;
 
-	(typeattribute obj_type_attribute)
+	(typeattribute dev_obj_type_attribute)
 
 	(typeattribute stor_obj_type_attribute)
 
@@ -83,9 +83,9 @@
 
 	(typeattribute not_stor_pty_and_serial_obj_type_attribute)
 
-	(call sys.sys_obj_type (obj_type_attribute))
+	(call sys.sys_obj_type (dev_obj_type_attribute))
 
-	(call fs.devtmpfs.associate_obj_type (obj_type_attribute))
+	(call fs.devtmpfs.associate_obj_type (dev_obj_type_attribute))
 
 	(call dev.clock.devtmpfs_obj_type_transition
 		(unconfined_subj_type_attribute))
@@ -122,12 +122,12 @@
 	(call dev.zero.tmpfs_obj_type_transition
 		(unconfined_subj_type_attribute))
 
-	(typeattributeset obj_type_attribute (stor_obj_type_attribute
+	(typeattributeset dev_obj_type_attribute (stor_obj_type_attribute
 		(login_pty_obj_type_attribute pty_obj_type_attribute
 			serial_obj_type_attribute)))
 
 	(typeattributeset not_stor_pty_and_serial_obj_type_attribute
-		(and (obj_type_attribute)
+		(and (dev_obj_type_attribute)
 		(not (stor_obj_type_attribute login_pty_obj_type_attribute
 			pty_obj_type_attribute serial_obj_type_attribute))))
 
