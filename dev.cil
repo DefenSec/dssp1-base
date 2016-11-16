@@ -6,11 +6,16 @@
 	; Macros
 	;
 
+	(macro create_all_subj_type ((type ARG1))
+		(typeattributeset create_all_subj_type_attribute
+				ARG1))
+
 	(macro dev_obj_type ((type ARG1))
 		(typeattributeset dev_obj_type_attribute ARG1))
 
-	(macro stor_obj_type ((type ARG1))
-		(typeattributeset stor_obj_type_attribute ARG1))
+	(macro getattr_all_subj_type ((type ARG1))
+		(typeattributeset getattr_all_subj_type_attribute
+				ARG1))
 
 	(macro login_pty ((type ARG1)(type ARG2))
 		(typechange ARG1 login_pty_obj_type_attribute chr_file ARG2))
@@ -18,26 +23,19 @@
 	(macro login_pty_obj_type ((type ARG1))
 		(typeattributeset login_pty_obj_type_attribute ARG1))
 
-	(macro pty_obj_type ((type ARG1))
-		(typeattributeset pty_obj_type_attribute ARG1))
-
-	(macro serial_obj_type ((type ARG1))
-		(typeattributeset serial_obj_type_attribute ARG1))
-
-	(macro create_all_subj_type ((type ARG1))
-		(typeattributeset create_all_subj_type_attribute
-				ARG1))
-
-	(macro getattr_all_subj_type ((type ARG1))
-		(typeattributeset getattr_all_subj_type_attribute
-				ARG1))
-
 	(macro manage_all_subj_type ((type ARG1))
 		(typeattributeset manage_all_subj_type_attribute
 				ARG1))
 
+	(macro pty_obj_type ((type ARG1))
+		(typeattributeset pty_obj_type_attribute ARG1))
+
 	(macro read_all_subj_type ((type ARG1))
 		(typeattributeset read_all_subj_type_attribute
+			ARG1))
+
+	(macro read_memory_subj_type ((type ARG1))
+		(typeattributeset read_memory_subj_type_attribute
 			ARG1))
 
 	(macro relabel_all_subj_type ((type ARG1))
@@ -47,6 +45,12 @@
 	(macro rw_all_subj_type ((type ARG1))
 		(typeattributeset rw_all_subj_type_attribute
 			ARG1))
+
+	(macro serial_obj_type ((type ARG1))
+		(typeattributeset serial_obj_type_attribute ARG1))
+
+	(macro stor_obj_type ((type ARG1))
+		(typeattributeset stor_obj_type_attribute ARG1))
 
 	(macro setattr_all_subj_type ((type ARG1))
 		(typeattributeset setattr_all_subj_type_attribute
@@ -58,6 +62,10 @@
 
 	(macro write_all_subj_type ((type ARG1))
 		(typeattributeset write_all_subj_type_attribute
+			ARG1))
+
+	(macro write_memory_subj_type ((type ARG1))
+		(typeattributeset write_memory_subj_type_attribute
 			ARG1))
 	;
 	; Policy
@@ -74,18 +82,42 @@
 	(typeattribute create_all_subj_type_attribute)
 	(typeattribute getattr_all_subj_type_attribute)
 	(typeattribute manage_all_subj_type_attribute)
+	(typeattribute
+		not_read_memory_subj_type_or_unconfined_subj_type_attribute)
+	(typeattribute
+		not_write_memory_subj_type_or_unconfined_subj_type_attribute)
 	(typeattribute read_all_subj_type_attribute)
+	(typeattribute read_memory_subj_type_attribute)
 	(typeattribute relabel_all_subj_type_attribute)
 	(typeattribute rw_all_subj_type_attribute)
 	(typeattribute setattr_all_subj_type_attribute)
 	(typeattribute unconfined_subj_type_attribute)
 	(typeattribute write_all_subj_type_attribute)
+	(typeattribute write_memory_subj_type_attribute)
 
 	(typeattribute not_stor_pty_and_serial_obj_type_attribute)
 
 	(call sys.sys_obj_type (dev_obj_type_attribute))
 
 	(call fs.devtmpfs.associate_obj_type (dev_obj_type_attribute))
+
+	(typeattributeset
+		not_read_memory_subj_type_or_unconfined_subj_type_attribute
+			(not (read_memory_subj_type_attribute
+				unconfined_subj_type_attribute)))
+
+	(neverallow
+		not_read_memory_subj_type_or_unconfined_subj_type_attribute
+			dev.memory.dev (chr_file (read)))
+
+	(typeattributeset
+		not_write_memory_subj_type_or_unconfined_subj_type_attribute
+			(not (write_memory_subj_type_attribute
+				unconfined_subj_type_attribute)))
+
+	(neverallow
+		not_write_memory_subj_type_or_unconfined_subj_type_attribute
+			dev.memory.dev (chr_file (append write)))
 
 	(call dev.clock.devtmpfs_obj_type_transition
 		(unconfined_subj_type_attribute))
@@ -161,15 +193,15 @@
 		write_all_subj_type_attribute not_stor_pty_and_serial_obj_type_attribute
 			write_chr_file_perms)
 
-	(call dev.memory.read_memory_subj_type
+	(call read_memory_subj_type
 		(manage_all_subj_type_attribute))
-	(call dev.memory.read_memory_subj_type (read_all_subj_type_attribute))
-	(call dev.memory.read_memory_subj_type (rw_all_subj_type_attribute))
+	(call read_memory_subj_type (read_all_subj_type_attribute))
+	(call read_memory_subj_type (rw_all_subj_type_attribute))
 
-	(call dev.memory.write_memory_subj_type
+	(call write_memory_subj_type
 		(manage_all_subj_type_attribute))
-	(call dev.memory.write_memory_subj_type (rw_all_subj_type_attribute))
-	(call dev.memory.write_memory_subj_type
+	(call write_memory_subj_type (rw_all_subj_type_attribute))
+	(call write_memory_subj_type
 		(write_all_subj_type_attribute))
 
 	(allow unconfined_subj_type_attribute self (capability (sys_rawio)))
@@ -534,44 +566,11 @@
 		; memory macros
 		;
 
-		(macro read_memory_subj_type ((type ARG1))
-			(typeattributeset read_memory_subj_type_attribute
-				ARG1))
-
-		(macro write_memory_subj_type ((type ARG1))
-			(typeattributeset write_memory_subj_type_attribute
-				ARG1))
 		;
 		; memory policy
 		;
 
 		(blockinherit dev.dev_obj_base_template)
-
-		(typeattribute read_memory_subj_type_attribute)
-		(typeattribute
-			not_read_memory_subj_type_or_unconfined_subj_type_attribute)
-
-		(typeattribute write_memory_subj_type_attribute)
-		(typeattribute
-			not_write_memory_subj_type_or_unconfined_subj_type_attribute)
-
-		(typeattributeset
-			not_read_memory_subj_type_or_unconfined_subj_type_attribute
-				(not (read_memory_subj_type_attribute
-					unconfined_subj_type_attribute)))
-
-		(neverallow
-			not_read_memory_subj_type_or_unconfined_subj_type_attribute
-				dev (chr_file (read)))
-
-		(typeattributeset
-			not_write_memory_subj_type_or_unconfined_subj_type_attribute
-				(not (write_memory_subj_type_attribute
-					unconfined_subj_type_attribute)))
-
-		(neverallow
-			not_write_memory_subj_type_or_unconfined_subj_type_attribute
-				dev (chr_file (append write)))
 
 		(typeattributeset read_memory_subj_type_attribute
 			(manage_subj_type_attribute
