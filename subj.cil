@@ -717,6 +717,9 @@
 		(macro noatsecure_subj_type ((type ARG1))
 			(typeattributeset noatsecure_subj_type_attribute ARG1))
 
+		(macro parent_subj_type ((type ARG1))
+			(typeattributeset parent_subj_type_attribute ARG1))
+
 		(macro ps_subj_type ((type ARG1))
 			(typeattributeset ps_subj_type_attribute
 				ARG1))
@@ -832,6 +835,7 @@
 		(typeattribute getsession_subj_type_attribute)
 		(typeattribute link_keyring_subj_type_attribute)
 		(typeattribute noatsecure_subj_type_attribute)
+		(typeattribute parent_subj_type_attribute)
 		(typeattribute ps_subj_type_attribute)
 		(typeattribute ptrace_subj_type_attribute)
 		(typeattribute read_state_subj_type_attribute)
@@ -902,6 +906,10 @@
 
 		(allow noatsecure_subj_type_attribute subj (process
 			(noatsecure)))
+
+		(allow subj parent_subj_type_attribute (process (sigchld)))
+		(allow subj parent_subj_type_attribute (fd (use)))
+		(allow subj parent_subj_type_attribute rw_fifo_file_perms)
 
 		(call getattr_subj_type (ps_subj_type_attribute))
 		(call read_state_subj_type (ps_subj_type_attribute))

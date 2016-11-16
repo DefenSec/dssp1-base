@@ -33,10 +33,7 @@
 
 		(allow ARG1 self (process (setexec)))
 		(call send_signal_subj_type (ARG1))
-
-		(call use_fd_subj_type (ARG2))
-		(call rw_inherited_fifo_files_subj_type (ARG2))
-		(call send_sigchld_subj_type (ARG2)))
+		(call parent_subj_type (ARG1)))
 
 	;
 	; manual_subj_type_transition_pattern_template policy
@@ -94,10 +91,7 @@
 
 		(call base_auto_subj_type_transition_pattern (ARG1))
 		(call send_signal_subj_type (ARG1))
-
-		(call use_fd_subj_type (ARG2))
-		(call rw_inherited_fifo_files_subj_type (ARG2))
-		(call send_sigchld_subj_type (ARG2)))
+		(call parent_subj_type (ARG1)))
 
 	;
 	; auto_subj_type_transition_pattern_template policy
@@ -158,8 +152,7 @@
 
 		(call dyntransition_subj_type (ARG1))
 		(call send_signal_subj_type (ARG1))
-
-		(call send_sigchld_subj_type (ARG2)))
+		(call parent_subj_type (ARG1)))
 
 	;
 	; dynamic_subj_type_transition_pattern_template policy
