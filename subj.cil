@@ -383,15 +383,13 @@
 	(allow use_interactive_fd_subj_type_attribute
 		interactive_fd_subj_type_attribute (fd (use)))
 
-	(allow subj_type_attribute self rw_file_perms)
-	(allow subj_type_attribute self list_dir_perms)
-	(allow subj_type_attribute self read_lnk_file_perms)
-
-	(call fs.proc.read_lnk_files_subj_type (subj_type_attribute))
-
 	(allow common_subj_type_attribute self (process (fork sigchld signal
 		sigkill signull sigstop)))
 	(allow common_subj_type_attribute self rw_fifo_file_perms)
+
+	(allow common_subj_type_attribute self rw_file_perms)
+	(allow common_subj_type_attribute self list_dir_perms)
+	(allow common_subj_type_attribute self read_lnk_file_perms)
 
 	(call sys.meminfo.read_files_subj_type (common_subj_type_attribute))
 	(call sys.vm_overcommit.read_files_subj_type
@@ -404,6 +402,8 @@
 	(call dev.null.rw_subj_type (common_subj_type_attribute))
 	(call dev.zero.rw_subj_type (common_subj_type_attribute))
 
+	(call fs.proc.read_lnk_files_subj_type
+		(common_subj_type_attribute))
 	(call fs.sysfs.search_subj_type (common_subj_type_attribute))
 
 	(call lib.ld_so.use_subj_type (common_subj_type_attribute))
