@@ -133,7 +133,6 @@
 
 		(blockinherit cmd.cmd_obj_base_template)
 
-
 		(typeattribute
 			dontaudit_audit_access_all_files_subj_type_attribute)
 		(typeattribute getattr_all_files_subj_type_attribute)
