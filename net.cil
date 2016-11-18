@@ -57,13 +57,10 @@
 
 	(typeattributeset
 		port_obj_type_attribute ephemeral_port_obj_type_attribute)
-
 	(typeattributeset
 		port_obj_type_attribute reserved_port_obj_type_attribute)
-
 	(typeattributeset
 		port_obj_type_attribute unreserved_port_obj_type_attribute)
-
 	(typeattributeset
 		reserved_port_obj_type_attribute hi_reserved_port_obj_type_attribute)
 
@@ -73,18 +70,22 @@
 	(call sys.sys_obj_type (peer_obj_type_attribute))
 	(call sys.sys_obj_type (port_obj_type_attribute))
 
-	(allow unconfined_subj_type_attribute peer_obj_type_attribute
-		(peer (recv)))
-
-	(allow unconfined_subj_type_attribute node_obj_type_attribute (node
-		(recvfrom sendto)))
-
 	(allow unconfined_subj_type_attribute if_obj_type_attribute (netif
 		(ingress egress)))
-
+	(allow unconfined_subj_type_attribute node_obj_type_attribute
+		(dccp_socket (node_bind)))
+	(allow unconfined_subj_type_attribute node_obj_type_attribute
+		(rawip_socket (node_bind)))
+	(allow unconfined_subj_type_attribute node_obj_type_attribute (node
+		(recvfrom sendto)))
+	(allow unconfined_subj_type_attribute node_obj_type_attribute
+		(tcp_socket (node_bind)))
+	(allow unconfined_subj_type_attribute node_obj_type_attribute
+		(udp_socket (node_bind)))
 	(allow unconfined_subj_type_attribute packet_obj_type_attribute (packet
 		(send recv relabelto forward_in forward_out)))
-
+	(allow unconfined_subj_type_attribute peer_obj_type_attribute
+		(peer (recv)))
 	(allow unconfined_subj_type_attribute port_obj_type_attribute
 		(dccp_socket (name_bind name_connect)))
 	(allow unconfined_subj_type_attribute port_obj_type_attribute
@@ -94,14 +95,8 @@
 	(allow unconfined_subj_type_attribute port_obj_type_attribute
 		(udp_socket (name_bind)))
 
-	(allow unconfined_subj_type_attribute node_obj_type_attribute
-		(dccp_socket (node_bind)))
-	(allow unconfined_subj_type_attribute node_obj_type_attribute
-		(rawip_socket (node_bind)))
-	(allow unconfined_subj_type_attribute node_obj_type_attribute
-		(tcp_socket (node_bind)))
-	(allow unconfined_subj_type_attribute node_obj_type_attribute
-		(udp_socket (node_bind)))
+	(call sys.unlabeled.recv_peers_subj_type
+		(unconfined_subj_type_attribute))
 
 	(call sys.unlabeled.recvfrom_dccp_sockets_subj_type
 		(unconfined_subj_type_attribute))
@@ -110,9 +105,6 @@
 	(call sys.unlabeled.recvfrom_tcp_sockets_subj_type
 		(unconfined_subj_type_attribute))
 	(call sys.unlabeled.recvfrom_udp_sockets_subj_type
-		(unconfined_subj_type_attribute))
-
-	(call sys.unlabeled.recv_peers_subj_type
 		(unconfined_subj_type_attribute))
 
 	(block ephemeral
@@ -133,6 +125,10 @@
 			(typeattributeset dccp_bind_all_subj_type_attribute
 				ARG1))
 
+		(macro dccp_connect_all_subj_type ((type ARG1))
+			(typeattributeset dccp_connect_all_subj_type_attribute
+				ARG1))
+
 		(macro rawip_bind_all_subj_type ((type ARG1))
 			(typeattributeset rawip_bind_all_subj_type_attribute
 				ARG1))
@@ -141,16 +137,12 @@
 			(typeattributeset tcp_bind_all_subj_type_attribute
 				ARG1))
 
-		(macro udp_bind_all_subj_type ((type ARG1))
-			(typeattributeset udp_bind_all_subj_type_attribute
-				ARG1))
-
-		(macro dccp_connect_all_subj_type ((type ARG1))
-			(typeattributeset dccp_connect_all_subj_type_attribute
-				ARG1))
-
 		(macro tcp_connect_all_subj_type ((type ARG1))
 			(typeattributeset tcp_connect_all_subj_type_attribute
+				ARG1))
+
+		(macro udp_bind_all_subj_type ((type ARG1))
+			(typeattributeset udp_bind_all_subj_type_attribute
 				ARG1))
 
 		;
@@ -160,30 +152,30 @@
 		(blockinherit net.ephemeral_port_obj_template)
 
 		(typeattribute dccp_bind_all_subj_type_attribute)
+		(typeattribute dccp_connect_all_subj_type_attribute)
 		(typeattribute rawip_bind_all_subj_type_attribute)
 		(typeattribute tcp_bind_all_subj_type_attribute)
-		(typeattribute udp_bind_all_subj_type_attribute)
-		(typeattribute dccp_connect_all_subj_type_attribute)
 		(typeattribute tcp_connect_all_subj_type_attribute)
+		(typeattribute udp_bind_all_subj_type_attribute)
 
 		(allow dccp_bind_all_subj_type_attribute
 			ephemeral_port_obj_type_attribute (dccp_socket
 				(name_bind)))
+		(allow dccp_connect_all_subj_type_attribute
+			ephemeral_port_obj_type_attribute (dccp_socket
+				(name_connect)))
 		(allow rawip_bind_all_subj_type_attribute
 			ephemeral_port_obj_type_attribute (rawip_socket
 				(name_bind)))
 		(allow tcp_bind_all_subj_type_attribute
 			ephemeral_port_obj_type_attribute (tcp_socket
 				(name_bind)))
-		(allow udp_bind_all_subj_type_attribute
-			ephemeral_port_obj_type_attribute (udp_socket
-				(name_bind)))
-		(allow dccp_connect_all_subj_type_attribute
-			ephemeral_port_obj_type_attribute (dccp_socket
-				(name_connect)))
 		(allow tcp_connect_all_subj_type_attribute
 			ephemeral_port_obj_type_attribute (tcp_socket
-				(name_connect))))
+				(name_connect)))
+		(allow udp_bind_all_subj_type_attribute
+			ephemeral_port_obj_type_attribute (udp_socket
+				(name_bind))))
 
 	(block hi_reserved
 
@@ -203,6 +195,10 @@
 			(typeattributeset dccp_bind_all_subj_type_attribute
 				ARG1))
 
+		(macro dccp_connect_all_subj_type ((type ARG1))
+			(typeattributeset dccp_connect_all_subj_type_attribute
+				ARG1))
+
 		(macro rawip_bind_all_subj_type ((type ARG1))
 			(typeattributeset rawip_bind_all_subj_type_attribute
 				ARG1))
@@ -211,16 +207,12 @@
 			(typeattributeset tcp_bind_all_subj_type_attribute
 				ARG1))
 
-		(macro udp_bind_all_subj_type ((type ARG1))
-			(typeattributeset udp_bind_all_subj_type_attribute
-				ARG1))
-
-		(macro dccp_connect_all_subj_type ((type ARG1))
-			(typeattributeset dccp_connect_all_subj_type_attribute
-				ARG1))
-
 		(macro tcp_connect_all_subj_type ((type ARG1))
 			(typeattributeset tcp_connect_all_subj_type_attribute
+				ARG1))
+
+		(macro udp_bind_all_subj_type ((type ARG1))
+			(typeattributeset udp_bind_all_subj_type_attribute
 				ARG1))
 
 		;
@@ -230,42 +222,38 @@
 		(blockinherit net.hi_reserved_port_obj_template)
 
 		(typeattribute dccp_bind_all_subj_type_attribute)
+		(typeattribute dccp_connect_all_subj_type_attribute)
 		(typeattribute rawip_bind_all_subj_type_attribute)
 		(typeattribute tcp_bind_all_subj_type_attribute)
-		(typeattribute udp_bind_all_subj_type_attribute)
-		(typeattribute dccp_connect_all_subj_type_attribute)
 		(typeattribute tcp_connect_all_subj_type_attribute)
+		(typeattribute udp_bind_all_subj_type_attribute)
 
 		(allow dccp_bind_all_subj_type_attribute self (capability
 			(net_bind_service)))
 		(allow dccp_bind_all_subj_type_attribute
 			hi_reserved_port_obj_type_attribute (dccp_socket
 				(name_bind)))
-
+		(allow dccp_connect_all_subj_type_attribute
+			hi_reserved_port_obj_type_attribute (dccp_socket
+				(name_connect)))
 		(allow rawip_bind_all_subj_type_attribute self (capability
 			(net_bind_service)))
 		(allow rawip_bind_all_subj_type_attribute
 			hi_reserved_port_obj_type_attribute (rawip_socket
 				(name_bind)))
-
 		(allow tcp_bind_all_subj_type_attribute self (capability
 			(net_bind_service)))
 		(allow tcp_bind_all_subj_type_attribute
 			hi_reserved_port_obj_type_attribute (tcp_socket
 				(name_bind)))
-
+		(allow tcp_connect_all_subj_type_attribute
+			hi_reserved_port_obj_type_attribute (tcp_socket
+				(name_connect)))
 		(allow udp_bind_all_subj_type_attribute self
 			(capability (net_bind_service)))
 		(allow udp_bind_all_subj_type_attribute
 			hi_reserved_port_obj_type_attribute (udp_socket
-				(name_bind)))
-
-		(allow dccp_connect_all_subj_type_attribute
-			hi_reserved_port_obj_type_attribute (dccp_socket
-				(name_connect)))
-		(allow tcp_connect_all_subj_type_attribute
-			hi_reserved_port_obj_type_attribute (tcp_socket
-				(name_connect))))
+				(name_bind))))
 
 	(block if
 
@@ -279,8 +267,8 @@
 		; if macros
 		;
 
-		(macro ingress_subj_type ((type ARG1))
-			(typeattributeset ingress_subj_type_attribute
+		(macro egress_all_subj_type ((type ARG1))
+			(typeattributeset egress_all_subj_type_attribute
 				ARG1))
 
 		(macro egress_subj_type ((type ARG1))
@@ -291,8 +279,8 @@
 			(typeattributeset ingress_all_subj_type_attribute
 				ARG1))
 
-		(macro egress_all_subj_type ((type ARG1))
-			(typeattributeset egress_all_subj_type_attribute
+		(macro ingress_subj_type ((type ARG1))
+			(typeattributeset ingress_subj_type_attribute
 				ARG1))
 
 		;
@@ -303,19 +291,17 @@
 
 		(call net.if_obj_type (isid))
 
-		(typeattribute ingress_subj_type_attribute)
-		(typeattribute egress_subj_type_attribute)
-
-		(typeattribute ingress_all_subj_type_attribute)
 		(typeattribute egress_all_subj_type_attribute)
+		(typeattribute egress_subj_type_attribute)
+		(typeattribute ingress_all_subj_type_attribute)
+		(typeattribute ingress_subj_type_attribute)
 
-		(allow ingress_subj_type_attribute isid (netif (ingress)))
+		(allow egress_all_subj_type_attribute if_obj_type_attribute
+			(netif (egress)))
 		(allow egress_subj_type_attribute isid (netif (egress)))
-
 		(allow ingress_all_subj_type_attribute if_obj_type_attribute
 			(netif (ingress)))
-		(allow egress_all_subj_type_attribute if_obj_type_attribute
-			(netif (egress))))
+		(allow ingress_subj_type_attribute isid (netif (ingress))))
 
 	(block node
 
@@ -329,52 +315,53 @@
 		; node macros
 		;
 
-		(macro dccp_bind_subj_type ((type ARG1))
-			(typeattributeset dccp_bind_subj_type_attribute
-				ARG1))
-
-		(macro rawip_bind_subj_type ((type ARG1))
-			(typeattributeset rawip_bind_subj_type_attribute
-				ARG1))
-
-		(macro tcp_bind_subj_type ((type ARG1))
-			(typeattributeset tcp_bind_subj_type_attribute
-				ARG1))
-
-		(macro udp_bind_subj_type ((type ARG1))
-			(typeattributeset udp_bind_subj_type_attribute
-				ARG1))
-
-		(macro recvfrom_subj_type ((type ARG1))
-			(typeattributeset recvfrom_subj_type_attribute
-				ARG1))
-
-		(macro sendto_subj_type ((type ARG1))
-			(typeattributeset sendto_subj_type_attribute
-				ARG1))
 
 		(macro dccp_bind_all_subj_type ((type ARG1))
 			(typeattributeset dccp_bind_all_subj_type_attribute
+				ARG1))
+
+		(macro dccp_bind_subj_type ((type ARG1))
+			(typeattributeset dccp_bind_subj_type_attribute
 				ARG1))
 
 		(macro rawip_bind_all_subj_type ((type ARG1))
 			(typeattributeset rawip_bind_all_subj_type_attribute
 				ARG1))
 
-		(macro tcp_bind_all_subj_type ((type ARG1))
-			(typeattributeset tcp_bind_all_subj_type_attribute
-				ARG1))
-
-		(macro udp_bind_all_subj_type ((type ARG1))
-			(typeattributeset udp_bind_all_subj_type_attribute
+		(macro rawip_bind_subj_type ((type ARG1))
+			(typeattributeset rawip_bind_subj_type_attribute
 				ARG1))
 
 		(macro recvfrom_all_subj_type ((type ARG1))
 			(typeattributeset recvfrom_all_subj_type_attribute
 				ARG1))
 
+		(macro recvfrom_subj_type ((type ARG1))
+			(typeattributeset recvfrom_subj_type_attribute
+				ARG1))
+
 		(macro sendto_all_subj_type ((type ARG1))
 			(typeattributeset sendto_all_subj_type_attribute
+				ARG1))
+
+		(macro sendto_subj_type ((type ARG1))
+			(typeattributeset sendto_subj_type_attribute
+				ARG1))
+
+		(macro tcp_bind_all_subj_type ((type ARG1))
+			(typeattributeset tcp_bind_all_subj_type_attribute
+				ARG1))
+
+		(macro tcp_bind_subj_type ((type ARG1))
+			(typeattributeset tcp_bind_subj_type_attribute
+				ARG1))
+
+		(macro udp_bind_all_subj_type ((type ARG1))
+			(typeattributeset udp_bind_all_subj_type_attribute
+				ARG1))
+
+		(macro udp_bind_subj_type ((type ARG1))
+			(typeattributeset udp_bind_subj_type_attribute
 				ARG1))
 
 		;
@@ -385,45 +372,41 @@
 
 		(call net.node_obj_type (isid))
 
-		(typeattribute dccp_bind_subj_type_attribute)
-		(typeattribute rawip_bind_subj_type_attribute)
-		(typeattribute tcp_bind_subj_type_attribute)
-		(typeattribute udp_bind_subj_type_attribute)
-		(typeattribute recvfrom_subj_type_attribute)
-		(typeattribute sendto_subj_type_attribute)
-
 		(typeattribute dccp_bind_all_subj_type_attribute)
+		(typeattribute dccp_bind_subj_type_attribute)
 		(typeattribute rawip_bind_all_subj_type_attribute)
-		(typeattribute tcp_bind_all_subj_type_attribute)
-		(typeattribute udp_bind_all_subj_type_attribute)
+		(typeattribute rawip_bind_subj_type_attribute)
 		(typeattribute recvfrom_all_subj_type_attribute)
+		(typeattribute recvfrom_subj_type_attribute)
 		(typeattribute sendto_all_subj_type_attribute)
-
-		(allow dccp_bind_subj_type_attribute isid (dccp_socket
-			(node_bind)))
-		(allow rawip_bind_subj_type_attribute isid (rawip_socket
-			(node_bind)))
-		(allow tcp_bind_subj_type_attribute isid (tcp_socket
-			(node_bind)))
-		(allow udp_bind_subj_type_attribute isid (udp_socket
-			(node_bind)))
-
-		(allow recvfrom_subj_type_attribute isid (node (recvfrom)))
-		(allow sendto_subj_type_attribute isid (node (sendto)))
+		(typeattribute sendto_subj_type_attribute)
+		(typeattribute tcp_bind_all_subj_type_attribute)
+		(typeattribute tcp_bind_subj_type_attribute)
+		(typeattribute udp_bind_all_subj_type_attribute)
+		(typeattribute udp_bind_subj_type_attribute)
 
 		(allow dccp_bind_all_subj_type_attribute
 			node_obj_type_attribute (dccp_socket (node_bind)))
+		(allow dccp_bind_subj_type_attribute isid (dccp_socket
+			(node_bind)))
 		(allow rawip_bind_all_subj_type_attribute
 			node_obj_type_attribute (rawip_socket (node_bind)))
-		(allow tcp_bind_all_subj_type_attribute
-			node_obj_type_attribute (tcp_socket (node_bind)))
-		(allow udp_bind_all_subj_type_attribute
-			node_obj_type_attribute (udp_socket (node_bind)))
-
+		(allow rawip_bind_subj_type_attribute isid (rawip_socket
+			(node_bind)))
 		(allow recvfrom_all_subj_type_attribute
 			node_obj_type_attribute (node (recvfrom)))
+		(allow recvfrom_subj_type_attribute isid (node (recvfrom)))
 		(allow sendto_all_subj_type_attribute node_obj_type_attribute
-			(node (sendto))))
+			(node (sendto)))
+		(allow sendto_subj_type_attribute isid (node (sendto)))
+		(allow tcp_bind_all_subj_type_attribute
+			node_obj_type_attribute (tcp_socket (node_bind)))
+		(allow tcp_bind_subj_type_attribute isid (tcp_socket
+			(node_bind)))
+		(allow udp_bind_all_subj_type_attribute
+			node_obj_type_attribute (udp_socket (node_bind)))
+		(allow udp_bind_subj_type_attribute isid (udp_socket
+			(node_bind))))
 
 	(block packet
 
@@ -435,8 +418,12 @@
 		; packet macros
 		;
 
-		(macro send_all_subj_type ((type ARG1))
-			(typeattributeset send_all_subj_type_attribute
+		(macro forward_in_all_subj_type ((type ARG1))
+			(typeattributeset forward_in_all_subj_type_attribute
+				ARG1))
+
+		(macro forward_out_all_subj_type ((type ARG1))
+			(typeattributeset forward_out_all_subj_type_attribute
 				ARG1))
 
 		(macro recv_all_subj_type ((type ARG1))
@@ -447,12 +434,8 @@
 			(typeattributeset relabelto_all_subj_type_attribute
 				ARG1))
 
-		(macro forward_in_all_subj_type ((type ARG1))
-			(typeattributeset forward_in_all_subj_type_attribute
-				ARG1))
-
-		(macro forward_out_all_subj_type ((type ARG1))
-			(typeattributeset forward_out_all_subj_type_attribute
+		(macro send_all_subj_type ((type ARG1))
+			(typeattributeset send_all_subj_type_attribute
 				ARG1))
 
 		;
@@ -461,22 +444,22 @@
 
 		(blockinherit net.packet_obj_template)
 
-		(typeattribute send_all_subj_type_attribute)
-		(typeattribute recv_all_subj_type_attribute)
-		(typeattribute relabelto_all_subj_type_attribute)
 		(typeattribute forward_in_all_subj_type_attribute)
 		(typeattribute forward_out_all_subj_type_attribute)
+		(typeattribute recv_all_subj_type_attribute)
+		(typeattribute relabelto_all_subj_type_attribute)
+		(typeattribute send_all_subj_type_attribute)
 
-		(allow send_all_subj_type_attribute
-			packet_obj_type_attribute (packet (send)))
+		(allow forward_in_all_subj_type_attribute
+			packet_obj_type_attribute (packet (forward_in)))
+		(allow forward_out_all_subj_type_attribute
+			packet_obj_type_attribute (packet (forward_out)))
 		(allow recv_all_subj_type_attribute
 			packet_obj_type_attribute (packet (recv)))
 		(allow relabelto_all_subj_type_attribute
 			packet_obj_type_attribute (packet (relabelto)))
-		(allow forward_in_all_subj_type_attribute
-			packet_obj_type_attribute (packet (forward_in)))
-		(allow forward_out_all_subj_type_attribute
-			packet_obj_type_attribute (packet (forward_out))))
+		(allow send_all_subj_type_attribute
+			packet_obj_type_attribute (packet (send))))
 
 	(block peer
 
@@ -490,12 +473,12 @@
 		; peer macros
 		;
 
-		(macro recv_subj_type ((type ARG1))
-			(typeattributeset recv_subj_type_attribute
-				ARG1))
-
 		(macro recv_all_subj_type ((type ARG1))
 			(typeattributeset recv_all_subj_type_attribute
+				ARG1))
+
+		(macro recv_subj_type ((type ARG1))
+			(typeattributeset recv_subj_type_attribute
 				ARG1))
 
 		;
@@ -506,13 +489,12 @@
 
 		(call net.peer_obj_type (isid))
 
-		(typeattribute recv_subj_type_attribute)
 		(typeattribute recv_all_subj_type_attribute)
-
-		(allow recv_subj_type_attribute isid (peer (recv)))
+		(typeattribute recv_subj_type_attribute)
 
 		(allow recv_all_subj_type_attribute peer_obj_type_attribute
-			(peer (recv))))
+			(peer (recv)))
+		(allow recv_subj_type_attribute isid (peer (recv))))
 
 	(block port
 
@@ -526,52 +508,52 @@
 		; port macros
 		;
 
-		(macro dccp_bind_subj_type ((type ARG1))
-			(typeattributeset dccp_bind_subj_type_attribute
-				ARG1))
-
-		(macro rawip_bind_subj_type ((type ARG1))
-			(typeattributeset rawip_bind_subj_type_attribute
-				ARG1))
-
-		(macro tcp_bind_subj_type ((type ARG1))
-			(typeattributeset tcp_bind_subj_type_attribute
-				ARG1))
-
-		(macro udp_bind_subj_type ((type ARG1))
-			(typeattributeset udp_bind_subj_type_attribute
-				ARG1))
-
-		(macro dccp_connect_subj_type ((type ARG1))
-			(typeattributeset dccp_connect_subj_type_attribute
-				ARG1))
-
-		(macro tcp_connect_subj_type ((type ARG1))
-			(typeattributeset tcp_connect_subj_type_attribute
-				ARG1))
-
 		(macro dccp_bind_all_subj_type ((type ARG1))
 			(typeattributeset dccp_bind_all_subj_type_attribute
 				ARG1))
 
-		(macro rawip_bind_all_subj_type ((type ARG1))
-			(typeattributeset rawip_bind_all_subj_type_attribute
-				ARG1))
-
-		(macro tcp_bind_all_subj_type ((type ARG1))
-			(typeattributeset tcp_bind_all_subj_type_attribute
-				ARG1))
-
-		(macro udp_bind_all_subj_type ((type ARG1))
-			(typeattributeset udp_bind_all_subj_type_attribute
+		(macro dccp_bind_subj_type ((type ARG1))
+			(typeattributeset dccp_bind_subj_type_attribute
 				ARG1))
 
 		(macro dccp_connect_all_subj_type ((type ARG1))
 			(typeattributeset dccp_connect_all_subj_type_attribute
 				ARG1))
 
+		(macro dccp_connect_subj_type ((type ARG1))
+			(typeattributeset dccp_connect_subj_type_attribute
+				ARG1))
+
+		(macro rawip_bind_all_subj_type ((type ARG1))
+			(typeattributeset rawip_bind_all_subj_type_attribute
+				ARG1))
+
+		(macro rawip_bind_subj_type ((type ARG1))
+			(typeattributeset rawip_bind_subj_type_attribute
+				ARG1))
+
+		(macro tcp_bind_all_subj_type ((type ARG1))
+			(typeattributeset tcp_bind_all_subj_type_attribute
+				ARG1))
+
+		(macro tcp_bind_subj_type ((type ARG1))
+			(typeattributeset tcp_bind_subj_type_attribute
+				ARG1))
+
 		(macro tcp_connect_all_subj_type ((type ARG1))
 			(typeattributeset tcp_connect_all_subj_type_attribute
+				ARG1))
+
+		(macro tcp_connect_subj_type ((type ARG1))
+			(typeattributeset tcp_connect_subj_type_attribute
+				ARG1))
+
+		(macro udp_bind_all_subj_type ((type ARG1))
+			(typeattributeset udp_bind_all_subj_type_attribute
+				ARG1))
+
+		(macro udp_bind_subj_type ((type ARG1))
+			(typeattributeset udp_bind_subj_type_attribute
 				ARG1))
 
 		;
@@ -582,45 +564,43 @@
 
 		(call net.port_obj_type (isid))
 
-		(typeattribute dccp_bind_subj_type_attribute)
-		(typeattribute rawip_bind_subj_type_attribute)
-		(typeattribute tcp_bind_subj_type_attribute)
-		(typeattribute udp_bind_subj_type_attribute)
-		(typeattribute dccp_connect_subj_type_attribute)
-		(typeattribute tcp_connect_subj_type_attribute)
-
 		(typeattribute dccp_bind_all_subj_type_attribute)
-		(typeattribute rawip_bind_all_subj_type_attribute)
-		(typeattribute tcp_bind_all_subj_type_attribute)
-		(typeattribute udp_bind_all_subj_type_attribute)
+		(typeattribute dccp_bind_subj_type_attribute)
 		(typeattribute dccp_connect_all_subj_type_attribute)
+		(typeattribute dccp_connect_subj_type_attribute)
+		(typeattribute rawip_bind_all_subj_type_attribute)
+		(typeattribute rawip_bind_subj_type_attribute)
+		(typeattribute tcp_bind_all_subj_type_attribute)
+		(typeattribute tcp_bind_subj_type_attribute)
 		(typeattribute tcp_connect_all_subj_type_attribute)
-
-		(allow dccp_bind_subj_type_attribute isid (dccp_socket
-			(name_bind)))
-		(allow rawip_bind_subj_type_attribute isid (rawip_socket
-			(name_bind)))
-		(allow tcp_bind_subj_type_attribute isid (tcp_socket
-			(name_bind)))
-		(allow udp_bind_subj_type_attribute isid (udp_socket
-			(name_bind)))
-		(allow dccp_connect_subj_type_attribute isid (dccp_socket
-			(name_connect)))
-		(allow tcp_connect_subj_type_attribute isid (tcp_socket
-			(name_connect)))
+		(typeattribute tcp_connect_subj_type_attribute)
+		(typeattribute udp_bind_all_subj_type_attribute)
+		(typeattribute udp_bind_subj_type_attribute)
 
 		(allow dccp_bind_all_subj_type_attribute
 			port_obj_type_attribute (dccp_socket (name_bind)))
-		(allow rawip_bind_all_subj_type_attribute
-			port_obj_type_attribute (rawip_socket (name_bind)))
-		(allow tcp_bind_all_subj_type_attribute
-			port_obj_type_attribute (tcp_socket (name_bind)))
-		(allow udp_bind_all_subj_type_attribute
-			port_obj_type_attribute (udp_socket (name_bind)))
+		(allow dccp_bind_subj_type_attribute isid (dccp_socket
+			(name_bind)))
 		(allow dccp_connect_all_subj_type_attribute
 			port_obj_type_attribute (dccp_socket (name_connect)))
+		(allow dccp_connect_subj_type_attribute isid (dccp_socket
+			(name_connect)))
+		(allow rawip_bind_all_subj_type_attribute
+			port_obj_type_attribute (rawip_socket (name_bind)))
+		(allow rawip_bind_subj_type_attribute isid (rawip_socket
+			(name_bind)))
+		(allow tcp_bind_all_subj_type_attribute
+			port_obj_type_attribute (tcp_socket (name_bind)))
+		(allow tcp_bind_subj_type_attribute isid (tcp_socket
+			(name_bind)))
 		(allow tcp_connect_all_subj_type_attribute
-			port_obj_type_attribute (tcp_socket (name_connect))))
+			port_obj_type_attribute (tcp_socket (name_connect)))
+		(allow tcp_connect_subj_type_attribute isid (tcp_socket
+			(name_connect)))
+		(allow udp_bind_all_subj_type_attribute
+			port_obj_type_attribute (udp_socket (name_bind)))
+		(allow udp_bind_subj_type_attribute isid (udp_socket
+			(name_bind))))
 
 	(block reserved
 
@@ -640,6 +620,10 @@
 			(typeattributeset dccp_bind_all_subj_type_attribute
 				ARG1))
 
+		(macro dccp_connect_all_subj_type ((type ARG1))
+			(typeattributeset dccp_connect_all_subj_type_attribute
+				ARG1))
+
 		(macro rawip_bind_all_subj_type ((type ARG1))
 			(typeattributeset rawip_bind_all_subj_type_attribute
 				ARG1))
@@ -648,16 +632,12 @@
 			(typeattributeset tcp_bind_all_subj_type_attribute
 				ARG1))
 
-		(macro udp_bind_all_subj_type ((type ARG1))
-			(typeattributeset udp_bind_all_subj_type_attribute
-				ARG1))
-
-		(macro dccp_connect_all_subj_type ((type ARG1))
-			(typeattributeset dccp_connect_all_subj_type_attribute
-				ARG1))
-
 		(macro tcp_connect_all_subj_type ((type ARG1))
 			(typeattributeset tcp_connect_all_subj_type_attribute
+				ARG1))
+
+		(macro udp_bind_all_subj_type ((type ARG1))
+			(typeattributeset udp_bind_all_subj_type_attribute
 				ARG1))
 
 		;
@@ -667,42 +647,38 @@
 		(blockinherit net.reserved_port_obj_template)
 
 		(typeattribute dccp_bind_all_subj_type_attribute)
+		(typeattribute dccp_connect_all_subj_type_attribute)
 		(typeattribute rawip_bind_all_subj_type_attribute)
 		(typeattribute tcp_bind_all_subj_type_attribute)
-		(typeattribute udp_bind_all_subj_type_attribute)
-		(typeattribute dccp_connect_all_subj_type_attribute)
 		(typeattribute tcp_connect_all_subj_type_attribute)
+		(typeattribute udp_bind_all_subj_type_attribute)
 
 		(allow dccp_bind_all_subj_type_attribute self (capability
 			(net_bind_service)))
 		(allow dccp_bind_all_subj_type_attribute
 			reserved_port_obj_type_attribute (dccp_socket
 				(name_bind)))
-
+		(allow dccp_connect_all_subj_type_attribute
+			reserved_port_obj_type_attribute (dccp_socket
+				(name_connect)))
 		(allow rawip_bind_all_subj_type_attribute self (capability
 			(net_bind_service)))
 		(allow rawip_bind_all_subj_type_attribute
 			reserved_port_obj_type_attribute (rawip_socket
 				(name_bind)))
-
 		(allow tcp_bind_all_subj_type_attribute self (capability
 			(net_bind_service)))
 		(allow tcp_bind_all_subj_type_attribute
 			reserved_port_obj_type_attribute (tcp_socket
 				(name_bind)))
-
+		(allow tcp_connect_all_subj_type_attribute
+			reserved_port_obj_type_attribute (tcp_socket
+				(name_connect)))
 		(allow udp_bind_all_subj_type_attribute self (capability
 			(net_bind_service)))
 		(allow udp_bind_all_subj_type_attribute
 			reserved_port_obj_type_attribute (udp_socket
-				(name_bind)))
-
-		(allow dccp_connect_all_subj_type_attribute
-			reserved_port_obj_type_attribute (dccp_socket
-				(name_connect)))
-		(allow tcp_connect_all_subj_type_attribute
-			reserved_port_obj_type_attribute (tcp_socket
-				(name_connect))))
+				(name_bind))))
 
 	(block unreserved
 
@@ -727,6 +703,11 @@
 			(typeattributeset dccp_bind_all_subj_type_attribute
 				ARG1))
 
+		(macro dccp_connect_all_subj_type ((type ARG1))
+			(allow ARG1 self create_dccp_socket_perms)
+			(typeattributeset dccp_connect_all_subj_type_attribute
+				ARG1))
+
 		(macro rawip_bind_all_subj_type ((type ARG1))
 			(allow ARG1 self create_rawip_socket_perms)
 			(typeattributeset rawip_bind_all_subj_type_attribute
@@ -737,19 +718,14 @@
 			(typeattributeset tcp_bind_all_subj_type_attribute
 				ARG1))
 
-		(macro udp_bind_all_subj_type ((type ARG1))
-			(allow ARG1 self create_udp_socket_perms)
-			(typeattributeset udp_bind_all_subj_type_attribute
-				ARG1))
-
-		(macro dccp_connect_all_subj_type ((type ARG1))
-			(allow ARG1 self create_dccp_socket_perms)
-			(typeattributeset dccp_connect_all_subj_type_attribute
-				ARG1))
-
 		(macro tcp_connect_all_subj_type ((type ARG1))
 			(allow ARG1 self create_tcp_socket_perms)
 			(typeattributeset tcp_connect_all_subj_type_attribute
+				ARG1))
+
+		(macro udp_bind_all_subj_type ((type ARG1))
+			(allow ARG1 self create_udp_socket_perms)
+			(typeattributeset udp_bind_all_subj_type_attribute
 				ARG1))
 
 		;
@@ -759,30 +735,30 @@
 		(blockinherit net.unreserved_port_obj_template)
 
 		(typeattribute dccp_bind_all_subj_type_attribute)
+		(typeattribute dccp_connect_all_subj_type_attribute)
 		(typeattribute rawip_bind_all_subj_type_attribute)
 		(typeattribute tcp_bind_all_subj_type_attribute)
-		(typeattribute udp_bind_all_subj_type_attribute)
-		(typeattribute dccp_connect_all_subj_type_attribute)
 		(typeattribute tcp_connect_all_subj_type_attribute)
+		(typeattribute udp_bind_all_subj_type_attribute)
 
 		(allow dccp_bind_all_subj_type_attribute
 			unreserved_port_obj_type_attribute (dccp_socket
 				(name_bind)))
+		(allow dccp_connect_all_subj_type_attribute
+			unreserved_port_obj_type_attribute (dccp_socket
+				(name_connect)))
 		(allow rawip_bind_all_subj_type_attribute
 			unreserved_port_obj_type_attribute (rawip_socket
 				(name_bind)))
 		(allow tcp_bind_all_subj_type_attribute
 			unreserved_port_obj_type_attribute (tcp_socket
 				(name_bind)))
-		(allow udp_bind_all_subj_type_attribute
-			unreserved_port_obj_type_attribute (udp_socket
-				(name_bind)))
-		(allow dccp_connect_all_subj_type_attribute
-			unreserved_port_obj_type_attribute (dccp_socket
-				(name_connect)))
 		(allow tcp_connect_all_subj_type_attribute
 			unreserved_port_obj_type_attribute (tcp_socket
-				(name_connect))))
+				(name_connect)))
+		(allow udp_bind_all_subj_type_attribute
+			unreserved_port_obj_type_attribute (udp_socket
+				(name_bind))))
 
 	;
 	; Templates
@@ -821,6 +797,11 @@
 			(typeattributeset dccp_bind_subj_type_attribute
 				ARG1))
 
+		(macro dccp_connect_subj_type ((type ARG1))
+			(allow ARG1 self create_dccp_socket_perms)
+			(typeattributeset dccp_connect_subj_type_attribute
+				ARG1))
+
 		(macro rawip_bind_subj_type ((type ARG1))
 			(allow ARG1 self create_rawip_socket_perms)
 			(typeattributeset rawip_bind_subj_type_attribute
@@ -831,19 +812,14 @@
 			(typeattributeset tcp_bind_subj_type_attribute
 				ARG1))
 
-		(macro udp_bind_subj_type ((type ARG1))
-			(allow ARG1 self create_udp_socket_perms)
-			(typeattributeset udp_bind_subj_type_attribute
-				ARG1))
-
-		(macro dccp_connect_subj_type ((type ARG1))
-			(allow ARG1 self create_dccp_socket_perms)
-			(typeattributeset dccp_connect_subj_type_attribute
-				ARG1))
-
 		(macro tcp_connect_subj_type ((type ARG1))
 			(allow ARG1 self create_tcp_socket_perms)
 			(typeattributeset tcp_connect_subj_type_attribute
+				ARG1))
+
+		(macro udp_bind_subj_type ((type ARG1))
+			(allow ARG1 self create_udp_socket_perms)
+			(typeattributeset udp_bind_subj_type_attribute
 				ARG1))
 
 		;
@@ -855,24 +831,24 @@
 		(blockinherit ephemeral_port_obj_stub)
 
 		(typeattribute dccp_bind_subj_type_attribute)
+		(typeattribute dccp_connect_subj_type_attribute)
 		(typeattribute rawip_bind_subj_type_attribute)
 		(typeattribute tcp_bind_subj_type_attribute)
-		(typeattribute udp_bind_subj_type_attribute)
-		(typeattribute dccp_connect_subj_type_attribute)
 		(typeattribute tcp_connect_subj_type_attribute)
+		(typeattribute udp_bind_subj_type_attribute)
 
 		(allow dccp_bind_subj_type_attribute ephemeral_port
 			(dccp_socket (name_bind)))
+		(allow dccp_connect_subj_type_attribute ephemeral_port
+			(dccp_socket (name_connect)))
 		(allow rawip_bind_subj_type_attribute ephemeral_port
 			(rawip_socket (name_bind)))
 		(allow tcp_bind_subj_type_attribute ephemeral_port
 			(tcp_socket (name_bind)))
-		(allow udp_bind_subj_type_attribute ephemeral_port
-			(udp_socket (name_bind)))
-		(allow dccp_connect_subj_type_attribute ephemeral_port
-			(dccp_socket (name_connect)))
 		(allow tcp_connect_subj_type_attribute ephemeral_port
-			(tcp_socket (name_connect))))
+			(tcp_socket (name_connect)))
+		(allow udp_bind_subj_type_attribute ephemeral_port
+			(udp_socket (name_bind))))
 
 	(block hi_reserved_port_obj_stub
 
@@ -908,6 +884,11 @@
 			(typeattributeset dccp_bind_subj_type_attribute
 				ARG1))
 
+		(macro dccp_connect_subj_type ((type ARG1))
+			(allow ARG1 self create_dccp_socket_perms)
+			(typeattributeset dccp_connect_subj_type_attribute
+				ARG1))
+
 		(macro rawip_bind_subj_type ((type ARG1))
 			(allow ARG1 self (capability (net_bind_service)))
 			(allow ARG1 self create_rawip_socket_perms)
@@ -920,20 +901,15 @@
 			(typeattributeset tcp_bind_subj_type_attribute
 				ARG1))
 
+		(macro tcp_connect_subj_type ((type ARG1))
+			(allow ARG1 self create_tcp_socket_perms)
+			(typeattributeset tcp_connect_subj_type_attribute
+				ARG1))
+
 		(macro udp_bind_subj_type ((type ARG1))
 			(allow ARG1 self (capability (net_bind_service)))
 			(allow ARG1 self create_udp_socket_perms)
 			(typeattributeset udp_bind_subj_type_attribute
-				ARG1))
-
-		(macro dccp_connect_subj_type ((type ARG1))
-			(allow ARG1 self create_dccp_socket_perms)
-			(typeattributeset dccp_connect_subj_type_attribute
-				ARG1))
-
-		(macro tcp_connect_subj_type ((type ARG1))
-			(allow ARG1 self create_tcp_socket_perms)
-			(typeattributeset tcp_connect_subj_type_attribute
 				ARG1))
 
 		;
@@ -945,28 +921,24 @@
 		(blockinherit hi_reserved_port_obj_stub)
 
 		(typeattribute dccp_bind_subj_type_attribute)
+		(typeattribute dccp_connect_subj_type_attribute)
 		(typeattribute rawip_bind_subj_type_attribute)
 		(typeattribute tcp_bind_subj_type_attribute)
-		(typeattribute udp_bind_subj_type_attribute)
-		(typeattribute dccp_connect_subj_type_attribute)
 		(typeattribute tcp_connect_subj_type_attribute)
+		(typeattribute udp_bind_subj_type_attribute)
 
 		(allow dccp_bind_subj_type_attribute hi_reserved_port
 			(dccp_socket (name_bind)))
-
-		(allow rawip_bind_subj_type_attribute hi_reserved_port
-			(rawip_socket (name_bind)))
-
-		(allow tcp_bind_subj_type_attribute hi_reserved_port
-			(tcp_socket (name_bind)))
-
-		(allow udp_bind_subj_type_attribute hi_reserved_port
-			(udp_socket (name_bind)))
-
 		(allow dccp_connect_subj_type_attribute hi_reserved_port
 			(dccp_socket (name_connect)))
+		(allow rawip_bind_subj_type_attribute hi_reserved_port
+			(rawip_socket (name_bind)))
+		(allow tcp_bind_subj_type_attribute hi_reserved_port
+			(tcp_socket (name_bind)))
 		(allow tcp_connect_subj_type_attribute hi_reserved_port
-			(tcp_socket (name_connect))))
+			(tcp_socket (name_connect)))
+		(allow udp_bind_subj_type_attribute hi_reserved_port
+			(udp_socket (name_bind))))
 
 	(block if_obj_stub
 
@@ -996,12 +968,12 @@
 		; if_obj_template macros
 		;
 
-		(macro ingress_subj_type ((type ARG1))
-			(typeattributeset ingress_subj_type_attribute
-				ARG1))
-
 		(macro egress_subj_type ((type ARG1))
 			(typeattributeset egress_subj_type_attribute
+				ARG1))
+
+		(macro ingress_subj_type ((type ARG1))
+			(typeattributeset ingress_subj_type_attribute
 				ARG1))
 
 		;
@@ -1012,11 +984,11 @@
 
 		(blockinherit if_obj_stub)
 
-		(typeattribute ingress_subj_type_attribute)
 		(typeattribute egress_subj_type_attribute)
+		(typeattribute ingress_subj_type_attribute)
 
-		(allow ingress_subj_type_attribute if (netif (ingress)))
-		(allow egress_subj_type_attribute if (netif (egress))))
+		(allow egress_subj_type_attribute if (netif (egress)))
+		(allow ingress_subj_type_attribute if (netif (ingress))))
 
 	(block node_obj_stub
 
@@ -1054,20 +1026,20 @@
 			(typeattributeset rawip_bind_subj_type_attribute
 				ARG1))
 
-		(macro tcp_bind_subj_type ((type ARG1))
-			(typeattributeset tcp_bind_subj_type_attribute
-				ARG1))
-
-		(macro udp_bind_subj_type ((type ARG1))
-			(typeattributeset udp_bind_subj_type_attribute
-				ARG1))
-
 		(macro recvfrom_subj_type ((type ARG1))
 			(typeattributeset recvfrom_subj_type_attribute
 				ARG1))
 
 		(macro sendto_subj_type ((type ARG1))
 			(typeattributeset sendto_subj_type_attribute
+				ARG1))
+
+		(macro tcp_bind_subj_type ((type ARG1))
+			(typeattributeset tcp_bind_subj_type_attribute
+				ARG1))
+
+		(macro udp_bind_subj_type ((type ARG1))
+			(typeattributeset udp_bind_subj_type_attribute
 				ARG1))
 
 		;
@@ -1080,23 +1052,21 @@
 
 		(typeattribute dccp_bind_subj_type_attribute)
 		(typeattribute rawip_bind_subj_type_attribute)
-		(typeattribute tcp_bind_subj_type_attribute)
-		(typeattribute udp_bind_subj_type_attribute)
-
 		(typeattribute recvfrom_subj_type_attribute)
 		(typeattribute sendto_subj_type_attribute)
+		(typeattribute tcp_bind_subj_type_attribute)
+		(typeattribute udp_bind_subj_type_attribute)
 
 		(allow dccp_bind_subj_type_attribute node (dccp_socket
 			(node_bind)))
 		(allow rawip_bind_subj_type_attribute node (rawip_socket
 			(node_bind)))
+		(allow recvfrom_subj_type_attribute node (node (recvfrom)))
+		(allow sendto_subj_type_attribute node (node (sendto)))
 		(allow tcp_bind_subj_type_attribute node (tcp_socket
 			(node_bind)))
 		(allow udp_bind_subj_type_attribute node (udp_socket
-			(node_bind)))
-
-		(allow recvfrom_subj_type_attribute node (node (recvfrom)))
-		(allow sendto_subj_type_attribute node (node (sendto))))
+			(node_bind))))
 
 	(block packet_obj_stub
 
@@ -1126,6 +1096,14 @@
 		; packet_obj_template macros
 		;
 
+		(macro forward_in_subj_type ((type ARG1))
+			(typeattributeset forward_in_subj_type_attribute
+				ARG1))
+
+		(macro forward_out_subj_type ((type ARG1))
+			(typeattributeset forward_out_subj_type_attribute
+				ARG1))
+
 		(macro send_subj_type ((type ARG1))
 			(typeattributeset send_subj_type_attribute
 				ARG1))
@@ -1138,14 +1116,6 @@
 			(typeattributeset relabelto_subj_type_attribute
 				ARG1))
 
-		(macro forward_in_subj_type ((type ARG1))
-			(typeattributeset forward_in_subj_type_attribute
-				ARG1))
-
-		(macro forward_out_subj_type ((type ARG1))
-			(typeattributeset forward_out_subj_type_attribute
-				ARG1))
-
 		;
 		; packet_obj_template policy
 		;
@@ -1154,11 +1124,11 @@
 
 		(blockinherit packet_obj_stub)
 
+		(typeattribute forward_in_subj_type_attribute)
+		(typeattribute forward_out_subj_type_attribute)
 		(typeattribute send_subj_type_attribute)
 		(typeattribute recv_subj_type_attribute)
 		(typeattribute relabelto_subj_type_attribute)
-		(typeattribute forward_in_subj_type_attribute)
-		(typeattribute forward_out_subj_type_attribute)
 
 		(allow send_subj_type_attribute packet (packet (send)))
 		(allow recv_subj_type_attribute packet (packet (recv)))
@@ -1247,6 +1217,11 @@
 			(typeattributeset dccp_bind_subj_type_attribute
 				ARG1))
 
+		(macro dccp_connect_subj_type ((type ARG1))
+			(allow ARG1 self create_dccp_socket_perms)
+			(typeattributeset dccp_connect_subj_type_attribute
+				ARG1))
+
 		(macro rawip_bind_subj_type ((type ARG1))
 			(allow ARG1 self (capability (net_bind_service)))
 			(allow ARG1 self create_rawip_socket_perms)
@@ -1259,20 +1234,15 @@
 			(typeattributeset tcp_bind_subj_type_attribute
 				ARG1))
 
+		(macro tcp_connect_subj_type ((type ARG1))
+			(allow ARG1 self create_tcp_socket_perms)
+			(typeattributeset tcp_connect_subj_type_attribute
+				ARG1))
+
 		(macro udp_bind_subj_type ((type ARG1))
 			(allow ARG1 self (capability (net_bind_service)))
 			(allow ARG1 self create_udp_socket_perms)
 			(typeattributeset udp_bind_subj_type_attribute
-				ARG1))
-
-		(macro dccp_connect_subj_type ((type ARG1))
-			(allow ARG1 self create_dccp_socket_perms)
-			(typeattributeset dccp_connect_subj_type_attribute
-				ARG1))
-
-		(macro tcp_connect_subj_type ((type ARG1))
-			(allow ARG1 self create_tcp_socket_perms)
-			(typeattributeset tcp_connect_subj_type_attribute
 				ARG1))
 
 		;
@@ -1284,28 +1254,24 @@
 		(blockinherit reserved_port_obj_stub)
 
 		(typeattribute dccp_bind_subj_type_attribute)
+		(typeattribute dccp_connect_subj_type_attribute)
 		(typeattribute rawip_bind_subj_type_attribute)
 		(typeattribute tcp_bind_subj_type_attribute)
-		(typeattribute udp_bind_subj_type_attribute)
-		(typeattribute dccp_connect_subj_type_attribute)
 		(typeattribute tcp_connect_subj_type_attribute)
+		(typeattribute udp_bind_subj_type_attribute)
 
 		(allow dccp_bind_subj_type_attribute reserved_port
 			(dccp_socket (name_bind)))
-
-		(allow rawip_bind_subj_type_attribute reserved_port
-			(rawip_socket (name_bind)))
-
-		(allow tcp_bind_subj_type_attribute reserved_port
-			(tcp_socket (name_bind)))
-
-		(allow udp_bind_subj_type_attribute reserved_port
-			(udp_socket (name_bind)))
-
 		(allow dccp_connect_subj_type_attribute reserved_port
 			(dccp_socket (name_connect)))
+		(allow rawip_bind_subj_type_attribute reserved_port
+			(rawip_socket (name_bind)))
+		(allow tcp_bind_subj_type_attribute reserved_port
+			(tcp_socket (name_bind)))
 		(allow tcp_connect_subj_type_attribute reserved_port
-			(tcp_socket (name_connect))))
+			(tcp_socket (name_connect)))
+		(allow udp_bind_subj_type_attribute reserved_port
+			(udp_socket (name_bind))))
 
 	(block unreserved_port_obj_stub
 
@@ -1340,6 +1306,11 @@
 			(typeattributeset dccp_bind_subj_type_attribute
 				ARG1))
 
+		(macro dccp_connect_subj_type ((type ARG1))
+			(allow ARG1 self create_dccp_socket_perms)
+			(typeattributeset dccp_connect_subj_type_attribute
+				ARG1))
+
 		(macro rawip_bind_subj_type ((type ARG1))
 			(allow ARG1 self create_rawip_socket_perms)
 			(typeattributeset rawip_bind_subj_type_attribute
@@ -1350,19 +1321,14 @@
 			(typeattributeset tcp_bind_subj_type_attribute
 				ARG1))
 
-		(macro udp_bind_subj_type ((type ARG1))
-			(allow ARG1 self create_udp_socket_perms)
-			(typeattributeset udp_bind_subj_type_attribute
-				ARG1))
-
-		(macro dccp_connect_subj_type ((type ARG1))
-			(allow ARG1 self create_dccp_socket_perms)
-			(typeattributeset dccp_connect_subj_type_attribute
-				ARG1))
-
 		(macro tcp_connect_subj_type ((type ARG1))
 			(allow ARG1 self create_tcp_socket_perms)
 			(typeattributeset tcp_connect_subj_type_attribute
+				ARG1))
+
+		(macro udp_bind_subj_type ((type ARG1))
+			(allow ARG1 self create_udp_socket_perms)
+			(typeattributeset udp_bind_subj_type_attribute
 				ARG1))
 
 		;
@@ -1374,21 +1340,21 @@
 		(blockinherit unreserved_port_obj_stub)
 
 		(typeattribute dccp_bind_subj_type_attribute)
+		(typeattribute dccp_connect_subj_type_attribute)
 		(typeattribute rawip_bind_subj_type_attribute)
 		(typeattribute tcp_bind_subj_type_attribute)
-		(typeattribute udp_bind_subj_type_attribute)
-		(typeattribute dccp_connect_subj_type_attribute)
 		(typeattribute tcp_connect_subj_type_attribute)
+		(typeattribute udp_bind_subj_type_attribute)
 
 		(allow dccp_bind_subj_type_attribute unreserved_port
 			(dccp_socket (name_bind)))
+		(allow dccp_connect_subj_type_attribute unreserved_port
+			(dccp_socket (name_connect)))
 		(allow rawip_bind_subj_type_attribute unreserved_port
 			(rawip_socket (name_bind)))
 		(allow tcp_bind_subj_type_attribute unreserved_port (tcp_socket
 			(name_bind)))
-		(allow udp_bind_subj_type_attribute unreserved_port
-			(udp_socket (name_bind)))
-		(allow dccp_connect_subj_type_attribute unreserved_port
-			(dccp_socket (name_connect)))
 		(allow tcp_connect_subj_type_attribute unreserved_port
-			(tcp_socket (name_connect)))))
+			(tcp_socket (name_connect)))
+		(allow udp_bind_subj_type_attribute unreserved_port
+			(udp_socket (name_bind)))))
