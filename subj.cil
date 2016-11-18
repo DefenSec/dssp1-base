@@ -189,8 +189,8 @@
 	(boolean mmap_low false)
 
 	(typeattribute dontaudit_noatsecure_all_subj_type_attribute)
-	(typeattribute dontaudit_siginh_all_subj_type_attribute)
 	(typeattribute dontaudit_rlimitinh_all_subj_type_attribute)
+	(typeattribute dontaudit_siginh_all_subj_type_attribute)
 	(typeattribute append_inherited_fifo_files_all_subj_type_attribute)
 	(typeattribute
 		append_inherited_unix_stream_sockets_all_subj_type_attribute)
@@ -256,12 +256,10 @@
 
 	(dontaudit dontaudit_noatsecure_all_subj_type_attribute
 		common_subj_type_attribute (process (noatsecure)))
-
-	(dontaudit dontaudit_siginh_all_subj_type_attribute
-		common_subj_type_attribute (process (siginh)))
-
 	(dontaudit dontaudit_rlimitinh_all_subj_type_attribute
 		common_subj_type_attribute (process (rlimitinh)))
+	(dontaudit dontaudit_siginh_all_subj_type_attribute
+		common_subj_type_attribute (process (siginh)))
 
 	(typeattributeset use_fd_all_subj_type_attribute
 		append_inherited_fifo_files_all_subj_type_attribute)
@@ -822,8 +820,8 @@
 		(call common_subj_type (subj))
 
 		(typeattribute dontaudit_noatsecure_subj_type_attribute)
-		(typeattribute dontaudit_siginh_subj_type_attribute)
 		(typeattribute dontaudit_rlimitinh_subj_type_attribute)
+		(typeattribute dontaudit_siginh_subj_type_attribute)
 		(typeattribute append_inherited_fifo_files_subj_type_attribute)
 		(typeattribute
 			append_inherited_unix_stream_sockets_subj_type_attribute)
@@ -865,12 +863,10 @@
 
 		(dontaudit dontaudit_noatsecure_subj_type_attribute subj
 			(process (noatsecure)))
-
-		(dontaudit dontaudit_siginh_subj_type_attribute subj
-			(process (siginh)))
-
 		(dontaudit dontaudit_rlimitinh_subj_type_attribute subj
 			(process (rlimitinh)))
+		(dontaudit dontaudit_siginh_subj_type_attribute subj
+			(process (siginh)))
 
 		(typeattributeset use_fd_subj_type_attribute
 			append_inherited_fifo_files_subj_type_attribute)
