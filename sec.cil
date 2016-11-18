@@ -318,18 +318,9 @@
 			(typeattributeset list_subj_type_attribute
 				ARG1))
 
-		(macro search_subj_type ((type ARG1))
-			(typeattributeset search_subj_type_attribute
-				ARG1))
-
 		(macro manage_lnk_files_subj_type ((type ARG1))
 			(typeattributeset
 				manage_lnk_files_subj_type_attribute
-					ARG1))
-
-		(macro read_lnk_files_subj_type ((type ARG1))
-			(typeattributeset
-				read_lnk_files_subj_type_attribute
 					ARG1))
 
 		(macro mounton_files_subj_type ((type ARG1))
@@ -340,17 +331,25 @@
 			(typeattributeset read_files_subj_type_attribute
 				ARG1))
 
+		(macro read_lnk_files_subj_type ((type ARG1))
+			(typeattributeset
+				read_lnk_files_subj_type_attribute
+					ARG1))
+
+		(macro read_subj_type ((type ARG1))
+			(typeattributeset read_subj_type_attribute
+				ARG1))
 
 		(macro rw_files_subj_type ((type ARG1))
 			(typeattributeset rw_files_subj_type_attribute
 				ARG1))
 
-		(macro write_files_subj_type ((type ARG1))
-			(typeattributeset write_files_subj_type_attribute
+		(macro search_subj_type ((type ARG1))
+			(typeattributeset search_subj_type_attribute
 				ARG1))
 
-		(macro read_subj_type ((type ARG1))
-			(typeattributeset read_subj_type_attribute
+		(macro write_files_subj_type ((type ARG1))
+			(typeattributeset write_files_subj_type_attribute
 				ARG1))
 
 		;
@@ -364,36 +363,30 @@
 		(call sec.bool_obj_type (isid))
 
 		(typeattribute getattr_subj_type_attribute)
-
 		(typeattribute list_subj_type_attribute)
-		(typeattribute search_subj_type_attribute)
-
 		(typeattribute manage_lnk_files_subj_type_attribute)
-		(typeattribute read_lnk_files_subj_type_attribute)
-
 		(typeattribute mounton_files_subj_type_attribute)
 		(typeattribute read_files_subj_type_attribute)
-		(typeattribute rw_files_subj_type_attribute)
-		(typeattribute write_files_subj_type_attribute)
-
+		(typeattribute read_lnk_files_subj_type_attribute)
 		(typeattribute read_subj_type_attribute)
+		(typeattribute rw_files_subj_type_attribute)
+		(typeattribute search_subj_type_attribute)
+		(typeattribute write_files_subj_type_attribute)
 
 		(typeattributeset search_subj_type_attribute
 			(getattr_subj_type_attribute
 				mounton_files_subj_type_attribute))
 
 		(call fs.sysfs.search_subj_type (list_subj_type_attribute))
-		(call fs.sysfs.search_subj_type (search_subj_type_attribute))
-
 		(call fs.sysfs.search_subj_type
 			(manage_lnk_files_subj_type_attribute))
 		(call fs.sysfs.search_subj_type
-			(read_lnk_files_subj_type_attribute))
-
-		(call fs.sysfs.search_subj_type
 			(read_files_subj_type_attribute))
 		(call fs.sysfs.search_subj_type
+			(read_lnk_files_subj_type_attribute))
+		(call fs.sysfs.search_subj_type
 			(rw_files_subj_type_attribute))
+		(call fs.sysfs.search_subj_type (search_subj_type_attribute))
 		(call fs.sysfs.search_subj_type
 			(write_files_subj_type_attribute))
 
@@ -401,19 +394,17 @@
 			(getattr)))
 
 		(allow list_subj_type_attribute isid list_dir_perms)
-		(allow search_subj_type_attribute isid search_dir_perms)
-
 		(call manage_lnk_files_pattern
 			(manage_lnk_files_subj_type_attribute isid isid))
-		(call read_lnk_files_pattern
-			(read_lnk_files_subj_type_attribute isid isid))
-
 		(allow mounton_files_subj_type_attribute isid
 			(file (mounton)))
 		(call read_files_pattern
 			(read_files_subj_type_attribute isid isid))
+		(call read_lnk_files_pattern
+			(read_lnk_files_subj_type_attribute isid isid))
 		(call rw_files_pattern
 			(rw_files_subj_type_attribute isid isid))
+		(allow search_subj_type_attribute isid search_dir_perms)
 		(call write_files_pattern
 			(write_files_subj_type_attribute isid isid))
 
