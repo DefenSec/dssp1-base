@@ -123,11 +123,6 @@
 		; tty macros
 		;
 
-		(macro login_tty ((type ARG1)(type ARG2))
-			(typechange ARG1 serial_dev chr_file ARG2)
-			(booleanif term.console_login (true (typechange ARG1
-			term.console.dev chr_file ARG2))))
-
 		(macro devtmpfs_obj_type_transition ((type ARG1))
 			(call fs.devtmpfs.obj_type_transition (ARG1 serial_dev
 				chr_file "vcs"))
@@ -161,6 +156,11 @@
 				chr_file "vcsa6"))
 			(call fs.devtmpfs.obj_type_transition (ARG1 serial_dev
 				chr_file "vcsa63")))
+
+		(macro login_tty ((type ARG1)(type ARG2))
+			(typechange ARG1 serial_dev chr_file ARG2)
+			(booleanif term.console_login (true (typechange ARG1
+			term.console.dev chr_file ARG2))))
 
 		;
 		; tty policy

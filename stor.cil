@@ -129,15 +129,12 @@
 	(call read_fixed_disk_subj_type (manage_all_subj_type_attribute))
 	(call read_fixed_disk_subj_type (read_all_subj_type_attribute))
 	(call read_fixed_disk_subj_type (rw_all_subj_type_attribute))
-
-	(call write_fixed_disk_subj_type (manage_all_subj_type_attribute))
-	(call write_fixed_disk_subj_type (rw_all_subj_type_attribute))
-	(call write_fixed_disk_subj_type (write_all_subj_type_attribute))
-
 	(call read_scsi_generic_subj_type (manage_all_subj_type_attribute))
 	(call read_scsi_generic_subj_type (read_all_subj_type_attribute))
 	(call read_scsi_generic_subj_type (rw_all_subj_type_attribute))
-
+	(call write_fixed_disk_subj_type (manage_all_subj_type_attribute))
+	(call write_fixed_disk_subj_type (rw_all_subj_type_attribute))
+	(call write_fixed_disk_subj_type (write_all_subj_type_attribute))
 	(call write_scsi_generic_subj_type (manage_all_subj_type_attribute))
 	(call write_scsi_generic_subj_type (rw_all_subj_type_attribute))
 	(call write_scsi_generic_subj_type (write_all_subj_type_attribute))
