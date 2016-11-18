@@ -160,10 +160,10 @@
 		(call file.data.search_subj_type
 			(read_lnk_files_subj_type_attribute))
 		(call file.data.search_subj_type
+			(relabel_dirs_subj_type_attribute))
+		(call file.data.search_subj_type
 			(relabel_lnk_files_subj_type_attribute))
 		(call file.data.search_subj_type (rw_dirs_subj_type_attribute))
-		(call file.data.search_subj_type
-			(relabel_dirs_subj_type_attribute))
 		(call file.data.search_subj_type (search_subj_type_attribute))
 
 		(call fs.rootfs.read_lnk_files_subj_type
@@ -175,11 +175,11 @@
 		(call fs.rootfs.read_lnk_files_subj_type
 			(read_lnk_files_subj_type_attribute))
 		(call fs.rootfs.read_lnk_files_subj_type
+			(relabel_dirs_subj_type_attribute))
+		(call fs.rootfs.read_lnk_files_subj_type
 			(relabel_lnk_files_subj_type_attribute))
 		(call fs.rootfs.read_lnk_files_subj_type
 			(rw_dirs_subj_type_attribute))
-		(call fs.rootfs.read_lnk_files_subj_type
-			(relabel_dirs_subj_type_attribute))
 		(call fs.rootfs.read_lnk_files_subj_type
 			(search_subj_type_attribute))
 
