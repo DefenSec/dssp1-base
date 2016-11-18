@@ -3339,6 +3339,21 @@
 		; var_log macros
 		;
 
+		(macro append_all_files_subj_type ((type ARG1))
+			(typeattributeset
+				append_all_files_subj_type_attribute
+					ARG1))
+
+		(macro create_all_files_subj_type ((type ARG1))
+			(typeattributeset
+				create_all_files_subj_type_attribute
+					ARG1))
+
+		(macro delete_all_files_subj_type ((type ARG1))
+			(typeattributeset
+				delete_all_files_subj_type_attribute
+					ARG1))
+
 		(macro list_all_subj_type ((type ARG1))
 			(typeattributeset list_all_subj_type_attribute
 				ARG1))
@@ -3351,6 +3366,10 @@
 			(typeattributeset relabel_all_dirs_subj_type_attribute
 				ARG1))
 
+		(macro rename_all_files_subj_type ((type ARG1))
+			(typeattributeset rename_all_files_subj_type_attribute
+				ARG1))
+
 		(macro rw_all_dirs_subj_type ((type ARG1))
 			(typeattributeset rw_all_dirs_subj_type_attribute
 				ARG1))
@@ -3358,6 +3377,11 @@
 		(macro search_all_subj_type ((type ARG1))
 			(typeattributeset search_all_subj_type_attribute
 				ARG1))
+
+		(macro setattr_all_files_subj_type ((type ARG1))
+			(typeattributeset
+				setattr_all_files_subj_type_attribute
+					ARG1))
 
 		(macro manage_all_lnk_files_subj_type ((type ARG1))
 			(typeattributeset
@@ -3424,10 +3448,15 @@
 		(typeattribute read_all_lnk_files_subj_type_attribute)
 		(typeattribute relabel_all_lnk_files_subj_type_attribute)
 
+		(typeattribute append_all_files_subj_type_attribute)
+		(typeattribute create_all_files_subj_type_attribute)
+		(typeattribute delete_all_files_subj_type_attribute)
 		(typeattribute manage_all_files_subj_type_attribute)
 		(typeattribute read_all_files_subj_type_attribute)
 		(typeattribute relabel_all_files_subj_type_attribute)
+		(typeattribute rename_all_files_subj_type_attribute)
 		(typeattribute rw_all_files_subj_type_attribute)
+		(typeattribute setattr_all_files_subj_type_attribute)
 		(typeattribute write_all_files_subj_type_attribute)
 
 		(typeattribute read_all_subj_type_attribute)
@@ -3454,13 +3483,23 @@
 			(relabel_all_lnk_files_subj_type_attribute))
 
 		(call file.var.search_subj_type
+			(append_all_files_subj_type_attribute))
+		(call file.var.search_subj_type
+			(create_all_files_subj_type_attribute))
+		(call file.var.search_subj_type
+			(delete_all_files_subj_type_attribute))
+		(call file.var.search_subj_type
 			(manage_all_files_subj_type_attribute))
 		(call file.var.search_subj_type
 			(read_all_files_subj_type_attribute))
 		(call file.var.search_subj_type
 			(relabel_all_files_subj_type_attribute))
 		(call file.var.search_subj_type
+			(rename_all_files_subj_type_attribute))
+		(call file.var.search_subj_type
 			(rw_all_files_subj_type_attribute))
+		(call file.var.search_subj_type
+			(setattr_all_files_subj_type_attribute))
 		(call file.var.search_subj_type
 			(write_all_files_subj_type_attribute))
 
@@ -3480,12 +3519,22 @@
 			(relabel_lnk_files_subj_type_attribute))
 
 		(call file.var.search_subj_type
+			(append_files_subj_type_attribute))
+		(call file.var.search_subj_type
+			(create_files_subj_type_attribute))
+		(call file.var.search_subj_type
+			(delete_files_subj_type_attribute))
+		(call file.var.search_subj_type
 			(manage_files_subj_type_attribute))
 		(call file.var.search_subj_type
 			(read_files_subj_type_attribute))
 		(call file.var.search_subj_type
 			(relabel_files_subj_type_attribute))
+		(call file.var.search_subj_type
+			(rename_files_subj_type_attribute))
 		(call file.var.search_subj_type (rw_files_subj_type_attribute))
+		(call file.var.search_subj_type
+			(setattr_files_subj_type_attribute))
 		(call file.var.search_subj_type
 			(write_files_subj_type_attribute))
 
@@ -3518,6 +3567,18 @@
 				var_log_obj_type_attribute
 					var_log_obj_type_attribute))
 
+		(call append_files_pattern
+			(append_all_files_subj_type_attribute
+				var_log_obj_type_attribute
+					var_log_obj_type_attribute))
+		(call create_files_pattern
+			(create_all_files_subj_type_attribute
+				var_log_obj_type_attribute
+					var_log_obj_type_attribute))
+		(call delete_files_pattern
+			(delete_all_files_subj_type_attribute
+				var_log_obj_type_attribute
+					var_log_obj_type_attribute))
 		(call manage_files_pattern
 			(manage_all_files_subj_type_attribute
 				var_log_obj_type_attribute
@@ -3530,8 +3591,16 @@
 			(relabel_all_files_subj_type_attribute
 				var_log_obj_type_attribute
 					var_log_obj_type_attribute))
+		(call rename_files_pattern
+			(rename_all_files_subj_type_attribute
+				var_log_obj_type_attribute
+					var_log_obj_type_attribute))
 		(call rw_files_pattern
 			(rw_all_files_subj_type_attribute
+				var_log_obj_type_attribute
+					var_log_obj_type_attribute))
+		(call setattr_files_pattern
+			(setattr_all_files_subj_type_attribute
 				var_log_obj_type_attribute
 					var_log_obj_type_attribute))
 		(call write_files_pattern
@@ -7382,6 +7451,21 @@
 		; var_log_obj_base_template macros
 		;
 
+		(macro append_files_subj_type ((type ARG1))
+			(typeattributeset
+				append_files_subj_type_attribute
+					ARG1))
+
+		(macro create_files_subj_type ((type ARG1))
+			(typeattributeset
+				create_files_subj_type_attribute
+					ARG1))
+
+		(macro delete_files_subj_type ((type ARG1))
+			(typeattributeset
+				delete_files_subj_type_attribute
+					ARG1))
+
 		(macro list_subj_type ((type ARG1))
 			(typeattributeset list_subj_type_attribute
 				ARG1))
@@ -7436,9 +7520,19 @@
 				relabel_files_subj_type_attribute
 					ARG1))
 
+		(macro rename_files_subj_type ((type ARG1))
+			(typeattributeset
+				rename_files_subj_type_attribute
+					ARG1))
+
 		(macro rw_files_subj_type ((type ARG1))
 			(typeattributeset rw_files_subj_type_attribute
 				ARG1))
+
+		(macro setattr_files_subj_type ((type ARG1))
+			(typeattributeset
+				setattr_files_subj_type_attribute
+					ARG1))
 
 		(macro write_files_subj_type ((type ARG1))
 			(typeattributeset write_files_subj_type_attribute
@@ -7474,10 +7568,15 @@
 		(typeattribute read_lnk_files_subj_type_attribute)
 		(typeattribute relabel_lnk_files_subj_type_attribute)
 
+		(typeattribute append_files_subj_type_attribute)
+		(typeattribute create_files_subj_type_attribute)
+		(typeattribute delete_files_subj_type_attribute)
 		(typeattribute manage_files_subj_type_attribute)
 		(typeattribute read_files_subj_type_attribute)
 		(typeattribute relabel_files_subj_type_attribute)
+		(typeattribute rename_files_subj_type_attribute)
 		(typeattribute rw_files_subj_type_attribute)
+		(typeattribute setattr_files_subj_type_attribute)
 		(typeattribute write_files_subj_type_attribute)
 
 		(typeattribute read_subj_type_attribute)
@@ -7500,13 +7599,23 @@
 			(relabel_lnk_files_subj_type_attribute))
 
 		(call file.var.search_subj_type
+			(append_files_subj_type_attribute))
+		(call file.var.search_subj_type
+			(create_files_subj_type_attribute))
+		(call file.var.search_subj_type
+			(delete_files_subj_type_attribute))
+		(call file.var.search_subj_type
 			(manage_files_subj_type_attribute))
 		(call file.var.search_subj_type
 			(read_files_subj_type_attribute))
 		(call file.var.search_subj_type
 			(relabel_files_subj_type_attribute))
 		(call file.var.search_subj_type
+			(rename_files_subj_type_attribute))
+		(call file.var.search_subj_type
 			(rw_files_subj_type_attribute))
+		(call file.var.search_subj_type
+			(setattr_files_subj_type_attribute))
 		(call file.var.search_subj_type
 			(write_files_subj_type_attribute))
 
@@ -7532,6 +7641,15 @@
 			(relabel_lnk_files_subj_type_attribute var_log_file
 				var_log_file))
 
+		(call append_files_pattern
+			(append_files_subj_type_attribute var_log_file
+				var_log_file))
+		(call create_files_pattern
+			(create_files_subj_type_attribute var_log_file
+				var_log_file))
+		(call delete_files_pattern
+			(delete_files_subj_type_attribute var_log_file
+				var_log_file))
 		(call manage_files_pattern
 			(manage_files_subj_type_attribute var_log_file
 				var_log_file))
@@ -7541,8 +7659,14 @@
 		(call relabel_files_pattern
 			(relabel_files_subj_type_attribute var_log_file
 				var_log_file))
+		(call rename_files_pattern
+			(rename_files_subj_type_attribute var_log_file
+				var_log_file))
 		(call rw_files_pattern
 			(rw_files_subj_type_attribute var_log_file
+				var_log_file))
+		(call setattr_files_pattern
+			(setattr_files_subj_type_attribute var_log_file
 				var_log_file))
 		(call write_files_pattern
 			(write_files_subj_type_attribute var_log_file
@@ -7592,13 +7716,23 @@
 			(relabel_lnk_files_subj_type_attribute))
 
 		(call file.var_log.search_subj_type
+			(append_files_subj_type_attribute))
+		(call file.var_log.search_subj_type
+			(create_files_subj_type_attribute))
+		(call file.var_log.search_subj_type
+			(delete_files_subj_type_attribute))
+		(call file.var_log.search_subj_type
 			(manage_files_subj_type_attribute))
 		(call file.var_log.search_subj_type
 			(read_files_subj_type_attribute))
 		(call file.var_log.search_subj_type
 			(relabel_files_subj_type_attribute))
 		(call file.var_log.search_subj_type
+			(rename_files_subj_type_attribute))
+		(call file.var_log.search_subj_type
 			(rw_files_subj_type_attribute))
+		(call file.var_log.search_subj_type
+			(setattr_files_subj_type_attribute))
 		(call file.var_log.search_subj_type
 			(write_files_subj_type_attribute)))
 
