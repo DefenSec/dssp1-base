@@ -154,23 +154,28 @@
 
 		(call file.data.search_subj_type (list_subj_type_attribute))
 		(call file.data.search_subj_type
+			(manage_lnk_files_subj_type_attribute))
+		(call file.data.search_subj_type
 			(manage_dirs_subj_type_attribute))
+		(call file.data.search_subj_type
+			(read_lnk_files_subj_type_attribute))
+		(call file.data.search_subj_type
+			(relabel_lnk_files_subj_type_attribute))
 		(call file.data.search_subj_type (rw_dirs_subj_type_attribute))
 		(call file.data.search_subj_type
 			(relabel_dirs_subj_type_attribute))
 		(call file.data.search_subj_type (search_subj_type_attribute))
 
-		(call file.data.search_subj_type
-			(manage_lnk_files_subj_type_attribute))
-		(call file.data.search_subj_type
-			(read_lnk_files_subj_type_attribute))
-		(call file.data.search_subj_type
-			(relabel_lnk_files_subj_type_attribute))
-
 		(call fs.rootfs.read_lnk_files_subj_type
 			(list_subj_type_attribute))
 		(call fs.rootfs.read_lnk_files_subj_type
 			(manage_dirs_subj_type_attribute))
+		(call fs.rootfs.read_lnk_files_subj_type
+			(manage_lnk_files_subj_type_attribute))
+		(call fs.rootfs.read_lnk_files_subj_type
+			(read_lnk_files_subj_type_attribute))
+		(call fs.rootfs.read_lnk_files_subj_type
+			(relabel_lnk_files_subj_type_attribute))
 		(call fs.rootfs.read_lnk_files_subj_type
 			(rw_dirs_subj_type_attribute))
 		(call fs.rootfs.read_lnk_files_subj_type
@@ -178,30 +183,22 @@
 		(call fs.rootfs.read_lnk_files_subj_type
 			(search_subj_type_attribute))
 
-		(call fs.rootfs.read_lnk_files_subj_type
-			(manage_lnk_files_subj_type_attribute))
-		(call fs.rootfs.read_lnk_files_subj_type
-			(read_lnk_files_subj_type_attribute))
-		(call fs.rootfs.read_lnk_files_subj_type
-			(relabel_lnk_files_subj_type_attribute))
-
 		(allow list_subj_type_attribute cmd_file list_dir_perms)
 		(call manage_dirs_pattern
 			(manage_dirs_subj_type_attribute cmd_file cmd_file))
-		(allow relabel_dirs_subj_type_attribute cmd_file
-			relabel_dir_perms)
-		(call rw_dirs_pattern
-			(rw_dirs_subj_type_attribute cmd_file cmd_file))
-		(allow search_subj_type_attribute cmd_file search_dir_perms)
-
 		(call manage_lnk_files_pattern
 			(manage_lnk_files_subj_type_attribute cmd_file
 				cmd_file))
 		(call read_lnk_files_pattern
 			(read_lnk_files_subj_type_attribute cmd_file cmd_file))
+		(allow relabel_dirs_subj_type_attribute cmd_file
+			relabel_dir_perms)
 		(call relabel_lnk_files_pattern
 			(relabel_lnk_files_subj_type_attribute cmd_file
 				cmd_file))
+		(call rw_dirs_pattern
+			(rw_dirs_subj_type_attribute cmd_file cmd_file))
+		(allow search_subj_type_attribute cmd_file search_dir_perms)
 
 		(typeattributeset read_lnk_files_subj_type_attribute
 			(exec_all_subj_type_attribute
@@ -223,7 +220,6 @@
 
 		(dontaudit dontaudit_audit_access_all_files_subj_type_attribute
 			cmd_obj_type_attribute (file (audit_access)))
-
 		(allow getattr_all_files_subj_type_attribute
 			cmd_obj_type_attribute (file (getattr)))
 		(allow exec_all_subj_type_attribute cmd_obj_type_attribute
@@ -297,6 +293,9 @@
 				dontaudit_audit_access_files_subj_type_attribute
 					ARG1))
 
+		(macro bounded_cmd_file ((type ARG1))
+			(typebounds cmd_file ARG1))
+
 		(macro getattr_files_subj_type ((type ARG1))
 			(typeattributeset getattr_files_subj_type_attribute
 				ARG1))
@@ -335,9 +334,6 @@
 			(typeattributeset write_files_subj_type_attribute
 				ARG1))
 
-		(macro bounded_cmd_file ((type ARG1))
-			(typebounds cmd_file ARG1))
-
 		;
 		; cmd_obj_base_template policy
 		;
@@ -348,7 +344,6 @@
 
 		(typeattribute
 			dontaudit_audit_access_files_subj_type_attribute)
-
 		(typeattribute getattr_files_subj_type_attribute)
 		(typeattribute entrypoint_subj_type_attribute)
 		(typeattribute exec_subj_type_attribute)
@@ -393,7 +388,6 @@
 
 		(dontaudit dontaudit_audit_access_files_subj_type_attribute
 			cmd_file (file (audit_access)))
-
 		(allow getattr_files_subj_type_attribute cmd_file (file
 			(getattr)))
 		(allow entrypoint_subj_type_attribute cmd_file (file

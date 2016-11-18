@@ -119,22 +119,27 @@
 		(call file.data.search_subj_type (list_subj_type_attribute))
 		(call file.data.search_subj_type
 			(manage_dirs_subj_type_attribute))
-		(call file.data.search_subj_type (rw_dirs_subj_type_attribute))
-		(call file.data.search_subj_type
-			(relabel_dirs_subj_type_attribute))
-		(call file.data.search_subj_type (search_subj_type_attribute))
-
 		(call file.data.search_subj_type
 			(manage_lnk_files_subj_type_attribute))
 		(call file.data.search_subj_type
 			(read_lnk_files_subj_type_attribute))
 		(call file.data.search_subj_type
 			(relabel_lnk_files_subj_type_attribute))
+		(call file.data.search_subj_type (rw_dirs_subj_type_attribute))
+		(call file.data.search_subj_type
+			(relabel_dirs_subj_type_attribute))
+		(call file.data.search_subj_type (search_subj_type_attribute))
 
 		(call fs.rootfs.read_lnk_files_subj_type
 			(list_subj_type_attribute))
 		(call fs.rootfs.read_lnk_files_subj_type
 			(manage_dirs_subj_type_attribute))
+		(call fs.rootfs.read_lnk_files_subj_type
+			(manage_lnk_files_subj_type_attribute))
+		(call fs.rootfs.read_lnk_files_subj_type
+			(read_lnk_files_subj_type_attribute))
+		(call fs.rootfs.read_lnk_files_subj_type
+			(relabel_lnk_files_subj_type_attribute))
 		(call fs.rootfs.read_lnk_files_subj_type
 			(rw_dirs_subj_type_attribute))
 		(call fs.rootfs.read_lnk_files_subj_type
@@ -142,30 +147,22 @@
 		(call fs.rootfs.read_lnk_files_subj_type
 			(search_subj_type_attribute))
 
-		(call fs.rootfs.read_lnk_files_subj_type
-			(manage_lnk_files_subj_type_attribute))
-		(call fs.rootfs.read_lnk_files_subj_type
-			(read_lnk_files_subj_type_attribute))
-		(call fs.rootfs.read_lnk_files_subj_type
-			(relabel_lnk_files_subj_type_attribute))
-
 		(allow list_subj_type_attribute lib_file list_dir_perms)
 		(call manage_dirs_pattern
 			(manage_dirs_subj_type_attribute lib_file lib_file))
-		(allow relabel_dirs_subj_type_attribute lib_file
-			relabel_dir_perms)
-		(call rw_dirs_pattern
-			(rw_dirs_subj_type_attribute lib_file lib_file))
-		(allow search_subj_type_attribute lib_file search_dir_perms)
-
 		(call manage_lnk_files_pattern
 			(manage_lnk_files_subj_type_attribute lib_file
 				lib_file))
 		(call read_lnk_files_pattern
 			(read_lnk_files_subj_type_attribute lib_file lib_file))
+		(allow relabel_dirs_subj_type_attribute lib_file
+			relabel_dir_perms)
 		(call relabel_lnk_files_pattern
 			(relabel_lnk_files_subj_type_attribute lib_file
 				lib_file))
+		(call rw_dirs_pattern
+			(rw_dirs_subj_type_attribute lib_file lib_file))
+		(allow search_subj_type_attribute lib_file search_dir_perms)
 
 		(typeattributeset read_lnk_files_subj_type_attribute
 			(manage_all_files_subj_type_attribute
@@ -253,18 +250,16 @@
 		(typeattribute exec_subj_type_attribute)
 		(typeattribute use_subj_type_attribute)
 
-		(call lib.library.list_subj_type (exec_subj_type_attribute))
-		(call lib.library.read_lnk_files_subj_type
-			(exec_subj_type_attribute))
 		(allow exec_subj_type_attribute file exec_file_perms)
-
+		(call lib.ld_so_cache.read_files_subj_type
+			(use_subj_type_attribute))
+		(call lib.library.list_subj_type (exec_subj_type_attribute))
 		(call lib.library.list_subj_type (use_subj_type_attribute))
 		(call lib.library.read_lnk_files_subj_type
+			(exec_subj_type_attribute))
+		(call lib.library.read_lnk_files_subj_type
 			(use_subj_type_attribute))
-		(allow use_subj_type_attribute file mmap_file_perms)
-
-		(call lib.ld_so_cache.read_files_subj_type
-			(use_subj_type_attribute)))
+		(allow use_subj_type_attribute file mmap_file_perms))
 
 	(block ld_so_cache
 
