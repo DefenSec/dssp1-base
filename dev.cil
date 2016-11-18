@@ -700,7 +700,6 @@
 
 		(allow create_subj_type_attribute self (capability (mknod)))
 		(allow create_subj_type_attribute isid create_chr_file_perms)
-
 		(allow getattr_subj_type_attribute isid (chr_file (getattr)))
 		(allow manage_subj_type_attribute isid manage_chr_file_perms)
 		(allow read_subj_type_attribute isid read_chr_file_perms)
@@ -1378,12 +1377,9 @@
 
 		(allow create_subj_type_attribute self (capability (mknod)))
 		(allow create_subj_type_attribute dev create_chr_file_perms)
-
 		(allow getattr_subj_type_attribute dev (chr_file (getattr)))
-
 		(allow manage_subj_type_attribute self (capability (mknod)))
 		(allow manage_subj_type_attribute dev manage_chr_file_perms)
-
 		(allow read_subj_type_attribute dev read_chr_file_perms)
 		(allow relabel_subj_type_attribute dev relabel_chr_file_perms)
 		(allow rw_subj_type_attribute dev rw_chr_file_perms)
@@ -1488,27 +1484,20 @@
 			(mknod)))
 		(allow create_subj_type_attribute stor_dev
 			(chr_and_blk_files (create)))
-
 		(allow getattr_subj_type_attribute stor_dev
 			(chr_and_blk_files (getattr)))
-
 		(allow manage_subj_type_attribute self (capability
 			(mknod)))
 		(allow manage_subj_type_attribute stor_dev
 			(chr_and_blk_files (manage)))
-
 		(allow read_subj_type_attribute stor_dev
 			(chr_and_blk_files (read)))
-
 		(allow relabel_subj_type_attribute stor_dev
 			(chr_and_blk_files (relabel)))
-
 		(allow rw_subj_type_attribute stor_dev
 			(chr_and_blk_files (rw)))
-
 		(allow setattr_subj_type_attribute stor_dev
 			(chr_and_blk_files (setattr)))
-
 		(allow write_subj_type_attribute stor_dev
 			(chr_and_blk_files (write)))
 
@@ -1563,16 +1552,16 @@
 			(typeattributeset read_subj_type_attribute
 				ARG1))
 
+		(macro relabel_subj_type ((type ARG1))
+			(typeattributeset relabel_subj_type_attribute
+				ARG1))
+
 		(macro relabelfrom_subj_type ((type ARG1))
 			(typeattributeset relabelfrom_subj_type_attribute
 				ARG1))
 
 		(macro relabelto_subj_type ((type ARG1))
 			(typeattributeset relabelto_subj_type_attribute
-				ARG1))
-
-		(macro relabel_subj_type ((type ARG1))
-			(typeattributeset relabel_subj_type_attribute
 				ARG1))
 
 		(macro rw_inherited_subj_type ((type ARG1))
@@ -1602,9 +1591,9 @@
 		(typeattribute getattr_subj_type_attribute)
 		(typeattribute manage_subj_type_attribute)
 		(typeattribute read_subj_type_attribute)
+		(typeattribute relabel_subj_type_attribute)
 		(typeattribute relabelfrom_subj_type_attribute)
 		(typeattribute relabelto_subj_type_attribute)
-		(typeattribute relabel_subj_type_attribute)
 		(typeattribute rw_inherited_subj_type_attribute)
 		(typeattribute rw_subj_type_attribute)
 		(typeattribute setattr_subj_type_attribute)
@@ -1613,6 +1602,7 @@
 		(call fs.devpts.search_subj_type (getattr_subj_type_attribute))
 		(call fs.devpts.search_subj_type (manage_subj_type_attribute))
 		(call fs.devpts.search_subj_type (read_subj_type_attribute))
+		(call fs.devpts.search_subj_type (relabel_subj_type_attribute))
 		(call fs.devpts.search_subj_type
 			(relabelfrom_subj_type_attribute))
 		(call fs.devpts.search_subj_type
@@ -1629,12 +1619,12 @@
 			manage_chr_file_perms)
 		(allow read_subj_type_attribute login_pty_dev
 			read_chr_file_perms)
+		(allow relabel_subj_type_attribute login_pty_dev
+			relabel_chr_file_perms)
 		(allow relabelfrom_subj_type_attribute login_pty_dev
 			relabelfrom_chr_file_perms)
 		(allow relabelto_subj_type_attribute login_pty_dev
 			relabelto_chr_file_perms)
-		(allow relabel_subj_type_attribute login_pty_dev
-			relabel_chr_file_perms)
 		(allow rw_inherited_subj_type_attribute login_pty_dev
 			rw_inherited_term_perms)
 		(allow rw_subj_type_attribute login_pty_dev rw_term_perms)
@@ -1649,11 +1639,11 @@
 		(call getattr_subj_type (term.getattr_all_subj_type_attribute))
 		(call manage_subj_type (term.manage_all_subj_type_attribute))
 		(call read_subj_type (term.read_all_subj_type_attribute))
+		(call relabel_subj_type (term.relabel_all_subj_type_attribute))
 		(call relabelfrom_subj_type
 			(term.relabelfrom_all_subj_type_attribute))
 		(call relabelto_subj_type
 			(term.relabelto_all_subj_type_attribute))
-		(call relabel_subj_type (term.relabel_all_subj_type_attribute))
 		(call rw_inherited_subj_type
 			(term.rw_all_inherited_subj_type_attribute))
 		(call rw_subj_type (term.rw_all_subj_type_attribute))
@@ -1695,16 +1685,16 @@
 			(typeattributeset read_subj_type_attribute
 				ARG1))
 
+		(macro relabel_subj_type ((type ARG1))
+			(typeattributeset relabel_subj_type_attribute
+				ARG1))
+
 		(macro relabelfrom_subj_type ((type ARG1))
 			(typeattributeset relabelfrom_subj_type_attribute
 				ARG1))
 
 		(macro relabelto_subj_type ((type ARG1))
 			(typeattributeset relabelto_subj_type_attribute
-				ARG1))
-
-		(macro relabel_subj_type ((type ARG1))
-			(typeattributeset relabel_subj_type_attribute
 				ARG1))
 
 		(macro rw_inherited_subj_type ((type ARG1))
@@ -1734,9 +1724,9 @@
 		(typeattribute getattr_subj_type_attribute)
 		(typeattribute manage_subj_type_attribute)
 		(typeattribute read_subj_type_attribute)
+		(typeattribute relabel_subj_type_attribute)
 		(typeattribute relabelfrom_subj_type_attribute)
 		(typeattribute relabelto_subj_type_attribute)
-		(typeattribute relabel_subj_type_attribute)
 		(typeattribute rw_inherited_subj_type_attribute)
 		(typeattribute rw_subj_type_attribute)
 		(typeattribute setattr_subj_type_attribute)
@@ -1745,6 +1735,8 @@
 		(call fs.devpts.search_subj_type (getattr_subj_type_attribute))
 		(call fs.devpts.search_subj_type (manage_subj_type_attribute))
 		(call fs.devpts.search_subj_type (read_subj_type_attribute))
+		(call fs.devpts.search_subj_type
+			(relabel_subj_type_attribute))
 		(call fs.devpts.search_subj_type
 			(relabelfrom_subj_type_attribute))
 		(call fs.devpts.search_subj_type
@@ -1760,12 +1752,12 @@
 		(allow manage_subj_type_attribute pty_dev
 			manage_chr_file_perms)
 		(allow read_subj_type_attribute pty_dev read_chr_file_perms)
+		(allow relabel_subj_type_attribute pty_dev
+			relabel_chr_file_perms)
 		(allow relabelfrom_subj_type_attribute pty_dev
 			relabelfrom_chr_file_perms)
 		(allow relabelto_subj_type_attribute pty_dev
 			relabelto_chr_file_perms)
-		(allow relabel_subj_type_attribute pty_dev
-			relabel_chr_file_perms)
 		(allow rw_inherited_subj_type_attribute pty_dev
 			rw_inherited_term_perms)
 		(allow rw_subj_type_attribute pty_dev rw_term_perms)
@@ -1779,11 +1771,11 @@
 		(call getattr_subj_type (term.getattr_all_subj_type_attribute))
 		(call manage_subj_type (term.manage_all_subj_type_attribute))
 		(call read_subj_type (term.read_all_subj_type_attribute))
+		(call relabel_subj_type (term.relabel_all_subj_type_attribute))
 		(call relabelfrom_subj_type
 			(term.relabelfrom_all_subj_type_attribute))
 		(call relabelto_subj_type
 			(term.relabelto_all_subj_type_attribute))
-		(call relabel_subj_type (term.relabel_all_subj_type_attribute))
 		(call rw_inherited_subj_type
 			(term.rw_all_inherited_subj_type_attribute))
 		(call rw_subj_type (term.rw_all_subj_type_attribute))
@@ -1830,16 +1822,16 @@
 			(typeattributeset read_subj_type_attribute
 				ARG1))
 
+		(macro relabel_subj_type ((type ARG1))
+			(typeattributeset relabel_subj_type_attribute
+				ARG1))
+
 		(macro relabelfrom_subj_type ((type ARG1))
 			(typeattributeset relabelfrom_subj_type_attribute
 				ARG1))
 
 		(macro relabelto_subj_type ((type ARG1))
 			(typeattributeset relabelto_subj_type_attribute
-				ARG1))
-
-		(macro relabel_subj_type ((type ARG1))
-			(typeattributeset relabel_subj_type_attribute
 				ARG1))
 
 		(macro rw_inherited_subj_type ((type ARG1))
@@ -1869,9 +1861,9 @@
 		(typeattribute getattr_subj_type_attribute)
 		(typeattribute manage_subj_type_attribute)
 		(typeattribute read_subj_type_attribute)
+		(typeattribute relabel_subj_type_attribute)
 		(typeattribute relabelfrom_subj_type_attribute)
 		(typeattribute relabelto_subj_type_attribute)
-		(typeattribute relabel_subj_type_attribute)
 		(typeattribute rw_inherited_subj_type_attribute)
 		(typeattribute rw_subj_type_attribute)
 		(typeattribute setattr_subj_type_attribute)
@@ -1882,6 +1874,8 @@
 		(call fs.devtmpfs.search_subj_type
 			(manage_subj_type_attribute))
 		(call fs.devtmpfs.search_subj_type (read_subj_type_attribute))
+		(call fs.devtmpfs.search_subj_type
+			(relabel_subj_type_attribute))
 		(call fs.devtmpfs.search_subj_type
 			(relabelfrom_subj_type_attribute))
 		(call fs.devtmpfs.search_subj_type
@@ -1898,12 +1892,12 @@
 		(allow manage_subj_type_attribute serial_dev
 			manage_chr_file_perms)
 		(allow read_subj_type_attribute serial_dev read_chr_file_perms)
+		(allow relabel_subj_type_attribute serial_dev
+			relabel_chr_file_perms)
 		(allow relabelfrom_subj_type_attribute serial_dev
 			relabelfrom_chr_file_perms)
 		(allow relabelto_subj_type_attribute serial_dev
 			relabelto_chr_file_perms)
-		(allow relabel_subj_type_attribute serial_dev
-			relabel_chr_file_perms)
 		(allow rw_inherited_subj_type_attribute serial_dev
 			rw_inherited_term_perms)
 		(allow rw_subj_type_attribute serial_dev rw_term_perms)
@@ -1918,11 +1912,11 @@
 		(call getattr_subj_type (term.getattr_all_subj_type_attribute))
 		(call manage_subj_type (term.manage_all_subj_type_attribute))
 		(call read_subj_type (term.read_all_subj_type_attribute))
+		(call relabel_subj_type (term.relabel_all_subj_type_attribute))
 		(call relabelfrom_subj_type
 			(term.relabelfrom_all_subj_type_attribute))
 		(call relabelto_subj_type
 			(term.relabelto_all_subj_type_attribute))
-		(call relabel_subj_type (term.relabel_all_subj_type_attribute))
 		(call rw_inherited_subj_type
 			(term.rw_all_inherited_subj_type_attribute))
 		(call rw_subj_type (term.rw_all_subj_type_attribute))
