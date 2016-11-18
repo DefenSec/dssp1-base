@@ -27,9 +27,16 @@
 				ARG1))
 
 	(macro common_subj_type ((type ARG1))
+		(allow ARG1 self (process (fork sigchld signal sigkill signull
+			sigstop)))
+		(allow ARG1 self rw_fifo_file_perms)
+		(allow ARG1 self rw_file_perms)
+		(allow ARG1 self list_dir_perms)
+		(allow ARG1 self read_lnk_file_perms)
 		(typeattributeset common_subj_type_attribute ARG1))
 
 	(macro create_keyring_all_subj_type ((type ARG1))
+		(allow ARG1 self (process (setkeycreate)))
 		(typeattributeset create_keyring_all_subj_type_attribute
 			ARG1))
 
@@ -42,12 +49,15 @@
 		(typeattributeset dyntransition_all_subj_type_attribute ARG1))
 
 	(macro execheap_subj_type ((type ARG1))
+		(allow ARG1 self (process (execheap)))
 		(typeattributeset execheap_subj_type_attribute ARG1))
 
 	(macro execmem_subj_type ((type ARG1))
+		(allow ARG1 self (process (execmem)))
 		(typeattributeset execmem_subj_type_attribute ARG1))
 
 	(macro execstack_subj_type ((type ARG1))
+		(allow ARG1 self (process (execmem execstack)))
 		(typeattributeset execstack_subj_type_attribute ARG1))
 
 	(macro getattr_all_subj_type ((type ARG1))
@@ -85,6 +95,7 @@
 			ARG1))
 
 	(macro sys_ptrace_subj_type ((type ARG1))
+		(allow ARG1 self (capability (sys_ptrace)))
 		(typeattributeset sys_ptrace_subj_type_attribute ARG1))
 
 	(macro ptrace_all_subj_type ((type ARG1))
@@ -159,6 +170,11 @@
 		(typeattributeset transition_all_subj_type_attribute ARG1))
 
 	(macro unconfined_subj_type ((type ARG1))
+		(allow ARG1 self capability_except_sys_module)
+		(allow ARG1 self capability2_except_mac_override_and_mac_admin)
+		(allow ARG1 self fifo_file_except_mounton_and_execmod)
+		(allow ARG1 self cap_userns_except_sys_module)
+		(allow ARG1 self cap2_userns_except_mac_override_and_mac_admin)
 		(typeattributeset unconfined_subj_type_attribute
 			ARG1))
 
@@ -271,8 +287,6 @@
 	(allow append_inherited_unix_stream_sockets_all_subj_type_attribute
 		common_subj_type_attribute append_inherited_unix_stream_socket_perms)
 
-	(allow create_keyring_all_subj_type_attribute self (process
-		(setkeycreate)))
 	(allow create_keyring_all_subj_type_attribute
 		common_subj_type_attribute create_key_perms)
 
@@ -381,14 +395,6 @@
 	(allow use_interactive_fd_subj_type_attribute
 		interactive_fd_subj_type_attribute (fd (use)))
 
-	(allow common_subj_type_attribute self (process (fork sigchld signal
-		sigkill signull sigstop)))
-	(allow common_subj_type_attribute self rw_fifo_file_perms)
-
-	(allow common_subj_type_attribute self rw_file_perms)
-	(allow common_subj_type_attribute self list_dir_perms)
-	(allow common_subj_type_attribute self read_lnk_file_perms)
-
 	(call sys.meminfo.read_files_subj_type (common_subj_type_attribute))
 	(call sys.vm_overcommit.read_files_subj_type
 		(common_subj_type_attribute))
@@ -427,8 +433,6 @@
 			(not (execheap_subj_type_attribute
 				unconfined_subj_type_attribute)))
 
-	(allow execheap_subj_type_attribute self (process (execheap)))
-
 	(neverallow not_execheap_subj_type_or_unconfined_subj_type_attribute
 		self (process (execheap)))
 
@@ -437,8 +441,6 @@
 			(not (execmem_subj_type_attribute
 				unconfined_subj_type_attribute)))
 
-	(allow execmem_subj_type_attribute self (process (execmem)))
-
 	(neverallow not_execmem_subj_type_or_unconfined_subj_type_attribute
 		self (process (execmem)))
 
@@ -446,9 +448,6 @@
 		not_execstack_subj_type_or_unconfined_subj_type_attribute
 			(not (execstack_subj_type_attribute
 				unconfined_subj_type_attribute)))
-
-	(allow execstack_subj_type_attribute self (process (execmem
-		execstack)))
 
 	(neverallow not_execstack_subj_type_or_unconfined_subj_type_attribute
 		self (process (execstack)))
@@ -465,22 +464,8 @@
 			(not (sys_ptrace_subj_type_attribute
 				unconfined_subj_type_attribute)))
 
-	(allow sys_ptrace_subj_type_attribute self (capability (sys_ptrace)))
-
 	(neverallow not_sys_ptrace_subj_type_or_unconfined_subj_type_attribute
 		self (capability (sys_ptrace)))
-
-	(allow unconfined_subj_type_attribute self
-		capability_except_sys_module)
-	(allow unconfined_subj_type_attribute self
-		capability2_except_mac_override_and_mac_admin)
-	(allow unconfined_subj_type_attribute self
-		fifo_file_except_mounton_and_execmod)
-
-	(allow unconfined_subj_type_attribute self
-		cap_userns_except_sys_module)
-	(allow unconfined_subj_type_attribute self
-		cap2_userns_except_mac_override_and_mac_admin)
 
 	(allow unconfined_subj_type_attribute subj_type_attribute (process
 		(all)))
@@ -685,6 +670,7 @@
 			(typebounds subj ARG1))
 
 		(macro create_keyring_subj_type ((type ARG1))
+			(allow ARG1 self (process (setkeycreate)))
 			(typeattributeset create_keyring_subj_type_attribute
 				ARG1))
 
@@ -878,8 +864,6 @@
 		(allow append_inherited_unix_stream_sockets_subj_type_attribute
 			subj append_inherited_unix_stream_socket_perms)
 
-		(allow create_keyring_subj_type_attribute self (process
-			(setkeycreate)))
 		(allow create_keyring_subj_type_attribute subj
 			create_key_perms)
 

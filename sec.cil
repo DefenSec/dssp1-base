@@ -49,8 +49,7 @@
 			ARG1))
 
 	(macro set_fscreate_subj_type ((type ARG1))
-		(typeattributeset set_fscreate_subj_type_attribute
-			ARG1))
+		(allow ARG1 self (process (setfscreate))))
 
 	(macro set_secparam_subj_type ((type ARG1))
 		(typeattributeset set_secparam_subj_type_attribute
@@ -93,7 +92,6 @@
 	(typeattribute set_enforce_subj_type_attribute)
 	(typeattribute
 		set_enforce_subj_type_or_unconfined_subj_type_attribute)
-	(typeattribute set_fscreate_subj_type_attribute)
 	(typeattribute set_secparam_subj_type_attribute)
 	(typeattribute write_load_policy_bool_subj_type_attribute)
 	(typeattribute
@@ -172,8 +170,6 @@
 		(compute_relabel_context_subj_type_attribute))
 	(allow compute_relabel_context_subj_type_attribute sec.security.isid
 		(security (compute_user)))
-
-	(allow set_fscreate_subj_type_attribute self (process (setfscreate)))
 
 	(call sec.security.rw_files_subj_type
 		(read_policy_subj_type_attribute))

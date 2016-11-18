@@ -11,6 +11,7 @@
 			ARG1))
 
 	(macro fs_obj_type ((type ARG1))
+		(allow ARG1 self (filesystem (associate)))
 		(typeattributeset fs_obj_type_attribute ARG1))
 
 	(macro getattr_all_subj_type ((type ARG1))
@@ -89,8 +90,6 @@
 	(typeattribute unmount_all_subj_type_attribute)
 
 	(call sys.sys_obj_type (fs_obj_type_attribute))
-
-	(allow fs_obj_type_attribute self (filesystem (associate)))
 
 	(allow associate_all_obj_type_attribute fs_obj_type_attribute
 		(filesystem (associate)))

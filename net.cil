@@ -192,6 +192,7 @@
 		;
 
 		(macro dccp_bind_all_subj_type ((type ARG1))
+			(allow ARG1 self (capability (net_bind_service)))
 			(typeattributeset dccp_bind_all_subj_type_attribute
 				ARG1))
 
@@ -200,10 +201,12 @@
 				ARG1))
 
 		(macro rawip_bind_all_subj_type ((type ARG1))
+			(allow ARG1 self (capability (net_bind_service)))
 			(typeattributeset rawip_bind_all_subj_type_attribute
 				ARG1))
 
 		(macro tcp_bind_all_subj_type ((type ARG1))
+			(allow ARG1 self (capability (net_bind_service)))
 			(typeattributeset tcp_bind_all_subj_type_attribute
 				ARG1))
 
@@ -212,6 +215,7 @@
 				ARG1))
 
 		(macro udp_bind_all_subj_type ((type ARG1))
+			(allow ARG1 self (capability (net_bind_service)))
 			(typeattributeset udp_bind_all_subj_type_attribute
 				ARG1))
 
@@ -228,29 +232,21 @@
 		(typeattribute tcp_connect_all_subj_type_attribute)
 		(typeattribute udp_bind_all_subj_type_attribute)
 
-		(allow dccp_bind_all_subj_type_attribute self (capability
-			(net_bind_service)))
 		(allow dccp_bind_all_subj_type_attribute
 			hi_reserved_port_obj_type_attribute (dccp_socket
 				(name_bind)))
 		(allow dccp_connect_all_subj_type_attribute
 			hi_reserved_port_obj_type_attribute (dccp_socket
 				(name_connect)))
-		(allow rawip_bind_all_subj_type_attribute self (capability
-			(net_bind_service)))
 		(allow rawip_bind_all_subj_type_attribute
 			hi_reserved_port_obj_type_attribute (rawip_socket
 				(name_bind)))
-		(allow tcp_bind_all_subj_type_attribute self (capability
-			(net_bind_service)))
 		(allow tcp_bind_all_subj_type_attribute
 			hi_reserved_port_obj_type_attribute (tcp_socket
 				(name_bind)))
 		(allow tcp_connect_all_subj_type_attribute
 			hi_reserved_port_obj_type_attribute (tcp_socket
 				(name_connect)))
-		(allow udp_bind_all_subj_type_attribute self
-			(capability (net_bind_service)))
 		(allow udp_bind_all_subj_type_attribute
 			hi_reserved_port_obj_type_attribute (udp_socket
 				(name_bind))))
@@ -617,6 +613,7 @@
 		;
 
 		(macro dccp_bind_all_subj_type ((type ARG1))
+			(allow ARG1 self (capability (net_bind_service)))
 			(typeattributeset dccp_bind_all_subj_type_attribute
 				ARG1))
 
@@ -625,10 +622,12 @@
 				ARG1))
 
 		(macro rawip_bind_all_subj_type ((type ARG1))
+			(allow ARG1 self (capability (net_bind_service)))
 			(typeattributeset rawip_bind_all_subj_type_attribute
 				ARG1))
 
 		(macro tcp_bind_all_subj_type ((type ARG1))
+			(allow ARG1 self (capability (net_bind_service)))
 			(typeattributeset tcp_bind_all_subj_type_attribute
 				ARG1))
 
@@ -637,6 +636,7 @@
 				ARG1))
 
 		(macro udp_bind_all_subj_type ((type ARG1))
+			(allow ARG1 self (capability (net_bind_service)))
 			(typeattributeset udp_bind_all_subj_type_attribute
 				ARG1))
 
@@ -653,29 +653,21 @@
 		(typeattribute tcp_connect_all_subj_type_attribute)
 		(typeattribute udp_bind_all_subj_type_attribute)
 
-		(allow dccp_bind_all_subj_type_attribute self (capability
-			(net_bind_service)))
 		(allow dccp_bind_all_subj_type_attribute
 			reserved_port_obj_type_attribute (dccp_socket
 				(name_bind)))
 		(allow dccp_connect_all_subj_type_attribute
 			reserved_port_obj_type_attribute (dccp_socket
 				(name_connect)))
-		(allow rawip_bind_all_subj_type_attribute self (capability
-			(net_bind_service)))
 		(allow rawip_bind_all_subj_type_attribute
 			reserved_port_obj_type_attribute (rawip_socket
 				(name_bind)))
-		(allow tcp_bind_all_subj_type_attribute self (capability
-			(net_bind_service)))
 		(allow tcp_bind_all_subj_type_attribute
 			reserved_port_obj_type_attribute (tcp_socket
 				(name_bind)))
 		(allow tcp_connect_all_subj_type_attribute
 			reserved_port_obj_type_attribute (tcp_socket
 				(name_connect)))
-		(allow udp_bind_all_subj_type_attribute self (capability
-			(net_bind_service)))
 		(allow udp_bind_all_subj_type_attribute
 			reserved_port_obj_type_attribute (udp_socket
 				(name_bind))))

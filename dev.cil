@@ -7,6 +7,7 @@
 	;
 
 	(macro create_all_subj_type ((type ARG1))
+		(allow ARG1 self (capability (mknod)))
 		(typeattributeset create_all_subj_type_attribute
 				ARG1))
 
@@ -24,6 +25,7 @@
 		(typeattributeset login_pty_obj_type_attribute ARG1))
 
 	(macro manage_all_subj_type ((type ARG1))
+		(allow ARG1 self (capability (mknod)))
 		(typeattributeset manage_all_subj_type_attribute
 				ARG1))
 
@@ -57,6 +59,7 @@
 			ARG1))
 
 	(macro unconfined_subj_type ((type ARG1))
+		(allow ARG1 self (capability (sys_rawio)))
 		(typeattributeset unconfined_subj_type_attribute
 			ARG1))
 
@@ -159,7 +162,6 @@
 		(not (stor_obj_type_attribute login_pty_obj_type_attribute
 			pty_obj_type_attribute serial_obj_type_attribute))))
 
-	(allow create_all_subj_type_attribute self (capability (mknod)))
 	(allow create_all_subj_type_attribute
 		dev_except_stor_pty_and_serial_obj_type_attribute
 			create_chr_file_perms)
@@ -169,7 +171,6 @@
 			dev_except_stor_pty_and_serial_obj_type_attribute
 				(chr_file (getattr)))
 
-	(allow manage_all_subj_type_attribute self (capability (mknod)))
 	(allow manage_all_subj_type_attribute
 		dev_except_stor_pty_and_serial_obj_type_attribute
 			manage_chr_file_perms)
@@ -202,7 +203,6 @@
 	(call write_memory_subj_type
 		(write_all_subj_type_attribute))
 
-	(allow unconfined_subj_type_attribute self (capability (sys_rawio)))
 	(allow unconfined_subj_type_attribute
 		dev_except_stor_pty_and_serial_obj_type_attribute
 			chr_file_except_mounton_and_execmod)
@@ -629,6 +629,7 @@
 		;
 
 		(macro create_subj_type ((type ARG1))
+			(allow ARG1 self (capability (mknod)))
 			(typeattributeset create_subj_type_attribute
 				ARG1))
 
@@ -637,6 +638,7 @@
 				ARG1))
 
 		(macro manage_subj_type ((type ARG1))
+			(allow ARG1 self (capability (mknod)))
 			(typeattributeset manage_subj_type_attribute
 				ARG1))
 
@@ -698,7 +700,6 @@
 			(setattr_subj_type_attribute))
 		(call fs.devtmpfs.search_subj_type (write_subj_type_attribute))
 
-		(allow create_subj_type_attribute self (capability (mknod)))
 		(allow create_subj_type_attribute isid create_chr_file_perms)
 		(allow getattr_subj_type_attribute isid (chr_file (getattr)))
 		(allow manage_subj_type_attribute isid manage_chr_file_perms)
@@ -1313,6 +1314,7 @@
 		;
 
 		(macro create_subj_type ((type ARG1))
+			(allow ARG1 self (capability (mknod)))
 			(typeattributeset create_subj_type_attribute
 				ARG1))
 
@@ -1321,6 +1323,7 @@
 				ARG1))
 
 		(macro manage_subj_type ((type ARG1))
+			(allow ARG1 self (capability (mknod)))
 			(typeattributeset manage_subj_type_attribute
 				ARG1))
 
@@ -1375,10 +1378,8 @@
 			(setattr_subj_type_attribute))
 		(call fs.devtmpfs.search_subj_type (write_subj_type_attribute))
 
-		(allow create_subj_type_attribute self (capability (mknod)))
 		(allow create_subj_type_attribute dev create_chr_file_perms)
 		(allow getattr_subj_type_attribute dev (chr_file (getattr)))
-		(allow manage_subj_type_attribute self (capability (mknod)))
 		(allow manage_subj_type_attribute dev manage_chr_file_perms)
 		(allow read_subj_type_attribute dev read_chr_file_perms)
 		(allow relabel_subj_type_attribute dev relabel_chr_file_perms)
@@ -1415,6 +1416,7 @@
 		;
 
 		(macro create_subj_type ((type ARG1))
+			(allow ARG1 self (capability (mknod)))
 			(typeattributeset create_subj_type_attribute
 				ARG1))
 
@@ -1423,6 +1425,7 @@
 				ARG1))
 
 		(macro manage_subj_type ((type ARG1))
+			(allow ARG1 self (capability (mknod)))
 			(typeattributeset manage_subj_type_attribute
 				ARG1))
 
@@ -1480,14 +1483,10 @@
 		(call fs.devtmpfs.read_lnk_files_subj_type
 			(write_subj_type_attribute))
 
-		(allow create_subj_type_attribute self (capability
-			(mknod)))
 		(allow create_subj_type_attribute stor_dev
 			(chr_and_blk_files (create)))
 		(allow getattr_subj_type_attribute stor_dev
 			(chr_and_blk_files (getattr)))
-		(allow manage_subj_type_attribute self (capability
-			(mknod)))
 		(allow manage_subj_type_attribute stor_dev
 			(chr_and_blk_files (manage)))
 		(allow read_subj_type_attribute stor_dev
