@@ -2431,6 +2431,31 @@
 			(typeattributeset write_all_files_subj_type_attribute
 				ARG1))
 
+		(macro manage_all_sock_files_subj_type ((type ARG1))
+			(typeattributeset
+				manage_all_sock_files_subj_type_attribute
+					ARG1))
+
+		(macro read_all_sock_files_subj_type ((type ARG1))
+			(typeattributeset
+				read_all_sock_files_subj_type_attribute
+					ARG1))
+
+		(macro relabel_all_sock_files_subj_type ((type ARG1))
+			(typeattributeset
+				relabel_all_sock_files_subj_type_attribute
+					ARG1))
+
+		(macro rw_all_sock_files_subj_type ((type ARG1))
+			(typeattributeset
+				rw_all_sock_files_subj_type_attribute
+					ARG1))
+
+		(macro write_all_sock_files_subj_type ((type ARG1))
+			(typeattributeset
+				write_all_sock_files_subj_type_attribute
+					ARG1))
+
 		(macro read_all_subj_type ((type ARG1))
 			(typeattributeset read_all_subj_type_attribute
 				ARG1))
@@ -2464,6 +2489,15 @@
 		(typeattribute relabel_all_files_subj_type_attribute)
 		(typeattribute rw_all_files_subj_type_attribute)
 		(typeattribute write_all_files_subj_type_attribute)
+
+		(typeattribute
+			manage_all_sock_files_subj_type_attribute)
+		(typeattribute read_all_sock_files_subj_type_attribute)
+		(typeattribute
+			relabel_all_sock_files_subj_type_attribute)
+		(typeattribute rw_all_sock_files_subj_type_attribute)
+		(typeattribute
+			write_all_sock_files_subj_type_attribute)
 
 		(typeattribute read_all_subj_type_attribute)
 		(typeattribute relabel_all_subj_type_attribute)
@@ -2499,6 +2533,17 @@
 			(rw_all_files_subj_type_attribute))
 		(call fs.tmpfs.search_subj_type
 			(write_all_files_subj_type_attribute))
+
+		(call fs.tmpfs.search_subj_type
+			(manage_all_sock_files_subj_type_attribute))
+		(call fs.tmpfs.search_subj_type
+			(read_all_sock_files_subj_type_attribute))
+		(call fs.tmpfs.search_subj_type
+			(relabel_all_sock_files_subj_type_attribute))
+		(call fs.tmpfs.search_subj_type
+			(rw_all_sock_files_subj_type_attribute))
+		(call fs.tmpfs.search_subj_type
+			(write_all_sock_files_subj_type_attribute))
 
 		(allow list_all_subj_type_attribute
 			tmpfs_obj_type_attribute list_dir_perms)
@@ -2550,12 +2595,36 @@
 				tmpfs_obj_type_attribute
 					tmpfs_obj_type_attribute))
 
+		(call manage_sock_files_pattern
+			(manage_all_sock_files_subj_type_attribute
+				tmpfs_obj_type_attribute
+					tmpfs_obj_type_attribute))
+		(call read_sock_files_pattern
+			(read_all_sock_files_subj_type_attribute
+				tmpfs_obj_type_attribute
+					tmpfs_obj_type_attribute))
+		(call relabel_sock_files_pattern
+			(relabel_all_sock_files_subj_type_attribute
+				tmpfs_obj_type_attribute
+					tmpfs_obj_type_attribute))
+		(call rw_sock_files_pattern
+			(rw_all_sock_files_subj_type_attribute
+				tmpfs_obj_type_attribute
+					tmpfs_obj_type_attribute))
+		(call write_sock_files_pattern
+			(write_all_sock_files_subj_type_attribute
+				tmpfs_obj_type_attribute
+					tmpfs_obj_type_attribute))
+
 		(typeattributeset manage_all_dirs_subj_type_attribute
 			manage_all_subj_type_attribute)
 		(typeattributeset manage_all_lnk_files_subj_type_attribute
 			manage_all_subj_type_attribute)
 		(typeattributeset manage_all_files_subj_type_attribute
 			manage_all_subj_type_attribute)
+		(typeattributeset
+			manage_all_sock_files_subj_type_attribute
+				manage_all_subj_type_attribute)
 
 		(typeattributeset list_all_subj_type_attribute
 			read_all_subj_type_attribute)
@@ -2563,13 +2632,19 @@
 			read_all_subj_type_attribute)
 		(typeattributeset read_all_files_subj_type_attribute
 			read_all_subj_type_attribute)
+		(typeattributeset
+			read_all_sock_files_subj_type_attribute
+				read_all_subj_type_attribute)
 
 		(typeattributeset relabel_all_dirs_subj_type_attribute
 			relabel_all_subj_type_attribute)
 		(typeattributeset relabel_all_lnk_files_subj_type_attribute
 			relabel_all_subj_type_attribute)
 		(typeattributeset relabel_all_files_subj_type_attribute
-			relabel_all_subj_type_attribute))
+			relabel_all_subj_type_attribute)
+		(typeattributeset
+			relabel_all_sock_files_subj_type_attribute
+				relabel_all_subj_type_attribute))
 
 	(block unknown
 
@@ -6650,8 +6725,34 @@
 				ARG1))
 
 		(macro write_files_subj_type ((type ARG1))
-			(typeattributeset write_files_subj_type_attribute
-				ARG1))
+			(typeattributeset
+				write_files_subj_type_attribute
+					ARG1))
+
+		(macro manage_sock_files_subj_type ((type ARG1))
+			(typeattributeset
+				manage_sock_files_subj_type_attribute
+					ARG1))
+
+		(macro read_sock_files_subj_type ((type ARG1))
+			(typeattributeset
+				read_sock_files_subj_type_attribute
+					ARG1))
+
+		(macro relabel_sock_files_subj_type ((type ARG1))
+			(typeattributeset
+				relabel_sock_files_subj_type_attribute
+					ARG1))
+
+		(macro rw_files_sock_subj_type ((type ARG1))
+			(typeattributeset
+				rw_sock_files_subj_type_attribute
+					ARG1))
+
+		(macro write_sock_files_subj_type ((type ARG1))
+			(typeattributeset
+				write_sock_files_subj_type_attribute
+					ARG1))
 
 		(macro read_subj_type ((type ARG1))
 			(typeattributeset read_subj_type_attribute
@@ -6689,6 +6790,12 @@
 		(typeattribute rw_files_subj_type_attribute)
 		(typeattribute write_files_subj_type_attribute)
 
+		(typeattribute manage_sock_files_subj_type_attribute)
+		(typeattribute read_sock_files_subj_type_attribute)
+		(typeattribute relabel_sock_files_subj_type_attribute)
+		(typeattribute rw_sock_files_subj_type_attribute)
+		(typeattribute write_sock_files_subj_type_attribute)
+
 		(typeattribute read_subj_type_attribute)
 		(typeattribute relabel_subj_type_attribute)
 		(typeattribute manage_subj_type_attribute)
@@ -6717,6 +6824,17 @@
 		(call fs.tmpfs.search_subj_type (rw_files_subj_type_attribute))
 		(call fs.tmpfs.search_subj_type
 			(write_files_subj_type_attribute))
+
+		(call fs.tmpfs.search_subj_type
+			(manage_sock_files_subj_type_attribute))
+		(call fs.tmpfs.search_subj_type
+			(read_sock_files_subj_type_attribute))
+		(call fs.tmpfs.search_subj_type
+			(relabel_sock_files_subj_type_attribute))
+		(call fs.tmpfs.search_subj_type
+			(rw_sock_files_subj_type_attribute))
+		(call fs.tmpfs.search_subj_type
+			(write_sock_files_subj_type_attribute))
 
 		(allow list_subj_type_attribute tmpfs_file list_dir_perms)
 		(call manage_dirs_pattern
@@ -6752,11 +6870,29 @@
 			(write_files_subj_type_attribute tmpfs_file
 				tmpfs_file))
 
+		(call manage_sock_files_pattern
+			(manage_sock_files_subj_type_attribute tmpfs_file
+				tmpfs_file))
+		(call read_sock_files_pattern
+			(read_sock_files_subj_type_attribute tmpfs_file
+				tmpfs_file))
+		(call relabel_sock_files_pattern
+			(relabel_sock_files_subj_type_attribute tmpfs_file
+				tmpfs_file))
+		(call rw_sock_files_pattern
+			(rw_sock_files_subj_type_attribute tmpfs_file
+				tmpfs_file))
+		(call write_sock_files_pattern
+			(write_sock_files_subj_type_attribute tmpfs_file
+				tmpfs_file))
+
 		(typeattributeset manage_dirs_subj_type_attribute
 			manage_subj_type_attribute)
 		(typeattributeset manage_lnk_files_subj_type_attribute
 			manage_subj_type_attribute)
 		(typeattributeset manage_files_subj_type_attribute
+			manage_subj_type_attribute)
+		(typeattributeset manage_sock_files_subj_type_attribute
 			manage_subj_type_attribute)
 
 		(typeattributeset list_subj_type_attribute
@@ -6765,12 +6901,16 @@
 			read_subj_type_attribute)
 		(typeattributeset read_files_subj_type_attribute
 			read_subj_type_attribute)
+		(typeattributeset read_sock_files_subj_type_attribute
+			read_subj_type_attribute)
 
 		(typeattributeset relabel_dirs_subj_type_attribute
 			relabel_subj_type_attribute)
 		(typeattributeset relabel_lnk_files_subj_type_attribute
 			relabel_subj_type_attribute)
 		(typeattributeset relabel_files_subj_type_attribute
+			relabel_subj_type_attribute)
+		(typeattributeset relabel_sock_files_subj_type_attribute
 			relabel_subj_type_attribute))
 
 	(block var_obj_stub
