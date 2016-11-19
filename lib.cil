@@ -245,7 +245,7 @@
 		; Policy
 		;
 
-		(blockinherit file.file_obj_base_template)
+		(blockinherit file.file_obj_template)
 
 		(typeattribute exec_subj_type_attribute)
 		(typeattribute use_subj_type_attribute)
@@ -288,7 +288,7 @@
 		; Policy
 		;
 
-		(blockinherit file.file_obj_base_template))
+		(blockinherit file.file_obj_template))
 
 	;
 	; Templates

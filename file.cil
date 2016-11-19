@@ -1139,7 +1139,7 @@
 		; home policy
 		;
 
-		(blockinherit file.file_obj_base_template)
+		(blockinherit file.file_obj_template)
 
 		(call sys.mountpoint_obj_type (file)))
 
@@ -1214,7 +1214,7 @@
 		; lost_found policy
 		;
 
-		(blockinherit file.file_obj_base_template))
+		(blockinherit file.file_obj_template))
 
 	(block mnt
 
@@ -1239,7 +1239,7 @@
 		; mnt policy
 		;
 
-		(blockinherit file.file_obj_base_template)
+		(blockinherit file.file_obj_template)
 
 		(call sys.mountpoint_obj_type (file))
 
@@ -2586,7 +2586,7 @@
 		; unknown policy
 		;
 
-		(blockinherit file.file_obj_base_template))
+		(blockinherit file.file_obj_template))
 
 	(block var
 
@@ -4065,14 +4065,14 @@
 		(type file)
 		(call file_obj_type (file)))
 
-	(block file_obj_base_template
+	(block file_obj_template
 
 		;
-		; file_obj_base_template contexts
+		; file_obj_template contexts
 		;
 
 		;
-		; file_obj_base_template macros
+		; file_obj_template macros
 		;
 
 		(macro list_subj_type ((type ARG1))
@@ -4145,10 +4145,10 @@
 				ARG1))
 
 		;
-		; file_obj_base_template policy
+		; file_obj_template policy
 		;
 
-		(blockabstract file_obj_base_template)
+		(blockabstract file_obj_template)
 
 		(blockinherit file_obj_stub)
 
@@ -4231,14 +4231,14 @@
 		(type auth_file)
 		(call auth_obj_type (auth_file)))
 
-	(block auth_obj_base_template
+	(block auth_obj_template
 
 		;
-		; auth_obj_base_template contexts
+		; auth_obj_template contexts
 		;
 
 		;
-		; auth_obj_base_template macros
+		; auth_obj_template macros
 		;
 
 		(macro list_subj_type ((type ARG1))
@@ -4311,10 +4311,10 @@
 				ARG1))
 
 		;
-		; auth_obj_base_template policy
+		; auth_obj_template policy
 		;
 
-		(blockabstract auth_obj_base_template)
+		(blockabstract auth_obj_template)
 
 		(blockinherit auth_obj_stub)
 
@@ -4401,14 +4401,14 @@
 		(type sec_file)
 		(call sec_obj_type (sec_file)))
 
-	(block sec_obj_base_template
+	(block sec_obj_template
 
 		;
-		; sec_obj_base_template contexts
+		; sec_obj_template contexts
 		;
 
 		;
-		; sec_obj_base_template macros
+		; sec_obj_template macros
 		;
 
 		(macro list_subj_type ((type ARG1))
@@ -4481,10 +4481,10 @@
 				ARG1))
 
 		;
-		; sec_obj_base_template policy
+		; sec_obj_template policy
 		;
 
-		(blockabstract sec_obj_base_template)
+		(blockabstract sec_obj_template)
 
 		(blockinherit sec_obj_stub)
 
