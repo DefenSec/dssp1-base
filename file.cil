@@ -652,7 +652,10 @@
 		; boot_flag contexts
 		;
 
-		(filecon "/.*" file boot_flag_file_context)
+		(filecon "/autorelabel" file boot_flag_file_context)
+		(filecon "/fastboot" file boot_flag_file_context)
+		(filecon "/forcefsck" file boot_flag_file_context)
+		(filecon "/forcequotacheck" file boot_flag_file_context)
 
 		;
 		; boot_flag macros
@@ -674,7 +677,13 @@
 
 		(macro rootfs_obj_type_transition ((type ARG1))
 			(call fs.rootfs.obj_type_transition (ARG1
-				boot_flag_file file "*")))
+				boot_flag_file file "autorelabel"))
+			(call fs.rootfs.obj_type_transition (ARG1
+				boot_flag_file file "fastboot"))
+			(call fs.rootfs.obj_type_transition (ARG1
+				boot_flag_file file "forcefsck"))
+			(call fs.rootfs.obj_type_transition (ARG1
+				boot_flag_file file "forcequotacheck")))
 
 		(macro rw_all_files_subj_type ((type ARG1))
 			(typeattributeset rw_all_files_subj_type_attribute
@@ -2559,7 +2568,7 @@
 		; unknown contexts
 		;
 
-		(filecon "/.*" dir file_context)
+		(filecon "/.*" any file_context)
 
 		;
 		; unknown macros
@@ -2567,6 +2576,8 @@
 
 		(macro rootfs_obj_type_transition ((type ARG1))
 			(call fs.rootfs.obj_type_transition (ARG1 file dir
+				"*"))
+			(call fs.rootfs.obj_type_transition (ARG1 file file
 				"*")))
 
 		;
