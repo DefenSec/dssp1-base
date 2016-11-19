@@ -222,7 +222,6 @@
 
 		(call sys.mountpoint_obj_type (fs))
 
-		(call sys.fs.search_subj_type (associate_obj_type_attribute))
 		(call sys.fs.search_subj_type (getattr_subj_type_attribute))
 		(call sys.fs.search_subj_type (list_subj_type_attribute))
 		(call sys.fs.search_subj_type
@@ -283,7 +282,6 @@
 
 		(call sys.mountpoint_obj_type (fs))
 
-		(call fs.sysfs.search_subj_type (associate_obj_type_attribute))
 		(call fs.sysfs.search_subj_type (getattr_subj_type_attribute))
 		(call fs.sysfs.search_subj_type (list_subj_type_attribute))
 		(call fs.sysfs.search_subj_type
@@ -302,8 +300,6 @@
 		(call fs.sysfs.search_subj_type (search_subj_type_attribute))
 		(call fs.sysfs.search_subj_type (unmount_subj_type_attribute))
 
-		(call fs.tmpfs.read_lnk_files_subj_type
-			(associate_obj_type_attribute))
 		(call fs.tmpfs.read_lnk_files_subj_type
 			(getattr_subj_type_attribute))
 		(call fs.tmpfs.read_lnk_files_subj_type
@@ -349,7 +345,6 @@
 
 		(call sys.mountpoint_obj_type (fs))
 
-		(call fs.sysfs.search_subj_type (associate_obj_type_attribute))
 		(call fs.sysfs.search_subj_type (getattr_subj_type_attribute))
 		(call fs.sysfs.search_subj_type (list_subj_type_attribute))
 		(call fs.sysfs.search_subj_type
@@ -388,7 +383,6 @@
 
 		(call sys.mountpoint_obj_type (fs))
 
-		(call fs.sysfs.search_subj_type (associate_obj_type_attribute))
 		(call fs.sysfs.search_subj_type (getattr_subj_type_attribute))
 		(call fs.sysfs.search_subj_type (list_subj_type_attribute))
 		(call fs.sysfs.search_subj_type
@@ -433,8 +427,6 @@
 
 		(call sys.mountpoint_obj_type (fs))
 
-		(call fs.devtmpfs.search_subj_type
-			(associate_obj_type_attribute))
 		(call fs.devtmpfs.search_subj_type (list_subj_type_attribute))
 		(call fs.devtmpfs.search_subj_type
 			(manage_dirs_subj_type_attribute))
@@ -549,7 +541,6 @@
 
 		(call sys.mountpoint_obj_type (fs))
 
-		(call fs.sysfs.search_subj_type (associate_obj_type_attribute))
 		(call fs.sysfs.search_subj_type (getattr_subj_type_attribute))
 		(call fs.sysfs.search_subj_type (list_subj_type_attribute))
 		(call fs.sysfs.search_subj_type
@@ -590,7 +581,6 @@
 
 		(call sys.mountpoint_obj_type (fs))
 
-		(call fs.sysfs.search_subj_type (associate_obj_type_attribute))
 		(call fs.sysfs.search_subj_type (getattr_subj_type_attribute))
 		(call fs.sysfs.search_subj_type (list_subj_type_attribute))
 		(call fs.sysfs.search_subj_type
@@ -629,8 +619,6 @@
 
 		(call sys.mountpoint_obj_type (fs))
 
-		(call fs.devtmpfs.search_subj_type
-			(associate_obj_type_attribute))
 		(call fs.devtmpfs.search_subj_type
 			(getattr_subj_type_attribute))
 		(call fs.devtmpfs.search_subj_type (list_subj_type_attribute))
@@ -781,7 +769,6 @@
 
 		(call sys.mountpoint_obj_type (fs))
 
-		(call fs.sysfs.search_subj_type (associate_obj_type_attribute))
 		(call fs.sysfs.search_subj_type (getattr_subj_type_attribute))
 		(call fs.sysfs.search_subj_type (list_subj_type_attribute))
 		(call fs.sysfs.search_subj_type
@@ -866,6 +853,94 @@
 
 		(call sys.mountpoint_obj_type (fs)))
 
+	(block selinuxfs
+
+		;
+		; selinuxfs contexts
+		;
+
+		(genfscon "selinuxfs" "/" fs_context)
+
+		;
+		; selinuxfs macros
+		;
+
+		(macro mounton_files_subj_type ((type ARG1))
+			(typeattributeset mounton_files_subj_type_attribute
+				ARG1))
+
+		(macro read_files_subj_type ((type ARG1))
+			(typeattributeset read_files_subj_type_attribute
+				ARG1))
+
+		(macro read_subj_type ((type ARG1))
+			(typeattributeset read_subj_type_attribute
+				ARG1))
+
+		(macro rw_files_subj_type ((type ARG1))
+			(typeattributeset rw_files_subj_type_attribute
+				ARG1))
+
+		(macro write_files_subj_type ((type ARG1))
+			(typeattributeset write_files_subj_type_attribute
+				ARG1))
+
+		;
+		; selinuxfs policy
+		;
+
+		(blockinherit fs.fs_obj_base_template)
+
+		(call sec.bool_obj_type (fs))
+
+		(typeattribute mounton_files_subj_type_attribute)
+		(typeattribute read_files_subj_type_attribute)
+		(typeattribute read_subj_type_attribute)
+		(typeattribute rw_files_subj_type_attribute)
+		(typeattribute write_files_subj_type_attribute)
+
+		(typeattributeset search_subj_type_attribute
+			mounton_files_subj_type_attribute)
+
+		(call fs.sysfs.search_subj_type (list_subj_type_attribute))
+		(call fs.sysfs.search_subj_type
+			(manage_dirs_subj_type_attribute))
+		(call fs.sysfs.search_subj_type
+			(manage_lnk_files_subj_type_attribute))
+		(call fs.sysfs.search_subj_type
+			(mount_subj_type_attribute))
+		(call fs.sysfs.search_subj_type
+			(read_files_subj_type_attribute))
+		(call fs.sysfs.search_subj_type
+			(relabel_dirs_subj_type_attribute))
+		(call fs.sysfs.search_subj_type
+			(relabel_lnk_files_subj_type_attribute))
+		(call fs.sysfs.search_subj_type
+			(remount_subj_type_attribute))
+		(call fs.sysfs.search_subj_type
+			(rw_files_subj_type_attribute))
+		(call fs.sysfs.search_subj_type (search_subj_type_attribute))
+		(call fs.sysfs.search_subj_type
+			(unmount_subj_type_attribute))
+		(call fs.sysfs.search_subj_type
+			(write_files_subj_type_attribute))
+
+		(allow mounton_files_subj_type_attribute fs
+			(file (mounton)))
+		(call read_files_pattern
+			(read_files_subj_type_attribute fs fs))
+		(call rw_files_pattern
+			(rw_files_subj_type_attribute fs fs))
+		(call write_files_pattern
+			(write_files_subj_type_attribute fs fs))
+
+		(typeattributeset list_subj_type_attribute
+			read_subj_type_attribute)
+		(typeattributeset read_lnk_files_subj_type_attribute
+			read_subj_type_attribute)
+		(typeattributeset read_files_subj_type_attribute
+			read_subj_type_attribute))
+
 	(block sysfs
 
 		;
@@ -925,8 +1000,6 @@
 		(call fs.xattr.associate_obj_type (fs))
 
 		(call fs.devtmpfs.search_subj_type
-			(associate_obj_type_attribute))
-		(call fs.devtmpfs.search_subj_type
 			(getattr_subj_type_attribute))
 		(call fs.devtmpfs.search_subj_type (list_subj_type_attribute))
 		(call fs.devtmpfs.search_subj_type
@@ -967,8 +1040,6 @@
 
 		(blockinherit fs.fs_obj_base_template)
 
-		(call fs.debugfs.search_subj_type
-			(associate_obj_type_attribute))
 		(call fs.debugfs.search_subj_type
 			(getattr_subj_type_attribute))
 		(call fs.debugfs.search_subj_type (list_subj_type_attribute))

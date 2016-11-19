@@ -114,7 +114,7 @@
 		not_load_policy_subj_type_or_unconfined_subj_type_attribute
 			sec.security.isid (security (load_policy)))
 
-	(call sec.security.rw_files_subj_type
+	(call fs.selinuxfs.rw_files_subj_type
 		(load_policy_subj_type_attribute))
 
 	(typeattributeset
@@ -131,7 +131,7 @@
 		not_set_enforce_subj_type_or_unconfined_subj_type_attribute
 			sec.security.isid (security (setenforce)))
 
-	(call sec.security.rw_files_subj_type
+	(call fs.selinuxfs.rw_files_subj_type
 		(set_enforce_subj_type_attribute))
 
 	(typeattributeset
@@ -143,40 +143,40 @@
 		not_set_secparam_subj_type_or_unconfined_subj_type_attribute
 			sec.security.isid (security (setsecparam)))
 
-	(call sec.security.rw_files_subj_type
+	(call fs.selinuxfs.rw_files_subj_type
 		(set_secparam_subj_type_attribute))
 
 	(allow set_secparam_subj_type_attribute sec.security.isid (security
 		(setsecparam)))
 
-	(call sec.security.list_subj_type
+	(call fs.selinuxfs.list_subj_type
 		(compute_access_vector_subj_type_attribute))
-	(call sec.security.rw_files_subj_type
+	(call fs.selinuxfs.rw_files_subj_type
 		(compute_access_vector_subj_type_attribute))
 	(allow compute_access_vector_subj_type_attribute sec.security.isid
 		(security (compute_av)))
 
-	(call sec.security.rw_files_subj_type
+	(call fs.selinuxfs.rw_files_subj_type
 		(compute_create_context_subj_type_attribute))
 	(allow compute_create_context_subj_type_attribute sec.security.isid
 		(security (compute_create)))
 
-	(call sec.security.rw_files_subj_type
+	(call fs.selinuxfs.rw_files_subj_type
 		(compute_relabel_context_subj_type_attribute))
 	(allow compute_relabel_context_subj_type_attribute sec.security.isid
 		(security (compute_relabel)))
 
-	(call sec.security.rw_files_subj_type
+	(call fs.selinuxfs.rw_files_subj_type
 		(compute_relabel_context_subj_type_attribute))
 	(allow compute_relabel_context_subj_type_attribute sec.security.isid
 		(security (compute_user)))
 
-	(call sec.security.rw_files_subj_type
+	(call fs.selinuxfs.rw_files_subj_type
 		(read_policy_subj_type_attribute))
 	(allow read_policy_subj_type_attribute sec.security.isid
 		(security (read_policy)))
 
-	(call sec.security.list_subj_type (get_all_bool_subj_type_attribute))
+	(call fs.selinuxfs.list_subj_type (get_all_bool_subj_type_attribute))
 	(allow get_all_bool_subj_type_attribute bool_obj_type_attribute
 		read_file_perms)
 
@@ -185,16 +185,12 @@
 
 	(allow set_all_bool_subj_type_attribute sec.security.isid
 		(security (setbool)))
-	(call sec.security.list_subj_type (set_all_bool_subj_type_attribute))
+	(call fs.selinuxfs.list_subj_type (set_all_bool_subj_type_attribute))
 	(allow set_all_bool_subj_type_attribute bool_obj_type_attribute
 		read_file_perms)
 	(allow set_all_bool_subj_type_attribute
 		bool_except_load_policy_obj_type_attribute
 			(file (append write)))
-
-	(call sec.security.list_subj_type (unconfined_subj_type_attribute))
-	(call sec.security.read_lnk_files_subj_type
-		(unconfined_subj_type_attribute))
 
 	(typeattribute bool_except_load_policy_obj_type_attribute)
 
@@ -263,11 +259,11 @@
 		(typeattribute rw_files_subj_type_attribute)
 		(typeattribute write_files_subj_type_attribute)
 
-		(call sec.security.search_subj_type
+		(call fs.selinuxfs.search_subj_type
 			(read_files_subj_type_attribute))
-		(call sec.security.search_subj_type
+		(call fs.selinuxfs.search_subj_type
 			(rw_files_subj_type_attribute))
-		(call sec.security.search_subj_type
+		(call fs.selinuxfs.search_subj_type
 			(write_files_subj_type_attribute))
 
 		(allow read_files_subj_type_attribute bool read_file_perms)
@@ -298,55 +294,11 @@
 		; security contexts
 		;
 
-		(genfscon "securityfs" "/" isid_context)
-		(genfscon "selinuxfs" "/" isid_context)
-
 		(sidcontext security isid_context)
 
 		;
 		; security macros
 		;
-
-		(macro getattr_subj_type ((type ARG1))
-			(typeattributeset getattr_subj_type_attribute ARG1))
-
-		(macro list_subj_type ((type ARG1))
-			(typeattributeset list_subj_type_attribute
-				ARG1))
-
-		(macro manage_lnk_files_subj_type ((type ARG1))
-			(typeattributeset
-				manage_lnk_files_subj_type_attribute
-					ARG1))
-
-		(macro mounton_files_subj_type ((type ARG1))
-			(typeattributeset mounton_files_subj_type_attribute
-				ARG1))
-
-		(macro read_files_subj_type ((type ARG1))
-			(typeattributeset read_files_subj_type_attribute
-				ARG1))
-
-		(macro read_lnk_files_subj_type ((type ARG1))
-			(typeattributeset
-				read_lnk_files_subj_type_attribute
-					ARG1))
-
-		(macro read_subj_type ((type ARG1))
-			(typeattributeset read_subj_type_attribute
-				ARG1))
-
-		(macro rw_files_subj_type ((type ARG1))
-			(typeattributeset rw_files_subj_type_attribute
-				ARG1))
-
-		(macro search_subj_type ((type ARG1))
-			(typeattributeset search_subj_type_attribute
-				ARG1))
-
-		(macro write_files_subj_type ((type ARG1))
-			(typeattributeset write_files_subj_type_attribute
-				ARG1))
 
 		;
 		; security policy
@@ -354,62 +306,7 @@
 
 		(blockinherit sys.isid_stub)
 
-		(call fs.fs_obj_type (isid))
-
-		(call sec.bool_obj_type (isid))
-
-		(typeattribute getattr_subj_type_attribute)
-		(typeattribute list_subj_type_attribute)
-		(typeattribute manage_lnk_files_subj_type_attribute)
-		(typeattribute mounton_files_subj_type_attribute)
-		(typeattribute read_files_subj_type_attribute)
-		(typeattribute read_lnk_files_subj_type_attribute)
-		(typeattribute read_subj_type_attribute)
-		(typeattribute rw_files_subj_type_attribute)
-		(typeattribute search_subj_type_attribute)
-		(typeattribute write_files_subj_type_attribute)
-
-		(typeattributeset search_subj_type_attribute
-			(getattr_subj_type_attribute
-				mounton_files_subj_type_attribute))
-
-		(call fs.sysfs.search_subj_type (list_subj_type_attribute))
-		(call fs.sysfs.search_subj_type
-			(manage_lnk_files_subj_type_attribute))
-		(call fs.sysfs.search_subj_type
-			(read_files_subj_type_attribute))
-		(call fs.sysfs.search_subj_type
-			(read_lnk_files_subj_type_attribute))
-		(call fs.sysfs.search_subj_type
-			(rw_files_subj_type_attribute))
-		(call fs.sysfs.search_subj_type (search_subj_type_attribute))
-		(call fs.sysfs.search_subj_type
-			(write_files_subj_type_attribute))
-
-		(allow getattr_subj_type_attribute isid (filesystem
-			(getattr)))
-
-		(allow list_subj_type_attribute isid list_dir_perms)
-		(call manage_lnk_files_pattern
-			(manage_lnk_files_subj_type_attribute isid isid))
-		(allow mounton_files_subj_type_attribute isid
-			(file (mounton)))
-		(call read_files_pattern
-			(read_files_subj_type_attribute isid isid))
-		(call read_lnk_files_pattern
-			(read_lnk_files_subj_type_attribute isid isid))
-		(call rw_files_pattern
-			(rw_files_subj_type_attribute isid isid))
-		(allow search_subj_type_attribute isid search_dir_perms)
-		(call write_files_pattern
-			(write_files_subj_type_attribute isid isid))
-
-		(typeattributeset list_subj_type_attribute
-			read_subj_type_attribute)
-		(typeattributeset read_lnk_files_subj_type_attribute
-			read_subj_type_attribute)
-		(typeattributeset read_files_subj_type_attribute
-			read_subj_type_attribute))
+		(call sys.sys_obj_type (isid)))
 
 	;
 	; Templates
@@ -467,11 +364,11 @@
 		(typeattribute rw_files_subj_type_attribute)
 		(typeattribute write_files_subj_type_attribute)
 
-		(call sec.security.search_subj_type
+		(call .fs.selinuxfs.search_subj_type
 			(read_files_subj_type_attribute))
-		(call sec.security.search_subj_type
+		(call .fs.selinuxfs.search_subj_type
 			(rw_files_subj_type_attribute))
-		(call sec.security.search_subj_type
+		(call .fs.selinuxfs.search_subj_type
 			(write_files_subj_type_attribute))
 
 		(allow read_files_subj_type_attribute bool read_file_perms)
