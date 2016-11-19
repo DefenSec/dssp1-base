@@ -6,23 +6,17 @@
 (classpermissionset signal_perms (process (sigchld sigkill sigstop signull
 	signal)))
 
-(classpermission
-	capability_except_sys_module)
-(classpermissionset
-	capability_except_sys_module
-	(capability (not (sys_module))))
+(classpermission capability_except_sys_module)
+(classpermissionset capability_except_sys_module (capability (not
+	(sys_module))))
 
-(classpermission
-	system_except_module_load)
-(classpermissionset
-	system_except_module_load
-	(system (not (module_load))))
+(classpermission system_except_module_load)
+(classpermissionset system_except_module_load (system (not
+	(module_load))))
 
-(classpermission
-	cap_userns_except_sys_module)
-(classpermissionset
-	cap_userns_except_sys_module
-	(cap_userns (not (sys_module))))
+(classpermission cap_userns_except_sys_module)
+(classpermissionset cap_userns_except_sys_module (cap_userns (not
+	(sys_module))))
 
 (classpermission mount_fs_perms)
 (classpermissionset mount_fs_perms (filesystem (mount remount unmount
