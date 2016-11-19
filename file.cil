@@ -2578,6 +2578,8 @@
 			(call fs.rootfs.obj_type_transition (ARG1 file dir
 				"*"))
 			(call fs.rootfs.obj_type_transition (ARG1 file file
+				"*"))
+			(call fs.rootfs.obj_type_transition (ARG1 file lnk_file
 				"*")))
 
 		;
