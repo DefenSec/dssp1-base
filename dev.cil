@@ -1500,27 +1500,26 @@
 		(allow write_subj_type_attribute stor_dev
 			(chr_and_blk_files (write)))
 
-		(optional stor_obj_base_template_optional_stor
-			(allow stor.unconfined_subj_type_attribute stor_dev
-				blk_file_except_mounton_and_execmod)
-			(allow stor.unconfined_subj_type_attribute stor_dev
-				chr_file_except_mounton_and_execmod)
+		(allow unconfined_subj_type_attribute stor_dev
+			blk_file_except_mounton_and_execmod)
+		(allow unconfined_subj_type_attribute stor_dev
+			chr_file_except_mounton_and_execmod)
 
-			(call create_subj_type
-				(stor.create_all_subj_type_attribute))
-			(call getattr_subj_type
-				(stor.getattr_all_subj_type_attribute))
-			(call manage_subj_type
-				(stor.manage_all_subj_type_attribute))
-			(call read_subj_type
-				(stor.read_all_subj_type_attribute))
-			(call relabel_subj_type
-				(stor.relabel_all_subj_type_attribute))
-			(call rw_subj_type (stor.rw_all_subj_type_attribute))
-			(call setattr_subj_type
-				(stor.setattr_all_subj_type_attribute))
-			(call write_subj_type
-				(stor.write_all_subj_type_attribute))))
+		(call create_subj_type
+			(create_all_subj_type_attribute))
+		(call getattr_subj_type
+			(getattr_all_subj_type_attribute))
+		(call manage_subj_type
+			(manage_all_subj_type_attribute))
+		(call read_subj_type
+			(read_all_subj_type_attribute))
+		(call relabel_subj_type
+			(relabel_all_subj_type_attribute))
+		(call rw_subj_type (rw_all_subj_type_attribute))
+		(call setattr_subj_type
+			(setattr_all_subj_type_attribute))
+		(call write_subj_type
+			(write_all_subj_type_attribute)))
 
 	(block login_pty_obj_stub
 
@@ -1632,22 +1631,22 @@
 		(allow write_subj_type_attribute login_pty_dev
 			write_chr_file_perms)
 
-		(allow term.unconfined_subj_type_attribute login_pty_dev
+		(allow unconfined_subj_type_attribute login_pty_dev
 			chr_file_except_mounton_and_execmod)
 
-		(call getattr_subj_type (term.getattr_all_subj_type_attribute))
-		(call manage_subj_type (term.manage_all_subj_type_attribute))
-		(call read_subj_type (term.read_all_subj_type_attribute))
-		(call relabel_subj_type (term.relabel_all_subj_type_attribute))
+		(call getattr_subj_type (getattr_all_subj_type_attribute))
+		(call manage_subj_type (manage_all_subj_type_attribute))
+		(call read_subj_type (read_all_subj_type_attribute))
+		(call relabel_subj_type (relabel_all_subj_type_attribute))
 		(call relabelfrom_subj_type
-			(term.relabelfrom_all_subj_type_attribute))
+			(relabelfrom_all_subj_type_attribute))
 		(call relabelto_subj_type
-			(term.relabelto_all_subj_type_attribute))
+			(relabelto_all_subj_type_attribute))
 		(call rw_inherited_subj_type
-			(term.rw_all_inherited_subj_type_attribute))
-		(call rw_subj_type (term.rw_all_subj_type_attribute))
-		(call setattr_subj_type (term.setattr_all_subj_type_attribute))
-		(call write_subj_type (term.write_all_subj_type_attribute)))
+			(rw_all_inherited_subj_type_attribute))
+		(call rw_subj_type (rw_all_subj_type_attribute))
+		(call setattr_subj_type (setattr_all_subj_type_attribute))
+		(call write_subj_type (write_all_subj_type_attribute)))
 
 	(block pty_obj_stub
 
@@ -1764,22 +1763,22 @@
 			(setattr)))
 		(allow write_subj_type_attribute pty_dev write_chr_file_perms)
 
-		(allow term.unconfined_subj_type_attribute pty_dev
+		(allow unconfined_subj_type_attribute pty_dev
 			chr_file_except_mounton_and_execmod)
 
-		(call getattr_subj_type (term.getattr_all_subj_type_attribute))
-		(call manage_subj_type (term.manage_all_subj_type_attribute))
-		(call read_subj_type (term.read_all_subj_type_attribute))
-		(call relabel_subj_type (term.relabel_all_subj_type_attribute))
+		(call getattr_subj_type (getattr_all_subj_type_attribute))
+		(call manage_subj_type (manage_all_subj_type_attribute))
+		(call read_subj_type (read_all_subj_type_attribute))
+		(call relabel_subj_type (relabel_all_subj_type_attribute))
 		(call relabelfrom_subj_type
-			(term.relabelfrom_all_subj_type_attribute))
+			(relabelfrom_all_subj_type_attribute))
 		(call relabelto_subj_type
-			(term.relabelto_all_subj_type_attribute))
+			(relabelto_all_subj_type_attribute))
 		(call rw_inherited_subj_type
-			(term.rw_all_inherited_subj_type_attribute))
-		(call rw_subj_type (term.rw_all_subj_type_attribute))
-		(call setattr_subj_type (term.setattr_all_subj_type_attribute))
-		(call write_subj_type (term.write_all_subj_type_attribute)))
+			(rw_all_inherited_subj_type_attribute))
+		(call rw_subj_type (rw_all_subj_type_attribute))
+		(call setattr_subj_type (setattr_all_subj_type_attribute))
+		(call write_subj_type (write_all_subj_type_attribute)))
 
 	(block serial_obj_stub
 
@@ -1905,19 +1904,19 @@
 		(allow write_subj_type_attribute serial_dev
 			write_chr_file_perms)
 
-		(allow term.unconfined_subj_type_attribute serial_dev
+		(allow unconfined_subj_type_attribute serial_dev
 			chr_file_except_mounton_and_execmod)
 
-		(call getattr_subj_type (term.getattr_all_subj_type_attribute))
-		(call manage_subj_type (term.manage_all_subj_type_attribute))
-		(call read_subj_type (term.read_all_subj_type_attribute))
-		(call relabel_subj_type (term.relabel_all_subj_type_attribute))
+		(call getattr_subj_type (getattr_all_subj_type_attribute))
+		(call manage_subj_type (manage_all_subj_type_attribute))
+		(call read_subj_type (read_all_subj_type_attribute))
+		(call relabel_subj_type (relabel_all_subj_type_attribute))
 		(call relabelfrom_subj_type
-			(term.relabelfrom_all_subj_type_attribute))
+			(relabelfrom_all_subj_type_attribute))
 		(call relabelto_subj_type
-			(term.relabelto_all_subj_type_attribute))
+			(relabelto_all_subj_type_attribute))
 		(call rw_inherited_subj_type
-			(term.rw_all_inherited_subj_type_attribute))
-		(call rw_subj_type (term.rw_all_subj_type_attribute))
-		(call setattr_subj_type (term.setattr_all_subj_type_attribute))
-		(call write_subj_type (term.write_all_subj_type_attribute))))
+			(rw_all_inherited_subj_type_attribute))
+		(call rw_subj_type (rw_all_subj_type_attribute))
+		(call setattr_subj_type (setattr_all_subj_type_attribute))
+		(call write_subj_type (write_all_subj_type_attribute))))
