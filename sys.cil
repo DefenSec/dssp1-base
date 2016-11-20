@@ -522,6 +522,61 @@
 		; invalid macros
 		;
 
+		(macro list_subj_type ((type ARG1))
+			(typeattributeset list_subj_type_attribute
+				ARG1))
+
+		(macro read_fifo_files_subj_type ((type ARG1))
+			(typeattributeset
+				read_fifo_files_subj_type_attribute
+					ARG1))
+
+		(macro read_files_subj_type ((type ARG1))
+			(typeattributeset read_files_subj_type_attribute
+				ARG1))
+
+		(macro read_lnk_files_subj_type ((type ARG1))
+			(typeattributeset
+				read_lnk_files_subj_type_attribute
+					ARG1))
+
+		(macro read_sock_files_subj_type ((type ARG1))
+			(typeattributeset
+				read_sock_files_subj_type_attribute
+					ARG1))
+
+		(macro read_subj_type ((type ARG1))
+			(typeattributeset read_subj_type_attribute
+				ARG1))
+
+		(macro relabelfrom_dirs_subj_type ((type ARG1))
+			(typeattributeset relabelfrom_dirs_subj_type_attribute
+				ARG1))
+
+		(macro relabelfrom_fifo_files_subj_type ((type ARG1))
+			(typeattributeset
+				relabelfrom_fifo_files_subj_type_attribute
+					ARG1))
+
+		(macro relabelfrom_files_subj_type ((type ARG1))
+			(typeattributeset
+				relabelfrom_files_subj_type_attribute
+					ARG1))
+
+		(macro relabelfrom_lnk_files_subj_type ((type ARG1))
+			(typeattributeset
+				relabelfrom_lnk_files_subj_type_attribute
+					ARG1))
+
+		(macro relabelfrom_sock_files_subj_type ((type ARG1))
+			(typeattributeset
+				relabelfrom_sock_files_subj_type_attribute
+					ARG1))
+
+		(macro relabelfrom_subj_type ((type ARG1))
+			(typeattributeset relabelfrom_subj_type_attribute
+				ARG1))
+
 		(macro search_subj_type ((type ARG1))
 			(typeattributeset search_subj_type_attribute
 				ARG1))
@@ -534,6 +589,18 @@
 
 		(roletype sys.role isid)
 
+		(typeattribute list_subj_type_attribute)
+		(typeattribute read_fifo_files_subj_type_attribute)
+		(typeattribute read_files_subj_type_attribute)
+		(typeattribute read_lnk_files_subj_type_attribute)
+		(typeattribute read_sock_files_subj_type_attribute)
+		(typeattribute read_subj_type_attribute)
+		(typeattribute relabelfrom_dirs_subj_type_attribute)
+		(typeattribute relabelfrom_fifo_files_subj_type_attribute)
+		(typeattribute relabelfrom_files_subj_type_attribute)
+		(typeattribute relabelfrom_lnk_files_subj_type_attribute)
+		(typeattribute relabelfrom_sock_files_subj_type_attribute)
+		(typeattribute relabelfrom_subj_type_attribute)
 		(typeattribute search_subj_type_attribute)
 
 		(allow isid self (process (sigchld)))
@@ -550,7 +617,54 @@
 		(call .fs.tmpfs.associate_obj_type (isid))
 		(call .fs.xattr.associate_obj_type (isid))
 
+		(allow list_subj_type_attribute isid list_dir_perms)
+		(call read_fifo_files_pattern
+			(read_fifo_files_subj_type_attribute isid isid))
+		(call read_files_pattern
+			(read_files_subj_type_attribute isid isid))
+		(call read_lnk_files_pattern
+			(read_lnk_files_subj_type_attribute isid isid))
+		(call read_sock_files_pattern
+			(read_sock_files_subj_type_attribute isid isid))
+		(allow relabelfrom_dirs_subj_type_attribute isid
+			relabel_dir_perms)
+		(call relabelfrom_fifo_files_pattern
+			(relabelfrom_fifo_files_subj_type_attribute isid
+				isid))
+		(call relabelfrom_files_pattern
+			(relabelfrom_files_subj_type_attribute isid
+				isid))
+		(call relabelfrom_lnk_files_pattern
+			(relabelfrom_lnk_files_subj_type_attribute isid
+				isid))
+		(call relabelfrom_sock_files_pattern
+			(relabelfrom_sock_files_subj_type_attribute isid
+				isid))
 		(allow search_subj_type_attribute isid search_dir_perms)
+
+		(typeattributeset list_subj_type_attribute
+			read_subj_type_attribute)
+		(typeattributeset read_fifo_files_subj_type_attribute
+			read_subj_type_attribute)
+		(typeattributeset read_files_subj_type_attribute
+			read_subj_type_attribute)
+		(typeattributeset read_lnk_files_subj_type_attribute
+			read_subj_type_attribute)
+		(typeattributeset read_sock_files_subj_type_attribute
+			read_subj_type_attribute)
+		(typeattributeset relabelfrom_dirs_subj_type_attribute
+			relabelfrom_subj_type_attribute)
+		(typeattributeset
+			relabelfrom_fifo_files_subj_type_attribute
+				relabelfrom_subj_type_attribute)
+		(typeattributeset relabelfrom_files_subj_type_attribute
+			relabelfrom_subj_type_attribute)
+		(typeattributeset
+			relabelfrom_lnk_files_subj_type_attribute
+				relabelfrom_subj_type_attribute)
+		(typeattributeset
+			relabelfrom_sock_files_subj_type_attribute
+				relabelfrom_subj_type_attribute)
 
 		(allow unconfined_subj_type_attribute isid signal_perms)
 
@@ -1810,6 +1924,33 @@
 		; unlabeled macros
 		;
 
+		(macro list_subj_type ((type ARG1))
+			(typeattributeset list_subj_type_attribute
+				ARG1))
+
+		(macro read_fifo_files_subj_type ((type ARG1))
+			(typeattributeset
+				read_fifo_files_subj_type_attribute
+					ARG1))
+
+		(macro read_files_subj_type ((type ARG1))
+			(typeattributeset read_files_subj_type_attribute
+				ARG1))
+
+		(macro read_lnk_files_subj_type ((type ARG1))
+			(typeattributeset
+				read_lnk_files_subj_type_attribute
+					ARG1))
+
+		(macro read_sock_files_subj_type ((type ARG1))
+			(typeattributeset
+				read_sock_files_subj_type_attribute
+					ARG1))
+
+		(macro read_subj_type ((type ARG1))
+			(typeattributeset read_subj_type_attribute
+				ARG1))
+
 		(macro recv_peers_subj_type ((type ARG1))
 			(typeattributeset recv_peers_subj_type_attribute
 				ARG1))
@@ -1834,6 +1975,38 @@
 				recvfrom_udp_sockets_subj_type_attribute
 					ARG1))
 
+		(macro relabelfrom_dirs_subj_type ((type ARG1))
+			(typeattributeset relabelfrom_dirs_subj_type_attribute
+				ARG1))
+
+		(macro relabelfrom_fifo_files_subj_type ((type ARG1))
+			(typeattributeset
+				relabelfrom_fifo_files_subj_type_attribute
+					ARG1))
+
+		(macro relabelfrom_files_subj_type ((type ARG1))
+			(typeattributeset
+				relabelfrom_files_subj_type_attribute
+					ARG1))
+
+		(macro relabelfrom_lnk_files_subj_type ((type ARG1))
+			(typeattributeset
+				relabelfrom_lnk_files_subj_type_attribute
+					ARG1))
+
+		(macro relabelfrom_sock_files_subj_type ((type ARG1))
+			(typeattributeset
+				relabelfrom_sock_files_subj_type_attribute
+					ARG1))
+
+		(macro relabelfrom_subj_type ((type ARG1))
+			(typeattributeset relabelfrom_subj_type_attribute
+				ARG1))
+
+		(macro search_subj_type ((type ARG1))
+			(typeattributeset search_subj_type_attribute
+				ARG1))
+
 		;
 		; unlabeled policy
 		;
@@ -1842,10 +2015,23 @@
 
 		(typeattribute recv_peers_subj_type_attribute)
 
+		(typeattribute list_subj_type_attribute)
+		(typeattribute read_fifo_files_subj_type_attribute)
+		(typeattribute read_files_subj_type_attribute)
+		(typeattribute read_lnk_files_subj_type_attribute)
+		(typeattribute read_sock_files_subj_type_attribute)
+		(typeattribute read_subj_type_attribute)
 		(typeattribute recvfrom_dccp_sockets_subj_type_attribute)
 		(typeattribute recvfrom_rawip_sockets_subj_type_attribute)
 		(typeattribute recvfrom_tcp_sockets_subj_type_attribute)
 		(typeattribute recvfrom_udp_sockets_subj_type_attribute)
+		(typeattribute relabelfrom_dirs_subj_type_attribute)
+		(typeattribute relabelfrom_fifo_files_subj_type_attribute)
+		(typeattribute relabelfrom_files_subj_type_attribute)
+		(typeattribute relabelfrom_lnk_files_subj_type_attribute)
+		(typeattribute relabelfrom_sock_files_subj_type_attribute)
+		(typeattribute relabelfrom_subj_type_attribute)
+		(typeattribute search_subj_type_attribute)
 
 		(call sys.sys_obj_type (isid))
 
@@ -1853,9 +2039,17 @@
 		(call .fs.tmpfs.associate_obj_type (isid))
 		(call .fs.xattr.associate_obj_type (isid))
 
+		(allow list_subj_type_attribute isid list_dir_perms)
+		(call read_fifo_files_pattern
+			(read_fifo_files_subj_type_attribute isid isid))
+		(call read_files_pattern
+			(read_files_subj_type_attribute isid isid))
+		(call read_lnk_files_pattern
+			(read_lnk_files_subj_type_attribute isid isid))
+		(call read_sock_files_pattern
+			(read_sock_files_subj_type_attribute isid isid))
 		(allow recv_peers_subj_type_attribute isid
 			(peer (recv)))
-
 		(allow recvfrom_dccp_sockets_subj_type_attribute isid
 			(dccp_socket (recvfrom)))
 		(allow recvfrom_rawip_sockets_subj_type_attribute isid
@@ -1864,6 +2058,46 @@
 			(tcp_socket (recvfrom)))
 		(allow recvfrom_udp_sockets_subj_type_attribute isid
 			(udp_socket (recvfrom)))
+		(allow relabelfrom_dirs_subj_type_attribute isid
+			relabel_dir_perms)
+		(call relabelfrom_fifo_files_pattern
+			(relabelfrom_fifo_files_subj_type_attribute isid
+				isid))
+		(call relabelfrom_files_pattern
+			(relabelfrom_files_subj_type_attribute isid
+				isid))
+		(call relabelfrom_lnk_files_pattern
+			(relabelfrom_lnk_files_subj_type_attribute isid
+				isid))
+		(call relabelfrom_sock_files_pattern
+			(relabelfrom_sock_files_subj_type_attribute isid
+				isid))
+		(allow search_subj_type_attribute isid
+			search_dir_perms)
+
+		(typeattributeset list_subj_type_attribute
+			read_subj_type_attribute)
+		(typeattributeset read_fifo_files_subj_type_attribute
+			read_subj_type_attribute)
+		(typeattributeset read_files_subj_type_attribute
+			read_subj_type_attribute)
+		(typeattributeset read_lnk_files_subj_type_attribute
+			read_subj_type_attribute)
+		(typeattributeset read_sock_files_subj_type_attribute
+			read_subj_type_attribute)
+		(typeattributeset relabelfrom_dirs_subj_type_attribute
+			relabelfrom_subj_type_attribute)
+		(typeattributeset
+			relabelfrom_fifo_files_subj_type_attribute
+				relabelfrom_subj_type_attribute)
+		(typeattributeset relabelfrom_files_subj_type_attribute
+			relabelfrom_subj_type_attribute)
+		(typeattributeset
+			relabelfrom_lnk_files_subj_type_attribute
+				relabelfrom_subj_type_attribute)
+		(typeattributeset
+			relabelfrom_sock_files_subj_type_attribute
+				relabelfrom_subj_type_attribute)
 
 		(allow unconfined_subj_type_attribute isid
 			file_except_mounton_execmod_and_entrypoint)
