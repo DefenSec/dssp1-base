@@ -192,13 +192,13 @@
 
 	(call entrypoint_subj_type (subj)))
 
-(block agent_template
+(block hybrid_agent_base_template
 
 	;
-	; agent_template policy
+	; hybrid_agent_base_template policy
 	;
 
-	(blockabstract agent_template)
+	(blockabstract hybrid_agent_base_template)
 
 	(roleattribute role_attribute)
 
