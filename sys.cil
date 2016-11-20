@@ -1284,6 +1284,16 @@
 		; sysctl macros
 		;
 
+		(macro getattr_all_files_subj_type ((type ARG1))
+			(typeattributeset
+				getattr_all_files_subj_type_attribute
+					ARG1))
+
+		(macro getattr_all_lnk_files_subj_type ((type ARG1))
+			(typeattributeset
+				getattr_all_lnk_files_subj_type_attribute
+					ARG1))
+
 		(macro list_all_subj_type ((type ARG1))
 			(typeattributeset list_all_subj_type_attribute
 				ARG1))
@@ -1430,6 +1440,8 @@
 
 		(call sys.sysctl_obj_type (isid))
 
+		(typeattribute getattr_all_files_subj_type_attribute)
+		(typeattribute getattr_all_lnk_files_subj_type_attribute)
 		(typeattribute list_all_subj_type_attribute)
 		(typeattribute list_subj_type_attribute)
 		(typeattribute manage_all_dirs_subj_type_attribute)
@@ -1524,6 +1536,14 @@
 		(typeattributeset relabel_lnk_files_subj_type_attribute
 			relabel_subj_type_attribute)
 
+		(call getattr_files_pattern
+			(getattr_all_files_subj_type_attribute
+				sysctl_obj_type_attribute
+					sysctl_obj_type_attribute))
+		(call getattr_lnk_files_pattern
+			(getattr_all_lnk_files_subj_type_attribute
+				sysctl_obj_type_attribute
+					sysctl_obj_type_attribute))
 		(allow list_all_subj_type_attribute
 			sysctl_obj_type_attribute list_dir_perms)
 		(call manage_dirs_pattern
