@@ -2400,7 +2400,7 @@
 		; tmpfs policy
 		;
 
-		(blockinherit file.tmpfs_obj_base_template)
+		(blockinherit file.tmpfs_obj_template)
 
 		(typeattribute list_all_subj_type_attribute)
 		(typeattribute manage_all_dirs_subj_type_attribute)
@@ -6261,14 +6261,14 @@
 		(type tmpfs_file)
 		(call tmpfs_obj_type (tmpfs_file)))
 
-	(block tmpfs_obj_base_template
+	(block tmpfs_obj_template
 
 		;
-		; tmpfs_obj_base_template contexts
+		; tmpfs_obj_template contexts
 		;
 
 		;
-		; tmpfs_obj_base_template macros
+		; tmpfs_obj_template macros
 		;
 
 		(macro list_subj_type ((type ARG1))
@@ -6372,10 +6372,10 @@
 					ARG1))
 
 		;
-		; tmpfs_obj_base_template policy
+		; tmpfs_obj_template policy
 		;
 
-		(blockabstract tmpfs_obj_base_template)
+		(blockabstract tmpfs_obj_template)
 
 		(blockinherit tmpfs_obj_stub)
 
