@@ -1,3 +1,7 @@
+;
+; Initial SID
+;
+
 (sid devnull)
 
 (block dev

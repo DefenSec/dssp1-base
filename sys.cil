@@ -1,3 +1,7 @@
+;
+; Initial SID
+;
+
 (sid kernel)
 (sid sysctl)
 (sid unlabeled)
