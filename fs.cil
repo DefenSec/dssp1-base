@@ -39,6 +39,10 @@
 		(typeattributeset mount_all_subj_type_attribute
 			ARG1))
 
+	(macro read_all_files_subj_type ((type ARG1))
+		(typeattributeset read_all_files_subj_type_attribute
+			ARG1))
+
 	(macro read_all_lnk_files_subj_type ((type ARG1))
 		(typeattributeset read_all_lnk_files_subj_type_attribute
 			ARG1))
@@ -47,10 +51,18 @@
 		(typeattributeset relabel_all_dirs_subj_type_attribute
 			ARG1))
 
+	(macro relabel_all_files_subj_type ((type ARG1))
+		(typeattributeset
+			relabel_all_files_subj_type_attribute ARG1))
+
 	(macro relabel_all_lnk_files_subj_type ((type ARG1))
 		(typeattributeset
 			relabel_all_lnk_files_subj_type_attribute
 				ARG1))
+
+	(macro relabel_all_subj_type ((type ARG1))
+		(typeattributeset relabel_all_subj_type_attribute
+			ARG1))
 
 	(macro remount_all_subj_type ((type ARG1))
 		(typeattributeset remount_all_subj_type_attribute
@@ -84,9 +96,12 @@
 	(typeattribute manage_all_dirs_subj_type_attribute)
 	(typeattribute manage_all_lnk_files_subj_type_attribute)
 	(typeattribute mount_all_subj_type_attribute)
+	(typeattribute read_all_files_subj_type_attribute)
 	(typeattribute read_all_lnk_files_subj_type_attribute)
 	(typeattribute relabel_all_dirs_subj_type_attribute)
+	(typeattribute relabel_all_files_subj_type_attribute)
 	(typeattribute relabel_all_lnk_files_subj_type_attribute)
+	(typeattribute relabel_all_subj_type_attribute)
 	(typeattribute remount_all_subj_type_attribute)
 	(typeattribute rw_all_dirs_subj_type_attribute)
 	(typeattribute search_all_subj_type_attribute)
@@ -97,12 +112,29 @@
 
 	(allow associate_all_obj_type_attribute fs_obj_type_attribute
 		(filesystem (associate)))
-	(allow list_all_subj_type_attribute fs_obj_type_attribute
-		list_dir_perms)
 	(allow getattr_all_subj_type_attribute fs_obj_type_attribute
 		(filesystem (getattr)))
+	(allow list_all_subj_type_attribute fs_obj_type_attribute
+		list_dir_perms)
+	(call manage_dirs_pattern (manage_all_dirs_subj_type_attribute
+		fs_obj_type_attribute fs_obj_type_attribute))
+	(call manage_lnk_files_pattern
+		(manage_all_lnk_files_subj_type_attribute
+			fs_obj_type_attribute fs_obj_type_attribute))
 	(allow mount_all_subj_type_attribute fs_obj_type_attribute
 		(filesystem (mount)))
+	(call read_files_pattern
+		(read_all_files_subj_type_attribute fs_obj_type_attribute
+			fs_obj_type_attribute))
+	(call relabel_dirs_pattern
+		(relabel_all_dirs_subj_type_attribute
+			fs_obj_type_attribute fs_obj_type_attribute))
+	(call relabel_files_pattern
+		(relabel_all_files_subj_type_attribute
+			fs_obj_type_attribute fs_obj_type_attribute))
+	(call relabel_lnk_files_pattern
+		(relabel_all_lnk_files_subj_type_attribute
+			fs_obj_type_attribute fs_obj_type_attribute))
 	(allow remount_all_subj_type_attribute fs_obj_type_attribute
 		(filesystem (remount)))
 	(call rw_dirs_pattern
@@ -112,6 +144,13 @@
 		search_dir_perms)
 	(allow unmount_all_subj_type_attribute fs_obj_type_attribute
 		(filesystem (unmount)))
+
+	(typeattributeset relabel_all_dirs_subj_type_attribute
+		relabel_all_subj_type_attribute)
+	(typeattributeset relabel_all_files_subj_type_attribute
+		relabel_all_subj_type_attribute)
+	(typeattributeset relabel_all_lnk_files_subj_type_attribute
+		relabel_all_subj_type_attribute)
 
 	(allow unconfined_subj_type_attribute fs_obj_type_attribute
 		file_except_mounton_execmod_and_entrypoint)
@@ -1353,8 +1392,8 @@
 			(read_lnk_files_subj_type_attribute fs fs))
 		(allow relabel_dirs_subj_type_attribute fs
 			relabel_dir_perms)
-		(call read_lnk_files_pattern
-			(read_lnk_files_subj_type_attribute fs fs))
+		(call relabel_lnk_files_pattern
+			(relabel_lnk_files_subj_type_attribute fs fs))
 		(allow remount_subj_type_attribute fs (filesystem
 			(remount)))
 		(call rw_dirs_pattern
