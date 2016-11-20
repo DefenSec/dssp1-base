@@ -44,6 +44,10 @@
 		(typeattributeset set_all_bool_subj_type_attribute
 			ARG1))
 
+	(macro set_check_req_prot_subj_type ((type ARG1))
+		(typeattributeset set_check_req_prot_subj_type_attribute
+			ARG1))
+
 	(macro set_enforce_subj_type ((type ARG1))
 		(typeattributeset set_enforce_subj_type_attribute
 			ARG1))
@@ -57,6 +61,10 @@
 
 	(macro unconfined_subj_type ((type ARG1))
 		(typeattributeset unconfined_subj_type_attribute
+			ARG1))
+
+	(macro validate_context_subj_type ((type ARG1))
+		(typeattributeset validate_context_subj_type_attribute
 			ARG1))
 
 	(macro write_load_policy_bool_subj_type ((type ARG1))
@@ -89,14 +97,16 @@
 		not_write_load_policy_bool_subj_type_or_unconfined_subj_type_attribute)
 	(typeattribute read_policy_subj_type_attribute)
 	(typeattribute set_all_bool_subj_type_attribute)
+	(typeattribute set_check_req_prot_subj_type_attribute)
 	(typeattribute set_enforce_subj_type_attribute)
 	(typeattribute
 		set_enforce_subj_type_or_unconfined_subj_type_attribute)
 	(typeattribute set_secparam_subj_type_attribute)
+	(typeattribute unconfined_subj_type_attribute)
+	(typeattribute validate_context_subj_type_attribute)
 	(typeattribute write_load_policy_bool_subj_type_attribute)
 	(typeattribute
 		write_load_policy_bool_subj_type_or_unconfined_subj_type_attribute)
-	(typeattribute unconfined_subj_type_attribute)
 
 	(call sys.sys_obj_type (bool_obj_type_attribute))
 
@@ -116,6 +126,12 @@
 
 	(call fs.selinuxfs.rw_files_subj_type
 		(load_policy_subj_type_attribute))
+
+	(call fs.selinuxfs.rw_files_subj_type
+		(set_check_req_prot_subj_type_attribute))
+
+	(allow set_check_req_prot_subj_type_attribute
+		sec.security.isid (security (setcheckreqprot)))
 
 	(typeattributeset
 		not_set_enforce_subj_type_or_unconfined_subj_type_attribute
@@ -204,6 +220,12 @@
 	(allow unconfined_subj_type_attribute
 		bool_except_load_policy_obj_type_attribute (file
 			(append write)))
+
+	(call fs.selinuxfs.rw_files_subj_type
+		(validate_context_subj_type_attribute))
+
+	(allow validate_context_subj_type_attribute sec.security.isid
+		(security (check_context)))
 
 	(typeattributeset
 		not_write_load_policy_bool_subj_type_or_unconfined_subj_type_attribute
