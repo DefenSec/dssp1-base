@@ -30,6 +30,10 @@
 	(macro file_obj_type ((type ARG1))
 		(typeattributeset file_obj_type_attribute ARG1))
 
+	(macro getattr_all_files_subj_type ((type ARG1))
+		(typeattributeset getattr_all_files_subj_type_attribute
+			ARG1))
+
 	(macro list_all_except_subj_type ((type ARG1))
 		(typeattributeset list_all_except_subj_type_attribute
 			ARG1))
@@ -228,6 +232,7 @@
 	(typeattribute file_except_auth_obj_type_attribute)
 	(typeattribute file_except_sec_obj_type_attribute)
 	(typeattribute file_obj_type_attribute)
+	(typeattribute getattr_all_files_subj_type_attribute)
 	(typeattribute list_all_subj_type_attribute)
 	(typeattribute list_all_except_subj_type_attribute)
 	(typeattribute manage_all_dirs_subj_type_attribute)
@@ -301,6 +306,8 @@
 			(not (auth_obj_type_attribute sec_obj_type_attribute
 				exception_obj_type_attribute))))
 
+	(call fs.tmpfs.search_subj_type
+		(getattr_all_files_subj_type_attribute))
 	(call fs.tmpfs.search_subj_type (list_all_subj_type_attribute))
 	(call fs.tmpfs.search_subj_type (manage_all_dirs_subj_type_attribute))
 	(call fs.tmpfs.search_subj_type (manage_all_files_subj_type_attribute))
@@ -319,6 +326,8 @@
 	(call fs.tmpfs.search_subj_type (search_all_subj_type_attribute))
 	(call fs.tmpfs.search_subj_type (write_all_files_subj_type_attribute))
 
+	(call getattr_files_pattern (getattr_all_files_subj_type_attribute
+		file_obj_type_attribute file_obj_type_attribute))
 	(allow list_all_subj_type_attribute file_obj_type_attribute
 		list_dir_perms)
 	(call manage_dirs_pattern (manage_all_dirs_subj_type_attribute
