@@ -971,7 +971,8 @@
 
 		(blockinherit fs.fs_obj_base_template)
 
-		(call fs.sysfs.search_subj_type (getattr_subj_type_attribute))
+		(call fs.sysfs.search_subj_type
+			(getattr_subj_type_attribute))
 		(call fs.sysfs.search_subj_type (list_subj_type_attribute))
 		(call fs.sysfs.search_subj_type
 			(manage_dirs_subj_type_attribute))
@@ -1038,6 +1039,8 @@
 		(typeattributeset search_subj_type_attribute
 			mounton_files_subj_type_attribute)
 
+		(call fs.sysfs.search_subj_type
+			(getattr_subj_type_attribute))
 		(call fs.sysfs.search_subj_type (list_subj_type_attribute))
 		(call fs.sysfs.search_subj_type
 			(manage_dirs_subj_type_attribute))
