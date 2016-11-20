@@ -203,6 +203,14 @@
 	(macro sec_obj_type ((type ARG1))
 		(typeattributeset sec_obj_type_attribute ARG1))
 
+	(macro set_execmod_all_except_bool_subj_type ((type ARG1))
+		(call file.execmod_all_except.rw_files_subj_type
+			(ARG1))
+		(call sec.set_bool_subj_type (ARG1))
+
+		(optional set_execmod_all_except_bool_optional_seutil
+			(call seutil.setsebool.exec_subj_type (ARG1))))
+
 	(macro tmpfs_obj_type ((type ARG1))
 		(typeattributeset tmpfs_obj_type_attribute ARG1))
 

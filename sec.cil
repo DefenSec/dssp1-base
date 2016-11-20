@@ -48,6 +48,10 @@
 		(typeattributeset set_all_bool_subj_type_attribute
 			ARG1))
 
+	(macro set_bool_subj_type ((type ARG1))
+		(typeattributeset set_bool_subj_type_attribute
+			ARG1))
+
 	(macro set_check_req_prot_subj_type ((type ARG1))
 		(typeattributeset set_check_req_prot_subj_type_attribute
 			ARG1))
@@ -58,6 +62,13 @@
 
 	(macro set_fscreate_subj_type ((type ARG1))
 		(allow ARG1 self (process (setfscreate))))
+
+	(macro set_load_policy_bool_subj_type ((type ARG1))
+		(call sec.load_policy.rw_files_subj_type (ARG1))
+		(call sec.set_bool_subj_type (ARG1))
+
+		(optional set_load_policy_bool_optional_seutil
+			(call seutil.setsebool.exec_subj_type (ARG1))))
 
 	(macro set_secparam_subj_type ((type ARG1))
 		(typeattributeset set_secparam_subj_type_attribute
@@ -101,6 +112,7 @@
 		not_write_load_policy_bool_subj_type_or_unconfined_subj_type_attribute)
 	(typeattribute read_policy_subj_type_attribute)
 	(typeattribute set_all_bool_subj_type_attribute)
+	(typeattribute set_bool_subj_type_attribute)
 	(typeattribute set_check_req_prot_subj_type_attribute)
 	(typeattribute set_enforce_subj_type_attribute)
 	(typeattribute
@@ -218,6 +230,11 @@
 		bool_except_load_policy_obj_type_attribute (and
 			(bool_obj_type_attribute) (not
 				(sec.load_policy.bool))))
+
+	(call fs.selinuxfs.rw_files_subj_type
+		(set_bool_subj_type_attribute))
+	(allow set_bool_subj_type_attribute sec.security.isid (security
+		(setbool)))
 
 	(allow unconfined_subj_type_attribute bool_obj_type_attribute
 		read_file_perms)

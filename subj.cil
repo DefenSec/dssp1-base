@@ -94,10 +94,6 @@
 		(typeattributeset ps_all_subj_type_attribute
 			ARG1))
 
-	(macro sys_ptrace_subj_type ((type ARG1))
-		(allow ARG1 self (capability (sys_ptrace)))
-		(typeattributeset sys_ptrace_subj_type_attribute ARG1))
-
 	(macro ptrace_all_subj_type ((type ARG1))
 		(typeattributeset ptrace_all_subj_type_attribute ARG1))
 
@@ -154,6 +150,14 @@
 	(macro send_sigstop_all_subj_type ((type ARG1))
 		(typeattributeset send_sigstop_all_subj_type_attribute ARG1))
 
+	(macro set_mmap_low_bool_subj_type ((type ARG1))
+		(call subj.mmap_low.rw_files_subj_type
+			(ARG1))
+		(call sec.set_bool_subj_type (ARG1))
+
+		(optional set_mmap_low_bool_optional_seutil
+			(call seutil.setsebool.exec_subj_type (ARG1))))
+
 	(macro setsched_all_subj_type ((type ARG1))
 		(typeattributeset setsched_all_subj_type_attribute ARG1))
 
@@ -165,6 +169,10 @@
 
 	(macro subj_type ((type ARG1))
 		(typeattributeset subj_type_attribute ARG1))
+
+	(macro sys_ptrace_subj_type ((type ARG1))
+		(allow ARG1 self (capability (sys_ptrace)))
+		(typeattributeset sys_ptrace_subj_type_attribute ARG1))
 
 	(macro transition_all_subj_type ((type ARG1))
 		(typeattributeset transition_all_subj_type_attribute ARG1))
