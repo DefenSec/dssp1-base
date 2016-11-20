@@ -373,14 +373,14 @@
 		(type bool)
 		(call bool_obj_type (bool)))
 
-	(block bool_obj_base_template
+	(block bool_obj_template
 
 		;
-		; bool_obj_base_template contexts
+		; bool_obj_template contexts
 		;
 
 		;
-		; bool_obj_base_template macros
+		; bool_obj_template macros
 		;
 
 		(macro read_files_subj_files_type ((type ARG1))
@@ -396,10 +396,10 @@
 				ARG1))
 
 		;
-		; bool_obj_base_template policy
+		; bool_obj_template policy
 		;
 
-		(blockabstract bool_obj_base_template)
+		(blockabstract bool_obj_template)
 
 		(blockinherit bool_obj_stub)
 
@@ -416,22 +416,4 @@
 
 		(allow read_files_subj_type_attribute bool read_file_perms)
 		(allow rw_files_subj_type_attribute bool rw_file_perms)
-		(allow write_files_subj_type_attribute bool write_file_perms))
-
-	(block bool_obj_template
-
-		;
-		; bool_obj_template contexts
-		;
-
-		;
-		; bool_obj_template macros
-		;
-
-		;
-		; bool_obj_template policy
-		;
-
-		(blockabstract bool_obj_template)
-
-		(blockinherit bool_obj_base_template)))
+		(allow write_files_subj_type_attribute bool write_file_perms)))
