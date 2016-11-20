@@ -404,12 +404,16 @@
 	(call write_files_pattern (write_all_files_subj_type_attribute
 		file_obj_type_attribute file_obj_type_attribute))
 
-	(typeattributeset getattr_all_subj_type_attribute
-		(getattr_all_dirs_subj_type_attribute
-			getattr_all_fifo_files_subj_type_attribute
-				getattr_all_files_subj_type_attribute
-					getattr_all_lnk_files_subj_type_attribute
-						getattr_all_sock_files_subj_type_attribute))
+	(typeattributeset getattr_all_dirs_subj_type_attribute
+		getattr_all_subj_type_attribute)
+	(typeattributeset getattr_all_fifo_files_subj_type_attribute
+		getattr_all_subj_type_attribute)
+	(typeattributeset getattr_all_files_subj_type_attribute
+		getattr_all_subj_type_attribute)
+	(typeattributeset getattr_all_lnk_files_subj_type_attribute
+		getattr_all_subj_type_attribute)
+	(typeattributeset getattr_all_sock_files_subj_type_attribute
+		getattr_all_subj_type_attribute)
 	(typeattributeset list_all_subj_type_attribute
 		read_all_subj_type_attribute)
 	(typeattributeset manage_all_dirs_subj_type_attribute
@@ -2649,11 +2653,18 @@
 				tmpfs_obj_type_attribute
 					tmpfs_obj_type_attribute))
 
-		(typeattributeset delete_all_subj_type_attribute
-			(delete_all_dirs_subj_type_attribute
-				delete_all_files_subj_type_attribute
-					delete_all_lnk_files_subj_type_attribute
-						delete_all_sock_files_subj_type_attribute))
+		(typeattributeset
+			delete_all_dirs_subj_type_attribute
+				delete_all_subj_type_attribute)
+		(typeattributeset
+			delete_all_files_subj_type_attribute
+				delete_all_subj_type_attribute)
+		(typeattributeset
+			delete_all_lnk_files_subj_type_attribute
+				delete_all_subj_type_attribute)
+		(typeattributeset
+			delete_all_sock_files_subj_type_attribute
+				delete_all_subj_type_attribute)
 		(typeattributeset list_all_subj_type_attribute
 			read_all_subj_type_attribute)
 		(typeattributeset manage_all_dirs_subj_type_attribute
