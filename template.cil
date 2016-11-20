@@ -192,6 +192,24 @@
 
 	(call entrypoint_subj_type (subj)))
 
+(block agent_template
+
+	;
+	; agent_template policy
+	;
+
+	(blockabstract agent_template)
+
+	(roleattribute role_attribute)
+
+	(blockinherit agent_base_template)
+
+	(blockinherit run_template)
+
+	(roleattributeset role_attribute sys.role)
+
+	(roletype role_attribute subj))
+
 (block system_agent_base_template
 
 	;
