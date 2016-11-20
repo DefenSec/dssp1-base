@@ -2364,6 +2364,30 @@
 		; tmpfs macros
 		;
 
+		(macro delete_all_dirs_subj_type ((type ARG1))
+			(typeattributeset
+				delete_all_dirs_subj_type_attribute
+					ARG1))
+
+		(macro delete_all_files_subj_type ((type ARG1))
+			(typeattributeset
+				delete_all_files_subj_type_attribute
+					ARG1))
+
+		(macro delete_all_lnk_files_subj_type ((type ARG1))
+			(typeattributeset
+				delete_all_lnk_files_subj_type_attribute
+					ARG1))
+
+		(macro delete_all_sock_files_subj_type ((type ARG1))
+			(typeattributeset
+				delete_all_sock_files_subj_type_attribute
+					ARG1))
+
+		(macro delete_all_subj_type ((type ARG1))
+			(typeattributeset delete_all_subj_type_attribute
+				ARG1))
+
 		(macro list_all_subj_type ((type ARG1))
 			(typeattributeset list_all_subj_type_attribute
 				ARG1))
@@ -2464,6 +2488,11 @@
 
 		(blockinherit file.tmpfs_obj_template)
 
+		(typeattribute delete_all_dirs_subj_type_attribute)
+		(typeattribute delete_all_files_subj_type_attribute)
+		(typeattribute delete_all_lnk_files_subj_type_attribute)
+		(typeattribute delete_all_sock_files_subj_type_attribute)
+		(typeattribute delete_all_subj_type_attribute)
 		(typeattribute list_all_subj_type_attribute)
 		(typeattribute manage_all_dirs_subj_type_attribute)
 		(typeattribute manage_all_files_subj_type_attribute)
@@ -2492,6 +2521,14 @@
 		(call fs.tmpfs.associate_obj_type
 			(tmpfs_obj_type_attribute))
 
+		(call fs.tmpfs.search_subj_type
+			(delete_all_dirs_subj_type_attribute))
+		(call fs.tmpfs.search_subj_type
+			(delete_all_files_subj_type_attribute))
+		(call fs.tmpfs.search_subj_type
+			(delete_all_lnk_files_subj_type_attribute))
+		(call fs.tmpfs.search_subj_type
+			(delete_all_sock_files_subj_type_attribute))
 		(call fs.tmpfs.search_subj_type (list_all_subj_type_attribute))
 		(call fs.tmpfs.search_subj_type
 			(manage_all_dirs_subj_type_attribute))
@@ -2528,6 +2565,22 @@
 		(call fs.tmpfs.search_subj_type
 			(write_all_sock_files_subj_type_attribute))
 
+		(call delete_dirs_pattern
+			(delete_all_dirs_subj_type_attribute
+				tmpfs_obj_type_attribute
+					tmpfs_obj_type_attribute))
+		(call delete_files_pattern
+			(delete_all_files_subj_type_attribute
+				tmpfs_obj_type_attribute
+					tmpfs_obj_type_attribute))
+		(call delete_lnk_files_pattern
+			(delete_all_lnk_files_subj_type_attribute
+				tmpfs_obj_type_attribute
+					tmpfs_obj_type_attribute))
+		(call delete_sock_files_pattern
+			(delete_all_sock_files_subj_type_attribute
+				tmpfs_obj_type_attribute
+					tmpfs_obj_type_attribute))
 		(allow list_all_subj_type_attribute
 			tmpfs_obj_type_attribute list_dir_perms)
 		(call manage_dirs_pattern
@@ -2596,6 +2649,11 @@
 				tmpfs_obj_type_attribute
 					tmpfs_obj_type_attribute))
 
+		(typeattributeset delete_all_subj_type_attribute
+			(delete_all_dirs_subj_type_attribute
+				delete_all_files_subj_type_attribute
+					delete_all_lnk_files_subj_type_attribute
+						delete_all_sock_files_subj_type_attribute))
 		(typeattributeset list_all_subj_type_attribute
 			read_all_subj_type_attribute)
 		(typeattributeset manage_all_dirs_subj_type_attribute
