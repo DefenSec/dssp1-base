@@ -65,10 +65,7 @@
 
 	(macro set_load_policy_bool_subj_type ((type ARG1))
 		(call sec.load_policy.rw_files_subj_type (ARG1))
-		(call sec.set_bool_subj_type (ARG1))
-
-		(optional set_load_policy_bool_optional_seutil
-			(call seutil.setsebool.exec_subj_type (ARG1))))
+		(call sec.set_bool_subj_type (ARG1)))
 
 	(macro set_secparam_subj_type ((type ARG1))
 		(typeattributeset set_secparam_subj_type_attribute
@@ -264,6 +261,10 @@
 
 	(allow unconfined_subj_type_attribute sec.security.isid
 		security_except_load_policy_and_setenforce)
+
+	(optional set_bool_subj_type_optional_seutil
+		(call seutil.setsebool.exec_subj_type
+			(set_bool_subj_type_attribute)))
 
 	(block load_policy
 

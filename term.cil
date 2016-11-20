@@ -37,12 +37,8 @@
 			ARG1))
 
 	(macro set_console_login_bool_subj_type ((type ARG1))
-		(call term.console_login.rw_files_subj_type
-			(ARG1))
-		(call sec.set_bool_subj_type (ARG1))
-
-		(optional set_console_login_bool_optional_seutil
-			(call seutil.setsebool.exec_subj_type (ARG1))))
+		(call term.console_login.rw_files_subj_type (ARG1))
+		(call sec.set_bool_subj_type (ARG1)))
 
 	(macro setattr_all_subj_type ((type ARG1))
 		(typeattributeset setattr_all_subj_type_attribute
