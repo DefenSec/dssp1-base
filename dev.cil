@@ -1663,10 +1663,10 @@
 		(type pty_dev)
 		(call pty_obj_type (pty_dev)))
 
-	(block pty_obj_base_template
+	(block pty_obj_template
 
 		;
-		; pty_obj_base_template macros
+		; pty_obj_template macros
 		;
 
 		(macro create_pty ((type ARG1)(type ARG2))
@@ -1716,10 +1716,10 @@
 				ARG1))
 
 		;
-		; pty_obj_base_template policy
+		; pty_obj_template policy
 		;
 
-		(blockabstract pty_obj_base_template)
+		(blockabstract pty_obj_template)
 
 		(blockinherit pty_obj_stub)
 
