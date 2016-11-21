@@ -85,11 +85,21 @@
 		; console macros
 		;
 
+		(macro dontaudit_rw_chr_files_subj_type ((type ARG1))
+			(typeattributeset
+				dontaudit_rw_chr_files_subj_type_attribute
+					ARG1))
+
 		;
 		; console policy
 		;
 
-		(blockinherit dev.dev_obj_base_template))
+		(blockinherit dev.dev_obj_base_template)
+
+		(typeattribute dontaudit_rw_chr_files_subj_type_attribute)
+
+		(dontaudit dontaudit_rw_chr_files_subj_type_attribute
+			dev rw_chr_file_perms))
 
 	(block console_login
 
