@@ -422,7 +422,7 @@
 		(call seutil.libselinux_client_subj_type
 			(common_subj_type_attribute)))
 
-	(typeattributeset not_subj_type_attribute (not subj_type_attribute))
+	(typeattributeset not_subj_type_attribute (not (subj_type_attribute)))
 
 	(neverallow subj_type_attribute not_subj_type_attribute (process
 		(transition dyntransition)))
