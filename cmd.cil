@@ -53,6 +53,10 @@
 				dontaudit_audit_access_all_files_subj_type_attribute
 					ARG1))
 
+		(macro auto_subj_type_tranition_pattern ((type ARG1)(type ARG2))
+			(typetransition ARG1 cmd_file process "*" ARG2)
+			(call mmap_subj_type (ARG1)))
+
 		(macro exec_all_subj_type ((type ARG1))
 			(typeattributeset exec_all_subj_type_attribute
 				ARG1))
@@ -249,6 +253,10 @@
 		;
 		; Macros
 		;
+
+		(macro auto_subj_type_tranition_pattern ((type ARG1)(type ARG2))
+			(typetransition ARG1 cmd_file process "*" ARG2)
+			(call mmap_subj_type (ARG1)))
 
 		;
 		; Policy
