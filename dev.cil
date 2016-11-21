@@ -1536,10 +1536,10 @@
 		(type login_pty_dev)
 		(call login_pty_obj_type (login_pty_dev)))
 
-	(block login_pty_obj_base_template
+	(block login_pty_obj_template
 
 		;
-		; login_pty_obj_base_template macros
+		; login_pty_obj_template macros
 		;
 
 		(macro getattr_subj_type ((type ARG1))
@@ -1583,10 +1583,10 @@
 				ARG1))
 
 		;
-		; login_pty_obj_base_template policy
+		; login_pty_obj_template policy
 		;
 
-		(blockabstract login_pty_obj_base_template)
+		(blockabstract login_pty_obj_template)
 
 		(blockinherit login_pty_obj_stub)
 
@@ -1802,14 +1802,14 @@
 		(type serial_dev)
 		(call serial_obj_type (serial_dev)))
 
-	(block serial_obj_base_template
+	(block serial_obj_template
 
 		;
-		; serial_obj_base_template contexts
+		; serial_obj_template contexts
 		;
 
 		;
-		; serial_obj_base_template macros
+		; serial_obj_template macros
 		;
 
 		(macro getattr_subj_type ((type ARG1))
@@ -1853,10 +1853,10 @@
 				ARG1))
 
 		;
-		; serial_obj_base_template policy
+		; serial_obj_template policy
 		;
 
-		(blockabstract serial_obj_base_template)
+		(blockabstract serial_obj_template)
 
 		(blockinherit serial_obj_stub)
 

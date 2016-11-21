@@ -180,7 +180,7 @@
 		; tty policy
 		;
 
-		(blockinherit dev.serial_obj_base_template))
+		(blockinherit dev.serial_obj_template))
 
 	(block virtio
 
@@ -198,4 +198,4 @@
 		; virtio policy
 		;
 
-		(blockinherit dev.serial_obj_base_template)))
+		(blockinherit dev.serial_obj_template)))
