@@ -687,7 +687,7 @@
 		; fixed_disk policy
 		;
 
-		(blockinherit dev.stor_obj_base_template)
+		(blockinherit dev.stor_obj_template)
 
 		(typeattributeset read_fixed_disk_subj_type_attribute
 			(manage_subj_type_attribute
@@ -715,7 +715,7 @@
 		; fuse policy
 		;
 
-		(blockinherit dev.stor_obj_base_template))
+		(blockinherit dev.stor_obj_template))
 
 	(block removable
 
@@ -777,7 +777,7 @@
 		; removable policy
 		;
 
-		(blockinherit dev.stor_obj_base_template))
+		(blockinherit dev.stor_obj_template))
 
 	(block scsi_generic
 
@@ -840,7 +840,7 @@
 		; scsi_generic policy
 		;
 
-		(blockinherit dev.stor_obj_base_template)
+		(blockinherit dev.stor_obj_template)
 
 		(typeattributeset read_scsi_generic_subj_type_attribute
 			(manage_subj_type_attribute
