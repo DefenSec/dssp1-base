@@ -65,15 +65,15 @@
 			ARG1))
 
 	(macro getpgid_all_subj_type ((type ARG1))
-		(typeattributeset getpgid_all_aubj_type_attribute
+		(typeattributeset getpgid_all_subj_type_attribute
 			ARG1))
 
 	(macro getsched_all_subj_type ((type ARG1))
-		(typeattributeset getsched_all_aubj_type_attribute
+		(typeattributeset getsched_all_subj_type_attribute
 			ARG1))
 
 	(macro getsession_all_subj_type ((type ARG1))
-		(typeattributeset getsession_all_aubj_type_attribute
+		(typeattributeset getsession_all_subj_type_attribute
 			ARG1))
 
 	(macro interactive_fd_subj_type ((type ARG1))
@@ -690,15 +690,15 @@
 				ARG1))
 
 		(macro getpgid_subj_type ((type ARG1))
-			(typeattributeset getpgid_aubj_type_attribute
+			(typeattributeset getpgid_subj_type_attribute
 				ARG1))
 
 		(macro getsched_subj_type ((type ARG1))
-			(typeattributeset getsched_aubj_type_attribute
+			(typeattributeset getsched_subj_type_attribute
 				ARG1))
 
 		(macro getsession_subj_type ((type ARG1))
-			(typeattributeset getsession_aubj_type_attribute
+			(typeattributeset getsession_subj_type_attribute
 				ARG1))
 
 		(macro link_keyring_subj_type ((type ARG1))
