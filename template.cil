@@ -208,7 +208,11 @@
 
 	(roleattributeset role_attribute sys.role)
 
-	(roletype role_attribute subj))
+	(roletype role_attribute subj)
+
+	(optional hybrid_agent_base_template_optional_user
+		(call user.pty.rw_inherited_subj_type (subj))
+		(call user.tty.rw_inherited_subj_type (subj))))
 
 (block system_agent_base_template
 
@@ -238,4 +242,8 @@
 
 	(blockinherit run_template)
 
-	(roletype role_attribute subj))
+	(roletype role_attribute subj)
+
+	(optional user_agent_base_template_optional_user
+		(call user.pty.rw_inherited_subj_type (subj))
+		(call user.tty.rw_inherited_subj_type (subj))))
