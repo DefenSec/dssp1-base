@@ -10,6 +10,11 @@
 	; Macros
 	;
 
+	(macro dontaudit_getattr_all_subj_type ((type ARG1))
+		(typeattributeset
+			dontaudit_getattr_all_subj_type_attribute
+				ARG1))
+
 	(macro associate_all_obj_type ((type ARG1))
 		(typeattributeset associate_all_obj_type_attribute
 			ARG1))
@@ -90,6 +95,7 @@
 
 	(typeattribute fs_obj_type_attribute)
 
+	(typeattribute dontaudit_getattr_all_subj_type_attribute)
 	(typeattribute associate_all_obj_type_attribute)
 	(typeattribute getattr_all_subj_type_attribute)
 	(typeattribute list_all_subj_type_attribute)
@@ -110,6 +116,8 @@
 
 	(call sys.sys_obj_type (fs_obj_type_attribute))
 
+	(dontaudit dontaudit_getattr_all_subj_type_attribute
+		fs_obj_type_attribute (filesystem (getattr)))
 	(allow associate_all_obj_type_attribute fs_obj_type_attribute
 		(filesystem (associate)))
 	(allow getattr_all_subj_type_attribute fs_obj_type_attribute

@@ -8,12 +8,16 @@
 		(typeattributeset dontaudit_noatsecure_all_subj_type_attribute
 			ARG1))
 
-	(macro dontaudit_siginh_all_subj_type ((type ARG1))
-		(typeattributeset dontaudit_siginh_all_subj_type_attribute
+	(macro dontaudit_read_state_all_subj_type ((type ARG1))
+		(typeattributeset dontaudit_read_state_all_subj_type_attribute
 			ARG1))
 
 	(macro dontaudit_rlimitinh_all_subj_type ((type ARG1))
 		(typeattributeset dontaudit_rlimitinh_all_subj_type_attribute
+			ARG1))
+
+	(macro dontaudit_siginh_all_subj_type ((type ARG1))
+		(typeattributeset dontaudit_siginh_all_subj_type_attribute
 			ARG1))
 
 	(macro append_inherited_fifo_files_all_subj_type ((type ARG1))
@@ -211,6 +215,7 @@
 	(boolean mmap_low false)
 
 	(typeattribute dontaudit_noatsecure_all_subj_type_attribute)
+	(typeattribute dontaudit_read_state_all_subj_type_attribute)
 	(typeattribute dontaudit_rlimitinh_all_subj_type_attribute)
 	(typeattribute dontaudit_siginh_all_subj_type_attribute)
 	(typeattribute append_inherited_fifo_files_all_subj_type_attribute)
@@ -278,8 +283,17 @@
 
 	(dontaudit dontaudit_noatsecure_all_subj_type_attribute
 		common_subj_type_attribute (process (noatsecure)))
+
+	(dontaudit dontaudit_read_state_all_subj_type_attribute
+		common_subj_type_attribute list_dir_perms)
+	(dontaudit dontaudit_read_state_all_subj_type_attribute
+		common_subj_type_attribute read_file_perms)
+	(dontaudit dontaudit_read_state_all_subj_type_attribute
+		common_subj_type_attribute read_lnk_file_perms)
+
 	(dontaudit dontaudit_rlimitinh_all_subj_type_attribute
 		common_subj_type_attribute (process (rlimitinh)))
+
 	(dontaudit dontaudit_siginh_all_subj_type_attribute
 		common_subj_type_attribute (process (siginh)))
 

@@ -1119,6 +1119,11 @@
 		; proc macros
 		;
 
+		(macro dontaudit_read_all_files_subj_type ((type ARG1))
+			(typeattributeset
+				dontaudit_read_all_files_subj_type_attribute
+					ARG1))
+
 		(macro manage_all_files_subj_type ((type ARG1))
 			(typeattributeset manage_all_files_subj_type_attribute
 				ARG1))
@@ -1174,6 +1179,7 @@
 		; proc policy
 		;
 
+		(typeattribute dontaudit_read_all_files_subj_type_attribute)
 		(typeattribute list_all_subj_type_attribute)
 		(typeattribute manage_all_dirs_subj_type_attribute)
 		(typeattribute manage_all_files_subj_type_attribute)
@@ -1209,6 +1215,8 @@
 		(call sys.kmsg.read_kernel_msg_subj_type
 			(write_all_files_subj_type_attribute))
 
+		(dontaudit dontaudit_read_all_files_subj_type_attribute
+			proc_obj_type_attribute read_file_perms)
 		(allow list_all_subj_type_attribute proc_obj_type_attribute
 			list_dir_perms)
 		(call manage_dirs_pattern
@@ -1408,6 +1416,26 @@
 		; sysctl macros
 		;
 
+		(macro dontaudit_list_all_subj_type ((type ARG1))
+			(typeattributeset
+				dontaudit_list_all_subj_type_attribute
+					ARG1))
+
+		(macro dontaudit_read_all_files_subj_type ((type ARG1))
+			(typeattributeset
+				dontaudit_read_all_files_subj_type_attribute
+					ARG1))
+
+		(macro dontaudit_read_all_lnk_files_subj_type ((type ARG1))
+			(typeattributeset
+				dontaudit_read_all_lnk_files_subj_type_attribute
+					ARG1))
+
+		(macro dontaudit_read_all_subj_type ((type ARG1))
+			(typeattributeset
+				dontaudit_read_all_subj_type_attribute
+					ARG1))
+
 		(macro getattr_all_files_subj_type ((type ARG1))
 			(typeattributeset
 				getattr_all_files_subj_type_attribute
@@ -1564,6 +1592,11 @@
 
 		(call sys.sysctl_obj_type (isid))
 
+		(typeattribute dontaudit_list_all_subj_type_attribute)
+		(typeattribute dontaudit_read_all_files_subj_type_attribute)
+		(typeattribute
+			dontaudit_read_all_lnk_files_subj_type_attribute)
+		(typeattribute dontaudit_read_all_subj_type_attribute)
 		(typeattribute getattr_all_files_subj_type_attribute)
 		(typeattribute getattr_all_lnk_files_subj_type_attribute)
 		(typeattribute list_all_subj_type_attribute)
@@ -1660,6 +1693,15 @@
 		(typeattributeset relabel_lnk_files_subj_type_attribute
 			relabel_subj_type_attribute)
 
+
+		(dontaudit dontaudit_list_all_subj_type_attribute
+			sysctl_obj_type_attribute list_dir_perms)
+		(dontaudit dontaudit_read_all_files_subj_type_attribute
+			sysctl_obj_type_attribute read_file_perms)
+		(dontaudit
+			dontaudit_read_all_lnk_files_subj_type_attribute
+				sysctl_obj_type_attribute
+					read_lnk_file_perms)
 		(call getattr_files_pattern
 			(getattr_all_files_subj_type_attribute
 				sysctl_obj_type_attribute
@@ -1715,6 +1757,14 @@
 				sysctl_obj_type_attribute
 					sysctl_obj_type_attribute))
 
+		(typeattributeset dontaudit_list_all_subj_type_attribute
+			dontaudit_read_all_subj_type_attribute)
+		(typeattributeset
+			dontaudit_read_all_files_subj_type_attribute
+				dontaudit_read_all_subj_type_attribute)
+		(typeattributeset
+			dontaudit_read_all_lnk_files_subj_type_attribute
+				dontaudit_read_all_subj_type_attribute)
 		(typeattributeset list_all_subj_type_attribute
 			read_all_subj_type_attribute)
 		(typeattributeset manage_all_dirs_subj_type_attribute
@@ -1752,6 +1802,26 @@
 		;
 		; sysfs macros
 		;
+
+		(macro dontaudit_list_all_subj_type ((type ARG1))
+			(typeattributeset
+				dontaudit_list_all_subj_type_attribute
+					ARG1))
+
+		(macro dontaudit_read_all_files_subj_type ((type ARG1))
+			(typeattributeset
+				dontaudit_read_all_files_subj_type_attribute
+					ARG1))
+
+		(macro dontaudit_read_all_lnk_files_subj_type ((type ARG1))
+			(typeattributeset
+				dontaudit_read_all_lnk_files_subj_type_attribute
+					ARG1))
+
+		(macro dontaudit_read_all_subj_type ((type ARG1))
+			(typeattributeset
+				dontaudit_read_all_subj_type_attribute
+					ARG1))
 
 		(macro search_all_subj_type ((type ARG1))
 			(typeattributeset search_all_subj_type_attribute
@@ -1812,6 +1882,12 @@
 		; sysfs policy
 		;
 
+		(typeattribute dontaudit_list_all_subj_type_attribute)
+		(typeattribute
+			dontaudit_read_all_files_subj_type_attribute)
+		(typeattribute
+			dontaudit_read_all_lnk_files_subj_type_attribute)
+		(typeattribute dontaudit_read_all_subj_type_attribute)
 		(typeattribute list_all_subj_type_attribute)
 		(typeattribute manage_all_dirs_subj_type_attribute)
 		(typeattribute manage_all_files_subj_type_attribute)
@@ -1829,6 +1905,14 @@
 		(typeattribute search_all_subj_type_attribute)
 		(typeattribute write_all_files_subj_type_attribute)
 
+		(dontaudit dontaudit_list_all_subj_type_attribute
+			sysfs_obj_type_attribute list_dir_perms)
+		(dontaudit dontaudit_read_all_files_subj_type_attribute
+			sysfs_obj_type_attribute read_file_perms)
+		(dontaudit
+			dontaudit_read_all_lnk_files_subj_type_attribute
+				sysfs_obj_type_attribute
+					read_lnk_file_perms)
 		(allow list_all_subj_type_attribute
 			sysfs_obj_type_attribute list_dir_perms)
 		(call manage_dirs_pattern
@@ -1876,6 +1960,14 @@
 				sysfs_obj_type_attribute
 					sysfs_obj_type_attribute))
 
+		(typeattributeset dontaudit_list_all_subj_type_attribute
+			dontaudit_read_all_subj_type_attribute)
+		(typeattributeset
+			dontaudit_read_all_files_subj_type_attribute
+				dontaudit_read_all_subj_type_attribute)
+		(typeattributeset
+			dontaudit_read_all_lnk_files_subj_type_attribute
+				dontaudit_read_all_subj_type_attribute)
 		(typeattributeset list_all_subj_type_attribute
 			read_all_subj_type_attribute)
 		(typeattributeset manage_all_dirs_subj_type_attribute
