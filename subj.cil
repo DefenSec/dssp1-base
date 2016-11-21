@@ -183,11 +183,13 @@
 			ARG1))
 
 	(macro unix_dgram_socket_sendto_all_subj_type ((type ARG1))
+		(allow ARG1 self create_unix_dgram_socket_perms)
 		(typeattributeset
 			unix_dgram_socket_sendto_all_subj_type_attribute
 				ARG1))
 
 	(macro unix_stream_socket_connectto_all_subj_type ((type ARG1))
+		(allow ARG1 self create_unix_stream_socket_perms)
 		(typeattributeset
 			unix_stream_socket_connectto_all_subj_type_attribute
 				ARG1))
@@ -790,11 +792,13 @@
 			(typeattributeset transition_subj_type_attribute ARG1))
 
 		(macro unix_dgram_socket_sendto_subj_type ((type ARG1))
+			(allow ARG1 self create_unix_dgram_socket_perms)
 			(typeattributeset
 				unix_dgram_socket_sendto_subj_type_attribute
 					ARG1))
 
 		(macro unix_stream_socket_connectto_subj_type ((type ARG1))
+			(allow ARG1 self create_unix_stream_socket_perms)
 			(typeattributeset
 				unix_stream_socket_connectto_subj_type_attribute
 					ARG1))
