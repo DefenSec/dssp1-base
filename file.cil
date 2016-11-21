@@ -1206,11 +1206,75 @@
 		; home macros
 		;
 
+		(macro list_subj_type ((type ARG1))
+			(typeattributeset list_subj_type_attribute
+				ARG1))
+
+		(macro manage_dirs_subj_type ((type ARG1))
+			(typeattributeset manage_dirs_subj_type_attribute
+				ARG1))
+
+		(macro manage_lnk_files_subj_type ((type ARG1))
+			(typeattributeset
+				manage_lnk_files_subj_type_attribute
+					ARG1))
+
+		(macro obj_type_transition ((type ARG1)(type ARG2)(class
+			ARG3)(name ARG4))
+			(call rw_dirs_subj_type (ARG1))
+			(typetransition ARG1 file ARG3 ARG4 ARG2))
+
+		(macro read_lnk_files_subj_type ((type ARG1))
+			(typeattributeset
+				read_lnk_files_subj_type_attribute
+					ARG1))
+
+		(macro relabel_dirs_subj_type ((type ARG1))
+			(typeattributeset relabel_dirs_subj_type_attribute
+				ARG1))
+
+		(macro relabel_lnk_files_subj_type ((type ARG1))
+			(typeattributeset
+				relabel_lnk_files_subj_type_attribute
+					ARG1))
+
+		(macro rw_dirs_subj_type ((type ARG1))
+			(typeattributeset rw_dirs_subj_type_attribute
+				ARG1))
+
+		(macro search_subj_type ((type ARG1))
+			(typeattributeset search_subj_type_attribute
+				ARG1))
+
 		;
 		; home policy
 		;
 
-		(blockinherit file.file_obj_template)
+		(blockinherit file.file_obj_stub)
+
+		(typeattribute list_subj_type_attribute)
+		(typeattribute manage_dirs_subj_type_attribute)
+		(typeattribute manage_lnk_files_subj_type_attribute)
+		(typeattribute read_lnk_files_subj_type_attribute)
+		(typeattribute relabel_dirs_subj_type_attribute)
+		(typeattribute relabel_lnk_files_subj_type_attribute)
+		(typeattribute rw_dirs_subj_type_attribute)
+		(typeattribute search_subj_type_attribute)
+
+		(allow list_subj_type_attribute file list_dir_perms)
+		(call manage_dirs_pattern
+			(manage_dirs_subj_type_attribute file file))
+		(call manage_lnk_files_pattern
+			(manage_lnk_files_subj_type_attribute file file))
+		(call read_lnk_files_pattern
+			(read_lnk_files_subj_type_attribute file file))
+		(allow relabel_dirs_subj_type_attribute file
+			relabel_dir_perms)
+		(call relabel_lnk_files_pattern
+			(relabel_lnk_files_subj_type_attribute file file))
+		(call rw_dirs_pattern
+			(rw_dirs_subj_type_attribute file file))
+		(allow search_subj_type_attribute file search_dir_perms)
 
 		(call sys.mountpoint_obj_type (file)))
 
