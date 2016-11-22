@@ -310,7 +310,7 @@
 		(blockabstract lib_obj_stub)
 
 		(type lib_file)
-		(call lib_obj_type (lib_file)))
+		(call lib.lib_obj_type (lib_file)))
 
 	(block lib_obj_base_template
 

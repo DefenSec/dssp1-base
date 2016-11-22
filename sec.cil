@@ -372,7 +372,7 @@
 		(blockabstract bool_obj_stub)
 
 		(type bool)
-		(call bool_obj_type (bool)))
+		(call sec.bool_obj_type (bool)))
 
 	(block bool_obj_template
 

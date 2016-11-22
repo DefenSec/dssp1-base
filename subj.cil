@@ -828,7 +828,7 @@
 		(blockabstract common_subj_template)
 
 		(type subj)
-		(call common_subj_type (subj))
+		(call subj.common_subj_type (subj))
 
 		(typeattribute dontaudit_noatsecure_subj_type_attribute)
 		(typeattribute dontaudit_rlimitinh_subj_type_attribute)

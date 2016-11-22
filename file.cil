@@ -4263,7 +4263,7 @@
 		(blockabstract file_obj_stub)
 
 		(type file)
-		(call file_obj_type (file)))
+		(call file.file_obj_type (file)))
 
 	(block file_obj_template
 
@@ -4429,7 +4429,7 @@
 		(blockabstract auth_obj_stub)
 
 		(type auth_file)
-		(call auth_obj_type (auth_file)))
+		(call file.auth_obj_type (auth_file)))
 
 	(block auth_obj_template
 
@@ -4599,7 +4599,7 @@
 		(blockabstract sec_obj_stub)
 
 		(type sec_file)
-		(call sec_obj_type (sec_file)))
+		(call file.sec_obj_type (sec_file)))
 
 	(block sec_obj_template
 
@@ -4767,7 +4767,7 @@
 		(blockabstract boot_obj_stub)
 
 		(type boot_file)
-		(call boot_obj_type (boot_file)))
+		(call file.boot_obj_type (boot_file)))
 
 	(block boot_obj_base_template
 
@@ -4972,7 +4972,7 @@
 		(blockabstract boot_flag_obj_stub)
 
 		(type boot_flag_file)
-		(call boot_flag_obj_type (boot_flag_file)))
+		(call file.boot_flag_obj_type (boot_flag_file)))
 
 	(block boot_flag_obj_base_template
 
@@ -5053,7 +5053,7 @@
 		(blockabstract config_obj_stub)
 
 		(type config_file)
-		(call config_obj_type (config_file)))
+		(call file.config_obj_type (config_file)))
 
 	(block config_obj_base_template
 
@@ -5264,7 +5264,7 @@
 		(blockabstract data_obj_stub)
 
 		(type data_file)
-		(call data_obj_type (data_file)))
+		(call file.data_obj_type (data_file)))
 
 	(block data_obj_base_template
 
@@ -5469,7 +5469,7 @@
 		(blockabstract module_obj_stub)
 
 		(type module_file)
-		(call module_obj_type (module_file)))
+		(call file.module_obj_type (module_file)))
 
 	(block module_obj_base_template
 
@@ -5594,7 +5594,7 @@
 		(blockabstract runtime_obj_stub)
 
 		(type runtime_file)
-		(call runtime_obj_type (runtime_file)))
+		(call file.runtime_obj_type (runtime_file)))
 
 	(block runtime_obj_base_template
 
@@ -5976,7 +5976,7 @@
 		(blockabstract runtime_config_obj_stub)
 
 		(type runtime_config_file)
-		(call runtime_config_obj_type (runtime_config_file)))
+		(call file.runtime_config_obj_type (runtime_config_file)))
 
 	(block runtime_config_obj_base_template
 
@@ -6218,7 +6218,7 @@
 		(blockabstract runtime_lock_obj_stub)
 
 		(type runtime_lock_file)
-		(call runtime_lock_obj_type (runtime_lock_file)))
+		(call file.runtime_lock_obj_type (runtime_lock_file)))
 
 	(block runtime_lock_obj_base_template
 
@@ -6459,7 +6459,7 @@
 		(blockabstract tmpfs_obj_stub)
 
 		(type tmpfs_file)
-		(call tmpfs_obj_type (tmpfs_file)))
+		(call file.tmpfs_obj_type (tmpfs_file)))
 
 	(block tmpfs_obj_template
 
@@ -6722,7 +6722,7 @@
 		(blockabstract var_obj_stub)
 
 		(type var_file)
-		(call var_obj_type (var_file)))
+		(call file.var_obj_type (var_file)))
 
 	(block var_obj_base_template
 
@@ -6923,7 +6923,7 @@
 		(blockabstract var_cache_obj_stub)
 
 		(type var_cache_file)
-		(call var_cache_obj_type (var_cache_file)))
+		(call file.var_cache_obj_type (var_cache_file)))
 
 	(block var_cache_obj_base_template
 
@@ -7160,7 +7160,7 @@
 		(blockabstract var_db_obj_stub)
 
 		(type var_db_file)
-		(call var_db_obj_type (var_db_file)))
+		(call file.var_db_obj_type (var_db_file)))
 
 	(block var_db_obj_base_template
 
@@ -7393,7 +7393,7 @@
 		(blockabstract var_lib_obj_stub)
 
 		(type var_lib_file)
-		(call var_lib_obj_type (var_lib_file)))
+		(call file.var_lib_obj_type (var_lib_file)))
 
 	(block var_lib_obj_base_template
 
@@ -7628,7 +7628,7 @@
 		(blockabstract var_log_obj_stub)
 
 		(type var_log_file)
-		(call var_log_obj_type (var_log_file)))
+		(call file.var_log_obj_type (var_log_file)))
 
 	(block var_log_obj_base_template
 
@@ -7803,7 +7803,6 @@
 		(call file.var.search_subj_type
 			(write_files_subj_type_attribute))
 
-
 		(call append_files_pattern
 			(append_files_subj_type_attribute var_log_file
 				var_log_file))
@@ -7931,7 +7930,7 @@
 		(blockabstract var_spool_obj_stub)
 
 		(type var_spool_file)
-		(call var_spool_obj_type (var_spool_file)))
+		(call file.var_spool_obj_type (var_spool_file)))
 
 	(block var_spool_obj_base_template
 
@@ -8168,7 +8167,7 @@
 		(blockabstract var_tmp_obj_stub)
 
 		(type var_tmp_file)
-		(call var_tmp_obj_type (var_tmp_file)))
+		(call file.var_tmp_obj_type (var_tmp_file)))
 
 	(block var_tmp_obj_base_template
 

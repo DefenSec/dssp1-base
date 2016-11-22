@@ -284,7 +284,7 @@
 		(blockabstract cmd_obj_stub)
 
 		(type cmd_file)
-		(call cmd_obj_type (cmd_file)))
+		(call cmd.cmd_obj_type (cmd_file)))
 
 	(block cmd_obj_base_template
 

@@ -2384,7 +2384,7 @@
 		(blockabstract proc_obj_stub)
 
 		(type proc)
-		(call proc_obj_type (proc)))
+		(call sys.proc_obj_type (proc)))
 
 	(block proc_obj_base_template
 
@@ -2547,7 +2547,7 @@
 		(blockabstract sysctl_obj_stub)
 
 		(type sysctl)
-		(call sysctl_obj_type (sysctl)))
+		(call sys.sysctl_obj_type (sysctl)))
 
 	(block sysctl_obj_base_template
 
@@ -2738,7 +2738,7 @@
 		(blockabstract sysfs_obj_stub)
 
 		(type sysfs)
-		(call sysfs_obj_type (sysfs)))
+		(call sys.sysfs_obj_type (sysfs)))
 
 	(block sysfs_obj_base_template
 

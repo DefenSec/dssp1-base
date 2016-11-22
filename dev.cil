@@ -1305,7 +1305,7 @@
 		(blockabstract dev_obj_stub)
 
 		(type dev)
-		(call dev_obj_type (dev)))
+		(call dev.dev_obj_type (dev)))
 
 	(block dev_obj_base_template
 
@@ -1407,7 +1407,7 @@
 		(blockabstract stor_obj_stub)
 
 		(type stor_dev)
-		(call stor_obj_type (stor_dev)))
+		(call dev.stor_obj_type (stor_dev)))
 
 	(block stor_obj_template
 
@@ -1535,7 +1535,7 @@
 		(blockabstract login_pty_obj_stub)
 
 		(type login_pty_dev)
-		(call login_pty_obj_type (login_pty_dev)))
+		(call dev.login_pty_obj_type (login_pty_dev)))
 
 	(block login_pty_obj_template
 
@@ -1662,7 +1662,7 @@
 		(blockabstract pty_obj_stub)
 
 		(type pty_dev)
-		(call pty_obj_type (pty_dev)))
+		(call dev.pty_obj_type (pty_dev)))
 
 	(block pty_obj_template
 
@@ -1801,7 +1801,7 @@
 		(blockabstract serial_obj_stub)
 
 		(type serial_dev)
-		(call serial_obj_type (serial_dev)))
+		(call dev.serial_obj_type (serial_dev)))
 
 	(block serial_obj_template
 

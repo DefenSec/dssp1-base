@@ -1321,7 +1321,7 @@
 		(blockabstract fs_obj_stub)
 
 		(type fs)
-		(call fs_obj_type (fs)))
+		(call fs.fs_obj_type (fs)))
 
 	(block fs_obj_base_template
 
