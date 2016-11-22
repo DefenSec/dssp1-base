@@ -79,6 +79,7 @@
 	;
 
 	(typeattribute dev_obj_type_attribute)
+	(typeattribute dev_except_pty_obj_type_attribute)
 	(typeattribute dev_except_stor_pty_and_serial_obj_type_attribute)
 	(typeattribute login_pty_obj_type_attribute)
 	(typeattribute pty_obj_type_attribute)
@@ -102,7 +103,17 @@
 
 	(call sys.sys_obj_type (dev_obj_type_attribute))
 
-	(call fs.devtmpfs.associate_obj_type (dev_obj_type_attribute))
+	(typeattributeset dev_except_pty_obj_type_attribute
+		(and (dev_obj_type_attribute)
+		(not (pty_obj_type_attribute))))
+
+	(call fs.devtmpfs.associate_obj_type
+		(dev_except_pty_obj_type_attribute))
+
+	(call fs.devpts.associate_obj_type (pty_obj_type_attribute))
+
+	(typeattributeset pty_obj_type_attribute
+		login_pty_obj_type_attribute)
 
 	(typeattributeset
 		not_read_memory_subj_type_or_unconfined_subj_type_attribute
@@ -158,13 +169,12 @@
 		(unconfined_subj_type_attribute))
 
 	(typeattributeset dev_obj_type_attribute (stor_obj_type_attribute
-		(login_pty_obj_type_attribute pty_obj_type_attribute
-			serial_obj_type_attribute)))
+		(pty_obj_type_attribute serial_obj_type_attribute)))
 
 	(typeattributeset dev_except_stor_pty_and_serial_obj_type_attribute
 		(and (dev_obj_type_attribute)
-		(not (stor_obj_type_attribute login_pty_obj_type_attribute
-			pty_obj_type_attribute serial_obj_type_attribute))))
+		(not (stor_obj_type_attribute pty_obj_type_attribute
+			serial_obj_type_attribute))))
 
 	(allow create_all_subj_type_attribute
 		dev_except_stor_pty_and_serial_obj_type_attribute

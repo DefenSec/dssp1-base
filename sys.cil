@@ -408,7 +408,7 @@
 	(allow unconfined_subj_type_attribute isid system_except_module_load)
 
 	(call load_kernel_module_subj_type
-			(unconfined_subj_type_attribute))
+		(unconfined_subj_type_attribute))
 
 	(block cpu
 
