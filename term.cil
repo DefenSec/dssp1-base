@@ -174,7 +174,7 @@
 		(macro login_tty ((type ARG1)(type ARG2))
 			(typechange ARG1 serial_dev chr_file ARG2)
 			(booleanif term.console_login (true (typechange ARG1
-			term.console.dev chr_file ARG2))))
+				term.console.dev chr_file ARG2))))
 
 		;
 		; tty policy
