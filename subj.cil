@@ -645,7 +645,7 @@
 
 	(call mmap_low_subj_type (unconfined_subj_type_attribute))
 
-	(call obj_id_change_exemption_subj_type
+	(call obj_change_exemption_subj_type
 		(unconfined_subj_type_attribute))
 	(call rbacsep_exemption_subj_type
 		(unconfined_subj_type_attribute))
