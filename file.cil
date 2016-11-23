@@ -535,6 +535,9 @@
 	(call file.execmod_all_except.except_uncond_subj_type
 		(unconfined_subj_type_attribute))
 
+	(call file.lost_found.mountpoint_obj_type_transition
+		(unconfined_subj_type_attribute))
+
 	(call file.module.load_all_subj_type
 		(unconfined_subj_type_attribute))
 
@@ -1347,6 +1350,10 @@
 		;
 		; lost_found macros
 		;
+
+		(macro mountpoint_obj_type_transition ((type ARG1))
+			(call sys.mountpoint_obj_type_transition (ARG1
+				file dir "lost+found")))
 
 		;
 		; lost_found policy
