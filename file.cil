@@ -723,6 +723,7 @@
 		; boot_flag contexts
 		;
 
+		(filecon "/\.ismount-test-file" file boot_flag_file_context)
 		(filecon "/autorelabel" file boot_flag_file_context)
 		(filecon "/fastboot" file boot_flag_file_context)
 		(filecon "/forcefsck" file boot_flag_file_context)
@@ -747,6 +748,8 @@
 					ARG1))
 
 		(macro rootfs_obj_type_transition ((type ARG1))
+			(call fs.rootfs.obj_type_transition (ARG1
+				boot_flag_file file ".ismount-test-file"))
 			(call fs.rootfs.obj_type_transition (ARG1
 				boot_flag_file file "autorelabel"))
 			(call fs.rootfs.obj_type_transition (ARG1
