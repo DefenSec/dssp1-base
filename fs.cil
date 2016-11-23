@@ -549,6 +549,21 @@
 		; devtmpfs macros
 		;
 
+		(macro dontaudit_write_chr_files_subj_type ((type ARG1))
+			(typeattributeset
+				dontaudit_write_chr_files_subj_type_attribute
+					ARG1))
+
+		(macro manage_blk_files_subj_type ((type ARG1))
+			(typeattributeset
+				manage_blk_files_subj_type_attribute
+					ARG1))
+
+		(macro manage_chr_files_subj_type ((type ARG1))
+			(typeattributeset
+				manage_chr_files_subj_type_attribute
+					ARG1))
+
 		(macro obj_type_transition ((type ARG1)(type ARG2)(class
 			ARG3)(name ARG4))
 			(call rw_dirs_subj_type (ARG1))
@@ -560,9 +575,21 @@
 
 		(blockinherit fs.fs_obj_base_template)
 
+		(typeattribute
+			dontaudit_write_chr_files_subj_type_attribute)
+		(typeattribute manage_blk_files_subj_type_attribute)
+		(typeattribute manage_chr_files_subj_type_attribute)
+
 		(call sys.mountpoint_obj_type (fs))
 
-		(call fs.xattr.associate_obj_type (fs)))
+		(call fs.xattr.associate_obj_type (fs))
+
+		(dontaudit dontaudit_write_chr_files_subj_type_attribute
+			fs write_chr_file_perms)
+		(call manage_blk_files_pattern
+			(manage_blk_files_subj_type_attribute fs fs))
+		(call manage_chr_files_pattern
+			(manage_chr_files_subj_type_attribute fs fs)))
 
 	(block dosfs
 
@@ -926,6 +953,11 @@
 		; rootfs macros
 		;
 
+		(macro mounton_dirs_subj_type ((type ARG1))
+			(typeattributeset
+				mounton_dirs_subj_type_attribute
+					ARG1))
+
 		(macro obj_type_transition ((type ARG1)(type ARG2)(class
 			ARG3)(name ARG4))
 			(call rw_dirs_subj_type (ARG1))
@@ -937,9 +969,14 @@
 
 		(blockinherit fs.fs_obj_base_template)
 
+		(typeattribute mounton_dirs_subj_type_attribute)
+
 		(call sys.mountpoint_obj_type (fs))
 
-		(call fs.xattr.associate_obj_type (fs)))
+		(call fs.xattr.associate_obj_type (fs))
+
+		(allow mounton_dirs_subj_type_attribute
+			fs (dir (mounton))))
 
 	(block rpc_pipefs
 
@@ -1103,15 +1140,36 @@
 		; sysfs macros
 		;
 
+		(macro read_files_subj_type ((type ARG1))
+			(typeattributeset read_files_subj_type_attribute
+				ARG1))
+
+		(macro read_subj_type ((type ARG1))
+			(typeattributeset read_subj_type_attribute
+				ARG1))
+
 		;
 		; sysfs policy
 		;
 
 		(blockinherit fs.fs_obj_base_template)
 
+		(typeattribute read_files_subj_type_attribute)
+		(typeattribute read_subj_type_attribute)
+
 		(call sys.mountpoint_obj_type (fs))
 
-		(call fs.xattr.associate_obj_type (fs)))
+		(call fs.xattr.associate_obj_type (fs))
+
+		(call read_files_pattern
+			(read_files_subj_type_attribute fs fs))
+
+		(typeattributeset list_subj_type_attribute
+			(read_subj_type_attribute))
+		(typeattributeset read_files_subj_type_attribute
+			(read_subj_type_attribute))
+		(typeattributeset read_lnk_files_subj_type_attribute
+			(read_subj_type_attribute)))
 
 	(block tmpfs
 
@@ -1136,7 +1194,6 @@
 
 		(macro obj_type_transition ((type ARG1)(type ARG2)(class
 			ARG3)(name ARG4))
-			(call fs.devtmpfs.search_subj_type (ARG1))
 			(call rw_dirs_subj_type (ARG1))
 			(typetransition ARG1 fs ARG3 ARG4 ARG2))
 

@@ -185,11 +185,15 @@
 	(allow compute_access_vector_subj_type_attribute sec.security.isid
 		(security (compute_av)))
 
+	(call fs.selinuxfs.list_subj_type
+		(compute_create_context_subj_type_attribute))
 	(call fs.selinuxfs.rw_files_subj_type
 		(compute_create_context_subj_type_attribute))
 	(allow compute_create_context_subj_type_attribute sec.security.isid
 		(security (compute_create)))
 
+	(call fs.selinuxfs.list_subj_type
+		(compute_relabel_context_subj_type_attribute))
 	(call fs.selinuxfs.rw_files_subj_type
 		(compute_relabel_context_subj_type_attribute))
 	(allow compute_relabel_context_subj_type_attribute sec.security.isid

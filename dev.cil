@@ -272,11 +272,11 @@
 		;
 
 		(macro devtmpfs_obj_type_transition ((type ARG1))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "ptp0"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "ptp1"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "ptp3")))
 
 		;
@@ -316,7 +316,7 @@
 		;
 
 		(macro devtmpfs_obj_type_transition ((type ARG1))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "cuse")))
 
 		;
@@ -338,7 +338,7 @@
 		;
 
 		(macro tmpfs_obj_type_transition ((type ARG1))
-			(call fs.tmpfs.obj_type_transition (ARG1 dev
+			(call .fs.tmpfs.obj_type_transition (ARG1 dev
 				chr_file "tty")))
 
 		;
@@ -397,47 +397,47 @@
 		;
 
 		(macro devtmpfs_obj_type_transition ((type ARG1))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "event0"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "event1"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "event2"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "event3"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "event4"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "event5"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "event6"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "event7"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "event8"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "event9"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "event10"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "event11"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "event12"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "event13"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "event14"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "event15"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "event16"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "event17"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "event18"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "event19"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "event20")))
 
 		;
@@ -496,7 +496,7 @@
 		;
 
 		(macro devtmpfs_obj_type_transition ((type ARG1))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "kvm")))
 
 		;
@@ -555,7 +555,7 @@
 		;
 
 		(macro devtmpfs_obj_type_transition ((type ARG1))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "mei0")))
 
 		;
@@ -608,17 +608,17 @@
 		;
 
 		(macro devtmpfs_obj_type_transition ((type ARG1))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "js0"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "js1"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "js2"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "mouse0"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "mouse1"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "mouse2")))
 
 		;
@@ -673,9 +673,9 @@
 				ARG1))
 
 		(macro tmpfs_obj_type_transition ((type ARG1))
-			(call fs.tmpfs.obj_type_transition (ARG1 isid
+			(call .fs.tmpfs.obj_type_transition (ARG1 isid
 				chr_file "full"))
-			(call fs.tmpfs.obj_type_transition (ARG1 isid
+			(call .fs.tmpfs.obj_type_transition (ARG1 isid
 				chr_file "null")))
 
 		(macro write_subj_type ((type ARG1))
@@ -832,9 +832,9 @@
 		;
 
 		(macro tmpfs_obj_type_transition ((type ARG1))
-			(call fs.tmpfs.obj_type_transition (ARG1 dev
+			(call .fs.tmpfs.obj_type_transition (ARG1 dev
 				chr_file "hwrng"))
-			(call fs.tmpfs.obj_type_transition (ARG1 dev
+			(call .fs.tmpfs.obj_type_transition (ARG1 dev
 				chr_file "random")))
 
 		;
@@ -856,45 +856,45 @@
 		;
 
 		(macro devtmpfs_obj_type_transition ((type ARG1))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "hwC0D0"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "hwC1D0"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "hwC0D3"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "pcmC0D0c"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "pcmC0D0p"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "pcmC0D3p"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "pcmC0D7p"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "pcmC0D8p"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "pcmC1D0c"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "pcmC1D0p"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "pcmC1D3p"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "pcmC1D7p"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "pcmC1D8p"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "pcmC1D9p"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "pcmC2D0c"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "pcmC2D0p"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "controlC0"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "controlC1"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "controlC2"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "controlC29")))
 
 		;
@@ -916,7 +916,7 @@
 		;
 
 		(macro devtmpfs_obj_type_transition ((type ARG1))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "tpm0")))
 
 		;
@@ -974,7 +974,7 @@
 		;
 
 		(macro tmpfs_obj_type_transition ((type ARG1))
-			(call fs.tmpfs.obj_type_transition (ARG1 dev
+			(call .fs.tmpfs.obj_type_transition (ARG1 dev
 				chr_file "urandom")))
 
 		;
@@ -998,119 +998,119 @@
 		;
 
 		(macro devtmpfs_obj_type_transition ((type ARG1))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "001"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "002"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "003"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "004"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "005"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "006"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "007"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "008"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "009"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "010"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "011"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "012"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "013"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "014"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "016"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "017"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "018"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "019"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "020"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "021"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "022"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "023"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "024"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "025"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "026"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "027"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "028"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "029"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "030"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "031"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "032"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "033"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "034"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "035"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "036"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "037"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "038"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "039"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "040"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "041"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "042"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "043"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "044"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "045"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "046"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "047"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "048"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "049"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "050"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "hiddev0"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "hiddev1"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "hiddev2"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "hiddev3"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "hidraw0"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "hidraw1"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "hidraw2"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "hidraw3")))
 
 		;
@@ -1151,17 +1151,17 @@
 		;
 
 		(macro devtmpfs_obj_type_transition ((type ARG1))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "media0"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "media1"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "media3"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "video0"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "video1"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "video2")))
 
 		;
@@ -1220,11 +1220,11 @@
 		;
 
 		(macro devtmpfs_obj_type_transition ((type ARG1))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "watchdog"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "watchdog0"))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "watchdog1")))
 
 		;
@@ -1246,7 +1246,7 @@
 		;
 
 		(macro devtmpfs_obj_type_transition ((type ARG1))
-			(call fs.devtmpfs.obj_type_transition (ARG1 dev
+			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "rfkill")))
 
 		;
@@ -1286,7 +1286,7 @@
 		;
 
 		(macro tmpfs_obj_type_transition ((type ARG1))
-			(call fs.tmpfs.obj_type_transition (ARG1 dev
+			(call .fs.tmpfs.obj_type_transition (ARG1 dev
 				chr_file "zero")))
 
 		;

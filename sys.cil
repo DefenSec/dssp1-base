@@ -295,18 +295,60 @@
 
 	(roletype sys_role_attribute obj_type_attribute)
 
-	(call unconfined_subj_type (isid))
+	(dontaudit isid self (capability (dac_override)))
+	(allow isid self (capability (sys_tty_config sys_admin sys_nice
+		net_admin net_bind_service dac_read_search)))
+	(allow isid self (capability2 (block_suspend)))
+	(allow isid self (process (setsched)))
+	(allow isid self create_unix_stream_socket_perms)
 
-	(call .dev.unconfined_subj_type (isid))
-	(call file.unconfined_subj_type (isid))
-	(call .fs.unconfined_subj_type (isid))
-	(call net.unconfined_subj_type (isid))
-	(call sec.unconfined_subj_type (isid))
-	(call subj.unconfined_subj_type (isid))
-	(call term.unconfined_subj_type (isid))
+	(call change_ring_buffer_level_subj_type (isid))
+	(call request_load_module_subj_type (isid))
+
+	(call .dev.clock.devtmpfs_obj_type_transition (isid))
+	(call .dev.cuse.devtmpfs_obj_type_transition (isid))
+	(call .dev.devtty.tmpfs_obj_type_transition (isid))
+	(call .dev.event.devtmpfs_obj_type_transition (isid))
+	(call .dev.kvm.devtmpfs_obj_type_transition (isid))
+	(call .dev.manage_all_subj_type (isid))
+	(call .dev.mei_misc.devtmpfs_obj_type_transition (isid))
+	(call .dev.mouse.devtmpfs_obj_type_transition (isid))
+	(call .dev.null.tmpfs_obj_type_transition (isid))
+	(call .dev.random.tmpfs_obj_type_transition (isid))
+	(call .dev.sound.devtmpfs_obj_type_transition (isid))
+	(call .dev.tpm.devtmpfs_obj_type_transition (isid))
+	(call .dev.urandom.tmpfs_obj_type_transition (isid))
+	(call .dev.usb.devtmpfs_obj_type_transition (isid))
+	(call .dev.v4l.devtmpfs_obj_type_transition (isid))
+	(call .dev.watchdog.devtmpfs_obj_type_transition (isid))
+	(call .dev.wireless.devtmpfs_obj_type_transition (isid))
+	(call .dev.zero.tmpfs_obj_type_transition (isid))
+
+	(call file.data.read_subj_type (isid))
+
+	(call .fs.devtmpfs.manage_blk_files_subj_type (isid))
+	(call .fs.devtmpfs.manage_chr_files_subj_type (isid))
+	(call .fs.devtmpfs.manage_dirs_subj_type (isid))
+	(call .fs.devtmpfs.manage_lnk_files_subj_type (isid))
+	(call .fs.rootfs.list_subj_type (isid))
+	(call .fs.rootfs.mounton_dirs_subj_type (isid))
+	(call .fs.sysfs.read_subj_type (isid))
+	(call .fs.tmpfs.search_subj_type (isid))
+	(call .fs.xattr.getattr_subj_type (isid))
+
+	(call sec.compute_create_context_subj_type (isid))
+
+	(call term.tty.devtmpfs_obj_type_transition (isid))
+	(call term.tty.manage_subj_type (isid))
+
+	(optional sys_optional_misc
+		(call misc.font.client_subj_type (isid)))
 
 	(optional sys_optional_stor
-		(call stor.unconfined_subj_type (isid)))
+		(call stor.fixed_disk.devtmpfs_obj_type_transition (isid))
+		(call stor.manage_all_subj_type (isid))
+		(call stor.removable.devtmpfs_obj_type_transition (isid))
+		(call stor.scsi_generic.devtmpfs_obj_type_transition (isid)))
 
 	(dontaudit
 		dontaudit_audit_access_mountpoint_dirs_subj_type_attribute
