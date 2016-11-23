@@ -830,11 +830,32 @@
 		; nsfs macros
 		;
 
+		(macro read_files_subj_type ((type ARG1))
+			(typeattributeset read_files_subj_type_attribute
+				ARG1))
+
+		(macro read_subj_type ((type ARG1))
+			(typeattributeset read_subj_type_attribute
+				ARG1))
+
 		;
 		; nsfs policy
 		;
 
-		(blockinherit fs.fs_obj_base_template))
+		(blockinherit fs.fs_obj_base_template)
+
+		(typeattribute read_files_subj_type_attribute)
+		(typeattribute read_subj_type_attribute)
+
+		(call read_files_pattern
+			(read_files_subj_type_attribute fs fs))
+
+		(typeattributeset list_subj_type_attribute
+			(read_subj_type_attribute))
+		(typeattributeset read_files_subj_type_attribute
+			(read_subj_type_attribute))
+		(typeattributeset read_lnk_files_subj_type_attribute
+			(read_subj_type_attribute)))
 
 	(block proc
 
