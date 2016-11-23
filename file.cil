@@ -535,7 +535,7 @@
 	(call file.execmod_all_except.except_uncond_subj_type
 		(unconfined_subj_type_attribute))
 
-	(call file.module.load_all_files_subj_type
+	(call file.module.load_all_subj_type
 		(unconfined_subj_type_attribute))
 
 	(call file.unknown.rootfs_obj_type_transition
@@ -1427,9 +1427,14 @@
 			(typeattributeset list_subj_type_attribute
 				ARG1))
 
-		(macro load_all_files_subj_type ((type ARG1))
+		(macro load_all_subj_type ((type ARG1))
 			(typeattributeset
-				load_all_files_subj_type_attribute
+				load_all_subj_type_attribute
+					ARG1))
+
+		(macro load_subj_type ((type ARG1))
+			(typeattributeset
+				load_subj_type_attribute
 					ARG1))
 
 		(macro manage_all_files_subj_type ((type ARG1))
@@ -1499,7 +1504,8 @@
 
 		(typeattribute getattr_all_files_subj_type_attribute)
 		(typeattribute list_subj_type_attribute)
-		(typeattribute load_all_files_subj_type_attribute)
+		(typeattribute load_all_subj_type_attribute)
+		(typeattribute load_subj_type_attribute)
 		(typeattribute manage_all_files_subj_type_attribute)
 		(typeattribute manage_dirs_subj_type_attribute)
 		(typeattribute manage_lnk_files_subj_type_attribute)
@@ -1514,7 +1520,7 @@
 		(typeattribute write_all_files_subj_type_attribute)
 
 		(call search_subj_type (getattr_all_files_subj_type_attribute))
-		(call search_subj_type (load_all_files_subj_type_attribute))
+		(call search_subj_type (load_all_subj_type_attribute))
 		(call search_subj_type (manage_all_files_subj_type_attribute))
 		(call search_subj_type (read_all_files_subj_type_attribute))
 		(call search_subj_type (relabel_all_files_subj_type_attribute))
@@ -1522,6 +1528,7 @@
 		(call search_subj_type (write_all_files_subj_type_attribute))
 
 		(call lib.library.search_subj_type (list_subj_type_attribute))
+		(call lib.library.search_subj_type (load_subj_type_attribute))
 		(call lib.library.search_subj_type
 			(manage_dirs_subj_type_attribute))
 		(call lib.library.search_subj_type
@@ -1540,8 +1547,10 @@
 		(allow getattr_all_files_subj_type_attribute
 			module_obj_type_attribute (file (getattr)))
 		(allow list_subj_type_attribute module_file list_dir_perms)
-		(allow load_all_files_subj_type_attribute
+		(allow load_all_subj_type_attribute
 			module_obj_type_attribute (system (module_load)))
+		(allow load_subj_type_attribute
+			module_file (system (module_load)))
 		(call manage_dirs_pattern
 			(manage_dirs_subj_type_attribute module_file
 				module_file))
