@@ -344,6 +344,9 @@
 	(optional sys_optional_misc
 		(call misc.font.client_subj_type (isid)))
 
+	(optional sys_optional_mount
+		(call mount.use_fd_subj_type (isid)))
+
 	(optional sys_optional_stor
 		(call stor.fixed_disk.devtmpfs_obj_type_transition (isid))
 		(call stor.manage_all_subj_type (isid))
