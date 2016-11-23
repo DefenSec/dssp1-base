@@ -341,6 +341,9 @@
 	(call term.tty.devtmpfs_obj_type_transition (isid))
 	(call term.tty.manage_subj_type (isid))
 
+	(optional sys_optional_kmod
+		(call kmod.auto_subj_type_transition (isid)))
+
 	(optional sys_optional_misc
 		(call misc.font.client_subj_type (isid)))
 
