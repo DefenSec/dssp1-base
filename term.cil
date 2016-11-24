@@ -85,10 +85,14 @@
 		; console macros
 		;
 
-		(macro dontaudit_rw_chr_files_subj_type ((type ARG1))
+		(macro dontaudit_rw_subj_type ((type ARG1))
 			(typeattributeset
-				dontaudit_rw_chr_files_subj_type_attribute
+				dontaudit_rw_subj_type_attribute
 					ARG1))
+
+		(macro rw_inherited_subj_type ((type ARG1))
+			(typeattributeset
+				rw_inherited_subj_type_attribute ARG1))
 
 		;
 		; console policy
@@ -96,10 +100,13 @@
 
 		(blockinherit dev.dev_obj_base_template)
 
-		(typeattribute dontaudit_rw_chr_files_subj_type_attribute)
+		(typeattribute dontaudit_rw_subj_type_attribute)
+		(typeattribute rw_inherited_subj_type_attribute)
 
-		(dontaudit dontaudit_rw_chr_files_subj_type_attribute
-			dev rw_chr_file_perms))
+		(dontaudit dontaudit_rw_subj_type_attribute
+			dev rw_chr_file_perms)
+		(allow rw_inherited_subj_type_attribute dev
+			rw_inherited_chr_file_perms))
 
 	(block console_login
 
