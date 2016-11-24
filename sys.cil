@@ -603,6 +603,10 @@
 				read_sock_files_subj_type_attribute
 					ARG1))
 
+		(macro read_state_subj_type ((type ARG1))
+			(typeattributeset
+				read_state_subj_type_attribute ARG1))
+
 		(macro read_subj_type ((type ARG1))
 			(typeattributeset read_subj_type_attribute
 				ARG1))
@@ -639,6 +643,14 @@
 			(typeattributeset search_subj_type_attribute
 				ARG1))
 
+		(macro send_signal_subj_type ((type ARG1))
+			(typeattributeset send_signal_subj_type_attribute
+				ARG1))
+
+		(macro send_signull_subj_type ((type ARG1))
+			(typeattributeset send_signull_subj_type_attribute
+				ARG1))
+
 		;
 		; invalid policy
 		;
@@ -652,6 +664,7 @@
 		(typeattribute read_files_subj_type_attribute)
 		(typeattribute read_lnk_files_subj_type_attribute)
 		(typeattribute read_sock_files_subj_type_attribute)
+		(typeattribute read_state_subj_type_attribute)
 		(typeattribute read_subj_type_attribute)
 		(typeattribute relabelfrom_dirs_subj_type_attribute)
 		(typeattribute relabelfrom_fifo_files_subj_type_attribute)
@@ -660,6 +673,8 @@
 		(typeattribute relabelfrom_sock_files_subj_type_attribute)
 		(typeattribute relabelfrom_subj_type_attribute)
 		(typeattribute search_subj_type_attribute)
+		(typeattribute send_signal_subj_type_attribute)
+		(typeattribute send_signull_subj_type_attribute)
 
 		(allow isid self (process (sigchld)))
 
@@ -684,6 +699,12 @@
 			(read_lnk_files_subj_type_attribute isid isid))
 		(call read_sock_files_pattern
 			(read_sock_files_subj_type_attribute isid isid))
+		(allow read_state_subj_type_attribute isid
+			list_dir_perms)
+		(allow read_state_subj_type_attribute isid
+			read_file_perms)
+		(allow read_state_subj_type_attribute isid
+			read_lnk_file_perms)
 		(allow relabelfrom_dirs_subj_type_attribute isid
 			relabel_dir_perms)
 		(call relabelfrom_fifo_files_pattern
@@ -699,6 +720,10 @@
 			(relabelfrom_sock_files_subj_type_attribute isid
 				isid))
 		(allow search_subj_type_attribute isid search_dir_perms)
+		(allow send_signal_subj_type_attribute isid (process
+			(signal)))
+		(allow send_signull_subj_type_attribute isid (process
+			(signull)))
 
 		(typeattributeset list_subj_type_attribute
 			read_subj_type_attribute)
