@@ -387,11 +387,11 @@
 
 		(dontaudit dontaudit_audit_access_files_subj_type_attribute
 			cmd_file (file (audit_access)))
-		(allow getattr_files_subj_type_attribute cmd_file (file
-			(getattr)))
 		(allow entrypoint_subj_type_attribute cmd_file (file
 			(entrypoint)))
 		(allow exec_subj_type_attribute cmd_file exec_file_perms)
+		(allow getattr_files_subj_type_attribute cmd_file (file
+			(getattr)))
 		(allow manage_files_subj_type_attribute cmd_file
 			manage_file_perms)
 		(allow mmap_subj_type_attribute cmd_file mmap_file_perms)
@@ -418,6 +418,8 @@
 
 		(call cmd.command.read_lnk_files_subj_type
 			(exec_subj_type_attribute))
+		(call cmd.command.read_lnk_files_subj_type
+			(getattr_files_subj_type_attribute))
 		(call cmd.command.read_lnk_files_subj_type
 			(manage_files_subj_type_attribute))
 		(call cmd.command.read_lnk_files_subj_type (mmap_subj_type_attribute))
