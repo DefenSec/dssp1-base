@@ -2010,6 +2010,10 @@
 			(typeattributeset relabel_all_subj_type_attribute
 				ARG1))
 
+		(macro runtime_obj_type_transition ((type ARG1))
+			(call file.runtime.obj_type_transition (ARG1
+				runtime_config_file dir "sysconfig")))
+
 		(macro rw_all_dirs_subj_type ((type ARG1))
 			(typeattributeset rw_all_dirs_subj_type_attribute
 				ARG1))
