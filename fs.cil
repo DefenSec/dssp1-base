@@ -337,6 +337,11 @@
 			(typeattributeset rw_files_subj_type_attribute
 				ARG1))
 
+		(macro setattr_files_subj_type ((type ARG1))
+			(typeattributeset
+				setattr_files_subj_type_attribute
+					ARG1))
+
 		;
 		; cgroup policy
 		;
@@ -346,6 +351,7 @@
 		(typeattribute read_files_subj_type_attribute)
 		(typeattribute read_subj_type_attribute)
 		(typeattribute rw_files_subj_type_attribute)
+		(typeattribute setattr_files_subj_type_attribute)
 
 		(call sys.mountpoint_obj_type (fs))
 
@@ -353,6 +359,8 @@
 			(read_files_subj_type_attribute fs fs))
 		(call rw_files_pattern
 			(rw_files_subj_type_attribute fs fs))
+		(call setattr_files_pattern
+			(setattr_files_subj_type_attribute fs fs))
 
 		(typeattributeset list_subj_type_attribute
 			(read_subj_type_attribute))
@@ -380,6 +388,8 @@
 		(call fs.sysfs.search_subj_type (rw_dirs_subj_type_attribute))
 		(call fs.sysfs.search_subj_type (rw_files_subj_type_attribute))
 		(call fs.sysfs.search_subj_type (search_subj_type_attribute))
+		(call fs.sysfs.search_subj_type
+			(setattr_files_subj_type_attribute))
 		(call fs.sysfs.search_subj_type (unmount_subj_type_attribute))
 
 		(call fs.tmpfs.read_lnk_files_subj_type
@@ -408,6 +418,8 @@
 			(rw_files_subj_type_attribute))
 		(call fs.tmpfs.read_lnk_files_subj_type
 			(search_subj_type_attribute))
+		(call fs.tmpfs.read_lnk_files_subj_type
+			(setattr_files_subj_type_attribute))
 		(call fs.tmpfs.read_lnk_files_subj_type
 			(unmount_subj_type_attribute)))
 
@@ -579,6 +591,16 @@
 			(call rw_dirs_subj_type (ARG1))
 			(typetransition ARG1 fs ARG3 ARG4 ARG2))
 
+		(macro relabelfrom_blk_files_subj_type ((type ARG1))
+			(typeattributeset
+				relabelfrom_blk_files_subj_type_attribute
+					ARG1))
+
+		(macro relabelfrom_chr_files_subj_type ((type ARG1))
+			(typeattributeset
+				relabelfrom_chr_files_subj_type_attribute
+					ARG1))
+
 		;
 		; devtmpfs policy
 		;
@@ -589,6 +611,8 @@
 			dontaudit_write_chr_files_subj_type_attribute)
 		(typeattribute manage_blk_files_subj_type_attribute)
 		(typeattribute manage_chr_files_subj_type_attribute)
+		(typeattribute relabelfrom_blk_files_subj_type_attribute)
+		(typeattribute relabelfrom_chr_files_subj_type_attribute)
 
 		(call sys.mountpoint_obj_type (fs))
 
@@ -599,7 +623,11 @@
 		(call manage_blk_files_pattern
 			(manage_blk_files_subj_type_attribute fs fs))
 		(call manage_chr_files_pattern
-			(manage_chr_files_subj_type_attribute fs fs)))
+			(manage_chr_files_subj_type_attribute fs fs))
+		(call relabelfrom_blk_files_pattern
+			(relabelfrom_blk_files_subj_type_attribute fs fs))
+		(call relabelfrom_chr_files_pattern
+			(relabelfrom_chr_files_subj_type_attribute fs fs)))
 
 	(block dosfs
 
@@ -656,13 +684,41 @@
 		; efivars macros
 		;
 
+		(macro read_files_subj_type ((type ARG1))
+			(typeattributeset read_files_subj_type_attribute
+				ARG1))
+
+		(macro read_subj_type ((type ARG1))
+			(typeattributeset read_subj_type_attribute
+				ARG1))
+
+		(macro rw_files_subj_type ((type ARG1))
+			(typeattributeset rw_files_subj_type_attribute
+				ARG1))
+
 		;
 		; efivarfs policy
 		;
 
 		(blockinherit fs.fs_obj_base_template)
 
+		(typeattribute read_files_subj_type_attribute)
+		(typeattribute read_subj_type_attribute)
+		(typeattribute rw_files_subj_type_attribute)
+
 		(call sys.mountpoint_obj_type (fs))
+
+		(call read_files_pattern
+			(read_files_subj_type_attribute fs fs))
+		(call rw_files_pattern
+			(rw_files_subj_type_attribute fs fs))
+
+		(typeattributeset list_subj_type_attribute
+			(read_subj_type_attribute))
+		(typeattributeset read_files_subj_type_attribute
+			(read_subj_type_attribute))
+		(typeattributeset read_lnk_files_subj_type_attribute
+			(read_subj_type_attribute))
 
 		(call fs.sysfs.search_subj_type (getattr_subj_type_attribute))
 		(call fs.sysfs.search_subj_type (list_subj_type_attribute))
@@ -672,6 +728,8 @@
 			(manage_lnk_files_subj_type_attribute))
 		(call fs.sysfs.search_subj_type (mount_subj_type_attribute))
 		(call fs.sysfs.search_subj_type
+			(read_files_subj_type_attribute))
+		(call fs.sysfs.search_subj_type
 			(read_lnk_files_subj_type_attribute))
 		(call fs.sysfs.search_subj_type
 			(relabel_dirs_subj_type_attribute))
@@ -679,6 +737,7 @@
 			(relabel_lnk_files_subj_type_attribute))
 		(call fs.sysfs.search_subj_type (remount_subj_type_attribute))
 		(call fs.sysfs.search_subj_type (rw_dirs_subj_type_attribute))
+		(call fs.sysfs.search_subj_type (rw_files_subj_type_attribute))
 		(call fs.sysfs.search_subj_type (search_subj_type_attribute))
 		(call fs.sysfs.search_subj_type (unmount_subj_type_attribute)))
 
@@ -984,6 +1043,11 @@
 		; rootfs macros
 		;
 
+		(macro audit_write_access_dirs_subj_type ((type ARG1))
+			(typeattributeset
+				audit_write_access_dirs_subj_type_attribute
+					ARG1))
+
 		(macro mounton_dirs_subj_type ((type ARG1))
 			(typeattributeset
 				mounton_dirs_subj_type_attribute
@@ -1000,12 +1064,15 @@
 
 		(blockinherit fs.fs_obj_base_template)
 
+		(typeattribute audit_write_access_dirs_subj_type_attribute)
 		(typeattribute mounton_dirs_subj_type_attribute)
 
 		(call sys.mountpoint_obj_type (fs))
 
 		(call fs.xattr.associate_obj_type (fs))
 
+		(allow audit_write_access_dirs_subj_type_attribute fs
+			(dir (getattr write)))
 		(allow mounton_dirs_subj_type_attribute
 			fs (dir (mounton))))
 
@@ -1228,6 +1295,11 @@
 			(call rw_dirs_subj_type (ARG1))
 			(typetransition ARG1 fs ARG3 ARG4 ARG2))
 
+		(macro relabelfrom_dirs_subj_type ((type ARG1))
+			(typeattributeset
+				relabelfrom_dirs_subj_type_attribute
+					ARG1))
+
 		;
 		; tmpfs policy
 		;
@@ -1235,6 +1307,7 @@
 		(blockinherit fs.fs_obj_base_template)
 
 		(typeattribute delete_dirs_subj_type_attribute)
+		(typeattribute relabelfrom_dirs_subj_type_attribute)
 
 		(call sys.mountpoint_obj_type (fs))
 
@@ -1242,6 +1315,8 @@
 
 		(call delete_dirs_pattern (delete_dirs_subj_type_attribute
 			fs fs))
+		(call relabelfrom_dirs_pattern
+			(relabelfrom_dirs_subj_type_attribute fs fs))
 
 		(call fs.devtmpfs.search_subj_type
 			(delete_dirs_subj_type_attribute))
@@ -1257,6 +1332,8 @@
 			(read_lnk_files_subj_type_attribute))
 		(call fs.devtmpfs.search_subj_type
 			(relabel_dirs_subj_type_attribute))
+		(call fs.devtmpfs.search_subj_type
+			(relabelfrom_dirs_subj_type_attribute))
 		(call fs.devtmpfs.search_subj_type
 			(relabel_lnk_files_subj_type_attribute))
 		(call fs.devtmpfs.search_subj_type

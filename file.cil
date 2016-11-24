@@ -821,6 +821,11 @@
 		; config macros
 		;
 
+		(macro audit_write_access_dirs_subj_type ((type ARG1))
+			(typeattributeset
+				audit_write_access_dirs_subj_type_attribute
+					ARG1))
+
 		(macro list_all_subj_type ((type ARG1))
 			(typeattributeset list_all_subj_type_attribute
 				ARG1))
@@ -896,6 +901,7 @@
 
 		(blockinherit file.config_obj_base_template)
 
+		(typeattribute audit_write_access_dirs_subj_type_attribute)
 		(typeattribute list_all_subj_type_attribute)
 		(typeattribute manage_all_dirs_subj_type_attribute)
 		(typeattribute manage_all_files_subj_type_attribute)
@@ -915,6 +921,8 @@
 
 		(call sys.mountpoint_obj_type (config_file))
 
+		(allow audit_write_access_dirs_subj_type_attribute
+			config_file (dir (getattr write)))
 		(allow list_all_subj_type_attribute
 			config_obj_type_attribute list_dir_perms)
 		(call manage_dirs_pattern
