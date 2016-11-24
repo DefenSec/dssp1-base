@@ -333,6 +333,10 @@
 			(typeattributeset read_subj_type_attribute
 				ARG1))
 
+		(macro rw_files_subj_type ((type ARG1))
+			(typeattributeset rw_files_subj_type_attribute
+				ARG1))
+
 		;
 		; cgroup policy
 		;
@@ -341,11 +345,14 @@
 
 		(typeattribute read_files_subj_type_attribute)
 		(typeattribute read_subj_type_attribute)
+		(typeattribute rw_files_subj_type_attribute)
 
 		(call sys.mountpoint_obj_type (fs))
 
 		(call read_files_pattern
 			(read_files_subj_type_attribute fs fs))
+		(call rw_files_pattern
+			(rw_files_subj_type_attribute fs fs))
 
 		(typeattributeset list_subj_type_attribute
 			(read_subj_type_attribute))
@@ -371,6 +378,7 @@
 			(relabel_lnk_files_subj_type_attribute))
 		(call fs.sysfs.search_subj_type (remount_subj_type_attribute))
 		(call fs.sysfs.search_subj_type (rw_dirs_subj_type_attribute))
+		(call fs.sysfs.search_subj_type (rw_files_subj_type_attribute))
 		(call fs.sysfs.search_subj_type (search_subj_type_attribute))
 		(call fs.sysfs.search_subj_type (unmount_subj_type_attribute))
 
@@ -396,6 +404,8 @@
 			(remount_subj_type_attribute))
 		(call fs.tmpfs.read_lnk_files_subj_type
 			(rw_dirs_subj_type_attribute))
+		(call fs.tmpfs.read_lnk_files_subj_type
+			(rw_files_subj_type_attribute))
 		(call fs.tmpfs.read_lnk_files_subj_type
 			(search_subj_type_attribute))
 		(call fs.tmpfs.read_lnk_files_subj_type
