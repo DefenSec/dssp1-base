@@ -186,16 +186,16 @@
 		(typeattributeset unconfined_subj_type_attribute
 			ARG1))
 
-	(macro unix_dgram_socket_sendto_all_subj_type ((type ARG1))
+	(macro unix_dgram_sockets_sendto_all_subj_type ((type ARG1))
 		(allow ARG1 self create_unix_dgram_socket_perms)
 		(typeattributeset
-			unix_dgram_socket_sendto_all_subj_type_attribute
+			unix_dgram_sockets_sendto_all_subj_type_attribute
 				ARG1))
 
-	(macro unix_stream_socket_connectto_all_subj_type ((type ARG1))
+	(macro unix_stream_sockets_connectto_all_subj_type ((type ARG1))
 		(allow ARG1 self create_unix_stream_socket_perms)
 		(typeattributeset
-			unix_stream_socket_connectto_all_subj_type_attribute
+			unix_stream_sockets_connectto_all_subj_type_attribute
 				ARG1))
 
 	(macro use_fd_all_subj_type ((type ARG1))
@@ -274,8 +274,8 @@
 	(typeattribute sys_ptrace_subj_type_attribute)
 	(typeattribute transition_all_subj_type_attribute)
 	(typeattribute unconfined_subj_type_attribute)
-	(typeattribute unix_dgram_socket_sendto_all_subj_type_attribute)
-	(typeattribute unix_stream_socket_connectto_all_subj_type_attribute)
+	(typeattribute unix_dgram_sockets_sendto_all_subj_type_attribute)
+	(typeattribute unix_stream_sockets_connectto_all_subj_type_attribute)
 	(typeattribute use_fd_all_subj_type_attribute)
 	(typeattribute use_interactive_fd_subj_type_attribute)
 
@@ -403,10 +403,10 @@
 	(allow transition_all_subj_type_attribute
 		common_subj_type_attribute (process (transition)))
 
-	(allow unix_dgram_socket_sendto_all_subj_type_attribute
+	(allow unix_dgram_sockets_sendto_all_subj_type_attribute
 		common_subj_type_attribute (unix_dgram_socket (sendto)))
 
-	(allow unix_stream_socket_connectto_all_subj_type_attribute
+	(allow unix_stream_sockets_connectto_all_subj_type_attribute
 		common_subj_type_attribute (unix_stream_socket (connectto)))
 
 	(allow use_fd_all_subj_type_attribute
@@ -805,16 +805,16 @@
 		(macro transition_subj_type ((type ARG1))
 			(typeattributeset transition_subj_type_attribute ARG1))
 
-		(macro unix_dgram_socket_sendto_subj_type ((type ARG1))
+		(macro unix_dgram_sockets_sendto_subj_type ((type ARG1))
 			(allow ARG1 self create_unix_dgram_socket_perms)
 			(typeattributeset
-				unix_dgram_socket_sendto_subj_type_attribute
+				unix_dgram_sockets_sendto_subj_type_attribute
 					ARG1))
 
-		(macro unix_stream_socket_connectto_subj_type ((type ARG1))
+		(macro unix_stream_sockets_connectto_subj_type ((type ARG1))
 			(allow ARG1 self create_unix_stream_socket_perms)
 			(typeattributeset
-				unix_stream_socket_connectto_subj_type_attribute
+				unix_stream_sockets_connectto_subj_type_attribute
 					ARG1))
 
 		(macro use_fd_subj_type ((type ARG1))
@@ -867,9 +867,9 @@
 		(typeattribute share_subj_type_attribute)
 		(typeattribute siginh_subj_type_attribute)
 		(typeattribute transition_subj_type_attribute)
-		(typeattribute unix_dgram_socket_sendto_subj_type_attribute)
+		(typeattribute unix_dgram_sockets_sendto_subj_type_attribute)
 		(typeattribute
-			unix_stream_socket_connectto_subj_type_attribute)
+			unix_stream_sockets_connectto_subj_type_attribute)
 		(typeattribute use_fd_subj_type_attribute)
 
 		(dontaudit dontaudit_noatsecure_subj_type_attribute subj
@@ -981,10 +981,10 @@
 		(allow transition_subj_type_attribute subj (process
 			(transition)))
 
-		(allow unix_dgram_socket_sendto_subj_type_attribute subj
+		(allow unix_dgram_sockets_sendto_subj_type_attribute subj
 			(unix_dgram_socket (sendto)))
 
-		(allow unix_stream_socket_connectto_subj_type_attribute
+		(allow unix_stream_sockets_connectto_subj_type_attribute
 			subj (unix_stream_socket (connectto)))
 
 		(allow use_fd_subj_type_attribute subj (fd (use))))
