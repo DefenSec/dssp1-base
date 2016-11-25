@@ -357,7 +357,10 @@
 		(call stor.scsi_generic.devtmpfs_obj_type_transition (isid)))
 
 	(optional sys_optional_systemd
-		(call systemd.system.auto_subj_type_transition (isid)))
+		(call sybj.dynamic_subj_type_transition_subj_type (isid))
+		(call systemd.getattr_files_subj_type (isid))
+		(call systemd.system.send_signal_subj_type (isid))
+		(call systemd.system.dynamic_subj_type_transition (isid)))
 
 	(dontaudit
 		dontaudit_audit_access_mountpoint_dirs_subj_type_attribute
