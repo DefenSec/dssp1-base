@@ -356,6 +356,9 @@
 		(call stor.removable.devtmpfs_obj_type_transition (isid))
 		(call stor.scsi_generic.devtmpfs_obj_type_transition (isid)))
 
+	(optional sys_optional_systemd
+		(call systemd.system.auto_subj_type_transition (isid)))
+
 	(dontaudit
 		dontaudit_audit_access_mountpoint_dirs_subj_type_attribute
 			mountpoint_obj_type_attribute (dir (audit_access)))
