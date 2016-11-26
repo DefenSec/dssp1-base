@@ -37,8 +37,8 @@
 			ARG1))
 
 	(macro set_console_login_bool_subj_type ((type ARG1))
-		(call term.console_login.rw_files_subj_type (ARG1))
-		(call sec.set_bool_subj_type (ARG1)))
+		(call .term.console_login.rw_files_subj_type (ARG1))
+		(call .sec.set_bool_subj_type (ARG1)))
 
 	(macro setattr_all_subj_type ((type ARG1))
 		(typeattributeset setattr_all_subj_type_attribute
@@ -181,7 +181,7 @@
 		(macro login_tty ((type ARG1)(type ARG2))
 			(typechange ARG1 serial_dev chr_file ARG2)
 			(booleanif term.console_login (true (typechange ARG1
-				term.console.dev chr_file ARG2))))
+				.term.console.dev chr_file ARG2))))
 
 		;
 		; tty policy

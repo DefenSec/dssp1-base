@@ -64,8 +64,8 @@
 		(allow ARG1 self (process (setfscreate))))
 
 	(macro set_load_policy_bool_subj_type ((type ARG1))
-		(call sec.load_policy.rw_files_subj_type (ARG1))
-		(call sec.set_bool_subj_type (ARG1)))
+		(call .sec.load_policy.rw_files_subj_type (ARG1))
+		(call .sec.set_bool_subj_type (ARG1)))
 
 	(macro set_secparam_subj_type ((type ARG1))
 		(typeattributeset set_secparam_subj_type_attribute
@@ -376,7 +376,7 @@
 		(blockabstract bool_obj_stub)
 
 		(type bool)
-		(call sec.bool_obj_type (bool)))
+		(call .sec.bool_obj_type (bool)))
 
 	(block bool_obj_template
 

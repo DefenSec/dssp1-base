@@ -204,9 +204,9 @@
 		(typeattributeset sec_obj_type_attribute ARG1))
 
 	(macro set_execmod_all_except_bool_subj_type ((type ARG1))
-		(call file.execmod_all_except.rw_files_subj_type
+		(call .file.execmod_all_except.rw_files_subj_type
 			(ARG1))
-		(call sec.set_bool_subj_type (ARG1)))
+		(call .sec.set_bool_subj_type (ARG1)))
 
 	(macro tmpfs_obj_type ((type ARG1))
 		(typeattributeset tmpfs_obj_type_attribute ARG1))
@@ -751,15 +751,15 @@
 					ARG1))
 
 		(macro rootfs_obj_type_transition ((type ARG1))
-			(call fs.rootfs.obj_type_transition (ARG1
+			(call .fs.rootfs.obj_type_transition (ARG1
 				boot_flag_file file ".ismount-test-file"))
-			(call fs.rootfs.obj_type_transition (ARG1
+			(call .fs.rootfs.obj_type_transition (ARG1
 				boot_flag_file file "autorelabel"))
-			(call fs.rootfs.obj_type_transition (ARG1
+			(call .fs.rootfs.obj_type_transition (ARG1
 				boot_flag_file file "fastboot"))
-			(call fs.rootfs.obj_type_transition (ARG1
+			(call .fs.rootfs.obj_type_transition (ARG1
 				boot_flag_file file "forcefsck"))
-			(call fs.rootfs.obj_type_transition (ARG1
+			(call .fs.rootfs.obj_type_transition (ARG1
 				boot_flag_file file "forcequotacheck")))
 
 		(macro rw_all_files_subj_type ((type ARG1))
@@ -1471,7 +1471,6 @@
 
 		(macro obj_type_transition ((type ARG1)(type ARG2)(class
 			ARG3)(name ARG4))
-			(call file.data.search_subj_type (ARG1))
 			(call rw_dirs_subj_type (ARG1))
 			(typetransition ARG1 module_file ARG3 ARG4 ARG2))
 
@@ -2019,7 +2018,7 @@
 				ARG1))
 
 		(macro runtime_obj_type_transition ((type ARG1))
-			(call file.runtime.obj_type_transition (ARG1
+			(call .file.runtime.obj_type_transition (ARG1
 				runtime_config_file dir "sysconfig")))
 
 		(macro rw_all_dirs_subj_type ((type ARG1))
@@ -2806,11 +2805,11 @@
 		;
 
 		(macro rootfs_obj_type_transition ((type ARG1))
-			(call fs.rootfs.obj_type_transition (ARG1 file dir
+			(call .fs.rootfs.obj_type_transition (ARG1 file dir
 				"*"))
-			(call fs.rootfs.obj_type_transition (ARG1 file file
+			(call .fs.rootfs.obj_type_transition (ARG1 file file
 				"*"))
-			(call fs.rootfs.obj_type_transition (ARG1 file lnk_file
+			(call .fs.rootfs.obj_type_transition (ARG1 file lnk_file
 				"*")))
 
 		;
@@ -4294,7 +4293,7 @@
 		(blockabstract file_obj_stub)
 
 		(type file)
-		(call file.file_obj_type (file)))
+		(call .file.file_obj_type (file)))
 
 	(block file_obj_template
 
@@ -4460,7 +4459,7 @@
 		(blockabstract auth_obj_stub)
 
 		(type auth_file)
-		(call file.auth_obj_type (auth_file)))
+		(call .file.auth_obj_type (auth_file)))
 
 	(block auth_obj_template
 
@@ -4630,7 +4629,7 @@
 		(blockabstract sec_obj_stub)
 
 		(type sec_file)
-		(call file.sec_obj_type (sec_file)))
+		(call .file.sec_obj_type (sec_file)))
 
 	(block sec_obj_template
 
@@ -4798,7 +4797,7 @@
 		(blockabstract boot_obj_stub)
 
 		(type boot_file)
-		(call file.boot_obj_type (boot_file)))
+		(call .file.boot_obj_type (boot_file)))
 
 	(block boot_obj_base_template
 
@@ -4963,28 +4962,28 @@
 
 		(blockinherit boot_obj_base_template)
 
-		(call file.boot.search_subj_type (list_subj_type_attribute))
-		(call file.boot.search_subj_type
+		(call .file.boot.search_subj_type (list_subj_type_attribute))
+		(call .file.boot.search_subj_type
 			(manage_dirs_subj_type_attribute))
-		(call file.boot.search_subj_type
+		(call .file.boot.search_subj_type
 			(manage_files_subj_type_attribute))
-		(call file.boot.search_subj_type
+		(call .file.boot.search_subj_type
 			(manage_lnk_files_subj_type_attribute))
-		(call file.boot.search_subj_type
+		(call .file.boot.search_subj_type
 			(read_files_subj_type_attribute))
-		(call file.boot.search_subj_type
+		(call .file.boot.search_subj_type
 			(read_lnk_files_subj_type_attribute))
-		(call file.boot.search_subj_type
+		(call .file.boot.search_subj_type
 			(relabel_dirs_subj_type_attribute))
-		(call file.boot.search_subj_type
+		(call .file.boot.search_subj_type
 			(relabel_files_subj_type_attribute))
-		(call file.boot.search_subj_type
+		(call .file.boot.search_subj_type
 			(relabel_lnk_files_subj_type_attribute))
-		(call file.boot.search_subj_type (rw_dirs_subj_type_attribute))
-		(call file.boot.search_subj_type
+		(call .file.boot.search_subj_type (rw_dirs_subj_type_attribute))
+		(call .file.boot.search_subj_type
 			(rw_files_subj_type_attribute))
-		(call file.boot.search_subj_type (search_subj_type_attribute))
-		(call file.boot.search_subj_type
+		(call .file.boot.search_subj_type (search_subj_type_attribute))
+		(call .file.boot.search_subj_type
 			(write_files_subj_type_attribute)))
 
 	(block boot_flag_obj_stub
@@ -5003,7 +5002,7 @@
 		(blockabstract boot_flag_obj_stub)
 
 		(type boot_flag_file)
-		(call file.boot_flag_obj_type (boot_flag_file)))
+		(call .file.boot_flag_obj_type (boot_flag_file)))
 
 	(block boot_flag_obj_base_template
 
@@ -5084,7 +5083,7 @@
 		(blockabstract config_obj_stub)
 
 		(type config_file)
-		(call file.config_obj_type (config_file)))
+		(call .file.config_obj_type (config_file)))
 
 	(block config_obj_base_template
 
@@ -5253,30 +5252,30 @@
 
 		(blockinherit config_obj_base_template)
 
-		(call file.config.search_subj_type (list_subj_type_attribute))
-		(call file.config.search_subj_type
+		(call .file.config.search_subj_type (list_subj_type_attribute))
+		(call .file.config.search_subj_type
 			(manage_dirs_subj_type_attribute))
-		(call file.config.search_subj_type
+		(call .file.config.search_subj_type
 			(manage_files_subj_type_attribute))
-		(call file.config.search_subj_type
+		(call .file.config.search_subj_type
 			(manage_lnk_files_subj_type_attribute))
-		(call file.config.search_subj_type
+		(call .file.config.search_subj_type
 			(read_files_subj_type_attribute))
-		(call file.config.search_subj_type
+		(call .file.config.search_subj_type
 			(read_lnk_files_subj_type_attribute))
-		(call file.config.search_subj_type
+		(call .file.config.search_subj_type
 			(relabel_dirs_subj_type_attribute))
-		(call file.config.search_subj_type
+		(call .file.config.search_subj_type
 			(relabel_files_subj_type_attribute))
-		(call file.config.search_subj_type
+		(call .file.config.search_subj_type
 			(relabel_lnk_files_subj_type_attribute))
-		(call file.config.search_subj_type
+		(call .file.config.search_subj_type
 			(rw_dirs_subj_type_attribute))
-		(call file.config.search_subj_type
+		(call .file.config.search_subj_type
 			(rw_files_subj_type_attribute))
-		(call file.config.search_subj_type
+		(call .file.config.search_subj_type
 			(search_subj_type_attribute))
-		(call file.config.search_subj_type
+		(call .file.config.search_subj_type
 			(write_files_subj_type_attribute)))
 
 	(block data_obj_stub
@@ -5295,7 +5294,7 @@
 		(blockabstract data_obj_stub)
 
 		(type data_file)
-		(call file.data_obj_type (data_file)))
+		(call .file.data_obj_type (data_file)))
 
 	(block data_obj_base_template
 
@@ -5460,28 +5459,28 @@
 
 		(blockinherit data_obj_base_template)
 
-		(call file.data.search_subj_type (list_subj_type_attribute))
-		(call file.data.search_subj_type
+		(call .file.data.search_subj_type (list_subj_type_attribute))
+		(call .file.data.search_subj_type
 			(manage_dirs_subj_type_attribute))
-		(call file.data.search_subj_type
+		(call .file.data.search_subj_type
 			(manage_files_subj_type_attribute))
-		(call file.data.search_subj_type
+		(call .file.data.search_subj_type
 			(manage_lnk_files_subj_type_attribute))
-		(call file.data.search_subj_type
+		(call .file.data.search_subj_type
 			(read_files_subj_type_attribute))
-		(call file.data.search_subj_type
+		(call .file.data.search_subj_type
 			(read_lnk_files_subj_type_attribute))
-		(call file.data.search_subj_type
+		(call .file.data.search_subj_type
 			(relabel_dirs_subj_type_attribute))
-		(call file.data.search_subj_type
+		(call .file.data.search_subj_type
 			(relabel_files_subj_type_attribute))
-		(call file.data.search_subj_type
+		(call .file.data.search_subj_type
 			(relabel_lnk_files_subj_type_attribute))
-		(call file.data.search_subj_type (rw_dirs_subj_type_attribute))
-		(call file.data.search_subj_type
+		(call .file.data.search_subj_type (rw_dirs_subj_type_attribute))
+		(call .file.data.search_subj_type
 			(rw_files_subj_type_attribute))
-		(call file.data.search_subj_type (search_subj_type_attribute))
-		(call file.data.search_subj_type
+		(call .file.data.search_subj_type (search_subj_type_attribute))
+		(call .file.data.search_subj_type
 			(write_files_subj_type_attribute)))
 
 	(block module_obj_stub
@@ -5500,7 +5499,7 @@
 		(blockabstract module_obj_stub)
 
 		(type module_file)
-		(call file.module_obj_type (module_file)))
+		(call .file.module_obj_type (module_file)))
 
 	(block module_obj_base_template
 
@@ -5559,19 +5558,19 @@
 		(typeattribute rw_files_subj_type_attribute)
 		(typeattribute write_files_subj_type_attribute)
 
-		(call lib.library.search_subj_type
+		(call .lib.library.search_subj_type
 			(getattr_files_subj_type_attribute))
-		(call lib.library.search_subj_type
+		(call .lib.library.search_subj_type
 			(load_files_subj_type_attribute))
-		(call lib.library.search_subj_type
+		(call .lib.library.search_subj_type
 			(manage_files_subj_type_attribute))
-		(call lib.library.search_subj_type
+		(call .lib.library.search_subj_type
 			(read_files_subj_type_attribute))
-		(call lib.library.search_subj_type
+		(call .lib.library.search_subj_type
 			(relabel_files_subj_type_attribute))
-		(call lib.library.search_subj_type
+		(call .lib.library.search_subj_type
 			(rw_files_subj_type_attribute))
-		(call lib.library.search_subj_type
+		(call .lib.library.search_subj_type
 			(write_files_subj_type_attribute))
 
 		(allow getattr_files_subj_type_attribute module_file (file
@@ -5598,15 +5597,15 @@
 
 		(blockinherit module_obj_base_template)
 
-		(call file.module.search_subj_type
+		(call .file.module.search_subj_type
 			(manage_files_subj_type_attribute))
-		(call file.module.search_subj_type
+		(call .file.module.search_subj_type
 			(read_files_subj_type_attribute))
-		(call file.module.search_subj_type
+		(call .file.module.search_subj_type
 			(relabel_files_subj_type_attribute))
-		(call file.module.search_subj_type
+		(call .file.module.search_subj_type
 			(rw_files_subj_type_attribute))
-		(call file.module.search_subj_type
+		(call .file.module.search_subj_type
 			(write_files_subj_type_attribute)))
 
 	(block runtime_obj_stub
@@ -5625,7 +5624,7 @@
 		(blockabstract runtime_obj_stub)
 
 		(type runtime_file)
-		(call file.runtime_obj_type (runtime_file)))
+		(call .file.runtime_obj_type (runtime_file)))
 
 	(block runtime_obj_base_template
 
@@ -5796,51 +5795,51 @@
 		(typeattribute write_files_subj_type_attribute)
 		(typeattribute write_sock_files_subj_type_attribute)
 
-		(call file.var.read_lnk_files_subj_type
+		(call .file.var.read_lnk_files_subj_type
 			(list_subj_type_attribute))
-		(call file.var.read_lnk_files_subj_type
+		(call .file.var.read_lnk_files_subj_type
 			(manage_dirs_subj_type_attribute))
-		(call file.var.read_lnk_files_subj_type
+		(call .file.var.read_lnk_files_subj_type
 			(manage_fifo_files_subj_type_attribute))
-		(call file.var.read_lnk_files_subj_type
+		(call .file.var.read_lnk_files_subj_type
 			(manage_files_subj_type_attribute))
-		(call file.var.read_lnk_files_subj_type
+		(call .file.var.read_lnk_files_subj_type
 			(manage_lnk_files_subj_type_attribute))
-		(call file.var.read_lnk_files_subj_type
+		(call .file.var.read_lnk_files_subj_type
 			(manage_sock_files_subj_type_attribute))
-		(call file.var.read_lnk_files_subj_type
+		(call .file.var.read_lnk_files_subj_type
 			(read_fifo_files_subj_type_attribute))
-		(call file.var.read_lnk_files_subj_type
+		(call .file.var.read_lnk_files_subj_type
 			(read_files_subj_type_attribute))
-		(call file.var.read_lnk_files_subj_type
+		(call .file.var.read_lnk_files_subj_type
 			(read_lnk_files_subj_type_attribute))
-		(call file.var.read_lnk_files_subj_type
+		(call .file.var.read_lnk_files_subj_type
 			(read_sock_files_subj_type_attribute))
-		(call file.var.read_lnk_files_subj_type
+		(call .file.var.read_lnk_files_subj_type
 			(relabel_dirs_subj_type_attribute))
-		(call file.var.read_lnk_files_subj_type
+		(call .file.var.read_lnk_files_subj_type
 			(relabel_fifo_files_subj_type_attribute))
-		(call file.var.read_lnk_files_subj_type
+		(call .file.var.read_lnk_files_subj_type
 			(relabel_files_subj_type_attribute))
-		(call file.var.read_lnk_files_subj_type
+		(call .file.var.read_lnk_files_subj_type
 			(relabel_lnk_files_subj_type_attribute))
-		(call file.var.read_lnk_files_subj_type
+		(call .file.var.read_lnk_files_subj_type
 			(relabel_sock_files_subj_type_attribute))
-		(call file.var.read_lnk_files_subj_type
+		(call .file.var.read_lnk_files_subj_type
 			(rw_dirs_subj_type_attribute))
-		(call file.var.read_lnk_files_subj_type
+		(call .file.var.read_lnk_files_subj_type
 			(rw_fifo_files_subj_type_attribute))
-		(call file.var.read_lnk_files_subj_type
+		(call .file.var.read_lnk_files_subj_type
 			(rw_files_subj_type_attribute))
-		(call file.var.read_lnk_files_subj_type
+		(call .file.var.read_lnk_files_subj_type
 			(rw_sock_files_subj_type_attribute))
-		(call file.var.read_lnk_files_subj_type
+		(call .file.var.read_lnk_files_subj_type
 			(search_subj_type_attribute))
-		(call file.var.read_lnk_files_subj_type
+		(call .file.var.read_lnk_files_subj_type
 			(write_files_subj_type_attribute))
-		(call file.var.read_lnk_files_subj_type
+		(call .file.var.read_lnk_files_subj_type
 			(write_fifo_files_subj_type_attribute))
-		(call file.var.read_lnk_files_subj_type
+		(call .file.var.read_lnk_files_subj_type
 			(write_sock_files_subj_type_attribute))
 
 		(allow list_subj_type_attribute runtime_file list_dir_perms)
@@ -5945,50 +5944,50 @@
 
 		(blockinherit runtime_obj_base_template)
 
-		(call file.runtime.search_subj_type (list_subj_type_attribute))
-		(call file.runtime.search_subj_type
+		(call .file.runtime.search_subj_type (list_subj_type_attribute))
+		(call .file.runtime.search_subj_type
 			(manage_dirs_subj_type_attribute))
-		(call file.runtime.search_subj_type
+		(call .file.runtime.search_subj_type
 			(manage_fifo_files_subj_type_attribute))
-		(call file.runtime.search_subj_type
+		(call .file.runtime.search_subj_type
 			(manage_files_subj_type_attribute))
-		(call file.runtime.search_subj_type
+		(call .file.runtime.search_subj_type
 			(manage_lnk_files_subj_type_attribute))
-		(call file.runtime.search_subj_type
+		(call .file.runtime.search_subj_type
 			(manage_sock_files_subj_type_attribute))
-		(call file.runtime.search_subj_type
+		(call .file.runtime.search_subj_type
 			(read_fifo_files_subj_type_attribute))
-		(call file.runtime.search_subj_type
+		(call .file.runtime.search_subj_type
 			(read_files_subj_type_attribute))
-		(call file.runtime.search_subj_type
+		(call .file.runtime.search_subj_type
 			(read_lnk_files_subj_type_attribute))
-		(call file.runtime.search_subj_type
+		(call .file.runtime.search_subj_type
 			(read_sock_files_subj_type_attribute))
-		(call file.runtime.search_subj_type
+		(call .file.runtime.search_subj_type
 			(relabel_dirs_subj_type_attribute))
-		(call file.runtime.search_subj_type
+		(call .file.runtime.search_subj_type
 			(relabel_fifo_files_subj_type_attribute))
-		(call file.runtime.search_subj_type
+		(call .file.runtime.search_subj_type
 			(relabel_files_subj_type_attribute))
-		(call file.runtime.search_subj_type
+		(call .file.runtime.search_subj_type
 			(relabel_lnk_files_subj_type_attribute))
-		(call file.runtime.search_subj_type
+		(call .file.runtime.search_subj_type
 			(relabel_sock_files_subj_type_attribute))
-		(call file.runtime.search_subj_type
+		(call .file.runtime.search_subj_type
 			(rw_dirs_subj_type_attribute))
-		(call file.runtime.search_subj_type
+		(call .file.runtime.search_subj_type
 			(rw_fifo_files_subj_type_attribute))
-		(call file.runtime.search_subj_type
+		(call .file.runtime.search_subj_type
 			(rw_files_subj_type_attribute))
-		(call file.runtime.search_subj_type
+		(call .file.runtime.search_subj_type
 			(rw_sock_files_subj_type_attribute))
-		(call file.runtime.search_subj_type
+		(call .file.runtime.search_subj_type
 			(search_subj_type_attribute))
-		(call file.runtime.search_subj_type
+		(call .file.runtime.search_subj_type
 			(write_files_subj_type_attribute))
-		(call file.runtime.search_subj_type
+		(call .file.runtime.search_subj_type
 			(write_fifo_files_subj_type_attribute))
-		(call file.runtime.search_subj_type
+		(call .file.runtime.search_subj_type
 			(write_sock_files_subj_type_attribute)))
 
 	(block runtime_config_obj_stub
@@ -6007,7 +6006,7 @@
 		(blockabstract runtime_config_obj_stub)
 
 		(type runtime_config_file)
-		(call file.runtime_config_obj_type (runtime_config_file)))
+		(call .file.runtime_config_obj_type (runtime_config_file)))
 
 	(block runtime_config_obj_base_template
 
@@ -6119,30 +6118,30 @@
 		(typeattribute rw_files_subj_type_attribute)
 		(typeattribute write_files_subj_type_attribute)
 
-		(call file.runtime.search_subj_type (list_subj_type_attribute))
-		(call file.runtime.search_subj_type
+		(call .file.runtime.search_subj_type (list_subj_type_attribute))
+		(call .file.runtime.search_subj_type
 			(manage_dirs_subj_type_attribute))
-		(call file.runtime.search_subj_type
+		(call .file.runtime.search_subj_type
 			(manage_files_subj_type_attribute))
-		(call file.runtime.search_subj_type
+		(call .file.runtime.search_subj_type
 			(manage_lnk_files_subj_type_attribute))
-		(call file.runtime.search_subj_type
+		(call .file.runtime.search_subj_type
 			(read_files_subj_type_attribute))
-		(call file.runtime.search_subj_type
+		(call .file.runtime.search_subj_type
 			(read_lnk_files_subj_type_attribute))
-		(call file.runtime.search_subj_type
+		(call .file.runtime.search_subj_type
 			(relabel_dirs_subj_type_attribute))
-		(call file.runtime.search_subj_type
+		(call .file.runtime.search_subj_type
 			(relabel_files_subj_type_attribute))
-		(call file.runtime.search_subj_type
+		(call .file.runtime.search_subj_type
 			(relabel_lnk_files_subj_type_attribute))
-		(call file.runtime.search_subj_type
+		(call .file.runtime.search_subj_type
 			(rw_dirs_subj_type_attribute))
-		(call file.runtime.search_subj_type
+		(call .file.runtime.search_subj_type
 			(rw_files_subj_type_attribute))
-		(call file.runtime.search_subj_type
+		(call .file.runtime.search_subj_type
 			(search_subj_type_attribute))
-		(call file.runtime.search_subj_type
+		(call .file.runtime.search_subj_type
 			(write_files_subj_type_attribute))
 
 		(allow list_subj_type_attribute runtime_config_file
@@ -6206,31 +6205,31 @@
 
 		(blockinherit runtime_config_obj_base_template)
 
-		(call file.runtime_config.search_subj_type
+		(call .file.runtime_config.search_subj_type
 			(list_subj_type_attribute))
-		(call file.runtime_config.search_subj_type
+		(call .file.runtime_config.search_subj_type
 			(manage_dirs_subj_type_attribute))
-		(call file.runtime_config.search_subj_type
+		(call .file.runtime_config.search_subj_type
 			(manage_files_subj_type_attribute))
-		(call file.runtime_config.search_subj_type
+		(call .file.runtime_config.search_subj_type
 			(manage_lnk_files_subj_type_attribute))
-		(call file.runtime_config.search_subj_type
+		(call .file.runtime_config.search_subj_type
 			(read_files_subj_type_attribute))
-		(call file.runtime_config.search_subj_type
+		(call .file.runtime_config.search_subj_type
 			(read_lnk_files_subj_type_attribute))
-		(call file.runtime_config.search_subj_type
+		(call .file.runtime_config.search_subj_type
 			(relabel_dirs_subj_type_attribute))
-		(call file.runtime_config.search_subj_type
+		(call .file.runtime_config.search_subj_type
 			(relabel_files_subj_type_attribute))
-		(call file.runtime_config.search_subj_type
+		(call .file.runtime_config.search_subj_type
 			(relabel_lnk_files_subj_type_attribute))
-		(call file.runtime_config.search_subj_type
+		(call .file.runtime_config.search_subj_type
 			(rw_dirs_subj_type_attribute))
-		(call file.runtime_config.search_subj_type
+		(call .file.runtime_config.search_subj_type
 			(rw_files_subj_type_attribute))
-		(call file.runtime_config.search_subj_type
+		(call .file.runtime_config.search_subj_type
 			(search_subj_type_attribute))
-		(call file.runtime_config.search_subj_type
+		(call .file.runtime_config.search_subj_type
 			(write_files_subj_type_attribute)))
 
 	(block runtime_lock_obj_stub
@@ -6249,7 +6248,7 @@
 		(blockabstract runtime_lock_obj_stub)
 
 		(type runtime_lock_file)
-		(call file.runtime_lock_obj_type (runtime_lock_file)))
+		(call .file.runtime_lock_obj_type (runtime_lock_file)))
 
 	(block runtime_lock_obj_base_template
 
@@ -6360,30 +6359,30 @@
 		(typeattribute search_subj_type_attribute)
 		(typeattribute write_files_subj_type_attribute)
 
-		(call file.runtime.search_subj_type (list_subj_type_attribute))
-		(call file.runtime.search_subj_type
+		(call .file.runtime.search_subj_type (list_subj_type_attribute))
+		(call .file.runtime.search_subj_type
 			(manage_dirs_subj_type_attribute))
-		(call file.runtime.search_subj_type
+		(call .file.runtime.search_subj_type
 			(manage_files_subj_type_attribute))
-		(call file.runtime.search_subj_type
+		(call .file.runtime.search_subj_type
 			(manage_lnk_files_subj_type_attribute))
-		(call file.runtime.search_subj_type
+		(call .file.runtime.search_subj_type
 			(read_files_subj_type_attribute))
-		(call file.runtime.search_subj_type
+		(call .file.runtime.search_subj_type
 			(read_lnk_files_subj_type_attribute))
-		(call file.runtime.search_subj_type
+		(call .file.runtime.search_subj_type
 			(relabel_dirs_subj_type_attribute))
-		(call file.runtime.search_subj_type
+		(call .file.runtime.search_subj_type
 			(relabel_files_subj_type_attribute))
-		(call file.runtime.search_subj_type
+		(call .file.runtime.search_subj_type
 			(relabel_lnk_files_subj_type_attribute))
-		(call file.runtime.search_subj_type
+		(call .file.runtime.search_subj_type
 			(rw_dirs_subj_type_attribute))
-		(call file.runtime.search_subj_type
+		(call .file.runtime.search_subj_type
 			(rw_files_subj_type_attribute))
-		(call file.runtime.search_subj_type
+		(call .file.runtime.search_subj_type
 			(search_subj_type_attribute))
-		(call file.runtime.search_subj_type
+		(call .file.runtime.search_subj_type
 			(write_files_subj_type_attribute))
 
 		(allow list_subj_type_attribute runtime_lock_file
@@ -6447,31 +6446,31 @@
 
 		(blockinherit runtime_lock_obj_base_template)
 
-		(call file.runtime_lock.search_subj_type
+		(call .file.runtime_lock.search_subj_type
 			(list_subj_type_attribute))
-		(call file.runtime_lock.search_subj_type
+		(call .file.runtime_lock.search_subj_type
 			(manage_dirs_subj_type_attribute))
-		(call file.runtime_lock.search_subj_type
+		(call .file.runtime_lock.search_subj_type
 			(manage_files_subj_type_attribute))
-		(call file.runtime_lock.search_subj_type
+		(call .file.runtime_lock.search_subj_type
 			(manage_lnk_files_subj_type_attribute))
-		(call file.runtime_lock.search_subj_type
+		(call .file.runtime_lock.search_subj_type
 			(read_files_subj_type_attribute))
-		(call file.runtime_lock.search_subj_type
+		(call .file.runtime_lock.search_subj_type
 			(read_lnk_files_subj_type_attribute))
-		(call file.runtime_lock.search_subj_type
+		(call .file.runtime_lock.search_subj_type
 			(relabel_dirs_subj_type_attribute))
-		(call file.runtime_lock.search_subj_type
+		(call .file.runtime_lock.search_subj_type
 			(relabel_files_subj_type_attribute))
-		(call file.runtime_lock.search_subj_type
+		(call .file.runtime_lock.search_subj_type
 			(relabel_lnk_files_subj_type_attribute))
-		(call file.runtime_lock.search_subj_type
+		(call .file.runtime_lock.search_subj_type
 			(rw_dirs_subj_type_attribute))
-		(call file.runtime_lock.search_subj_type
+		(call .file.runtime_lock.search_subj_type
 			(rw_files_subj_type_attribute))
-		(call file.runtime_lock.search_subj_type
+		(call .file.runtime_lock.search_subj_type
 			(search_subj_type_attribute))
-		(call file.runtime_lock.search_subj_type
+		(call .file.runtime_lock.search_subj_type
 			(write_files_subj_type_attribute)))
 
 	(block tmpfs_obj_stub
@@ -6490,7 +6489,7 @@
 		(blockabstract tmpfs_obj_stub)
 
 		(type tmpfs_file)
-		(call file.tmpfs_obj_type (tmpfs_file)))
+		(call .file.tmpfs_obj_type (tmpfs_file)))
 
 	(block tmpfs_obj_template
 
@@ -6632,37 +6631,37 @@
 		(typeattribute write_files_subj_type_attribute)
 		(typeattribute write_sock_files_subj_type_attribute)
 
-		(call fs.tmpfs.search_subj_type (list_subj_type_attribute))
-		(call fs.tmpfs.search_subj_type
+		(call .fs.tmpfs.search_subj_type (list_subj_type_attribute))
+		(call .fs.tmpfs.search_subj_type
 			(manage_dirs_subj_type_attribute))
-		(call fs.tmpfs.search_subj_type
+		(call .fs.tmpfs.search_subj_type
 			(manage_files_subj_type_attribute))
-		(call fs.tmpfs.search_subj_type
+		(call .fs.tmpfs.search_subj_type
 			(manage_lnk_files_subj_type_attribute))
-		(call fs.tmpfs.search_subj_type
+		(call .fs.tmpfs.search_subj_type
 			(manage_sock_files_subj_type_attribute))
-		(call fs.tmpfs.search_subj_type
+		(call .fs.tmpfs.search_subj_type
 			(read_files_subj_type_attribute))
-		(call fs.tmpfs.search_subj_type
+		(call .fs.tmpfs.search_subj_type
 			(read_lnk_files_subj_type_attribute))
-		(call fs.tmpfs.search_subj_type
+		(call .fs.tmpfs.search_subj_type
 			(read_sock_files_subj_type_attribute))
-		(call fs.tmpfs.search_subj_type
+		(call .fs.tmpfs.search_subj_type
 			(relabel_dirs_subj_type_attribute))
-		(call fs.tmpfs.search_subj_type
+		(call .fs.tmpfs.search_subj_type
 			(relabel_files_subj_type_attribute))
-		(call fs.tmpfs.search_subj_type
+		(call .fs.tmpfs.search_subj_type
 			(relabel_lnk_files_subj_type_attribute))
-		(call fs.tmpfs.search_subj_type
+		(call .fs.tmpfs.search_subj_type
 			(relabel_sock_files_subj_type_attribute))
-		(call fs.tmpfs.search_subj_type (rw_dirs_subj_type_attribute))
-		(call fs.tmpfs.search_subj_type (rw_files_subj_type_attribute))
-		(call fs.tmpfs.search_subj_type
+		(call .fs.tmpfs.search_subj_type (rw_dirs_subj_type_attribute))
+		(call .fs.tmpfs.search_subj_type (rw_files_subj_type_attribute))
+		(call .fs.tmpfs.search_subj_type
 			(rw_sock_files_subj_type_attribute))
-		(call fs.tmpfs.search_subj_type (search_subj_type_attribute))
-		(call fs.tmpfs.search_subj_type
+		(call .fs.tmpfs.search_subj_type (search_subj_type_attribute))
+		(call .fs.tmpfs.search_subj_type
 			(write_files_subj_type_attribute))
-		(call fs.tmpfs.search_subj_type
+		(call .fs.tmpfs.search_subj_type
 			(write_sock_files_subj_type_attribute))
 
 		(allow list_subj_type_attribute tmpfs_file list_dir_perms)
@@ -6753,7 +6752,7 @@
 		(blockabstract var_obj_stub)
 
 		(type var_file)
-		(call file.var_obj_type (var_file)))
+		(call .file.var_obj_type (var_file)))
 
 	(block var_obj_base_template
 
@@ -6915,27 +6914,27 @@
 
 		(blockinherit var_obj_base_template)
 
-		(call file.var.search_subj_type (list_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type (list_subj_type_attribute))
+		(call .file.var.search_subj_type
 			(manage_dirs_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type
 			(manage_files_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type
 			(manage_lnk_files_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type
 			(read_files_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type
 			(read_lnk_files_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type
 			(relabel_dirs_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type
 			(relabel_files_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type
 			(relabel_lnk_files_subj_type_attribute))
-		(call file.var.search_subj_type (rw_dirs_subj_type_attribute))
-		(call file.var.search_subj_type (rw_files_subj_type_attribute))
-		(call file.var.search_subj_type (search_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type (rw_dirs_subj_type_attribute))
+		(call .file.var.search_subj_type (rw_files_subj_type_attribute))
+		(call .file.var.search_subj_type (search_subj_type_attribute))
+		(call .file.var.search_subj_type
 			(write_files_subj_type_attribute)))
 
 	(block var_cache_obj_stub
@@ -6954,7 +6953,7 @@
 		(blockabstract var_cache_obj_stub)
 
 		(type var_cache_file)
-		(call file.var_cache_obj_type (var_cache_file)))
+		(call .file.var_cache_obj_type (var_cache_file)))
 
 	(block var_cache_obj_base_template
 
@@ -7101,27 +7100,27 @@
 			(write_files_subj_type_attribute var_cache_file
 				var_cache_file))
 
-		(call file.var.search_subj_type (list_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type (list_subj_type_attribute))
+		(call .file.var.search_subj_type
 			(manage_dirs_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type
 			(manage_files_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type
 			(manage_lnk_files_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type
 			(read_files_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type
 			(read_lnk_files_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type
 			(relabel_dirs_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type
 			(relabel_files_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type
 			(relabel_lnk_files_subj_type_attribute))
-		(call file.var.search_subj_type (rw_dirs_subj_type_attribute))
-		(call file.var.search_subj_type (rw_files_subj_type_attribute))
-		(call file.var.search_subj_type (search_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type (rw_dirs_subj_type_attribute))
+		(call .file.var.search_subj_type (rw_files_subj_type_attribute))
+		(call .file.var.search_subj_type (search_subj_type_attribute))
+		(call .file.var.search_subj_type
 			(write_files_subj_type_attribute))
 
 		(typeattributeset list_subj_type_attribute
@@ -7148,31 +7147,31 @@
 
 		(blockinherit var_cache_obj_base_template)
 
-		(call file.var_cache.search_subj_type
+		(call .file.var_cache.search_subj_type
 			(list_subj_type_attribute))
-		(call file.var_cache.search_subj_type
+		(call .file.var_cache.search_subj_type
 			(manage_dirs_subj_type_attribute))
-		(call file.var_cache.search_subj_type
+		(call .file.var_cache.search_subj_type
 			(manage_files_subj_type_attribute))
-		(call file.var_cache.search_subj_type
+		(call .file.var_cache.search_subj_type
 			(manage_lnk_files_subj_type_attribute))
-		(call file.var_cache.search_subj_type
+		(call .file.var_cache.search_subj_type
 			(read_files_subj_type_attribute))
-		(call file.var_cache.search_subj_type
+		(call .file.var_cache.search_subj_type
 			(read_lnk_files_subj_type_attribute))
-		(call file.var_cache.search_subj_type
+		(call .file.var_cache.search_subj_type
 			(relabel_dirs_subj_type_attribute))
-		(call file.var_cache.search_subj_type
+		(call .file.var_cache.search_subj_type
 			(relabel_files_subj_type_attribute))
-		(call file.var_cache.search_subj_type
+		(call .file.var_cache.search_subj_type
 			(relabel_lnk_files_subj_type_attribute))
-		(call file.var_cache.search_subj_type
+		(call .file.var_cache.search_subj_type
 			(rw_dirs_subj_type_attribute))
-		(call file.var_cache.search_subj_type
+		(call .file.var_cache.search_subj_type
 			(rw_files_subj_type_attribute))
-		(call file.var_cache.search_subj_type
+		(call .file.var_cache.search_subj_type
 			(search_subj_type_attribute))
-		(call file.var_cache.search_subj_type
+		(call .file.var_cache.search_subj_type
 			(write_files_subj_type_attribute)))
 
 	(block var_db_obj_stub
@@ -7191,7 +7190,7 @@
 		(blockabstract var_db_obj_stub)
 
 		(type var_db_file)
-		(call file.var_db_obj_type (var_db_file)))
+		(call .file.var_db_obj_type (var_db_file)))
 
 	(block var_db_obj_base_template
 
@@ -7302,27 +7301,27 @@
 		(typeattribute search_subj_type_attribute)
 		(typeattribute write_files_subj_type_attribute)
 
-		(call file.var.search_subj_type (list_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type (list_subj_type_attribute))
+		(call .file.var.search_subj_type
 			(manage_dirs_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type
 			(manage_files_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type
 			(manage_lnk_files_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type
 			(read_files_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type
 			(relabel_files_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type
 			(read_lnk_files_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type
 			(relabel_dirs_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type
 			(relabel_lnk_files_subj_type_attribute))
-		(call file.var.search_subj_type (rw_dirs_subj_type_attribute))
-		(call file.var.search_subj_type (rw_files_subj_type_attribute))
-		(call file.var.search_subj_type (search_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type (rw_dirs_subj_type_attribute))
+		(call .file.var.search_subj_type (rw_files_subj_type_attribute))
+		(call .file.var.search_subj_type (search_subj_type_attribute))
+		(call .file.var.search_subj_type
 			(write_files_subj_type_attribute))
 
 		(allow list_subj_type_attribute var_db_file list_dir_perms)
@@ -7382,30 +7381,30 @@
 
 		(blockinherit var_db_obj_base_template)
 
-		(call file.var_db.search_subj_type (list_subj_type_attribute))
-		(call file.var_db.search_subj_type
+		(call .file.var_db.search_subj_type (list_subj_type_attribute))
+		(call .file.var_db.search_subj_type
 			(manage_dirs_subj_type_attribute))
-		(call file.var_db.search_subj_type
+		(call .file.var_db.search_subj_type
 			(manage_files_subj_type_attribute))
-		(call file.var_db.search_subj_type
+		(call .file.var_db.search_subj_type
 			(manage_lnk_files_subj_type_attribute))
-		(call file.var_db.search_subj_type
+		(call .file.var_db.search_subj_type
 			(read_files_subj_type_attribute))
-		(call file.var_db.search_subj_type
+		(call .file.var_db.search_subj_type
 			(read_lnk_files_subj_type_attribute))
-		(call file.var_db.search_subj_type
+		(call .file.var_db.search_subj_type
 			(relabel_dirs_subj_type_attribute))
-		(call file.var_db.search_subj_type
+		(call .file.var_db.search_subj_type
 			(relabel_files_subj_type_attribute))
-		(call file.var_db.search_subj_type
+		(call .file.var_db.search_subj_type
 			(relabel_lnk_files_subj_type_attribute))
-		(call file.var_db.search_subj_type
+		(call .file.var_db.search_subj_type
 			(rw_dirs_subj_type_attribute))
-		(call file.var_db.search_subj_type
+		(call .file.var_db.search_subj_type
 			(rw_files_subj_type_attribute))
-		(call file.var_db.search_subj_type
+		(call .file.var_db.search_subj_type
 			(search_subj_type_attribute))
-		(call file.var_db.search_subj_type
+		(call .file.var_db.search_subj_type
 			(write_files_subj_type_attribute)))
 
 	(block var_lib_obj_stub
@@ -7424,7 +7423,7 @@
 		(blockabstract var_lib_obj_stub)
 
 		(type var_lib_file)
-		(call file.var_lib_obj_type (var_lib_file)))
+		(call .file.var_lib_obj_type (var_lib_file)))
 
 	(block var_lib_obj_base_template
 
@@ -7535,27 +7534,27 @@
 		(typeattribute search_subj_type_attribute)
 		(typeattribute write_files_subj_type_attribute)
 
-		(call file.var.search_subj_type (list_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type (list_subj_type_attribute))
+		(call .file.var.search_subj_type
 			(manage_dirs_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type
 			(manage_files_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type
 			(manage_lnk_files_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type
 			(read_files_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type
 			(read_lnk_files_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type
 			(relabel_dirs_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type
 			(relabel_files_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type
 			(relabel_lnk_files_subj_type_attribute))
-		(call file.var.search_subj_type (rw_dirs_subj_type_attribute))
-		(call file.var.search_subj_type (rw_files_subj_type_attribute))
-		(call file.var.search_subj_type (search_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type (rw_dirs_subj_type_attribute))
+		(call .file.var.search_subj_type (rw_files_subj_type_attribute))
+		(call .file.var.search_subj_type (search_subj_type_attribute))
+		(call .file.var.search_subj_type
 			(write_files_subj_type_attribute))
 
 		(allow list_subj_type_attribute var_lib_file list_dir_perms)
@@ -7618,29 +7617,29 @@
 
 		(blockinherit var_lib_obj_base_template)
 
-		(call file.var_lib.search_subj_type (list_subj_type_attribute))
-		(call file.var_lib.search_subj_type
+		(call .file.var_lib.search_subj_type (list_subj_type_attribute))
+		(call .file.var_lib.search_subj_type
 			(manage_dirs_subj_type_attribute))
-		(call file.var_lib.search_subj_type
+		(call .file.var_lib.search_subj_type
 			(manage_files_subj_type_attribute))
-		(call file.var_lib.search_subj_type
+		(call .file.var_lib.search_subj_type
 			(manage_lnk_files_subj_type_attribute))
-		(call file.var_lib.search_subj_type
+		(call .file.var_lib.search_subj_type
 			(read_files_subj_type_attribute))
-		(call file.var_lib.search_subj_type
+		(call .file.var_lib.search_subj_type
 			(read_lnk_files_subj_type_attribute))
-		(call file.var_lib.search_subj_type
+		(call .file.var_lib.search_subj_type
 			(relabel_dirs_subj_type_attribute))
-		(call file.var_lib.search_subj_type
+		(call .file.var_lib.search_subj_type
 			(relabel_files_subj_type_attribute))
-		(call file.var_lib.search_subj_type
+		(call .file.var_lib.search_subj_type
 			(relabel_lnk_files_subj_type_attribute))
-		(call file.var_lib.search_subj_type
+		(call .file.var_lib.search_subj_type
 			(rw_dirs_subj_type_attribute))
-		(call file.var_lib.search_subj_type (rw_files_subj_type_attribute))
-		(call file.var_lib.search_subj_type
+		(call .file.var_lib.search_subj_type (rw_files_subj_type_attribute))
+		(call .file.var_lib.search_subj_type
 			(search_subj_type_attribute))
-		(call file.var_lib.search_subj_type
+		(call .file.var_lib.search_subj_type
 			(write_files_subj_type_attribute)))
 
 	(block var_log_obj_stub
@@ -7659,7 +7658,7 @@
 		(blockabstract var_log_obj_stub)
 
 		(type var_log_file)
-		(call file.var_log_obj_type (var_log_file)))
+		(call .file.var_log_obj_type (var_log_file)))
 
 	(block var_log_obj_base_template
 
@@ -7800,38 +7799,38 @@
 		(typeattribute setattr_files_subj_type_attribute)
 		(typeattribute write_files_subj_type_attribute)
 
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type
 			(append_files_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type
 			(create_files_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type
 			(delete_files_subj_type_attribute))
-		(call file.var.search_subj_type (list_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type (list_subj_type_attribute))
+		(call .file.var.search_subj_type
 			(manage_dirs_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type
 			(manage_files_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type
 			(manage_lnk_files_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type
 			(read_files_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type
 			(read_lnk_files_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type
 			(relabel_dirs_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type
 			(relabel_files_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type
 			(relabel_lnk_files_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type
 			(rename_files_subj_type_attribute))
-		(call file.var.search_subj_type (rw_dirs_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type (rw_dirs_subj_type_attribute))
+		(call .file.var.search_subj_type
 			(rw_files_subj_type_attribute))
-		(call file.var.search_subj_type (search_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type (search_subj_type_attribute))
+		(call .file.var.search_subj_type
 			(setattr_files_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type
 			(write_files_subj_type_attribute))
 
 		(call append_files_pattern
@@ -7909,40 +7908,40 @@
 
 		(blockinherit var_log_obj_base_template)
 
-		(call file.var_log.search_subj_type
+		(call .file.var_log.search_subj_type
 			(append_files_subj_type_attribute))
-		(call file.var_log.search_subj_type
+		(call .file.var_log.search_subj_type
 			(create_files_subj_type_attribute))
-		(call file.var_log.search_subj_type
+		(call .file.var_log.search_subj_type
 			(delete_files_subj_type_attribute))
-		(call file.var_log.search_subj_type (list_subj_type_attribute))
-		(call file.var_log.search_subj_type
+		(call .file.var_log.search_subj_type (list_subj_type_attribute))
+		(call .file.var_log.search_subj_type
 			(manage_dirs_subj_type_attribute))
-		(call file.var_log.search_subj_type
+		(call .file.var_log.search_subj_type
 			(manage_files_subj_type_attribute))
-		(call file.var_log.search_subj_type
+		(call .file.var_log.search_subj_type
 			(manage_lnk_files_subj_type_attribute))
-		(call file.var_log.search_subj_type
+		(call .file.var_log.search_subj_type
 			(read_files_subj_type_attribute))
-		(call file.var_log.search_subj_type
+		(call .file.var_log.search_subj_type
 			(read_lnk_files_subj_type_attribute))
-		(call file.var_log.search_subj_type
+		(call .file.var_log.search_subj_type
 			(relabel_dirs_subj_type_attribute))
-		(call file.var_log.search_subj_type
+		(call .file.var_log.search_subj_type
 			(relabel_files_subj_type_attribute))
-		(call file.var_log.search_subj_type
+		(call .file.var_log.search_subj_type
 			(relabel_lnk_files_subj_type_attribute))
-		(call file.var_log.search_subj_type
+		(call .file.var_log.search_subj_type
 			(rename_files_subj_type_attribute))
-		(call file.var_log.search_subj_type
+		(call .file.var_log.search_subj_type
 			(rw_dirs_subj_type_attribute))
-		(call file.var_log.search_subj_type
+		(call .file.var_log.search_subj_type
 			(rw_files_subj_type_attribute))
-		(call file.var_log.search_subj_type
+		(call .file.var_log.search_subj_type
 			(search_subj_type_attribute))
-		(call file.var_log.search_subj_type
+		(call .file.var_log.search_subj_type
 			(setattr_files_subj_type_attribute))
-		(call file.var_log.search_subj_type
+		(call .file.var_log.search_subj_type
 			(write_files_subj_type_attribute)))
 
 	(block var_spool_obj_stub
@@ -7961,7 +7960,7 @@
 		(blockabstract var_spool_obj_stub)
 
 		(type var_spool_file)
-		(call file.var_spool_obj_type (var_spool_file)))
+		(call .file.var_spool_obj_type (var_spool_file)))
 
 	(block var_spool_obj_base_template
 
@@ -8072,27 +8071,27 @@
 		(typeattribute search_subj_type_attribute)
 		(typeattribute write_files_subj_type_attribute)
 
-		(call file.var.search_subj_type (list_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type (list_subj_type_attribute))
+		(call .file.var.search_subj_type
 			(manage_dirs_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type
 			(manage_files_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type
 			(manage_lnk_files_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type
 			(read_files_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type
 			(read_lnk_files_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type
 			(relabel_dirs_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type
 			(relabel_files_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type
 			(relabel_lnk_files_subj_type_attribute))
-		(call file.var.search_subj_type (rw_dirs_subj_type_attribute))
-		(call file.var.search_subj_type (rw_files_subj_type_attribute))
-		(call file.var.search_subj_type (search_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type (rw_dirs_subj_type_attribute))
+		(call .file.var.search_subj_type (rw_files_subj_type_attribute))
+		(call .file.var.search_subj_type (search_subj_type_attribute))
+		(call .file.var.search_subj_type
 			(write_files_subj_type_attribute))
 
 		(allow list_subj_type_attribute var_spool_file list_dir_perms)
@@ -8155,31 +8154,31 @@
 
 		(blockinherit var_spool_obj_base_template)
 
-		(call file.var_spool.search_subj_type
+		(call .file.var_spool.search_subj_type
 			(list_subj_type_attribute))
-		(call file.var_spool.search_subj_type
+		(call .file.var_spool.search_subj_type
 			(manage_dirs_subj_type_attribute))
-		(call file.var_spool.search_subj_type
+		(call .file.var_spool.search_subj_type
 			(manage_files_subj_type_attribute))
-		(call file.var_spool.search_subj_type
+		(call .file.var_spool.search_subj_type
 			(manage_lnk_files_subj_type_attribute))
-		(call file.var_spool.search_subj_type
+		(call .file.var_spool.search_subj_type
 			(read_files_subj_type_attribute))
-		(call file.var_spool.search_subj_type
+		(call .file.var_spool.search_subj_type
 			(read_lnk_files_subj_type_attribute))
-		(call file.var_spool.search_subj_type
+		(call .file.var_spool.search_subj_type
 			(relabel_dirs_subj_type_attribute))
-		(call file.var_spool.search_subj_type
+		(call .file.var_spool.search_subj_type
 			(relabel_files_subj_type_attribute))
-		(call file.var_spool.search_subj_type
+		(call .file.var_spool.search_subj_type
 			(relabel_lnk_files_subj_type_attribute))
-		(call file.var_spool.search_subj_type
+		(call .file.var_spool.search_subj_type
 			(rw_dirs_subj_type_attribute))
-		(call file.var_spool.search_subj_type
+		(call .file.var_spool.search_subj_type
 			(rw_files_subj_type_attribute))
-		(call file.var_spool.search_subj_type
+		(call .file.var_spool.search_subj_type
 			(search_subj_type_attribute))
-		(call file.var_spool.search_subj_type
+		(call .file.var_spool.search_subj_type
 			(write_files_subj_type_attribute)))
 
 	(block var_tmp_obj_stub
@@ -8198,7 +8197,7 @@
 		(blockabstract var_tmp_obj_stub)
 
 		(type var_tmp_file)
-		(call file.var_tmp_obj_type (var_tmp_file)))
+		(call .file.var_tmp_obj_type (var_tmp_file)))
 
 	(block var_tmp_obj_base_template
 
@@ -8309,54 +8308,54 @@
 		(typeattribute search_subj_type_attribute)
 		(typeattribute write_files_subj_type_attribute)
 
-		(call file.data.read_lnk_files_subj_type
+		(call .file.data.read_lnk_files_subj_type
 			(list_subj_type_attribute))
-		(call file.data.read_lnk_files_subj_type
+		(call .file.data.read_lnk_files_subj_type
 			(manage_dirs_subj_type_attribute))
-		(call file.data.read_lnk_files_subj_type
+		(call .file.data.read_lnk_files_subj_type
 			(manage_files_subj_type_attribute))
-		(call file.data.read_lnk_files_subj_type
+		(call .file.data.read_lnk_files_subj_type
 			(manage_lnk_files_subj_type_attribute))
-		(call file.data.read_lnk_files_subj_type
+		(call .file.data.read_lnk_files_subj_type
 			(read_files_subj_type_attribute))
-		(call file.data.read_lnk_files_subj_type
+		(call .file.data.read_lnk_files_subj_type
 			(read_lnk_files_subj_type_attribute))
-		(call file.data.read_lnk_files_subj_type
+		(call .file.data.read_lnk_files_subj_type
 			(relabel_dirs_subj_type_attribute))
-		(call file.data.read_lnk_files_subj_type
+		(call .file.data.read_lnk_files_subj_type
 			(relabel_files_subj_type_attribute))
-		(call file.data.read_lnk_files_subj_type
+		(call .file.data.read_lnk_files_subj_type
 			(relabel_lnk_files_subj_type_attribute))
-		(call file.data.read_lnk_files_subj_type
+		(call .file.data.read_lnk_files_subj_type
 			(rw_dirs_subj_type_attribute))
-		(call file.data.read_lnk_files_subj_type
+		(call .file.data.read_lnk_files_subj_type
 			(rw_files_subj_type_attribute))
-		(call file.data.read_lnk_files_subj_type
+		(call .file.data.read_lnk_files_subj_type
 			(search_subj_type_attribute))
-		(call file.data.read_lnk_files_subj_type
+		(call .file.data.read_lnk_files_subj_type
 			(write_files_subj_type_attribute))
 
-		(call file.var.search_subj_type (list_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type (list_subj_type_attribute))
+		(call .file.var.search_subj_type
 			(manage_dirs_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type
 			(manage_files_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type
 			(manage_lnk_files_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type
 			(read_files_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type
 			(read_lnk_files_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type
 			(relabel_dirs_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type
 			(relabel_files_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type
 			(relabel_lnk_files_subj_type_attribute))
-		(call file.var.search_subj_type (rw_dirs_subj_type_attribute))
-		(call file.var.search_subj_type (rw_files_subj_type_attribute))
-		(call file.var.search_subj_type (search_subj_type_attribute))
-		(call file.var.search_subj_type
+		(call .file.var.search_subj_type (rw_dirs_subj_type_attribute))
+		(call .file.var.search_subj_type (rw_files_subj_type_attribute))
+		(call .file.var.search_subj_type (search_subj_type_attribute))
+		(call .file.var.search_subj_type
 			(write_files_subj_type_attribute))
 
 		(allow list_subj_type_attribute var_tmp_file list_dir_perms)
@@ -8419,28 +8418,28 @@
 
 		(blockinherit var_tmp_obj_base_template)
 
-		(call file.var_tmp.search_subj_type (list_subj_type_attribute))
-		(call file.var_tmp.search_subj_type
+		(call .file.var_tmp.search_subj_type (list_subj_type_attribute))
+		(call .file.var_tmp.search_subj_type
 			(manage_dirs_subj_type_attribute))
-		(call file.var_tmp.search_subj_type
+		(call .file.var_tmp.search_subj_type
 			(manage_files_subj_type_attribute))
-		(call file.var_tmp.search_subj_type
+		(call .file.var_tmp.search_subj_type
 			(manage_lnk_files_subj_type_attribute))
-		(call file.var_tmp.search_subj_type
+		(call .file.var_tmp.search_subj_type
 			(read_files_subj_type_attribute))
-		(call file.var_tmp.search_subj_type
+		(call .file.var_tmp.search_subj_type
 			(read_lnk_files_subj_type_attribute))
-		(call file.var_tmp.search_subj_type
+		(call .file.var_tmp.search_subj_type
 			(relabel_dirs_subj_type_attribute))
-		(call file.var_tmp.search_subj_type
+		(call .file.var_tmp.search_subj_type
 			(relabel_files_subj_type_attribute))
-		(call file.var_tmp.search_subj_type
+		(call .file.var_tmp.search_subj_type
 			(relabel_lnk_files_subj_type_attribute))
-		(call file.var_tmp.search_subj_type
+		(call .file.var_tmp.search_subj_type
 			(rw_dirs_subj_type_attribute))
-		(call file.var_tmp.search_subj_type
+		(call .file.var_tmp.search_subj_type
 			(rw_files_subj_type_attribute))
-		(call file.var_tmp.search_subj_type
+		(call .file.var_tmp.search_subj_type
 			(search_subj_type_attribute))
-		(call file.var_tmp.search_subj_type
+		(call .file.var_tmp.search_subj_type
 			(write_files_subj_type_attribute))))

@@ -164,13 +164,18 @@
 			(rw_dirs_subj_type_attribute lib_file lib_file))
 		(allow search_subj_type_attribute lib_file search_dir_perms)
 
-		(typeattributeset read_lnk_files_subj_type_attribute
-			(manage_all_files_subj_type_attribute
-				mmap_all_subj_type_attribute
-					read_all_files_subj_type_attribute
-						relabel_all_files_subj_type_attribute
-							rw_all_files_subj_type_attribute
-								write_all_files_subj_type_attribute))
+		(call read_lnk_files_subj_type
+			(manage_all_files_subj_type_attribute))
+		(call read_lnk_files_subj_type
+			(mmap_all_subj_type_attribute))
+		(call read_lnk_files_subj_type
+			(read_all_files_subj_type_attribute))
+		(call read_lnk_files_subj_type
+			(relabel_all_files_subj_type_attribute))
+		(call read_lnk_files_subj_type
+			(rw_all_files_subj_type_attribute))
+		(call read_lnk_files_subj_type
+			(write_all_files_subj_type_attribute))
 
 		(allow manage_all_files_subj_type_attribute
 			lib_obj_type_attribute manage_file_perms)
@@ -267,13 +272,13 @@
 		;
 
 		(macro config_obj_type_transition ((type ARG1))
-			(call file.config.obj_type_transition (ARG1 file
+			(call .file.config.obj_type_transition (ARG1 file
 				file "ld.so.cache"))
-			(call file.config.obj_type_transition (ARG1 file
+			(call .file.config.obj_type_transition (ARG1 file
 				file "ld.so.cache~"))
-			(call file.config.obj_type_transition (ARG1 file
+			(call .file.config.obj_type_transition (ARG1 file
 				file "ld.so.preload"))
-			(call file.config.obj_type_transition (ARG1 file
+			(call .file.config.obj_type_transition (ARG1 file
 				file "ld.so.preload~")))
 
 		;
@@ -302,7 +307,7 @@
 		(blockabstract lib_obj_stub)
 
 		(type lib_file)
-		(call lib.lib_obj_type (lib_file)))
+		(call .lib.lib_obj_type (lib_file)))
 
 	(block lib_obj_base_template
 
@@ -356,29 +361,29 @@
 		(typeattribute rw_files_subj_type_attribute)
 		(typeattribute write_files_subj_type_attribute)
 
-		(call file.data.search_subj_type
+		(call .file.data.search_subj_type
 			(manage_files_subj_type_attribute))
-		(call file.data.search_subj_type (mmap_subj_type_attribute))
-		(call file.data.search_subj_type
+		(call .file.data.search_subj_type (mmap_subj_type_attribute))
+		(call .file.data.search_subj_type
 			(read_files_subj_type_attribute))
-		(call file.data.search_subj_type
+		(call .file.data.search_subj_type
 			(relabel_files_subj_type_attribute))
-		(call file.data.search_subj_type
+		(call .file.data.search_subj_type
 			(rw_files_subj_type_attribute))
-		(call file.data.search_subj_type
+		(call .file.data.search_subj_type
 			(write_files_subj_type_attribute))
 
-		(call fs.rootfs.read_lnk_files_subj_type
+		(call .fs.rootfs.read_lnk_files_subj_type
 			(manage_files_subj_type_attribute))
-		(call fs.rootfs.read_lnk_files_subj_type
+		(call .fs.rootfs.read_lnk_files_subj_type
 			(mmap_subj_type_attribute))
-		(call fs.rootfs.read_lnk_files_subj_type
+		(call .fs.rootfs.read_lnk_files_subj_type
 			(read_files_subj_type_attribute))
-		(call fs.rootfs.read_lnk_files_subj_type
+		(call .fs.rootfs.read_lnk_files_subj_type
 			(relabel_files_subj_type_attribute))
-		(call fs.rootfs.read_lnk_files_subj_type
+		(call .fs.rootfs.read_lnk_files_subj_type
 			(rw_files_subj_type_attribute))
-		(call fs.rootfs.read_lnk_files_subj_type
+		(call .fs.rootfs.read_lnk_files_subj_type
 			(write_files_subj_type_attribute))
 
 		(allow manage_files_subj_type_attribute lib_file
@@ -403,15 +408,15 @@
 
 		(blockinherit lib_obj_base_template)
 
-		(call lib.library.read_lnk_files_subj_type
+		(call .lib.library.read_lnk_files_subj_type
 			(manage_files_subj_type_attribute))
-		(call lib.library.read_lnk_files_subj_type
+		(call .lib.library.read_lnk_files_subj_type
 			(mmap_subj_type_attribute))
-		(call lib.library.read_lnk_files_subj_type
+		(call .lib.library.read_lnk_files_subj_type
 			(read_files_subj_type_attribute))
-		(call lib.library.read_lnk_files_subj_type
+		(call .lib.library.read_lnk_files_subj_type
 			(relabel_files_subj_type_attribute))
-		(call lib.library.read_lnk_files_subj_type
+		(call .lib.library.read_lnk_files_subj_type
 			(rw_files_subj_type_attribute))
-		(call lib.library.read_lnk_files_subj_type
+		(call .lib.library.read_lnk_files_subj_type
 			(write_files_subj_type_attribute))))

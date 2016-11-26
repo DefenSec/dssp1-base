@@ -776,7 +776,7 @@
 		(blockabstract ephemeral_port_obj_stub)
 
 		(type ephemeral_port)
-		(call ephemeral_port_obj_type (ephemeral_port)))
+		(call .net.ephemeral_port_obj_type (ephemeral_port)))
 
 	(block ephemeral_port_obj_template
 
@@ -862,7 +862,7 @@
 		(blockabstract hi_reserved_port_obj_stub)
 
 		(type hi_reserved_port)
-		(call hi_reserved_port_obj_type (hi_reserved_port)))
+		(call .net.hi_reserved_port_obj_type (hi_reserved_port)))
 
 	(block hi_reserved_port_obj_template
 
@@ -952,7 +952,7 @@
 		(blockabstract if_obj_stub)
 
 		(type if)
-		(call if_obj_type (if)))
+		(call .net.if_obj_type (if)))
 
 	(block if_obj_template
 
@@ -1002,7 +1002,7 @@
 		(blockabstract node_obj_stub)
 
 		(type node)
-		(call node_obj_type (node)))
+		(call .net.node_obj_type (node)))
 
 	(block node_obj_template
 
@@ -1080,7 +1080,7 @@
 		(blockabstract packet_obj_stub)
 
 		(type packet)
-		(call packet_obj_type (packet)))
+		(call .net.packet_obj_type (packet)))
 
 	(block packet_obj_template
 
@@ -1151,7 +1151,7 @@
 		(blockabstract peer_obj_stub)
 
 		(type peer)
-		(call peer_obj_type (peer)))
+		(call .net.peer_obj_type (peer)))
 
 	(block peer_obj_template
 
@@ -1195,7 +1195,7 @@
 		(blockabstract reserved_port_obj_stub)
 
 		(type reserved_port)
-		(call reserved_port_obj_type (reserved_port)))
+		(call .net.reserved_port_obj_type (reserved_port)))
 
 	(block reserved_port_obj_template
 
@@ -1285,7 +1285,7 @@
 		(blockabstract unreserved_port_obj_stub)
 
 		(type unreserved_port)
-		(call unreserved_port_obj_type (unreserved_port)))
+		(call .net.unreserved_port_obj_type (unreserved_port)))
 
 	(block unreserved_port_obj_template
 

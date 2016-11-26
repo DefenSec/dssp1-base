@@ -87,7 +87,7 @@
 
 	(macro mountpoint_obj_type_transition ((type ARG1)(type ARG2)(class
 		ARG3)(name ARG4))
-		(call sys.rw_mountpoint_dirs_subj_type (ARG1))
+		(call .sys.rw_mountpoint_dirs_subj_type (ARG1))
 		(typetransition ARG1 mountpoint_obj_type_attribute ARG3
 			ARG4 ARG2))
 
@@ -168,14 +168,14 @@
 		(typeattributeset setpgid_subj_type_attribute ARG1))
 
 	(macro set_load_kernel_init_module_bool_subj_type ((type ARG1))
-		(call sys.load_kernel_init_module.rw_files_subj_type
+		(call .sys.load_kernel_init_module.rw_files_subj_type
 			(ARG1))
-		(call sec.set_bool_subj_type (ARG1)))
+		(call .sec.set_bool_subj_type (ARG1)))
 
 	(macro set_load_kernel_module_bool_subj_type ((type ARG1))
-		(call sys.load_kernel_module.rw_files_subj_type
+		(call .sys.load_kernel_module.rw_files_subj_type
 			(ARG1))
-		(call sec.set_bool_subj_type (ARG1)))
+		(call .sec.set_bool_subj_type (ARG1)))
 
 	(macro setsched_subj_type ((type ARG1))
 		(typeattributeset setsched_subj_type_attribute ARG1))
@@ -1772,7 +1772,6 @@
 		(typeattributeset relabel_lnk_files_subj_type_attribute
 			relabel_subj_type_attribute)
 
-
 		(dontaudit dontaudit_list_all_subj_type_attribute
 			sysctl_obj_type_attribute list_dir_perms)
 		(dontaudit dontaudit_read_all_files_subj_type_attribute
@@ -2481,7 +2480,7 @@
 		(blockabstract proc_obj_stub)
 
 		(type proc)
-		(call sys.proc_obj_type (proc)))
+		(call .sys.proc_obj_type (proc)))
 
 	(block proc_obj_base_template
 
@@ -2644,7 +2643,7 @@
 		(blockabstract sysctl_obj_stub)
 
 		(type sysctl)
-		(call sys.sysctl_obj_type (sysctl)))
+		(call .sys.sysctl_obj_type (sysctl)))
 
 	(block sysctl_obj_base_template
 
@@ -2750,29 +2749,29 @@
 		(typeattribute search_subj_type_attribute)
 		(typeattribute write_files_subj_type_attribute)
 
-		(call sys.sysctl.search_subj_type (list_subj_type_attribute))
-		(call sys.sysctl.search_subj_type
+		(call .sys.sysctl.search_subj_type (list_subj_type_attribute))
+		(call .sys.sysctl.search_subj_type
 			(manage_dirs_subj_type_attribute))
-		(call sys.sysctl.search_subj_type
+		(call .sys.sysctl.search_subj_type
 			(manage_files_subj_type_attribute))
-		(call sys.sysctl.search_subj_type
+		(call .sys.sysctl.search_subj_type
 			(manage_lnk_files_subj_type_attribute))
-		(call sys.sysctl.search_subj_type
+		(call .sys.sysctl.search_subj_type
 			(read_files_subj_type_attribute))
-		(call sys.sysctl.search_subj_type
+		(call .sys.sysctl.search_subj_type
 			(read_lnk_files_subj_type_attribute))
-		(call sys.sysctl.search_subj_type
+		(call .sys.sysctl.search_subj_type
 			(relabel_dirs_subj_type_attribute))
-		(call sys.sysctl.search_subj_type
+		(call .sys.sysctl.search_subj_type
 			(relabel_files_subj_type_attribute))
-		(call sys.sysctl.search_subj_type
+		(call .sys.sysctl.search_subj_type
 			(relabel_lnk_files_subj_type_attribute))
-		(call sys.sysctl.search_subj_type
+		(call .sys.sysctl.search_subj_type
 			(rw_dirs_subj_type_attribute))
-		(call sys.sysctl.search_subj_type
+		(call .sys.sysctl.search_subj_type
 			(rw_files_subj_type_attribute))
-		(call sys.sysctl.search_subj_type (search_subj_type_attribute))
-		(call sys.sysctl.search_subj_type
+		(call .sys.sysctl.search_subj_type (search_subj_type_attribute))
+		(call .sys.sysctl.search_subj_type
 			(write_files_subj_type_attribute))
 
 		(allow list_subj_type_attribute sysctl list_dir_perms)
@@ -2835,7 +2834,7 @@
 		(blockabstract sysfs_obj_stub)
 
 		(type sysfs)
-		(call sys.sysfs_obj_type (sysfs)))
+		(call .sys.sysfs_obj_type (sysfs)))
 
 	(block sysfs_obj_base_template
 

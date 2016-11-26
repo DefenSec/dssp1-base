@@ -204,14 +204,20 @@
 			(rw_dirs_subj_type_attribute cmd_file cmd_file))
 		(allow search_subj_type_attribute cmd_file search_dir_perms)
 
-		(typeattributeset read_lnk_files_subj_type_attribute
-			(exec_all_subj_type_attribute
-				manage_all_files_subj_type_attribute
-					mmap_all_subj_type_attribute
-						read_all_files_subj_type_attribute
-							relabel_all_files_subj_type_attribute
-								rw_all_files_subj_type_attribute
-									write_all_files_subj_type_attribute))
+		(call read_lnk_files_subj_type
+			(exec_all_subj_type_attribute))
+		(call read_lnk_files_subj_type
+			(manage_all_files_subj_type_attribute))
+		(call read_lnk_files_subj_type
+			(mmap_all_subj_type_attribute))
+		(call read_lnk_files_subj_type
+			(read_all_files_subj_type_attribute))
+		(call read_lnk_files_subj_type
+			(relabel_all_files_subj_type_attribute))
+		(call read_lnk_files_subj_type
+			(rw_all_files_subj_type_attribute))
+		(call read_lnk_files_subj_type
+			(write_all_files_subj_type_attribute))
 
 		(dontaudit dontaudit_audit_access_all_files_subj_type_attribute
 			cmd_obj_type_attribute (file (audit_access)))
@@ -275,7 +281,7 @@
 		(blockabstract cmd_obj_stub)
 
 		(type cmd_file)
-		(call cmd.cmd_obj_type (cmd_file)))
+		(call .cmd.cmd_obj_type (cmd_file)))
 
 	(block cmd_obj_base_template
 
@@ -353,36 +359,36 @@
 		(typeattribute rw_files_subj_type_attribute)
 		(typeattribute write_files_subj_type_attribute)
 
-		(call file.data.search_subj_type
+		(call .file.data.search_subj_type
 			(getattr_files_subj_type_attribute))
-		(call file.data.search_subj_type (exec_subj_type_attribute))
-		(call file.data.search_subj_type
+		(call .file.data.search_subj_type (exec_subj_type_attribute))
+		(call .file.data.search_subj_type
 			(manage_files_subj_type_attribute))
-		(call file.data.search_subj_type (mmap_subj_type_attribute))
-		(call file.data.search_subj_type
+		(call .file.data.search_subj_type (mmap_subj_type_attribute))
+		(call .file.data.search_subj_type
 			(read_files_subj_type_attribute))
-		(call file.data.search_subj_type
+		(call .file.data.search_subj_type
 			(relabel_files_subj_type_attribute))
-		(call file.data.search_subj_type
+		(call .file.data.search_subj_type
 			(rw_files_subj_type_attribute))
-		(call file.data.search_subj_type
+		(call .file.data.search_subj_type
 			(write_files_subj_type_attribute))
 
-		(call fs.rootfs.read_lnk_files_subj_type
+		(call .fs.rootfs.read_lnk_files_subj_type
 			(getattr_files_subj_type_attribute))
-		(call fs.rootfs.read_lnk_files_subj_type
+		(call .fs.rootfs.read_lnk_files_subj_type
 			(exec_subj_type_attribute))
-		(call fs.rootfs.read_lnk_files_subj_type
+		(call .fs.rootfs.read_lnk_files_subj_type
 			(manage_files_subj_type_attribute))
-		(call fs.rootfs.read_lnk_files_subj_type
+		(call .fs.rootfs.read_lnk_files_subj_type
 			(mmap_subj_type_attribute))
-		(call fs.rootfs.read_lnk_files_subj_type
+		(call .fs.rootfs.read_lnk_files_subj_type
 			(read_files_subj_type_attribute))
-		(call fs.rootfs.read_lnk_files_subj_type
+		(call .fs.rootfs.read_lnk_files_subj_type
 			(relabel_files_subj_type_attribute))
-		(call fs.rootfs.read_lnk_files_subj_type
+		(call .fs.rootfs.read_lnk_files_subj_type
 			(rw_files_subj_type_attribute))
-		(call fs.rootfs.read_lnk_files_subj_type
+		(call .fs.rootfs.read_lnk_files_subj_type
 			(write_files_subj_type_attribute))
 
 		(dontaudit dontaudit_audit_access_files_subj_type_attribute
@@ -416,18 +422,18 @@
 
 		(blockinherit cmd_obj_base_template)
 
-		(call cmd.command.read_lnk_files_subj_type
+		(call .cmd.command.read_lnk_files_subj_type
 			(exec_subj_type_attribute))
-		(call cmd.command.read_lnk_files_subj_type
+		(call .cmd.command.read_lnk_files_subj_type
 			(getattr_files_subj_type_attribute))
-		(call cmd.command.read_lnk_files_subj_type
+		(call .cmd.command.read_lnk_files_subj_type
 			(manage_files_subj_type_attribute))
-		(call cmd.command.read_lnk_files_subj_type (mmap_subj_type_attribute))
-		(call cmd.command.read_lnk_files_subj_type
+		(call .cmd.command.read_lnk_files_subj_type (mmap_subj_type_attribute))
+		(call .cmd.command.read_lnk_files_subj_type
 			(read_files_subj_type_attribute))
-		(call cmd.command.read_lnk_files_subj_type
+		(call .cmd.command.read_lnk_files_subj_type
 			(relabel_files_subj_type_attribute))
-		(call cmd.command.read_lnk_files_subj_type
+		(call .cmd.command.read_lnk_files_subj_type
 			(rw_files_subj_type_attribute))
-		(call cmd.command.read_lnk_files_subj_type
+		(call .cmd.command.read_lnk_files_subj_type
 			(write_files_subj_type_attribute))))

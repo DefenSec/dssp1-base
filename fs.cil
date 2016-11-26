@@ -513,7 +513,6 @@
 
 		(macro obj_type_transition ((type ARG1)(type ARG2)(class
 			ARG3)(name ARG4))
-			(call fs.devtmpfs.search_subj_type (ARG1))
 			(call rw_dirs_subj_type (ARG1))
 			(typetransition ARG1 fs ARG3 ARG4 ARG2))
 
@@ -1494,7 +1493,7 @@
 		(blockabstract fs_obj_stub)
 
 		(type fs)
-		(call fs.fs_obj_type (fs)))
+		(call .fs.fs_obj_type (fs)))
 
 	(block fs_obj_base_template
 
