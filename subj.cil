@@ -992,9 +992,13 @@
 		(allow transition_subj_type_attribute subj (process
 			(transition)))
 
+		(allow unix_dgram_sockets_sendto_subj_type_attribute
+			self create_unix_dgram_socket_perms)
 		(allow unix_dgram_sockets_sendto_subj_type_attribute subj
 			(unix_dgram_socket (sendto)))
 
+		(allow unix_stream_sockets_connectto_subj_type_attribute
+			self create_unix_stream_socket_perms)
 		(allow unix_stream_sockets_connectto_subj_type_attribute
 			subj (unix_stream_socket (connectto)))
 
