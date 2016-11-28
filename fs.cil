@@ -586,6 +586,11 @@
 				manage_chr_files_subj_type_attribute
 					ARG1))
 
+		(macro manage_files_subj_type ((type ARG1))
+			(typeattributeset
+				manage_files_subj_type_attribute
+					ARG1))
+
 		(macro obj_type_transition ((type ARG1)(type ARG2)(class
 			ARG3)(name ARG4))
 			(call rw_dirs_subj_type (ARG1))
@@ -611,6 +616,7 @@
 			dontaudit_write_chr_files_subj_type_attribute)
 		(typeattribute manage_blk_files_subj_type_attribute)
 		(typeattribute manage_chr_files_subj_type_attribute)
+		(typeattribute manage_files_subj_type_attribute)
 		(typeattribute relabelfrom_blk_files_subj_type_attribute)
 		(typeattribute relabelfrom_chr_files_subj_type_attribute)
 
@@ -624,6 +630,8 @@
 			(manage_blk_files_subj_type_attribute fs fs))
 		(call manage_chr_files_pattern
 			(manage_chr_files_subj_type_attribute fs fs))
+		(call manage_files_pattern
+			(manage_files_subj_type_attribute fs fs))
 		(call relabelfrom_blk_files_pattern
 			(relabelfrom_blk_files_subj_type_attribute fs fs))
 		(call relabelfrom_chr_files_pattern
