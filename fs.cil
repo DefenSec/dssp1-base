@@ -517,9 +517,9 @@
 			(call rw_dirs_subj_type (ARG1))
 			(typetransition ARG1 fs ARG3 ARG4 ARG2))
 
-		(macro write_inherited_chr_files_subj_type ((type ARG1))
+		(macro write_inherited_subj_type ((type ARG1))
 			(typeattributeset
-				write_inherited_chr_files_subj_type_attribute
+				write_inherited_subj_type_attribute
 					ARG1))
 
 		;
@@ -528,11 +528,11 @@
 
 		(blockinherit fs.fs_obj_base_template)
 
-		(typeattribute write_inherited_chr_files_subj_type_attribute)
+		(typeattribute write_inherited_subj_type_attribute)
 
 		(call sys.mountpoint_obj_type (fs))
 
-		(allow write_inherited_chr_files_subj_type_attribute
+		(allow write_inherited_subj_type_attribute
 			fs write_inherited_chr_file_perms)
 
 		(call fs.devtmpfs.search_subj_type (list_subj_type_attribute))
