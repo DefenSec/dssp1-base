@@ -2423,13 +2423,22 @@
 		; runtime_user macros
 		;
 
+		(macro mounton_dirs_subj_type ((type ARG1))
+			(typeattributeset mounton_dirs_subj_type_attribute
+				ARG1))
+
 		;
 		; runtime_user policy
 		;
 
 		(blockinherit file.runtime_obj_base_template)
 
+		(typeattribute mounton_dirs_subj_type_attribute)
+
 		(call sys.mountpoint_obj_type (runtime_file))
+
+		(allow mounton_dirs_subj_type_attribute runtime_file (dir
+			(mounton)))
 
 		(call file.runtime.search_subj_type (list_subj_type_attribute))
 		(call file.runtime.search_subj_type
@@ -2438,6 +2447,8 @@
 			(manage_files_subj_type_attribute))
 		(call file.runtime.search_subj_type
 			(manage_lnk_files_subj_type_attribute))
+		(call file.runtime.search_subj_type
+			(mounton_dirs_subj_type_attribute))
 		(call file.runtime.search_subj_type
 			(read_files_subj_type_attribute))
 		(call file.runtime.search_subj_type
