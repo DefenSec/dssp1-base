@@ -1251,6 +1251,10 @@
 			(typeattributeset read_subj_type_attribute
 				ARG1))
 
+		(macro rw_files_subj_type ((type ARG1))
+			(typeattributeset rw_files_subj_type_attribute
+				ARG1))
+
 		;
 		; sysfs policy
 		;
@@ -1260,6 +1264,7 @@
 		(typeattribute audit_write_access_dirs_subj_type_attribute)
 		(typeattribute read_files_subj_type_attribute)
 		(typeattribute read_subj_type_attribute)
+		(typeattribute rw_files_subj_type_attribute)
 
 		(call sys.mountpoint_obj_type (fs))
 
@@ -1269,6 +1274,8 @@
 			fs (dir (getattr write)))
 		(call read_files_pattern
 			(read_files_subj_type_attribute fs fs))
+		(call rw_files_pattern
+			(rw_files_subj_type_attribute fs fs))
 
 		(typeattributeset list_subj_type_attribute
 			(read_subj_type_attribute))
