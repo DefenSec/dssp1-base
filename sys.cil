@@ -339,6 +339,10 @@
 	(call term.tty.devtmpfs_obj_type_transition (isid))
 	(call term.tty.manage_subj_type (isid))
 
+	(optional sys_optional_cgroups_agent
+		(call cgroups_agent.auto_subj_type_transition
+			(subj)))
+
 	(optional sys_optional_kmod
 		(call kmod.auto_subj_type_transition (isid)))
 
