@@ -344,7 +344,7 @@
 			(isid)))
 
 	(optional sys_optional_dracut_initramfs
-		(call dracut_initramfs.runtime.list_subj_type (subj)))
+		(call dracut_initramfs.runtime.list_subj_type (isid)))
 
 	(optional sys_optional_kmod
 		(call kmod.auto_subj_type_transition (isid)))
