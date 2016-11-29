@@ -535,6 +535,11 @@
 		; devpts macros
 		;
 
+		(macro getattr_chr_files_subj_type ((type ARG1))
+			(typeattributeset
+				getattr_chr_files_subj_type_attribute
+					ARG1))
+
 		(macro obj_type_transition ((type ARG1)(type ARG2)(class
 			ARG3)(name ARG4))
 			(call rw_dirs_subj_type (ARG1))
@@ -551,13 +556,18 @@
 
 		(blockinherit fs.fs_obj_base_template)
 
+		(typeattribute getattr_chr_files_subj_type_attribute)
 		(typeattribute write_inherited_subj_type_attribute)
 
 		(call sys.mountpoint_obj_type (fs))
 
+		(call getattr_chr_files_pattern
+			(getattr_chr_files_subj_type_attribute fs fs))
 		(allow write_inherited_subj_type_attribute
 			fs write_inherited_chr_file_perms)
 
+		(call fs.devtmpfs.search_subj_type
+			(getattr_chr_files_subj_type_attribute))
 		(call fs.devtmpfs.search_subj_type (list_subj_type_attribute))
 		(call fs.devtmpfs.search_subj_type
 			(manage_dirs_subj_type_attribute))
