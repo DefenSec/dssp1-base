@@ -1346,6 +1346,10 @@
 			(typeattributeset delete_dirs_subj_type_attribute
 				ARG1))
 
+		(macro manage_files_subj_type ((type ARG1))
+			(typeattributeset manage_files_subj_type_attribute
+				ARG1))
+
 		(macro obj_type_transition ((type ARG1)(type ARG2)(class
 			ARG3)(name ARG4))
 			(call rw_dirs_subj_type (ARG1))
@@ -1363,6 +1367,7 @@
 		(blockinherit fs.fs_obj_base_template)
 
 		(typeattribute delete_dirs_subj_type_attribute)
+		(typeattribute manage_files_subj_type_attribute)
 		(typeattribute relabelfrom_dirs_subj_type_attribute)
 
 		(call sys.mountpoint_obj_type (fs))
@@ -1370,6 +1375,8 @@
 		(call fs.xattr.associate_obj_type (fs))
 
 		(call delete_dirs_pattern (delete_dirs_subj_type_attribute
+			fs fs))
+		(call manage_files_pattern (manage_files_subj_type_attribute
 			fs fs))
 		(call relabelfrom_dirs_pattern
 			(relabelfrom_dirs_subj_type_attribute fs fs))
@@ -1381,6 +1388,8 @@
 		(call fs.devtmpfs.search_subj_type (list_subj_type_attribute))
 		(call fs.devtmpfs.search_subj_type
 			(manage_dirs_subj_type_attribute))
+		(call fs.devtmpfs.search_subj_type
+			(manage_files_subj_type_attribute))
 		(call fs.devtmpfs.search_subj_type
 			(manage_lnk_files_subj_type_attribute))
 		(call fs.devtmpfs.search_subj_type (mount_subj_type_attribute))
