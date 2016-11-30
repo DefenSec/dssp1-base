@@ -1344,7 +1344,7 @@
 
 		(filecon "/tmp(/.*)?" any ())
 		(filecon "/tmp" dir fs_context)
-		(filecon "/var/run/user(/.*)?" any ())
+		(filecon "/run/user(/.*)?" any ())
 
 		(fsuse trans "mqueue" fs_context)
 		(fsuse trans "tmpfs" fs_context)
