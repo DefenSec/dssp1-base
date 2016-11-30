@@ -884,6 +884,10 @@
 			(typeattributeset manage_all_subj_type_attribute
 				ARG1))
 
+		(macro mounton_dirs_subj_type ((type ARG1))
+			(typeattributeset mounton_dirs_subj_type_attribute
+				ARG1))
+
 		(macro read_all_files_subj_type ((type ARG1))
 			(typeattributeset read_all_files_subj_type_attribute
 				ARG1))
@@ -947,6 +951,7 @@
 		(typeattribute manage_all_files_subj_type_attribute)
 		(typeattribute manage_all_lnk_files_subj_type_attribute)
 		(typeattribute manage_all_subj_type_attribute)
+		(typeattribute mounton_dirs_subj_type_attribute)
 		(typeattribute read_all_files_subj_type_attribute)
 		(typeattribute read_all_lnk_files_subj_type_attribute)
 		(typeattribute read_all_subj_type_attribute)
@@ -978,6 +983,8 @@
 			(manage_all_lnk_files_subj_type_attribute
 				config_obj_type_attribute
 					config_obj_type_attribute))
+		(allow mounton_dirs_subj_type_attribute
+			config_file (dir (mounton)))
 		(call read_files_pattern
 			(read_all_files_subj_type_attribute
 				config_obj_type_attribute
