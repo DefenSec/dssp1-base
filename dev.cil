@@ -1278,11 +1278,20 @@
 			(call .fs.devtmpfs.obj_type_transition (ARG1 dev
 				chr_file "rfkill")))
 
+		(macro rw_inherited_subj_type ((type ARG1))
+			(typeattributeset rw_inherited_subj_type_attribute
+				ARG1))
+
 		;
 		; wireless policy
 		;
 
-		(blockinherit dev.dev_obj_base_template))
+		(blockinherit dev.dev_obj_base_template)
+
+		(typeattribute rw_inherited_subj_type_attribute)
+
+		(allow rw_inherited_subj_type_attribute dev
+			rw_inherited_chr_file_perms))
 
 	(block xserver_misc
 
