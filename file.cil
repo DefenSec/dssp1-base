@@ -4,6 +4,25 @@
 	; Macros
 	;
 
+	(macro dontaudit_relabel_all_dirs_subj_type ((type ARG1))
+		(typeattributeset
+			dontaudit_relabel_all_dirs_subj_type_attribute
+				ARG1))
+
+	(macro dontaudit_relabel_all_files_subj_type ((type ARG1))
+		(typeattributeset
+			dontaudit_relabel_all_files_subj_type_attribute
+				ARG1))
+
+	(macro dontaudit_relabel_all_lnk_files_subj_type ((type ARG1))
+		(typeattributeset
+			dontaudit_relabel_all_lnk_files_subj_type_attribute
+				ARG1))
+
+	(macro dontaudit_relabel_all_subj_type ((type ARG1))
+		(typeattributeset dontaudit_relabel_all_subj_type_attribute
+			ARG1))
+
 	(macro auth_obj_type ((type ARG1))
 		(typeattributeset auth_obj_type_attribute ARG1))
 
@@ -250,6 +269,10 @@
 
 	(boolean execmod_all_except false)
 
+	(typeattribute dontaudit_relabel_all_dirs_subj_type_attribute)
+	(typeattribute dontaudit_relabel_all_files_subj_type_attribute)
+	(typeattribute dontaudit_relabel_all_lnk_files_subj_type_attribute)
+	(typeattribute dontaudit_relabel_all_subj_type_attribute)
 	(typeattribute auth_obj_type_attribute)
 	(typeattribute boot_flag_obj_type_attribute)
 	(typeattribute boot_obj_type_attribute)
@@ -367,6 +390,12 @@
 	(call fs.tmpfs.search_subj_type (search_all_subj_type_attribute))
 	(call fs.tmpfs.search_subj_type (write_all_files_subj_type_attribute))
 
+	(dontaudit dontaudit_relabel_all_dirs_subj_type_attribute
+		file_obj_type_attribute relabel_dir_perms)
+	(dontaudit dontaudit_relabel_all_files_subj_type_attribute
+		file_obj_type_attribute relabel_file_perms)
+	(dontaudit dontaudit_relabel_all_lnk_files_subj_type_attribute
+		file_obj_type_attribute relabel_lnk_file_perms)
 	(call getattr_dirs_pattern (getattr_all_dirs_subj_type_attribute
 		file_obj_type_attribute file_obj_type_attribute))
 	(call getattr_fifo_files_pattern
@@ -409,6 +438,13 @@
 	(call write_files_pattern (write_all_files_subj_type_attribute
 		file_obj_type_attribute file_obj_type_attribute))
 
+	(typeattributeset dontaudit_relabel_all_dirs_subj_type_attribute
+		dontaudit_relabel_all_subj_type_attribute)
+	(typeattributeset dontaudit_relabel_all_files_subj_type_attribute
+		dontaudit_relabel_all_subj_type_attribute)
+	(typeattributeset
+		dontaudit_relabel_all_lnk_files_subj_type_attribute
+			dontaudit_relabel_all_subj_type_attribute)
 	(typeattributeset getattr_all_dirs_subj_type_attribute
 		getattr_all_subj_type_attribute)
 	(typeattributeset getattr_all_fifo_files_subj_type_attribute
@@ -891,6 +927,10 @@
 			(typeattributeset search_all_subj_type_attribute
 				ARG1))
 
+		(macro setattr_dirs_subj_type ((type ARG1))
+			(typeattributeset setattr_dirs_subj_type_attribute
+				ARG1))
+
 		(macro write_all_files_subj_type ((type ARG1))
 			(typeattributeset write_all_files_subj_type_attribute
 				ARG1))
@@ -917,6 +957,7 @@
 		(typeattribute rw_all_dirs_subj_type_attribute)
 		(typeattribute rw_all_files_subj_type_attribute)
 		(typeattribute search_all_subj_type_attribute)
+		(typeattribute setattr_dirs_subj_type_attribute)
 		(typeattribute write_all_files_subj_type_attribute)
 
 		(call sys.mountpoint_obj_type (config_file))
@@ -966,6 +1007,8 @@
 		(allow search_all_subj_type_attribute
 			config_obj_type_attribute
 				search_dir_perms)
+		(call setattr_dirs_pattern (setattr_dirs_subj_type_attribute
+			config_file config_file))
 		(call write_files_pattern
 			(write_all_files_subj_type_attribute
 				config_obj_type_attribute
@@ -2907,6 +2950,10 @@
 			(typeattributeset search_all_subj_type_attribute
 				ARG1))
 
+		(macro setattr_dirs_subj_type ((type ARG1))
+			(typeattributeset setattr_dirs_subj_type_attribute
+				ARG1))
+
 		(macro write_all_files_subj_type ((type ARG1))
 			(typeattributeset write_all_files_subj_type_attribute
 				ARG1))
@@ -2932,6 +2979,7 @@
 		(typeattribute rw_all_dirs_subj_type_attribute)
 		(typeattribute rw_all_files_subj_type_attribute)
 		(typeattribute search_all_subj_type_attribute)
+		(typeattribute setattr_dirs_subj_type_attribute)
 		(typeattribute write_all_files_subj_type_attribute)
 
 		(call sys.mountpoint_obj_type (var_file))
@@ -2979,6 +3027,9 @@
 		(allow search_all_subj_type_attribute
 			var_obj_type_attribute
 				search_dir_perms)
+		(call setattr_dirs_pattern
+			(setattr_dirs_subj_type_attribute
+				var_file var_file))
 		(call write_files_pattern
 			(write_all_files_subj_type_attribute
 				var_obj_type_attribute
@@ -3479,6 +3530,10 @@
 			(typeattributeset search_all_subj_type_attribute
 				ARG1))
 
+		(macro setattr_dirs_subj_type ((type ARG1))
+			(typeattributeset setattr_dirs_subj_type_attribute
+				ARG1))
+
 		(macro write_all_files_subj_type ((type ARG1))
 			(typeattributeset write_all_files_subj_type_attribute
 				ARG1))
@@ -3504,6 +3559,7 @@
 		(typeattribute rw_all_dirs_subj_type_attribute)
 		(typeattribute rw_all_files_subj_type_attribute)
 		(typeattribute search_all_subj_type_attribute)
+		(typeattribute setattr_dirs_subj_type_attribute)
 		(typeattribute write_all_files_subj_type_attribute)
 
 		(call sys.mountpoint_obj_type (var_lib_file))
@@ -3531,6 +3587,8 @@
 			(rw_all_files_subj_type_attribute))
 		(call file.var.search_subj_type
 			(search_all_subj_type_attribute))
+		(call file.var.search_subj_type
+			(setattr_dirs_subj_type_attribute))
 		(call file.var.search_subj_type
 			(write_all_files_subj_type_attribute))
 
@@ -3577,6 +3635,9 @@
 		(allow search_all_subj_type_attribute
 			var_lib_obj_type_attribute
 				search_dir_perms)
+		(call setattr_dirs_pattern
+			(setattr_dirs_subj_type_attribute
+				var_lib_file var_lib_file))
 		(call write_files_pattern
 			(write_all_files_subj_type_attribute
 				var_lib_obj_type_attribute
