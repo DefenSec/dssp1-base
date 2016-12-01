@@ -1371,6 +1371,31 @@
 				relabelfrom_dirs_subj_type_attribute
 					ARG1))
 
+		(macro relabelfrom_fifo_files_subj_type ((type ARG1))
+			(typeattributeset
+				relabelfrom_fifo_files_subj_type_attribute
+					ARG1))
+
+		(macro relabelfrom_files_subj_type ((type ARG1))
+			(typeattributeset
+				relabelfrom_files_subj_type_attribute
+					ARG1))
+
+		(macro relabelfrom_lnk_files_subj_type ((type ARG1))
+			(typeattributeset
+				relabelfrom_lnk_files_subj_type_attribute
+					ARG1))
+
+		(macro relabelfrom_sock_files_subj_type ((type ARG1))
+			(typeattributeset
+				relabelfrom_sock_files_subj_type_attribute
+					ARG1))
+
+		(macro relabelfrom_subj_type ((type ARG1))
+			(typeattributeset
+				relabelfrom_subj_type_attribute
+					ARG1))
+
 		;
 		; tmpfs policy
 		;
@@ -1380,6 +1405,11 @@
 		(typeattribute delete_dirs_subj_type_attribute)
 		(typeattribute manage_files_subj_type_attribute)
 		(typeattribute relabelfrom_dirs_subj_type_attribute)
+		(typeattribute relabelfrom_fifo_files_subj_type_attribute)
+		(typeattribute relabelfrom_files_subj_type_attribute)
+		(typeattribute relabelfrom_lnk_files_subj_type_attribute)
+		(typeattribute relabelfrom_sock_files_subj_type_attribute)
+		(typeattribute relabelfrom_subj_type_attribute)
 
 		(call sys.mountpoint_obj_type (fs))
 
@@ -1391,6 +1421,14 @@
 			fs fs))
 		(call relabelfrom_dirs_pattern
 			(relabelfrom_dirs_subj_type_attribute fs fs))
+		(call relabelfrom_fifo_files_pattern
+			(relabelfrom_fifo_files_subj_type_attribute fs fs))
+		(call relabelfrom_files_pattern
+			(relabelfrom_files_subj_type_attribute fs fs))
+		(call relabelfrom_lnk_files_pattern
+			(relabelfrom_lnk_files_subj_type_attribute fs fs))
+		(call relabelfrom_sock_files_pattern
+			(relabelfrom_sock_files_subj_type_attribute fs fs))
 
 		(call fs.devtmpfs.search_subj_type
 			(delete_dirs_subj_type_attribute))
@@ -1409,9 +1447,17 @@
 		(call fs.devtmpfs.search_subj_type
 			(relabel_dirs_subj_type_attribute))
 		(call fs.devtmpfs.search_subj_type
+			(relabel_lnk_files_subj_type_attribute))
+		(call fs.devtmpfs.search_subj_type
 			(relabelfrom_dirs_subj_type_attribute))
 		(call fs.devtmpfs.search_subj_type
-			(relabel_lnk_files_subj_type_attribute))
+			(relabelfrom_fifo_files_subj_type_attribute))
+		(call fs.devtmpfs.search_subj_type
+			(relabelfrom_files_subj_type_attribute))
+		(call fs.devtmpfs.search_subj_type
+			(relabelfrom_lnk_files_subj_type_attribute))
+		(call fs.devtmpfs.search_subj_type
+			(relabelfrom_sock_files_subj_type_attribute))
 		(call fs.devtmpfs.search_subj_type
 			(remount_subj_type_attribute))
 		(call fs.devtmpfs.search_subj_type
@@ -1419,7 +1465,23 @@
 		(call fs.devtmpfs.search_subj_type
 			(search_subj_type_attribute))
 		(call fs.devtmpfs.search_subj_type
-			(unmount_subj_type_attribute)))
+			(unmount_subj_type_attribute))
+
+			(typeattributeset
+				relabelfrom_dirs_subj_type_attribute
+					relabelfrom_subj_type_attribute)
+			(typeattributeset
+				relabelfrom_fifo_files_subj_type_attribute
+					relabelfrom_subj_type_attribute)
+			(typeattributeset
+				relabelfrom_files_subj_type_attribute
+					relabelfrom_subj_type_attribute)
+			(typeattributeset
+				relabelfrom_lnk_files_subj_type_attribute
+					relabelfrom_subj_type_attribute)
+			(typeattributeset
+				relabelfrom_sock_files_subj_type_attribute
+					relabelfrom_subj_type_attribute))
 
 	(block tracefs
 
