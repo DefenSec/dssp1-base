@@ -427,8 +427,20 @@
 	(call lib.ld_so.use_subj_type (common_subj_type_attribute))
 	(call lib.library.mmap_subj_type (common_subj_type_attribute))
 
-	(optional common_subj_type_attribute_optional_seutil
+	(optional common_optional_mcstransd
+		(call mcstransd.client_subj_type
+			(common_subj_type_attribute)))
+
+	(optional common_optional_sd_shutdown
+		(call sd_shutdown.send_sigchld_subj_type
+			(common_subj_type_attribute)))
+
+	(optional common_optional_seutil
 		(call seutil.libselinux_client_subj_type
+			(common_subj_type_attribute)))
+
+	(optional common_optional_systemd
+		(call systemd.send_sigchld_subj_type
 			(common_subj_type_attribute)))
 
 	(typeattributeset not_subj_type_attribute (not (subj_type_attribute)))
