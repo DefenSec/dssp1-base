@@ -1723,6 +1723,16 @@
 			(typeattributeset read_all_subj_type_attribute
 				ARG1))
 
+		(macro relabel_all_blk_files_subj_type ((type ARG1))
+			(typeattributeset
+				relabel_all_blk_files_subj_type_attribute
+					ARG1))
+
+		(macro relabel_all_chr_files_subj_type ((type ARG1))
+			(typeattributeset
+				relabel_all_chr_files_subj_type_attribute
+					ARG1))
+
 		(macro relabel_all_dirs_subj_type ((type ARG1))
 			(typeattributeset relabel_all_dirs_subj_type_attribute
 				ARG1))
@@ -1806,6 +1816,8 @@
 		(typeattribute read_all_lnk_files_subj_type_attribute)
 		(typeattribute read_all_sock_files_subj_type_attribute)
 		(typeattribute read_all_subj_type_attribute)
+		(typeattribute relabel_all_blk_files_subj_type_attribute)
+		(typeattribute relabel_all_chr_files_subj_type_attribute)
 		(typeattribute relabel_all_dirs_subj_type_attribute)
 		(typeattribute relabel_all_fifo_files_subj_type_attribute)
 		(typeattribute relabel_all_files_subj_type_attribute)
@@ -1843,6 +1855,10 @@
 			(read_all_lnk_files_subj_type_attribute))
 		(call file.var.read_lnk_files_subj_type
 			(read_all_sock_files_subj_type_attribute))
+		(call file.var.read_lnk_files_subj_type
+			(relabel_all_blk_files_subj_type_attribute))
+		(call file.var.read_lnk_files_subj_type
+			(relabel_all_chr_files_subj_type_attribute))
 		(call file.var.read_lnk_files_subj_type
 			(relabel_all_dirs_subj_type_attribute))
 		(call file.var.read_lnk_files_subj_type
@@ -1909,6 +1925,14 @@
 					runtime_obj_type_attribute))
 		(call read_sock_files_pattern
 			(read_all_sock_files_subj_type_attribute
+				runtime_obj_type_attribute
+					runtime_obj_type_attribute))
+		(call relabel_blk_files_pattern
+			(relabel_all_blk_files_subj_type_attribute
+				runtime_obj_type_attribute
+					runtime_obj_type_attribute))
+		(call relabel_chr_files_pattern
+			(relabel_all_chr_files_subj_type_attribute
 				runtime_obj_type_attribute
 					runtime_obj_type_attribute))
 		(allow relabel_all_dirs_subj_type_attribute
@@ -1987,6 +2011,12 @@
 		(typeattributeset
 			read_all_sock_files_subj_type_attribute
 				read_all_subj_type_attribute)
+		(typeattributeset
+			relabel_all_blk_files_subj_type_attribute
+				relabel_all_subj_type_attribute)
+		(typeattributeset
+			relabel_all_chr_files_subj_type_attribute
+				relabel_all_subj_type_attribute)
 		(typeattributeset relabel_all_dirs_subj_type_attribute
 			relabel_all_subj_type_attribute)
 		(typeattributeset
