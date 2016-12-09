@@ -692,6 +692,11 @@
 			(typeattributeset setattr_subj_type_attribute
 				ARG1))
 
+		(macro status_client_subj_type ((type ARG1))
+			(typeattributeset
+				status_client_subj_type_attribute
+					ARG1))
+
 		(macro tmpfs_obj_type_transition ((type ARG1))
 			(call .fs.tmpfs.obj_type_transition (ARG1 isid
 				chr_file "full"))
@@ -717,6 +722,7 @@
 		(typeattribute relabel_subj_type_attribute)
 		(typeattribute rw_subj_type_attribute)
 		(typeattribute setattr_subj_type_attribute)
+		(typeattribute status_client_subj_type_attribute)
 		(typeattribute write_subj_type_attribute)
 
 		(call fs.devtmpfs.search_subj_type
@@ -732,6 +738,8 @@
 		(call fs.devtmpfs.search_subj_type (rw_subj_type_attribute))
 		(call fs.devtmpfs.search_subj_type
 			(setattr_subj_type_attribute))
+		(call fs.devtmpfs.search_subj_type
+			(status_client_subj_type_attribute))
 		(call fs.devtmpfs.search_subj_type (write_subj_type_attribute))
 
 		(allow create_subj_type_attribute isid create_chr_file_perms)
@@ -741,7 +749,11 @@
 		(allow relabel_subj_type_attribute isid relabel_chr_file_perms)
 		(allow rw_subj_type_attribute isid rw_chr_file_perms)
 		(allow setattr_subj_type_attribute isid (chr_file (setattr)))
-		(allow write_subj_type_attribute isid write_chr_file_perms))
+		(allow write_subj_type_attribute isid write_chr_file_perms)
+
+		(optional dev_null_optional_systemd
+			(allow status_client_subj_type_attribute isid
+				(service (status)))))
 
 	(block nvram
 
