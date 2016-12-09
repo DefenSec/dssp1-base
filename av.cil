@@ -190,6 +190,99 @@
 (classcommon cap2_userns capability2)
 (class cap2_userns ())
 
+(classcommon sctp_socket socket)
+(class sctp_socket (node_bind))
+
+(classcommon icmp_socket socket)
+(class icmp_socket (node_bind))
+
+(classcommon ax25_socket socket)
+(class ax25_socket ())
+
+(classcommon ipx_socket socket)
+(class ipx_socket ())
+
+(classcommon netrom_socket socket)
+(class netrom_socket ())
+
+(classcommon bridge_socket socket)
+(class bridge_socket ())
+
+(classcommon atmpvc_socket socket)
+(class atmpvc_socket ())
+
+(classcommon x25_socket socket)
+(class x25_socket ())
+
+(classcommon rose_socket socket)
+(class rose_socket ())
+
+(classcommon decnet_socket socket)
+(class decnet_socket ())
+
+(classcommon atmsvc_socket socket)
+(class atmsvc_socket ())
+
+(classcommon rds_socket socket)
+(class rds_socket ())
+
+(classcommon irda_socket socket)
+(class irda_socket ())
+
+(classcommon pppox_socket socket)
+(class pppox_socket ())
+
+(classcommon llc_socket socket)
+(class llc_socket ())
+
+(classcommon ib_socket socket)
+(class ib_socket ())
+
+(classcommon mpls_socket socket)
+(class mpls_socket ())
+
+(classcommon can_socket socket)
+(class can_socket ())
+
+(classcommon tipc_socket socket)
+(class tipc_socket ())
+
+(classcommon bluetooth_socket socket)
+(class bluetooth_socket ())
+
+(classcommon iucv_socket socket)
+(class iucv_socket ())
+
+(classcommon rxrpc_socket socket)
+(class rxrpc_socket ())
+
+(classcommon isdn_socket socket)
+(class isdn_socket ())
+
+(classcommon phonet_socket socket)
+(class phonet_socket ())
+
+(classcommon ieee802154_socket socket)
+(class ieee802154_socket ())
+
+(classcommon caif_socket socket)
+(class caif_socket ())
+
+(classcommon alg_socket socket)
+(class alg_socket ())
+
+(classcommon nfc_socket socket)
+(class nfc_socket ())
+
+(classcommon vsock_socket socket)
+(class vsock_socket ())
+
+(classcommon kcm_socket socket)
+(class kcm_socket ())
+
+(classcommon qipcrtr_socket socket)
+(class qipcrtr_socket ())
+
 (classorder (security process system capability filesystem file dir fd
 	lnk_file chr_file blk_file sock_file fifo_file socket tcp_socket
 	udp_socket rawip_socket node netif packet_socket key_socket
@@ -202,4 +295,11 @@
 	netlink_fib_lookup_socket netlink_connector_socket
 	netlink_netfilter_socket netlink_generic_socket
 	netlink_scsitransport_socket netlink_rdma_socket
-	netlink_crypto_socket cap_userns cap2_userns))
+	netlink_crypto_socket cap_userns cap2_userns sctp_socket
+	icmp_socket ax25_socket ipx_socket netrom_socket bridge_socket
+	atmpvc_socket x25_socket rose_socket decnet_socket atmsvc_socket
+	rds_socket irda_socket pppox_socket llc_socket ib_socket
+	mpls_socket can_socket tipc_socket bluetooth_socket iucv_socket
+	rxrpc_socket isdn_socket phonet_socket ieee802154_socket
+	caif_socket alg_socket nfc_socket vsock_socket kcm_socket
+	qipcrtr_socket))

@@ -2,3 +2,4 @@
 (policycap "open_perms")
 
 ; (policycap "always_check_network")
+; (policycap "extended_socket_class")

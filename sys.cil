@@ -2193,9 +2193,19 @@
 				recvfrom_dccp_sockets_subj_type_attribute
 					ARG1))
 
+		(macro recvfrom_icmp_sockets_subj_type ((type ARG1))
+			(typeattributeset
+				recvfrom_icmp_sockets_subj_type_attribute
+					ARG1))
+
 		(macro recvfrom_rawip_sockets_subj_type ((type ARG1))
 			(typeattributeset
 				recvfrom_rawip_sockets_subj_type_attribute
+					ARG1))
+
+		(macro recvfrom_sctp_sockets_subj_type ((type ARG1))
+			(typeattributeset
+				recvfrom_sctp_sockets_subj_type_attribute
 					ARG1))
 
 		(macro recvfrom_tcp_sockets_subj_type ((type ARG1))
@@ -2259,7 +2269,9 @@
 		(typeattribute read_sock_files_subj_type_attribute)
 		(typeattribute read_subj_type_attribute)
 		(typeattribute recvfrom_dccp_sockets_subj_type_attribute)
+		(typeattribute recvfrom_icmp_sockets_subj_type_attribute)
 		(typeattribute recvfrom_rawip_sockets_subj_type_attribute)
+		(typeattribute recvfrom_sctp_sockets_subj_type_attribute)
 		(typeattribute recvfrom_tcp_sockets_subj_type_attribute)
 		(typeattribute recvfrom_udp_sockets_subj_type_attribute)
 		(typeattribute relabelfrom_dirs_subj_type_attribute)
@@ -2293,8 +2305,12 @@
 			(peer (recv)))
 		(allow recvfrom_dccp_sockets_subj_type_attribute isid
 			(dccp_socket (recvfrom)))
+		(allow recvfrom_icmp_sockets_subj_type_attribute isid
+			(icmp_socket (recvfrom)))
 		(allow recvfrom_rawip_sockets_subj_type_attribute isid
 			(rawip_socket (recvfrom)))
+		(allow recvfrom_sctp_sockets_subj_type_attribute isid
+			(sctp_socket (recvfrom)))
 		(allow recvfrom_tcp_sockets_subj_type_attribute isid
 			(tcp_socket (recvfrom)))
 		(allow recvfrom_udp_sockets_subj_type_attribute isid
