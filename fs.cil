@@ -1290,6 +1290,11 @@
 		; sysfs macros
 		;
 
+		(macro dontaudit_audit_access_dirs_subj_type ((type ARG1))
+			(typeattributeset
+				dontaudit_audit_access_dirs_subj_type_attribute
+					ARG1))
+
 		(macro audit_write_access_dirs_subj_type ((type ARG1))
 			(typeattributeset
 				audit_write_access_dirs_subj_type_attribute
@@ -1313,6 +1318,8 @@
 
 		(blockinherit fs.fs_obj_base_template)
 
+		(typeattribute
+			dontaudit_audit_access_dirs_subj_type_attribute)
 		(typeattribute audit_write_access_dirs_subj_type_attribute)
 		(typeattribute read_files_subj_type_attribute)
 		(typeattribute read_subj_type_attribute)
@@ -1322,6 +1329,8 @@
 
 		(call fs.xattr.associate_obj_type (fs))
 
+		(dontaudit dontaudit_audit_access_dirs_subj_type_attribute
+			fs (dir (audit_access)))
 		(allow audit_write_access_dirs_subj_type_attribute
 			fs (dir (getattr write)))
 		(call read_files_pattern
