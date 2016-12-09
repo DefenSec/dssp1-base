@@ -53,6 +53,11 @@
 				dontaudit_audit_access_all_files_subj_type_attribute
 					ARG1))
 
+		(macro audit_exec_access_all_subj_type ((type ARG1))
+			(typeattributeset
+				audit_exec_access_all_subj_type_attribute
+					ARG1))
+
 		(macro exec_all_subj_type ((type ARG1))
 			(typeattributeset exec_all_subj_type_attribute
 				ARG1))
@@ -135,6 +140,8 @@
 
 		(typeattribute
 			dontaudit_audit_access_all_files_subj_type_attribute)
+		(typeattribute
+			audit_exec_access_all_subj_type_attribute)
 		(typeattribute getattr_all_files_subj_type_attribute)
 		(typeattribute exec_all_subj_type_attribute)
 		(typeattribute list_subj_type_attribute)
@@ -201,6 +208,8 @@
 		(allow search_subj_type_attribute cmd_file search_dir_perms)
 
 		(call read_lnk_files_subj_type
+			(audit_exec_access_all_subj_type_attribute))
+		(call read_lnk_files_subj_type
 			(exec_all_subj_type_attribute))
 		(call read_lnk_files_subj_type
 			(manage_all_files_subj_type_attribute))
@@ -217,6 +226,8 @@
 
 		(dontaudit dontaudit_audit_access_all_files_subj_type_attribute
 			cmd_obj_type_attribute (file (audit_access)))
+		(allow audit_exec_access_all_subj_type_attribute
+			cmd_obj_type_attribute (file (getattr execute)))
 		(allow getattr_all_files_subj_type_attribute
 			cmd_obj_type_attribute (file (getattr)))
 		(allow exec_all_subj_type_attribute cmd_obj_type_attribute
