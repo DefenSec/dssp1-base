@@ -113,7 +113,6 @@
 
 		(call ps_subj_type (ARG1))
 
-		(call send_signal_subj_type (ARG1))
 		(call send_signull_subj_type (ARG1))
 		(call send_sigkill_subj_type (ARG1))
 		(call send_sigstop_subj_type (ARG1)))
