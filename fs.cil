@@ -1539,27 +1539,27 @@
 		(call fs.devtmpfs.search_subj_type
 			(unmount_subj_type_attribute))
 
-			(typeattributeset
-				relabelfrom_blk_files_subj_type_attribute
-					relabelfrom_subj_type_attribute)
-			(typeattributeset
-				relabelfrom_chr_files_subj_type_attribute
-					relabelfrom_subj_type_attribute)
-			(typeattributeset
-				relabelfrom_dirs_subj_type_attribute
-					relabelfrom_subj_type_attribute)
-			(typeattributeset
-				relabelfrom_fifo_files_subj_type_attribute
-					relabelfrom_subj_type_attribute)
-			(typeattributeset
-				relabelfrom_files_subj_type_attribute
-					relabelfrom_subj_type_attribute)
-			(typeattributeset
-				relabelfrom_lnk_files_subj_type_attribute
-					relabelfrom_subj_type_attribute)
-			(typeattributeset
-				relabelfrom_sock_files_subj_type_attribute
-					relabelfrom_subj_type_attribute))
+		(typeattributeset
+			relabelfrom_blk_files_subj_type_attribute
+				relabelfrom_subj_type_attribute)
+		(typeattributeset
+			relabelfrom_chr_files_subj_type_attribute
+				relabelfrom_subj_type_attribute)
+		(typeattributeset
+			relabelfrom_dirs_subj_type_attribute
+				relabelfrom_subj_type_attribute)
+		(typeattributeset
+			relabelfrom_fifo_files_subj_type_attribute
+				relabelfrom_subj_type_attribute)
+		(typeattributeset
+			relabelfrom_files_subj_type_attribute
+				relabelfrom_subj_type_attribute)
+		(typeattributeset
+			relabelfrom_lnk_files_subj_type_attribute
+				relabelfrom_subj_type_attribute)
+		(typeattributeset
+			relabelfrom_sock_files_subj_type_attribute
+				relabelfrom_subj_type_attribute))
 
 	(block tracefs
 
