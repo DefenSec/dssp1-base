@@ -696,6 +696,15 @@
 		; dosfs macros
 		;
 
+		(macro manage_files_subj_type ((type ARG1))
+			(typeattributeset
+				manage_files_subj_type_attribute
+					ARG1))
+
+		(macro manage_subj_type ((type ARG1))
+			(typeattributeset manage_subj_type_attribute
+				ARG1))
+
 		;
 		; dosfs policy
 		;
@@ -704,7 +713,20 @@
 
 		(call sys.mountpoint_obj_type (fs))
 
-		(call fs.xattr.associate_obj_type (fs)))
+		(call fs.xattr.associate_obj_type (fs))
+
+		(typeattribute manage_files_subj_type_attribute)
+		(typeattribute manage_subj_type_attribute)
+
+		(call manage_files_pattern
+			(manage_files_subj_type_attribute fs fs))
+
+		(typeattributeset manage_dirs_subj_type_attribute
+			(manage_subj_type_attribute))
+		(typeattributeset manage_files_subj_type_attribute
+			(manage_subj_type_attribute))
+		(typeattributeset manage_lnk_files_subj_type_attribute
+			(manage_subj_type_attribute)))
 
 	(block drm
 
