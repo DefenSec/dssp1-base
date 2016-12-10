@@ -859,6 +859,109 @@
 		(allow rw_inherited_subj_type_attribute dev
 			rw_inherited_chr_file_perms))
 
+	(block pty
+
+		;
+		; pty macros
+		;
+
+		(macro getattr_all_subj_type ((type ARG1))
+			(typeattributeset getattr_all_subj_type_attribute
+				ARG1))
+
+		(macro manage_all_subj_type ((type ARG1))
+			(typeattributeset manage_all_subj_type_attribute
+				ARG1))
+
+		(macro read_all_subj_type ((type ARG1))
+			(typeattributeset read_all_subj_type_attribute
+				ARG1))
+
+		(macro relabel_all_subj_type ((type ARG1))
+			(typeattributeset relabel_all_subj_type_attribute
+				ARG1))
+
+		(macro relabelfrom_all_subj_type ((type ARG1))
+			(typeattributeset relabelfrom_all_subj_type_attribute
+				ARG1))
+
+		(macro relabelto_all_subj_type ((type ARG1))
+			(typeattributeset relabelto_all_subj_type_attribute
+				ARG1))
+
+		(macro rw_all_inherited_subj_type ((type ARG1))
+			(typeattributeset rw_all_inherited_subj_type_attribute
+				ARG1))
+
+		(macro rw_all_subj_type ((type ARG1))
+			(typeattributeset rw_all_subj_type_attribute
+				ARG1))
+
+		(macro setattr_all_subj_type ((type ARG1))
+			(typeattributeset setattr_all_subj_type_attribute
+				ARG1))
+
+		(macro write_all_subj_type ((type ARG1))
+			(typeattributeset write_all_subj_type_attribute
+				ARG1))
+
+		;
+		; pty policy
+		;
+
+		(typeattribute getattr_all_subj_type_attribute)
+		(typeattribute manage_all_subj_type_attribute)
+		(typeattribute read_all_subj_type_attribute)
+		(typeattribute relabel_all_subj_type_attribute)
+		(typeattribute relabelfrom_all_subj_type_attribute)
+		(typeattribute relabelto_all_subj_type_attribute)
+		(typeattribute rw_all_inherited_subj_type_attribute)
+		(typeattribute rw_all_subj_type_attribute)
+		(typeattribute setattr_all_subj_type_attribute)
+		(typeattribute write_all_subj_type_attribute)
+
+		(call .fs.devpts.search_subj_type
+			(getattr_all_subj_type_attribute))
+		(call .fs.devpts.search_subj_type
+			(manage_all_subj_type_attribute))
+		(call .fs.devpts.search_subj_type
+			(read_all_subj_type_attribute))
+		(call .fs.devpts.search_subj_type
+			(relabel_all_subj_type_attribute))
+		(call .fs.devpts.search_subj_type
+			(relabelfrom_all_subj_type_attribute))
+		(call .fs.devpts.search_subj_type
+			(relabelto_all_subj_type_attribute))
+		(call .fs.devpts.search_subj_type
+			(rw_all_inherited_subj_type_attribute))
+		(call .fs.devpts.search_subj_type
+			(rw_all_subj_type_attribute))
+		(call .fs.devpts.search_subj_type
+			(setattr_all_subj_type_attribute))
+		(call .fs.devpts.search_subj_type
+			(write_all_subj_type_attribute))
+
+		(allow getattr_all_subj_type_attribute
+			pty_obj_type_attribute (chr_file (getattr)))
+		(allow manage_all_subj_type_attribute pty_obj_type_attribute
+			manage_chr_file_perms)
+		(allow read_all_subj_type_attribute pty_obj_type_attribute
+			read_chr_file_perms)
+		(allow relabel_all_subj_type_attribute
+			pty_obj_type_attribute relabel_chr_file_perms)
+		(allow relabelfrom_all_subj_type_attribute
+			pty_obj_type_attribute relabelfrom_chr_file_perms)
+		(allow relabelto_all_subj_type_attribute
+			pty_obj_type_attribute relabelto_chr_file_perms)
+		(allow rw_all_inherited_subj_type_attribute
+			pty_obj_type_attribute rw_inherited_term_perms)
+		(allow rw_all_subj_type_attribute pty_obj_type_attribute
+			rw_term_perms)
+		(allow setattr_all_subj_type_attribute pty_obj_type_attribute
+			(chr_file (setattr)))
+		(allow write_all_subj_type_attribute pty_obj_type_attribute
+			write_chr_file_perms))
+
 	(block random
 
 		;
