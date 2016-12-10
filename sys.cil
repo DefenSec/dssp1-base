@@ -353,6 +353,10 @@
 	(optional sys_optional_kmod
 		(call kmod.auto_subj_type_transition (isid)))
 
+	(optional sys_optional_machined
+		(call machined.var_lib.audit_read_access_files_subj_type
+			(isid)))
+
 	(optional sys_optional_misc
 		(call misc.font.client_subj_type (isid)))
 
