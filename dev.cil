@@ -347,7 +347,9 @@
 		; devtty policy
 		;
 
-		(blockinherit dev.dev_obj_base_template))
+		(blockinherit dev.dev_obj_base_template)
+
+		(call .fs.tmpfs.associate_obj_type (dev)))
 
 	(block dpaux
 
@@ -715,6 +717,8 @@
 
 		(call dev.dev_obj_type (isid))
 
+		(call .fs.tmpfs.associate_obj_type (isid))
+
 		(typeattribute create_subj_type_attribute)
 		(typeattribute getattr_subj_type_attribute)
 		(typeattribute manage_subj_type_attribute)
@@ -985,7 +989,9 @@
 		; random policy
 		;
 
-		(blockinherit dev.dev_obj_base_template))
+		(blockinherit dev.dev_obj_base_template)
+
+		(call .fs.tmpfs.associate_obj_type (dev)))
 
 	(block sound
 
@@ -1125,7 +1131,9 @@
 		; urandom policy
 		;
 
-		(blockinherit dev.dev_obj_base_template))
+		(blockinherit dev.dev_obj_base_template)
+
+		(call .fs.tmpfs.associate_obj_type (dev)))
 
 	(block usb
 
@@ -1446,7 +1454,9 @@
 		; zero policy
 		;
 
-		(blockinherit dev.dev_obj_base_template))
+		(blockinherit dev.dev_obj_base_template)
+
+		(call .fs.tmpfs.associate_obj_type (dev)))
 
 	;
 	; Templates
