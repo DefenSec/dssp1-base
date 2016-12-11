@@ -1,3 +1,7 @@
+(in fs.rootfs
+	(filecon "/lib(64)?" symlink fs_context)
+	(filecon "/(s)?bin" symlink fs_context))
+
 (block cmd
 
 	;

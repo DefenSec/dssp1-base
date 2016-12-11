@@ -1129,8 +1129,6 @@
 		;
 
 		(filecon "/" dir fs_context)
-		(filecon "/(s)?bin" symlink fs_context)
-		(filecon "/lib(64)?" symlink fs_context)
 
 		(genfscon "rootfs" "/" fs_context)
 
