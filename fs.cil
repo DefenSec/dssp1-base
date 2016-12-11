@@ -705,6 +705,15 @@
 			(typeattributeset manage_subj_type_attribute
 				ARG1))
 
+		(macro read_files_subj_type ((type ARG1))
+			(typeattributeset
+				read_files_subj_type_attribute
+					ARG1))
+
+		(macro read_subj_type ((type ARG1))
+			(typeattributeset read_subj_type_attribute
+				ARG1))
+
 		;
 		; dosfs policy
 		;
@@ -717,16 +726,26 @@
 
 		(typeattribute manage_files_subj_type_attribute)
 		(typeattribute manage_subj_type_attribute)
+		(typeattribute read_files_subj_type_attribute)
+		(typeattribute read_subj_type_attribute)
 
 		(call manage_files_pattern
 			(manage_files_subj_type_attribute fs fs))
+		(call read_files_pattern
+			(read_files_subj_type_attribute fs fs))
 
 		(typeattributeset manage_dirs_subj_type_attribute
 			(manage_subj_type_attribute))
 		(typeattributeset manage_files_subj_type_attribute
 			(manage_subj_type_attribute))
 		(typeattributeset manage_lnk_files_subj_type_attribute
-			(manage_subj_type_attribute)))
+			(manage_subj_type_attribute))
+		(typeattributeset list_subj_type_attribute
+			(read_subj_type_attribute))
+		(typeattributeset read_files_subj_type_attribute
+			(read_subj_type_attribute))
+		(typeattributeset read_lnk_files_subj_type_attribute
+			(read_subj_type_attribute)))
 
 	(block drm
 
