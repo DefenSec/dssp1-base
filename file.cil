@@ -1,3 +1,9 @@
+(in fs.rootfs
+	(filecon "/initrd\.img" symlink fs_context)
+	(filecon "/initrd\.img\.old" symlink fs_context)
+	(filecon "/vmlinuz" symlink fs_context)
+	(filecon "/vmlinuz\.old" symlink fs_context))
+
 (block file
 
 	;
@@ -688,6 +694,33 @@
 		(typeattribute write_all_files_subj_type_attribute)
 
 		(call sys.mountpoint_obj_type (boot_file))
+
+		(call .fs.rootfs.read_lnk_files_subj_type
+			(list_all_subj_type_attribute))
+		(call .fs.rootfs.read_lnk_files_subj_type
+			(manage_all_dirs_subj_type_attribute))
+		(call .fs.rootfs.read_lnk_files_subj_type
+			(manage_all_files_subj_type_attribute))
+		(call .fs.rootfs.read_lnk_files_subj_type
+			(manage_all_lnk_files_subj_type_attribute))
+		(call .fs.rootfs.read_lnk_files_subj_type
+			(read_all_files_subj_type_attribute))
+		(call .fs.rootfs.read_lnk_files_subj_type
+			(read_all_lnk_files_subj_type_attribute))
+		(call .fs.rootfs.read_lnk_files_subj_type
+			(relabel_all_dirs_subj_type_attribute))
+		(call .fs.rootfs.read_lnk_files_subj_type
+			(relabel_all_files_subj_type_attribute))
+		(call .fs.rootfs.read_lnk_files_subj_type
+			(relabel_all_lnk_files_subj_type_attribute))
+		(call .fs.rootfs.read_lnk_files_subj_type
+			(rw_all_dirs_subj_type_attribute))
+		(call .fs.rootfs.read_lnk_files_subj_type
+			(rw_all_files_subj_type_attribute))
+		(call .fs.rootfs.read_lnk_files_subj_type
+			(search_all_subj_type_attribute))
+		(call .fs.rootfs.read_lnk_files_subj_type
+			(write_all_files_subj_type_attribute))
 
 		(allow list_all_subj_type_attribute
 			boot_obj_type_attribute list_dir_perms)
@@ -5025,6 +5058,32 @@
 		(typeattribute rw_files_subj_type_attribute)
 		(typeattribute search_subj_type_attribute)
 		(typeattribute write_files_subj_type_attribute)
+
+		(call .fs.rootfs.read_lnk_files_subj_type (list_subj_type_attribute))
+		(call .fs.rootfs.read_lnk_files_subj_type
+			(manage_dirs_subj_type_attribute))
+		(call .fs.rootfs.read_lnk_files_subj_type
+			(manage_files_subj_type_attribute))
+		(call .fs.rootfs.read_lnk_files_subj_type
+			(manage_lnk_files_subj_type_attribute))
+		(call .fs.rootfs.read_lnk_files_subj_type
+			(read_files_subj_type_attribute))
+		(call .fs.rootfs.read_lnk_files_subj_type
+			(read_lnk_files_subj_type_attribute))
+		(call .fs.rootfs.read_lnk_files_subj_type
+			(relabel_dirs_subj_type_attribute))
+		(call .fs.rootfs.read_lnk_files_subj_type
+			(relabel_files_subj_type_attribute))
+		(call .fs.rootfs.read_lnk_files_subj_type
+			(relabel_lnk_files_subj_type_attribute))
+		(call .fs.rootfs.read_lnk_files_subj_type
+			(rw_dirs_subj_type_attribute))
+		(call .fs.rootfs.read_lnk_files_subj_type
+			(rw_files_subj_type_attribute))
+		(call .fs.rootfs.read_lnk_files_subj_type
+			(search_subj_type_attribute))
+		(call .fs.rootfs.read_lnk_files_subj_type
+			(write_files_subj_type_attribute))
 
 		(allow list_subj_type_attribute boot_file list_dir_perms)
 		(call manage_dirs_pattern
