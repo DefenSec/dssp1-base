@@ -1056,6 +1056,10 @@
 		; proc macros
 		;
 
+		(macro mounton_files_subj_type ((type ARG1))
+			(typeattributeset mounton_files_subj_type_attribute
+				ARG1))
+
 		(macro read_files_subj_type ((type ARG1))
 			(typeattributeset read_files_subj_type_attribute
 				ARG1))
@@ -1070,6 +1074,7 @@
 
 		(blockinherit fs.fs_obj_base_template)
 
+		(typeattribute mounton_files_subj_type_attribute)
 		(typeattribute read_files_subj_type_attribute)
 		(typeattribute read_subj_type_attribute)
 
@@ -1077,6 +1082,8 @@
 
 		(call fs.xattr.associate_obj_type (fs))
 
+		(allow mounton_files_subj_type_attribute fs (file
+			(mounton)))
 		(call read_files_pattern
 			(read_files_subj_type_attribute fs fs))
 

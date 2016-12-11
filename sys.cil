@@ -854,11 +854,20 @@
 		; irq macros
 		;
 
+		(macro mounton_dirs_subj_type ((type ARG1))
+			(typeattributeset mounton_dirs_subj_type_attribute
+				ARG1))
+
 		;
 		; irq policy
 		;
 
-		(blockinherit sys.sysctl_obj_base_template))
+		(blockinherit sys.sysctl_obj_base_template)
+
+		(typeattribute mounton_dirs_subj_type_attribute)
+
+		(allow mounton_dirs_subj_type_attribute sysctl (dir
+			(mounton))))
 
 	(block kallsyms
 
@@ -1127,11 +1136,20 @@
 		; mtrr macros
 		;
 
+		(macro mounton_files_subj_type ((type ARG1))
+			(typeattributeset mounton_files_subj_type_attribute
+				ARG1))
+
 		;
 		; mtrr policy
 		;
 
-		(blockinherit sys.proc_obj_base_template))
+		(blockinherit sys.proc_obj_base_template)
+
+		(typeattribute mounton_files_subj_type_attribute)
+
+		(allow mounton_files_subj_type_attribute proc (file
+			(mounton))))
 
 	(block net_proc
 
@@ -2133,11 +2151,20 @@
 		; sysrq macros
 		;
 
+		(macro mounton_files_subj_type ((type ARG1))
+			(typeattributeset mounton_files_subj_type_attribute
+				ARG1))
+
 		;
 		; sysrq policy
 		;
 
-		(blockinherit sys.proc_obj_base_template))
+		(blockinherit sys.proc_obj_base_template)
+
+		(typeattribute mounton_files_subj_type_attribute)
+
+		(allow mounton_files_subj_type_attribute proc (file
+			(mounton))))
 
 	(block unlabeled
 
