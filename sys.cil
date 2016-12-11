@@ -867,6 +867,9 @@
 		(typeattribute mounton_dirs_subj_type_attribute)
 
 		(allow mounton_dirs_subj_type_attribute sysctl (dir
+			(mounton)))
+
+		(allow unconfined_subj_type_attribute sysctl (dir
 			(mounton))))
 
 	(block kallsyms
@@ -1149,6 +1152,9 @@
 		(typeattribute mounton_files_subj_type_attribute)
 
 		(allow mounton_files_subj_type_attribute proc (file
+			(mounton)))
+
+		(allow unconfined_subj_type_attribute proc (file
 			(mounton))))
 
 	(block net_proc
@@ -1934,7 +1940,10 @@
 		(allow unconfined_subj_type_attribute
 			sysctl_obj_type_attribute read_lnk_file_perms)
 		(allow unconfined_subj_type_attribute
-			sysctl_obj_type_attribute rw_file_perms))
+			sysctl_obj_type_attribute rw_file_perms)
+
+		(allow unconfined_subj_type_attribute isid (dir
+			(mounton))))
 
 	(block sysfs
 
@@ -2164,6 +2173,9 @@
 		(typeattribute mounton_files_subj_type_attribute)
 
 		(allow mounton_files_subj_type_attribute proc (file
+			(mounton)))
+
+		(allow unconfined_subj_type_attribute proc (file
 			(mounton))))
 
 	(block unlabeled

@@ -1092,7 +1092,10 @@
 		(typeattributeset read_files_subj_type_attribute
 			(read_subj_type_attribute))
 		(typeattributeset read_lnk_files_subj_type_attribute
-			(read_subj_type_attribute)))
+			(read_subj_type_attribute))
+
+		(allow unconfined_subj_type_attribute fs (file
+			(mounton))))
 
 	(block pstore
 
