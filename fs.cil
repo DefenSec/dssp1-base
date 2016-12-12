@@ -1196,6 +1196,8 @@
 
 		(genfscon "rpc_pipefs" "/" fs_context)
 
+		(filecon "/run/rpc_pipefs(/.*)?" any ())
+
 		;
 		; rpc_pipefs macros
 		;
