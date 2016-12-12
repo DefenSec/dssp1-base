@@ -460,7 +460,7 @@
 
 	(typeattributeset use_fd_subj_type_attribute
 		rw_inherited_unix_stream_sockets_subj_type_attribute)
-	(allow rw_inherited_netlink_audit_sockets_subj_type_attribute
+	(allow rw_inherited_unix_stream_sockets_subj_type_attribute
 		isid rw_inherited_unix_stream_socket_perms)
 
 	(allow rw_mountpoint_dirs_subj_type_attribute
