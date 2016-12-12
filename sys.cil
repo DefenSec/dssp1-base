@@ -2414,6 +2414,38 @@
 		(allow unconfined_subj_type_attribute isid
 			blk_file_except_mounton_and_execmod))
 
+	(block timer
+
+		;
+		; timer contexts
+		;
+
+		(genfscon "proc" "/timer_list" proc_context)
+		(genfscon "proc" "/timer_stats" proc_context)
+
+		;
+		; timer macros
+		;
+
+		(macro mounton_files_subj_type ((type ARG1))
+			(typeattributeset
+				mounton_files_subj_type_attribute
+					ARG1))
+
+		;
+		; timer policy
+		;
+
+		(blockinherit sys.proc_obj_base_template)
+
+		(typeattribute mounton_files_subj_type_attribute)
+
+		(allow mounton_files_subj_type_attribute proc (file
+			(mounton)))
+
+		(allow unconfined_subj_type_attribute proc (file
+			(mounton))))
+
 	(block usermodehelper
 
 		;
