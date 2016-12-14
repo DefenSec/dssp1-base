@@ -621,6 +621,7 @@
 		; mouse contexts
 		;
 
+		(filecon "/dev/psaux" char dev_file_context)
 		(filecon "/dev/input/js([0-9]+)?" char dev_file_context)
 		(filecon "/dev/input/mice" char dev_file_context)
 		(filecon "/dev/input/mouse([0-9]+)?" char dev_file_context)
