@@ -29,6 +29,10 @@
 		(typeattributeset dontaudit_relabel_all_subj_type_attribute
 			ARG1))
 
+	(macro dontaudit_search_all_subj_type ((type ARG1))
+		(typeattributeset dontaudit_search_all_subj_type_attribute
+			ARG1))
+
 	(macro auth_obj_type ((type ARG1))
 		(typeattributeset auth_obj_type_attribute ARG1))
 
@@ -279,6 +283,7 @@
 	(typeattribute dontaudit_relabel_all_files_subj_type_attribute)
 	(typeattribute dontaudit_relabel_all_lnk_files_subj_type_attribute)
 	(typeattribute dontaudit_relabel_all_subj_type_attribute)
+	(typeattribute dontaudit_search_all_subj_type_attribute)
 	(typeattribute auth_obj_type_attribute)
 	(typeattribute boot_flag_obj_type_attribute)
 	(typeattribute boot_obj_type_attribute)
@@ -402,6 +407,8 @@
 		file_obj_type_attribute relabel_file_perms)
 	(dontaudit dontaudit_relabel_all_lnk_files_subj_type_attribute
 		file_obj_type_attribute relabel_lnk_file_perms)
+	(dontaudit dontaudit_search_all_subj_type_attribute
+		file_obj_type_attribute search_dir_perms)
 	(call getattr_dirs_pattern (getattr_all_dirs_subj_type_attribute
 		file_obj_type_attribute file_obj_type_attribute))
 	(call getattr_fifo_files_pattern
