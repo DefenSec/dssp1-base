@@ -112,6 +112,7 @@
 		(roleattributeset role_attribute ARG2)
 
 		(call ps_subj_type (ARG1))
+		(call ptrace_subj_type (ARG1))
 
 		(call send_signull_subj_type (ARG1))
 		(call send_sigkill_subj_type (ARG1))
