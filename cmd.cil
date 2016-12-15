@@ -262,11 +262,24 @@
 		; Macros
 		;
 
+		(macro audit_exec_access_subj_type ((type ARG1))
+			(typeattributeset
+				audit_exec_access_subj_type_attribute
+					ARG1))
+
 		;
 		; Policy
 		;
 
-		(blockinherit cmd.cmd_obj_template))
+		(blockinherit cmd.cmd_obj_template)
+
+		(typeattribute audit_exec_access_subj_type_attribute)
+
+		(call .cmd.command.read_lnk_files_subj_type
+			(audit_exec_access_subj_type_attribute))
+
+		(allow audit_exec_access_subj_type_attribute cmd_file (file
+			(getattr execute))))
 
 	;
 	; Templates
