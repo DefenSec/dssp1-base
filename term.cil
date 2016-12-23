@@ -178,6 +178,15 @@
 			(call .fs.devtmpfs.obj_type_transition (ARG1 serial_dev
 				chr_file "vcsa63")))
 
+		(macro dontaudit_rw_subj_type ((type ARG1))
+			(typeattributeset
+				dontaudit_rw_subj_type_attribute
+					ARG1))
+
+		(macro rw_inherited_subj_type ((type ARG1))
+			(typeattributeset
+				rw_inherited_subj_type_attribute ARG1))
+
 		(macro login_tty ((type ARG1)(type ARG2))
 			(typechange ARG1 serial_dev chr_file ARG2)
 			(booleanif term.console_login (true (typechange ARG1
@@ -187,7 +196,15 @@
 		; tty policy
 		;
 
-		(blockinherit dev.serial_obj_template))
+		(blockinherit dev.serial_obj_template)
+
+		(typeattribute dontaudit_rw_subj_type_attribute)
+		(typeattribute rw_inherited_subj_type_attribute)
+
+		(dontaudit dontaudit_rw_subj_type_attribute
+			serial_dev rw_chr_file_perms)
+		(allow rw_inherited_subj_type_attribute serial_dev
+			rw_inherited_chr_file_perms))
 
 	(block virtio
 
